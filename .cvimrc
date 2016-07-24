@@ -262,6 +262,27 @@ Mappings.actions.centerMatchH();
 }}
 "}}}
 
+" Stilebot
+"{{{
+map <leader>p :call leftSide<CR>
+"{{{
+leftSide-> {{
+
+document.getElementById('stylebot').style.left=0 + "px";
+
+}}
+"}}}
+
+map <leader>P :call rightSide<CR>
+"{{{
+rightSide-> {{
+
+document.getElementById('stylebot').style.left=1044 + "px";
+
+}}
+"}}}
+"}}}
+
 "map b :call bookmarksNextTab<CR>
 "{{{
 bookmarksNextTab -> {{
