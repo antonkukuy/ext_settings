@@ -89,8 +89,18 @@
         "moreTsearch": "sgoogle"
       },
       {
-        "action": "T_copytext",
-        "direct": "D"
+        "direct": "D",
+        "action": "T_copytext"
+      },
+      {
+        "direct": "RD",
+        "action": "T_searchuser",
+        "moreName": "YouTube",
+        "moreURL": "https://www.youtube.com/results?search_query=%s",
+        "moreDes": "Use %name to search \"%s\"",
+        "moreTarget": "newback",
+        "morePosition": "chrome",
+        "morePinned": "unpinned"
       }
     ]
   },
@@ -179,6 +189,14 @@
         "morePinned": "unpinned",
         "morePosition": "chrome",
         "moreTarget": "newfront"
+      },
+      {
+        "direct": "LD",
+        "action": "G_fullscreen"
+      },
+      {
+        "direct": "URU",
+        "action": "G_windowmax"
       }
     ],
     "gestureui": true,
@@ -265,5 +283,5 @@
     ],
     "strrightenable": true
   },
-  "sync": true
+  "sync": "local"
 }
