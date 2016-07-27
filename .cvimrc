@@ -11,7 +11,7 @@
     set noautofocus
     set scalehints
     set smoothscroll
-    let hintcharacters = "qwertasdfgzxcv"
+    let hintcharacters = "wertasdfgzxcv"
     let previousmatchpattern = "((?!last)(prev(ious)?|previous page|newer|back|«|less|<|<-.*|‹| )+)"
     let nextmatchpattern = "((?!first)(next page|.*->|older|more|>|›|»|forward|next| )+)"
 
@@ -37,8 +37,8 @@
         "let chr='chrome://extensions<CR>'
         map gE :tabnew chrome://extensions<CR>
         map gB :tabnew chrome://bookmarks<CR>
-        map ,g :open google<Space>
-        map gG :tabnew google<Space>
+        map gG :open google<Space>
+        map ,g :tabnew google<Space>
 
         " Open all of these in a tab with `gnb` or open one of these with <N>goa where <N>
         "let qmark a = ["http://www.reddit.com", "http://www.google.com", "http://twitter.com"]
@@ -195,6 +195,7 @@ Status.setMessage('Source is done', 1);
 }}
 "}}}
 
+map <leader>d :script<Space>javascript: $(document).ready(function(){$("p").click(function(){$(this).hide();});});<CR>
 map <leader>i :call pageTitle<CR>
 "{{{
 pageTitle -> {{
@@ -214,6 +215,11 @@ hideHUD -> {{
 
 // Display cVim's bottom bar for 0.1 seconds.
 HUD.display('', .1);
+    //document.getElementById('leftmenu').style.display = "none !important";
+    //document.querySelector("#leftmenu").style.setAttribute('style', 'display:inline !important');
+    document.querySelector("#leftmenu").style.cssText = 'display:block !important';
+    document.querySelector("#topnav").style.cssText = 'position:fixed !important;top:0px';
+    document.querySelector("#right").style.cssText =  'position:absolute !important;right:0px';
 
 }}
 "}}}
@@ -227,15 +233,15 @@ scrollToCenter -> {{
 //     (document.body.offsetHeight)
 // );
 /*
- * window.scrollTo(x,y) is an efficient cross-broser function,
- * which scrolls the document to position X, Y
- * document.body.offsetWidth contains the value of the body's width
- * document.documentElement contains the value of the document's width
- *
- * Logic: If you want to center the page, you have to substract
- * the body's width from the document's width, then divide it
- * by 2.
- */
+* window.scrollTo(x,y) is an efficient cross-broser function,
+* which scrolls the document to position X, Y
+* document.body.offsetWidth contains the value of the body's width
+* document.documentElement contains the value of the document's width
+*
+* Logic: If you want to center the page, you have to substract
+* the body's width from the document's width, then divide it
+* by 2.
+*/
 
 window.scrollBy(5,0); // horizontal and vertical scroll increments
 
@@ -268,77 +274,94 @@ map <leader>p :call leftSide<CR>
 "{{{
 leftSide-> {{
 
-document.getElementById('stylebot').style.left=0 + "px";
+//function include(url) {
+        //var script = document.createElement('script');
+        //script.src = url;
+        //document.getElementsByTagName('head')[0].appendChild(script);
+    //}
+//include("http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js");
 
-}}
-"}}}
+function myFunc(){
 
-map <leader>P :call rightSide<CR>
-"{{{
-rightSide-> {{
 
-document.getElementById('stylebot').style.left=1044 + "px";
+    //document.getElementById("stylebot-arrow-button").getElementByClassName("stylebot-header-button").click();
+    //document.getElementById('stylebot').click();
+    //document.getElementByClassName("stylebot-button").submit();
+    document.getElementById('stylebot').style.left=0 + "px";
+    //document.getElementById('stylebot').style.cssText += 'left: 0px !important';
 
-}}
-"}}}
-"}}}
 
-"map b :call bookmarksNextTab<CR>
-"{{{
-bookmarksNextTab -> {{
+    }
+myFunc();
+    }}
+    "}}}
 
-//    Command.show('/');
-//    HUD.hide(true);
-//    HUD.display(' -- INSERT -- ');
+    map <leader>P :call rightSide<CR>
+    "{{{
+    rightSide-> {{
 
-}}
-""}}}
+    document.getElementById('stylebot').style.left= window.innerWidth - 320 - 2 + "px"; // some padding
 
-" Open an IPython notebook *.ipynb file from Github on nbviewer.ipython.org(exmaple)
-" {{{
-"    map < Leader > i: script < Space > javascript: date = new Date();
-"    url_root = 'http://nbviewer.ipython.org/';
-"    url = null;
-"    gist_re = /^https?:\/\/gist\.github\.com\/(?:\w+\/)?([a-f0-9]+)$/;
-"    github_re = /^https:\/\/(github\.com\/.*\/)blob\/(.*\.ipynb)$/;
-"    https_re = /^https:\/\/(.*\.ipynb)$/;
-"    http_re = /^http:\/\/(.*\.ipynb)$/;
-"    loc = location.href;
-"    if (gist_re.test(loc)) {
-"        gist = gist_re.exec(loc);
-"        url = url_root + gist[1];
-"    } else if (github_re.test(loc)) {
-"        path = github_re.exec(loc);
-"        url = url_root + 'urls/raw.' + path[1] + path[2];
-"    } else if (https_re.test(loc)) {
-"        path = https_re.exec(loc);
-"        url = url_root + 'urls/' + path[1];
-"    } else if (http_re.test(loc)) {
-"        path = http_re.exec(loc);
-"        url = url_root + 'url/' + path[1];
-"    }
-"    if (url) {
-"        void(window.open(url, '_self'));
-"    } < CR >
-" }}}
+    }}
+    "}}}
+    "}}}
 
-" Copy Link Text to the Clipboard(exmaple)
-" {{{
- yankText(link) -> {{
-//  Status.setMessage(link.text,3);
-//  Clipboard.copy(link.text);
-}}
-"map zy createScriptHint(yankText)
-" }}}
+    "map b :call bookmarksNextTab<CR>
+    "{{{
+    bookmarksNextTab -> {{
 
-"Copy the current tab title to the Clipboard(exmaple)
-"{{{
-copyCurrentTabTitle -> {{
-//  Status.setMessage(document.title,3);
-//  Clipboard.copy(document.title);
-}}
-"map yt :call copyCurrentTabTitle<CR>
-"}}}
+    //    Command.show('/');
+    //    HUD.hide(true);
+    //    HUD.display(' -- INSERT -- ');
 
-"map <leader>n :script<Space>javascript:console.log('Hey!');
-" }}}
+    }}
+    ""}}}
+
+    " Open an IPython notebook *.ipynb file from Github on nbviewer.ipython.org(exmaple)
+    " {{{
+    "    map < Leader > i: script < Space > javascript: date = new Date();
+    "    url_root = 'http://nbviewer.ipython.org/';
+    "    url = null;
+    "    gist_re = /^https?:\/\/gist\.github\.com\/(?:\w+\/)?([a-f0-9]+)$/;
+    "    github_re = /^https:\/\/(github\.com\/.*\/)blob\/(.*\.ipynb)$/;
+    "    https_re = /^https:\/\/(.*\.ipynb)$/;
+    "    http_re = /^http:\/\/(.*\.ipynb)$/;
+    "    loc = location.href;
+    "    if (gist_re.test(loc)) {
+    "        gist = gist_re.exec(loc);
+    "        url = url_root + gist[1];
+    "    } else if (github_re.test(loc)) {
+    "        path = github_re.exec(loc);
+    "        url = url_root + 'urls/raw.' + path[1] + path[2];
+    "    } else if (https_re.test(loc)) {
+    "        path = https_re.exec(loc);
+    "        url = url_root + 'urls/' + path[1];
+    "    } else if (http_re.test(loc)) {
+    "        path = http_re.exec(loc);
+    "        url = url_root + 'url/' + path[1];
+    "    }
+    "    if (url) {
+    "        void(window.open(url, '_self'));
+    "    } < CR >
+    " }}}
+
+    " Copy Link Text to the Clipboard(exmaple)
+    " {{{
+    yankText(link) -> {{
+    //  Status.setMessage(link.text,3);
+    //  Clipboard.copy(link.text);
+    }}
+    "map zy createScriptHint(yankText)
+    " }}}
+
+    "Copy the current tab title to the Clipboard(exmaple)
+    "{{{
+    copyCurrentTabTitle -> {{
+    //  Status.setMessage(document.title,3);
+    //  Clipboard.copy(document.title);
+    }}
+    "map yt :call copyCurrentTabTitle<CR>
+    "}}}
+
+    "map <leader>n :script<Space>javascript:console.log('Hey!');
+    " }}}
