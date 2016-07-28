@@ -46,7 +46,9 @@
         let qmark y = ["https://translate.yandex.ru"]
         let qmark g = ["https://translate.google.com/#en/ru/"]
 
-        let mapleader=","
+        let mapleader="x"
+        map q closeTab
+        map Q lastClosedTab
         map a createHoverHint
         map A createUnhoverHint
         map H :help<CR>
@@ -362,6 +364,7 @@ HUD.display('Preview is loaded', 1);
 }}
 "}}}
 
+" Delete paragraph
 map <leader>d :script<Space>javascript: $(document).ready(function(){$("p").click(function(){$(this).hide();});});<CR>
 map <leader>i :call pageTitle<CR>
 "{{{
