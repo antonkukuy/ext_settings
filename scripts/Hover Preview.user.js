@@ -3,6 +3,17 @@
 // @namespace      HP
 // @description    Pops up a floating div when you hover over a link, containing the target page!
 // @include        *
+// @exclude       http://wikipedia.tld/*
+// @exclude       http://*.wikipedia.tld/*
+//// Since TLD doesn't work in Chrome:
+// @exclude       http://wikipedia.org/*
+// @exclude       http://*.wikipedia.org/*
+//// https:
+// @exclude       https://wikipedia.org/*
+// @exclude       https://*.wikipedia.org/*
+//// 
+// @exclude       http://www.youtube.com/*
+// @exclude       https://www.youtube.com/*
 // @version 0.0.1.20150213035046
 // ==/UserScript==
 
@@ -21,8 +32,8 @@
 // Could be a bit heavy.  It depends on the page...
 // A different bookmarklet to turn all "links to images" into "images" would be nice. :)
 
-var focusReactionTime = 1500;
-var unfocusReactionTime = 1500;
+var focusReactionTime = 100;
+var unfocusReactionTime = 500;
 
 var focus = undefined;
 var lastFocus = undefined;
@@ -48,7 +59,7 @@ function eekAMouse(evt) {
 	if (evt.currentTarget.tagName !== "A") {
 		return;
 	}
-	if (!focus) {
+	if (!focus && evt.altKey) {
 		focus = evt.currentTarget;
 		// setTimeout('checkFocus();',focusReactionTime);
 		// Hack to bring the popup back immediately if we've gone back to the same link.
@@ -98,11 +109,13 @@ function createPopup() {
 	myPopup = document.createElement('DIV');
 	/** Seems style does not work for Konqueror this way. **/
 	myPopup.innerHTML =
-		"<STYLE type='text/css'> iframe.preview { color: #ff8822; background-color: #ff0000; margin: 0px; padding: 2px; border: 2px solid white; text-align: center; } </STYLE>"
+		"<STYLE type='text/css'> iframe.preview { color: #ff8822; background-color: #fff; margin: 0px; padding: 2px; border: 2px solid red; text-align: center; } </STYLE>"
 		+
-		"<IFRAME class='preview' width='"+(window.innerWidth*0.75)+"' height='"+(window.innerHeight*0.75)+"' src='about:blank'></IFRAME>";
+		"<IFRAME class='preview' width='"+(window.innerWidth*0.8)+"' height='"+(window.innerHeight*0.9)+"' src='about:blank'></IFRAME>";
 	myPopup.addEventListener("mouseover", function(evt) { isOverPopup=true; }, false);
 	myPopup.addEventListener("mouseout", function(evt) { isOverPopup=false; setTimeout(clearPopup,unfocusReactionTime); }, false);
+    window.addEventListener("keyup", function(evt) { if(evt.keyCode == 27){ isOverPopup=false; setTimeout(clearPopup,unfocusReactionTime); } }, false);
+
 	document.documentElement.appendChild(myPopup);
 	/*
 	myPopup.style.border = "4px solid white";
@@ -110,6 +123,8 @@ function createPopup() {
 	myPopup.style.margin = "4px";
 	myPopup.style.padding = "4px";
 	*/
+	//myPopup.style.width = window.innerWidth * 0.9 + "px";
+	//myPopup.style.height = window.innerHeight * 0.9 + "px";
 	myPopup.style.position = "fixed";
 	myPopup.style.right = "12px";
 	myPopup.style.bottom = "12px";

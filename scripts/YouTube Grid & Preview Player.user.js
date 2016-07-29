@@ -1988,6 +1988,8 @@ win.addEventListener("blur", function () { nochanges_count = -1; check_focus(); 
 win.addEventListener("resize", function () { nochanges_count = -1; related_adjust(true); auto_page_load(true); }, false);
 win.addEventListener("scroll", function () { nochanges_count = -1; auto_page_load(true); }, false);
 win.addEventListener("click", function (e) { nochanges_count = -1; player_close(e); }, false);
+win.addEventListener("keyup", function (e) { if(e.keyCode == 27) { nochanges_count = -1; player_close(e); }}, false);
+
 
 //main routine
 function check_changes() {
