@@ -7,6 +7,10 @@
 
     let scrollstep=100
     let scrollduration=400
+    let barposition="bottom"
+    "set cncpcompletion
+    let zoomfactor = 0.05
+    set typelinkhints " numerichints required
     set noautofocus
     set scalehints
     set smoothscroll
@@ -30,13 +34,6 @@
     " }}}
 
     " NORMAL MODE {{{
-        " Create a variable that can be used/referenced in the command bar
-        let @@reddit_prog = 'https://www.google.ru/?gfe_rd=cr&ei=aTd6V77eFc23zAXU1or4Dw'
-        " TA binding opens 'http://www.reddit.com/r/programming/top?sort=top&t=all' in a new tab
-        "map C :to @@reddit_prog<CR>
-        let @@prog = 'https://www.google.ru/?gfe_rd=cr&ei=aTd6V77eFc23zAXU1or4Dw'
-        "map C :@@prog
-        "let chr='chrome://extensions<CR>'
         map gE :tabnew chrome://extensions<CR>
         map gB :tabnew chrome://bookmarks<CR>
         map gG :open google<Space>
@@ -49,6 +46,13 @@
         let qmark g = ["https://translate.google.com/#en/ru/"]
 
         let mapleader="x"
+        map <Leader>n :set numerichints!<CR>
+        map ? openLinkSearchBar
+        map $ lastTab
+        map 0 firstTab
+        map g0 scrollToLeft
+        map g$ scrollToRight
+        map gas :settings<CR>
         map q closeTab
         map Q lastClosedTab
         map a createHoverHint
@@ -79,6 +83,7 @@
 
     " ALIASES {{{
         " alias ':g' to ':tabnew google'
+        command bashChars open http://tldp.org/LDP/abs/html/special-chars.html
         command g open google
         command gt tabnew google
         command ya open ya
@@ -91,10 +96,30 @@
         command gitt tabnew git
         command wiki open wiki
         command wikit tabnew wiki
-        "let searchalias g = "google"
-        "let searchalias yt = "youtube"
-        "let searchalias wiki = "wikipedia"
+        command moz open @@mozilla
+        command mozt tabnew @@mozilla
+        command www open @@w3shools
+        command wwwt tabnew @@w3shools
         let searchalias git = "git"
+
+            " Variables
+            "{{{
+            " Create a variable that can be used/referenced in the command bar
+            "let @@reddit_prog = 'https://www.google.ru/?gfe_rd=cr&ei=aTd6V77eFc23zAXU1or4Dw'
+            "map C :to @@reddit_prog<CR>
+            let @@mozilla = 'site:developer.mozilla.org'
+            let @@greasyfork = 'site:greasyfork.org'
+            let @@w3shools = 'site:w3schools.com'
+            let @@learnJS = 'site:learn.javascript.ru'
+            let @@man7 = 'site:http://man7.org/linux/man-pages'
+            let @@pdf = 'file:pdf'
+            let @@doc = 'file:doc'
+            let @@jpg = 'file:jpg'
+            let @@png = 'file:png'
+            let @@gif = 'file:gif'
+            "Advanced Bash-Scripting Guide
+            let @@bash= 'site:tldp.org/LDP/abs/html'
+            "}}}
     " }}}
 
 " SEARCH ENGINES 
@@ -102,6 +127,8 @@
     let completionengines = ['google', 'google-image', 'youtube', 'amazon', 'ebay', 'bing', 'yahoo', 'wikipedia'] " Show only these engines in the command bar
     let searchengine goog = "https://www.google.ru/search?newwindow=1&noj=1&site=webhp&q=%s"
     let searchengine mdn = "https://developer.mozilla.org/ru/search?q=%s"
+    let searchengine mozilla = "https://developer.mozilla.org/ru/search?q=%s"
+    "let searchengine mdn = "https://developer.mozilla.org/ru/search?q=%s"
     let searchengine ya = "https://yandex.ru/search/?text=%s"
     " youtube2mp3
     let searchengine ymp3 = "http://youtubeinmp3.com/download/?video=%s"
@@ -135,7 +162,6 @@
         }
     "}}}
 
-
     " Site-specific Configuration {{{
 
     " this will enable the config block below on the domain 'reddit.com'
@@ -159,27 +185,56 @@
 
 " }}}
 
+" SITE-SPECIFIC CONFIGURATION
+"{{{
+" this will enable the config block below on the domain 'any.com'
+
+    " wikipedia
+    "{{{
+"    site '*://*.wikipedia.*/*' {
+"    call readWikipedia
+"    }
+    "}}}
+"}}}
+
+
 " FUNCTIONS
 " {{{
+" We are now in JavaScript mode within any function
+" Variable is used by the code block
+"set hintset_a
 
 map <leader>s :call switchBoxTranslate<CR>
-" Create a code block named switchHintCharacters
+"{{{
 switchBoxTranslate -> {{
 
 var styleZ = document.getElementById('lleo_dialog').style.cssText.slice(-24);
-  if (styleZ != "z-index: 999 !important;") {
-    document.getElementById('lleo_dialog').style.cssText += "z-index: 999 !important";
-  } else {
-    document.getElementById('lleo_dialog').style.cssText += "z-index: 999999999 !important";
-  }
+    if (styleZ != "z-index: 999 !important;") {
+        document.getElementById('lleo_dialog').style.cssText += "z-index: 999 !important";
+    } else {
+        document.getElementById('lleo_dialog').style.cssText += "z-index: 999999999 !important";
+    }
 
-  //Status.setMessage('Is it work?: ' + (true ? 'YES, it is.' : 'NO, it is not'), 2);
-}}
+    //Status.setMessage('Is it work?: ' + (true ? 'YES, it is.' : 'NO, it is not'), 2);
+    }}
+    "}}}
 
-" We are now in JavaScript mode within any function
-
-" Variable is used by the code block
-"set hintset_a
+map <leader>w :call readWikipedia<CR>
+"{{{
+readWikipedia -> {{
+var contentMargin = document.getElementById('content').style.marginLeft;
+    if (contentMargin != "0px") {
+        document.getElementById('mw-navigation').style.display = 'none';
+        document.getElementById('mw-page-base').style.display = 'none';
+        document.getElementById('content').style.marginLeft = "0px";
+    } else {
+        document.getElementById('mw-navigation').style.display = '';
+        document.getElementById('mw-page-base').style.display = '';
+        document.getElementById('content').style.marginLeft = "";
+    }
+    //Status.setMessage('Is it work?: ' + (true ? 'YES, it is.' : 'NO, it is not'), 2);
+    }}
+    "}}}
 
 map <leader>m :call consoleMessage<CR>
 "{{{
@@ -216,7 +271,7 @@ Status.setMessage('Source is done', 1);
 }}
 "}}}
 
-map <leader>w :call previewLink<CR>
+map <leader>1 :call previewLink<CR>
 
 "{{{
 previewLink -> {{
@@ -554,3 +609,15 @@ myFunc();
 
     "map <leader>n :script<Space>javascript:console.log('Hey!');
     " }}}
+
+    " Future
+    "{{{
+    fixChromiumWikiBug -> {{
+    //  [].slice.call(document.querySelectorAll('*[accesskey]')).forEach(function(e) {
+    //    e.removeAttribute('accesskey');
+    });
+    }}
+    site '*://*/*' {
+    "call fixChromiumWikiBug
+    }
+    "}}}
