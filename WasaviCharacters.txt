@@ -1,0 +1,94 @@
+" exrc for wasavi
+ set cursorcolumn
+ set cursorline        " Включаем подсветку строки с курсором 
+ set nu 
+ "set rnu 
+ set exrc
+ set theme=charcoal
+" remap ESC
+" map jj esc
+map а f
+map б ,
+map в d
+map г u
+map д l
+map е t
+map ё `
+map ж ;
+map з p
+map и b
+map й q
+map к r
+map л k
+map м m
+map н y
+map о j
+map п g
+map р h
+map с c
+map т n
+map у e
+map ф a
+map х [
+map ц w
+map ч x
+map ш i
+map щ o
+map ъ ]
+map ы s
+map ь m
+map э '
+map ю .
+map я z
+map А F
+map Б <
+map В D
+map Г U
+map Д L
+map Е T
+map Ё ~
+map Ж :
+map З P
+map И B
+map Й Q
+map К R
+map Л K
+map М M
+map Н Y
+map О J
+map П G
+map Р H
+map С C
+map Т N
+map У E
+map Ф A
+map Х [
+map Ц W
+map Ч X
+map Ш I
+map Щ O
+map Ъ ]
+map Ы S
+map Ь M
+map Э "
+map Ю >
+map Я Z
+map . /
+map , ?
+map \ \
+map / |
+map ! !
+map " @
+map № #
+map ; $
+
+"map % %  " can not be remaped
+"map : ^  " can not be remaped
+map ? &
+"map * *  " can not be remaped
+"map ( (  " can not be remaped
+"map ( (  " can not be remaped
+"map - -  " can not be remaped
+"map = =  " can not be remaped
+"map + +  " can not be remaped
+"map _ _  " can not be remaped
