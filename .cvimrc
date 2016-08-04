@@ -10,6 +10,7 @@
     let barposition="bottom"
     "set cncpcompletion
     let zoomfactor = 0.05
+    set noinsertmappings
     set typelinkhints " numerichints required
     set noautofocus
     set scalehints
@@ -47,6 +48,7 @@
 
         let mapleader="x"
         map <Leader>n :set numerichints!<CR>
+        map P yhP
         map ? openLinkSearchBar
         map $ lastTab
         map 0 firstTab
@@ -100,6 +102,7 @@
         command mozt tabnew @@mozilla
         command www open @@w3shools
         command wwwt tabnew @@w3shools
+        command ahk open @@ahk
         let searchalias git = "git"
 
             " Variables
@@ -107,6 +110,7 @@
             " Create a variable that can be used/referenced in the command bar
             "let @@reddit_prog = 'https://www.google.ru/?gfe_rd=cr&ei=aTd6V77eFc23zAXU1or4Dw'
             "map C :to @@reddit_prog<CR>
+            let @@ahk = 'site:autohotkey.com'
             let @@mozilla = 'site:developer.mozilla.org'
             let @@greasyfork = 'site:greasyfork.org'
             let @@w3shools = 'site:w3schools.com'
@@ -512,6 +516,27 @@ Mappings.actions.centerMatchH();
 }}
 "}}}
 
+map P :call copyAndOpenTab<CR>
+"{{{
+copyAndOpenTab -> {{
+
+Mappings.actions.yankHighlight();
+Mappings.actions.openPasteTab(1);
+
+}}
+
+"}}}
+
+map p :call copyAndOpenCurrentTab<CR>
+"{{{
+copyAndOpenCurrentTab-> {{
+
+Mappings.actions.yankHighlight();
+Mappings.actions.openPaste(1);
+
+}}
+
+"}}}
 " Stilebot
 "{{{
 map <leader>p :call leftSide<CR>
