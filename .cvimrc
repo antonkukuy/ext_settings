@@ -212,7 +212,7 @@
 " We are now in JavaScript mode within any function
 " Variable is used by the code block
 "set hintset_a
-map <leader>e :call reading<CR>
+map <leader>w :call reading<CR>
 "{{{
 reading -> {{
 var verify = document.getElementById('content');
@@ -269,39 +269,6 @@ var styleZ = document.getElementById('lleo_dialog').style.cssText.slice(-24);
         document.getElementById('lleo_dialog').style.cssText += "z-index: 999999999 !important";
     }
 
-    //Status.setMessage('Is it work?: ' + (true ? 'YES, it is.' : 'NO, it is not'), 2);
-    }}
-    "}}}
-
-map <leader>w :call readWikipedia<CR>
-"{{{
-readWikipedia -> {{
-var contentMargin = document.getElementById('content').style.marginLeft;
-    if (contentMargin != "0px") {
-        document.getElementById('mw-navigation').style.display = 'none';
-        document.getElementById('mw-page-base').style.display = 'none';
-        document.getElementById('content').style.marginLeft = "0px";
-    } else {
-        document.getElementById('mw-navigation').style.display = '';
-        document.getElementById('mw-page-base').style.display = '';
-        document.getElementById('content').style.marginLeft = "";
-    }
-    //Status.setMessage('Is it work?: ' + (true ? 'YES, it is.' : 'NO, it is not'), 2);
-    }}
-    "}}}
-map <leader>w :call readDeveloperCrome<CR>
-"{{{
-readDeveloperCrome -> {{
-var contentMargin = document.querySelector('div[itemprop="articleBody"]').style.marginLeft;
-    if (contentMargin != "0px") {
-        document.querySelector('div[itemprop="articleBody"]').style.marginLeft = "0px";
-        document.querySelector('nav.inline-toc.no-permalink').style.display = "none";
-        document.querySelector('nav.inline-site-toc.no-permalink').style.display = "none";
-    } else {
-        document.querySelector('div[itemprop="articleBody"]').style.marginLeft = "";
-        document.querySelector('nav.inline-toc.no-permalink').style.display = "";
-        document.querySelector('nav.inline-site-toc.no-permalink').style.display = "";
-    }
     //Status.setMessage('Is it work?: ' + (true ? 'YES, it is.' : 'NO, it is not'), 2);
     }}
     "}}}
