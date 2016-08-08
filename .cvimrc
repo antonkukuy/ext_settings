@@ -16,8 +16,8 @@
     set scalehints
     set smoothscroll
     let hintcharacters = "wertasdfgzxcv"
-    let previousmatchpattern = "((?!last)(prev(ious)?|previous page|newer|back|«|less|<|<-.*|‹| )+)"
-    let nextmatchpattern = "((?!first)(next page|.*->|older|more|>|›|»|forward|next| )+)"
+    let previousmatchpattern = "((?!last)(prev(ious)?|previous page|newer|back|«|less|<|<-.*|‹|←| )+)"
+    let nextmatchpattern = "((?!first)(next page|.*->|older|more|>|›|→|»|forward|next| )+)"
 
     " sometimes was problems with э',Э",ж; within middle string
     let langmap="ё`,йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,яz,чx,сc,мv,иb,тb,ьn,б\\,,ю.,Ё~,ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х{,Ъ},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,ЯZ,ЧX,СC,МV,ИB,ТB,ЬN,Б<,Ю>,э',Э\""
@@ -45,6 +45,7 @@
         let qmark m = ["https://e.mail.ru/cgi-bin/msglist?referer=mailchecker"]
         let qmark y = ["https://translate.yandex.ru"]
         let qmark g = ["https://translate.google.com/#en/ru/"]
+        let qmark b = ["https://www.bing.com/translator?to=ru"]
 
         let mapleader="x"
         map <Leader>n :set numerichints!<CR>
@@ -104,6 +105,7 @@
         command wwwt tabnew @@w3shools
         command ahk open @@ahk
         command ru open @@ru
+        command en open @@en
         let searchalias gi = "git"
 
             " Variables
@@ -112,6 +114,7 @@
             "let @@reddit_prog = 'https://www.google.ru/?gfe_rd=cr&ei=aTd6V77eFc23zAXU1or4Dw'
             "map C :to @@reddit_prog<CR>
             let @@ru = 'translate to russian'
+            let @@en = 'translate to english'
             let @@ahk = 'site:autohotkey.com'
             let @@mozilla = 'site:developer.mozilla.org'
             let @@greasyfork = 'site:greasyfork.org'
@@ -197,9 +200,9 @@
 
     " wikipedia
     "{{{
-"    site '*://*.wikipedia.*/*' {
-"    call readWikipedia
-"    }
+"   site '*://*.wikipedia.*/*' {
+"   call readWikipedia
+"   }
     "}}}
 "}}}
 
@@ -209,6 +212,42 @@
 " We are now in JavaScript mode within any function
 " Variable is used by the code block
 "set hintset_a
+map <leader>e :call reading<CR>
+"{{{
+reading -> {{
+var verify = document.getElementById('content');
+if (verify){
+var contentMargin = document.getElementById('content').style.marginLeft;
+    if (contentMargin != "0px") {
+        document.getElementById('mw-navigation').style.display = 'none';
+        document.getElementById('mw-page-base').style.display = 'none';
+        document.getElementById('content').style.marginLeft = "0px";
+    } else {
+        document.getElementById('mw-navigation').style.display = '';
+        document.getElementById('mw-page-base').style.display = '';
+        document.getElementById('content').style.marginLeft = "";
+    }
+}
+
+//console.log('that work');
+//   https://developer.chrome.com/*
+var verify = document.querySelector('div[itemprop="articleBody"]');
+if(verify){
+var contentMarginChromeDeveloper = document.querySelector('div[itemprop="articleBody"]').style.marginLeft;
+    if (contentMarginChromeDeveloper != "0px") {
+        document.querySelector('div[itemprop="articleBody"]').style.marginLeft = "0px";
+        document.querySelector('nav.inline-toc.no-permalink').style.display = "none";
+        document.querySelector('nav.inline-site-toc.no-permalink').style.display = "none";
+    } else {
+        document.querySelector('div[itemprop="articleBody"]').style.marginLeft = "";
+        document.querySelector('nav.inline-toc.no-permalink').style.display = "";
+        document.querySelector('nav.inline-site-toc.no-permalink').style.display = "";
+    }
+}
+//console.log('that work');
+
+    }}
+    "}}}
 
 " clickOn
 "{{{
@@ -246,6 +285,22 @@ var contentMargin = document.getElementById('content').style.marginLeft;
         document.getElementById('mw-navigation').style.display = '';
         document.getElementById('mw-page-base').style.display = '';
         document.getElementById('content').style.marginLeft = "";
+    }
+    //Status.setMessage('Is it work?: ' + (true ? 'YES, it is.' : 'NO, it is not'), 2);
+    }}
+    "}}}
+map <leader>w :call readDeveloperCrome<CR>
+"{{{
+readDeveloperCrome -> {{
+var contentMargin = document.querySelector('div[itemprop="articleBody"]').style.marginLeft;
+    if (contentMargin != "0px") {
+        document.querySelector('div[itemprop="articleBody"]').style.marginLeft = "0px";
+        document.querySelector('nav.inline-toc.no-permalink').style.display = "none";
+        document.querySelector('nav.inline-site-toc.no-permalink').style.display = "none";
+    } else {
+        document.querySelector('div[itemprop="articleBody"]').style.marginLeft = "";
+        document.querySelector('nav.inline-toc.no-permalink').style.display = "";
+        document.querySelector('nav.inline-site-toc.no-permalink').style.display = "";
     }
     //Status.setMessage('Is it work?: ' + (true ? 'YES, it is.' : 'NO, it is not'), 2);
     }}
