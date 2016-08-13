@@ -71,50 +71,29 @@ setMutationHandler(document, '#hdtb .hdtb-mitem a', function(nodes) {
     }
   }
 
-  if (!youtube) {
+newNodes(youtube, "__YOUTUBE_SEARCH__", "https://www.youtube.com/results?search_query=", "Youtube");
+
+newNodes(amazon, "__AMAZON_SEARCH__", "https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=", "Amazon");
+
+newNodes(ebay, "__EBAY_SEARCH__", "http://www.ebay.com/sch/i.html?_nkw=", "Ebay");
+
+newNodes(yandex, "__YANDEX_SEARCH__", "https://yandex.ru/search/?text=", "Yandex");
+
+function newNodes(nameNode, nameId, queryPage, nameLink){
+
+  if (!nameNode) {
     var q = document.querySelector('#searchform input[dir]');
     if (q) q = encodeURIComponent(q.value);
     else if (q = location.href.match(/^.+?(?:[#\/&?](?:q|query))=(.+?)(?:|&.+|\|.+)$/))
       q = q[1];
     else q = '';
     node.insertAdjacentHTML(place,
-      '<div class="hdtb-mitem hdtb-imb" id="__YOUTUBE_SEARCH__">\
-         <a class="q qs" href="https://www.youtube.com/results?search_query=' + q + '">Youtube</a>\
+      '<div class="hdtb-mitem hdtb-imb" id="' + nameId + '">\
+         <a class="q qs" href="' + queryPage + q + '">' + nameLink + '</a>\
       </div>');
   }
-  if (!amazon) {
-    var qu = document.querySelector('#searchform input[dir]');
-    if (qu) qu = encodeURIComponent(qu.value);
-    else if (qu = location.href.match(/^.+?(?:[#\/&?](?:q|query))=(.+?)(?:|&.+|\|.+)$/))
-      qu = qu[1];
-    else qu = '';
-    node.insertAdjacentHTML(place,
-      '<div class="hdtb-mitem hdtb-imb" id="__AMAZON_SEARCH__">\
-         <a class="q qs" href="https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=' + qu + '">Amazon</a>\
-      </div>');
-  }
-  if (!ebay) {
-    var que = document.querySelector('#searchform input[dir]');
-    if (que) que = encodeURIComponent(que.value);
-    else if (que = location.href.match(/^.+?(?:[#\/&?](?:q|query))=(.+?)(?:|&.+|\|.+)$/))
-      que = que[1];
-    else que = '';
-    node.insertAdjacentHTML(place,
-      '<div class="hdtb-mitem hdtb-imb" id="__EBAY_SEARCH__">\
-         <a class="q qs" href="http://www.ebay.com/sch/i.html?_nkw=' + que + '">Ebay</a>\
-      </div>');
-  }
-  if (!yandex) {
-    var quer = document.querySelector('#searchform input[dir]');
-    if (quer) quer = encodeURIComponent(quer.value);
-    else if (quer = location.href.match(/^.+?(?:[#\/&?](?:q|query))=(.+?)(?:|&.+|\|.+)$/))
-      quer = quer[1];
-    else quer = '';
-    node.insertAdjacentHTML(place,
-      '<div class="hdtb-mitem hdtb-imb" id="__YANDEX_SEARCH__">\
-         <a class="q qs" href="https://yandex.ru/search/?text=' + quer + '">Yandex</a>\
-      </div>');
-  }
+}
+
   state++;
 /*
   console.log([state,
@@ -124,6 +103,8 @@ setMutationHandler(document, '#hdtb .hdtb-mitem a', function(nodes) {
                amazon, amazon && amazon.previousElementSibling == videos || images || youtube]);
 */
 });
+
+
 
 
 
