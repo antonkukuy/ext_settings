@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name        SaveFrom.net helper
 // @namespace   http://savefrom.net/
-// @version     6.50.2
-// @date        2016-07-25
+// @version     6.55.2
+// @date        2016-08-08
 // @author      Magicbit, Inc
 // @description Youtube Downloader: all in one script to get Vimeo, Facebook, Dailymotion videos for free
 // @homepage    http://savefrom.net/user.php?helper=userjs
@@ -78,69 +78,6 @@
     typeof JSON === 'undefined') {
     return console.error('GM API is not ready!');
   }
-
-  setTimeout(function() {
-    if (!GM_getValue('version') &&
-      !GM_getValue('uuid') &&
-      !GM_getValue('userjsFunnel')) {
-      var writeItem = function(value) {
-        return JSON.stringify({
-          w: value
-        });
-      };
-
-      var readItem = function(value) {
-        var result = undefined;
-        if (typeof value === 'string' && value !== 'MonoEmptyValue') {
-          try {
-            result = JSON.parse(value).w;
-          } catch (e) {
-            console.error('GM Storage item read error!', e, value);
-          }
-        }
-        return result;
-      };
-
-      var generateUuid = function() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-          var r = Math.random() * 16 | 0,
-            v = c == 'x' ? r : (r & 0x3 | 0x8);
-          return v.toString(16);
-        });
-      };
-
-      var uuid = generateUuid();
-      GM_setValue('uuid', writeItem(uuid));
-
-      var storage = {};
-      storage.time = parseInt(Date.now() / 1000);
-
-      setTimeout(function() {
-        if (uuid === readItem(GM_getValue('uuid'))) {
-          GM_xmlhttpRequest({
-            url: 'https://www.google-analytics.com/collect?z=' + Date.now(),
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-            },
-            data: [
-              't=event',
-              'ec=funnel',
-              'ea=run',
-              'el=true',
-              'tid=UA-67738130-6',
-              'v=1',
-              'cid=' + uuid,
-              'an=helper'
-            ].join('&'),
-            onload: function() {
-              GM_setValue('userjsFunnel', writeItem(storage));
-            }
-          });
-        }
-      }, 250);
-    }
-  }, 0);
 
   var _moduleName = null;
 
@@ -1024,9 +961,9 @@
 
         (function checkCompatibility() {
           var ua = api.getNavigator().userAgent;
-          var uaRe = /Chrome\/(\d+)/;
-          if (uaRe.test(ua)) {
-            var version = parseInt(ua.match(uaRe)[1]);
+          var m = /Chrome\/(\d+)/.exec(ua);
+          if (m) {
+            var version = parseInt(m[1]);
             api.isChromeVersion = version;
             if (version < 31) {
               api.noMouseEnter = true;
@@ -1142,33 +1079,36 @@
       };
 
       /**
+       * @typedef {Object|string} requestDetails
+       * @property {string} url
+       * @property {string} [method] GET|POST
+       * @property {string} [type] GET|POST
+       * @property {string} [data]
+       * @property {boolean} [cache]
+       * @property {Object} [headers]
+       * @property {string} [contentType]
+       * @property {boolean} [json]
+       * @property {boolean} [xml]
+       * @property {number} [timeout]
+       * @property {string} [mimeType]
+       * @property {boolean} [withCredentials]
+       * @property {boolean} [localXHR]
+       */
+      /**
        * @callback requestResponse
        * @param {string|null} err
        * @param {Object} res
        * @param {string|Object|Array} data
        */
       /**
-       * @param {Object|string} obj
-       * @param {string} obj.url
-       * @param {string} [obj.method] GET|POST
-       * @param {string} [obj.type] GET|POST
-       * @param {string} [obj.data]
-       * @param {boolean} [obj.cache]
-       * @param {Object} [obj.headers]
-       * @param {string} [obj.contentType]
-       * @param {boolean} [obj.json]
-       * @param {boolean} [obj.xml]
-       * @param {number} [obj.timeout]
-       * @param {string} [obj.mimeType]
-       * @param {boolean} [obj.withCredentials]
-       * @param {boolean} [obj.localXHR]
+       * @param {requestDetails} obj
        * @param {requestResponse} [origCb]
        * @returns {{abort: function}}
        */
       mono.request = function(obj, origCb) {
         "use strict";
         var result = {};
-        var cb = function(e, response, body) {
+        var cb = function(e, body) {
           cb = null;
           if (request.timeoutTimer) {
             mono.clearTimeout(request.timeoutTimer);
@@ -1178,7 +1118,7 @@
           if (e) {
             err = String(e.message || e) || 'ERROR';
           }
-          origCb && origCb(err, response, body);
+          origCb && origCb(err, getResponse(body), body);
         };
 
         var getResponse = function(body) {
@@ -1289,7 +1229,7 @@
                 console.error('Response is not string!', body);
                 throw new Error('Response is not string!');
               }
-              return cb && cb(null, getResponse(body), body);
+              return cb && cb(null, body);
             }
             throw new Error(xhr.status + ' ' + xhr.statusText);
           } catch (e) {
@@ -1416,7 +1356,7 @@
           ontimeout: sync.bind(null, 'ontimeout')
         };
 
-        this._responseHeaders = null;
+        this._responseHeaders = '';
         this.readyState = 0;
         this.status = 0;
         this.statusText = '';
@@ -1470,7 +1410,7 @@
         for (var i = 1, len = arguments.length; i < len; i++) {
           var item = arguments[i];
           for (var key in item) {
-            if (item.hasOwnProperty(key)) {
+            if (item[key] !== undefined) {
               obj[key] = item[key];
             }
           }
@@ -1483,7 +1423,7 @@
         for (var i = 1, len = arguments.length; i < len; i++) {
           var item = arguments[i];
           for (var key in item) {
-            if (item.hasOwnProperty(key)) {
+            if (item[key] !== undefined) {
               delete obj[key];
               obj[key] = item[key];
             }
@@ -3020,45 +2960,100 @@
         };
       };
 
+      /**
+       * @param {*} msg
+       * @param {string} [hook]
+       * @returns {Promise}
+       */
+      mono.sendMessagePromise = function(msg, hook) {
+        "use strict";
+        return new mono.Promise(function(resolve, reject) {
+          try {
+            mono.sendMessage(msg, resolve, hook);
+          } catch (e) {
+            reject(e);
+          }
+        });
+      };
+
+      /**
+       * @param {String|[String]|Object|null|undefined} keys
+       * @returns {Promise}
+       */
       mono.storage.getPromise = function(keys) {
         "use strict";
         return new mono.Promise(function(resolve, reject) {
           try {
-            return mono.storage.get(keys, function(storage) {
-              return resolve(storage);
-            });
+            mono.storage.get(keys, resolve);
           } catch (e) {
-            return reject(e);
+            reject(e);
           }
         });
       };
 
-      mono.storage.setPromise = function(obj) {
+      /**
+       * @param {Object} items
+       * @returns {Promise}
+       */
+      mono.storage.setPromise = function(items) {
         "use strict";
         return new mono.Promise(function(resolve, reject) {
           try {
-            return mono.storage.set(obj, function() {
-              return resolve();
-            });
+            mono.storage.set(items, resolve);
           } catch (e) {
-            return reject(e);
+            reject(e);
           }
         });
       };
 
+      /**
+       * @param {String|[String]} keys
+       * @returns {Promise}
+       */
+      mono.storage.removePromise = function(keys) {
+        "use strict";
+        return new mono.Promise(function(resolve, reject) {
+          try {
+            mono.storage.remove(keys, resolve);
+          } catch (e) {
+            reject(e);
+          }
+        });
+      };
+
+      /**
+       * @returns {Promise}
+       */
+      mono.storage.clearPromise = function() {
+        "use strict";
+        return new mono.Promise(function(resolve, reject) {
+          try {
+            mono.storage.clear(resolve);
+          } catch (e) {
+            reject(e);
+          }
+        });
+      };
+
+      /**
+       * @param {requestDetails} obj
+       * @returns {Promise}
+       */
       mono.requestPromise = function(obj) {
         "use strict";
         return new mono.Promise(function(resolve, reject) {
-          try {
-            return mono.request(obj, function(err, resp, data) {
-              if (err) {
-                return reject(err);
-              }
+          var always = function(err, resp, data) {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(resp, data);
+            }
+          };
 
-              return resolve(resp, data);
-            });
+          try {
+            mono.request(obj, always);
           } catch (e) {
-            return reject(e);
+            reject(e);
           }
         });
       };
@@ -3097,128 +3092,96 @@
       })(_mono);
       //<utils
 
-      if (typeof Promise === 'function' && typeof Promise.resolve === 'function') {
+      if (typeof Promise === 'function' &&
+        typeof Promise.resolve === 'function' &&
+        typeof Promise.reject === 'function'
+      ) {
         mono.Promise = Promise;
       } else
       if (mono.isModule) {
-        return mono.Promise = require('sdk/core/promise').Promise;
+        mono.Promise = require('sdk/core/promise').Promise;
       }
 
       !mono.Promise && (function() {
-        // https://github.com/taylorhakes/promise-polyfill
-
-        (function(root) {
-          // Store setTimeout reference so promise-polyfill will be unaffected by
-          // other code modifying setTimeout (like sinon.useFakeTimers())
-          var setTimeoutFunc = setTimeout;
-
-          function noop() {}
-
-          // Use polyfill for setImmediate for performance gains
-          var asap = (typeof setImmediate === 'function' && setImmediate) ||
-            function(fn) {
-              setTimeoutFunc(fn, 0);
-            };
-
-          var onUnhandledRejection = function onUnhandledRejection(err) {
-            if (typeof console !== 'undefined' && console) {
-              console.warn('Possible Unhandled Promise Rejection:', err); // eslint-disable-line no-console
-            }
+        // Use polyfill for setImmediate for performance gains
+        var asap = (typeof setImmediate === 'function' && setImmediate) ||
+          function(fn) {
+            mono.setTimeout(fn, 0);
           };
 
-          // Polyfill for Function.prototype.bind
-          function bind(fn, thisArg) {
-            return function() {
-              fn.apply(thisArg, arguments);
-            };
-          }
-
+        /**
+         @license
+         Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+         This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+         The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+         The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+         Code distributed by Google as part of the polymer project is also
+         subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+         */
+        // @url https://github.com/PolymerLabs/promise-polyfill
+        // @version 1.0.0
+        function MakePromise(asap) {
           function Promise(fn) {
-            if (typeof this !== 'object') throw new TypeError('Promises must be constructed via new');
-            if (typeof fn !== 'function') throw new TypeError('not a function');
-            this._state = 0;
-            this._handled = false;
-            this._value = undefined;
-            this._deferreds = [];
+            if (typeof this !== 'object' || typeof fn !== 'function') throw new TypeError();
+            this._state = null;
+            this._value = null;
+            this._deferreds = []
 
-            doResolve(fn, this);
+            doResolve(fn, resolve.bind(this), reject.bind(this));
           }
 
-          function handle(self, deferred) {
-            while (self._state === 3) {
-              self = self._value;
+          function handle(deferred) {
+            var me = this;
+            if (this._state === null) {
+              this._deferreds.push(deferred);
+              return
             }
-            if (self._state === 0) {
-              self._deferreds.push(deferred);
-              return;
-            }
-            self._handled = true;
             asap(function() {
-              var cb = self._state === 1 ? deferred.onFulfilled : deferred.onRejected;
-              if (cb === null) {
-                (self._state === 1 ? resolve : reject)(deferred.promise, self._value);
+              var cb = me._state ? deferred.onFulfilled : deferred.onRejected
+              if (typeof cb !== 'function') {
+                (me._state ? deferred.resolve : deferred.reject)(me._value);
                 return;
               }
               var ret;
               try {
-                ret = cb(self._value);
+                ret = cb(me._value);
               } catch (e) {
-                reject(deferred.promise, e);
+                deferred.reject(e);
                 return;
               }
-              resolve(deferred.promise, ret);
-            });
+              deferred.resolve(ret);
+            })
           }
 
-          function resolve(self, newValue) {
-            try {
-              // Promise Resolution Procedure: https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
-              if (newValue === self) throw new TypeError('A promise cannot be resolved with itself.');
+          function resolve(newValue) {
+            try { //Promise Resolution Procedure: https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
+              if (newValue === this) throw new TypeError();
               if (newValue && (typeof newValue === 'object' || typeof newValue === 'function')) {
                 var then = newValue.then;
-                if (newValue instanceof Promise) {
-                  self._state = 3;
-                  self._value = newValue;
-                  finale(self);
-                  return;
-                } else if (typeof then === 'function') {
-                  doResolve(bind(then, newValue), self);
+                if (typeof then === 'function') {
+                  doResolve(then.bind(newValue), resolve.bind(this), reject.bind(this));
                   return;
                 }
               }
-              self._state = 1;
-              self._value = newValue;
-              finale(self);
+              this._state = true;
+              this._value = newValue;
+              finale.call(this);
             } catch (e) {
-              reject(self, e);
+              reject.call(this, e);
             }
           }
 
-          function reject(self, newValue) {
-            self._state = 2;
-            self._value = newValue;
-            finale(self);
+          function reject(newValue) {
+            this._state = false;
+            this._value = newValue;
+            finale.call(this);
           }
 
-          function finale(self) {
-            if (self._state === 2 && self._deferreds.length === 0) {
-              asap(function() {
-                if (!self._handled) {
-                  onUnhandledRejection(self._value);
-                }
-              });
+          function finale() {
+            for (var i = 0, len = this._deferreds.length; i < len; i++) {
+              handle.call(this, this._deferreds[i]);
             }
-
-            for (var i = 0, len = self._deferreds.length; i < len; i++) {
-              handle(self, self._deferreds[i]);
-            }
-            self._deferreds = null;
-          }
-
-          function Handler(onFulfilled, onRejected, promise) {
-            this.onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : null;
-            this.onRejected = typeof onRejected === 'function' ? onRejected : null;
-            this.promise = promise;
+            this._deferreds = null;
           }
 
           /**
@@ -3227,22 +3190,22 @@
            *
            * Makes no guarantees about asynchrony.
            */
-          function doResolve(fn, self) {
+          function doResolve(fn, onFulfilled, onRejected) {
             var done = false;
             try {
               fn(function(value) {
                 if (done) return;
                 done = true;
-                resolve(self, value);
+                onFulfilled(value);
               }, function(reason) {
                 if (done) return;
                 done = true;
-                reject(self, reason);
-              });
+                onRejected(reason);
+              })
             } catch (ex) {
               if (done) return;
               done = true;
-              reject(self, ex);
+              onRejected(ex);
             }
           }
 
@@ -3251,43 +3214,15 @@
           };
 
           Promise.prototype.then = function(onFulfilled, onRejected) {
-            var prom = new(this.constructor)(noop);
-
-            handle(this, new Handler(onFulfilled, onRejected, prom));
-            return prom;
-          };
-
-          Promise.all = function(arr) {
-            var args = Array.prototype.slice.call(arr);
-
+            var me = this;
             return new Promise(function(resolve, reject) {
-              if (args.length === 0) return resolve([]);
-              var remaining = args.length;
-
-              function res(i, val) {
-                try {
-                  if (val && (typeof val === 'object' || typeof val === 'function')) {
-                    var then = val.then;
-                    if (typeof then === 'function') {
-                      then.call(val, function(val) {
-                        res(i, val);
-                      }, reject);
-                      return;
-                    }
-                  }
-                  args[i] = val;
-                  if (--remaining === 0) {
-                    resolve(args);
-                  }
-                } catch (ex) {
-                  reject(ex);
-                }
-              }
-
-              for (var i = 0; i < args.length; i++) {
-                res(i, args[i]);
-              }
-            });
+              handle.call(me, {
+                onFulfilled: onFulfilled,
+                onRejected: onRejected,
+                resolve: resolve,
+                reject: reject
+              });
+            })
           };
 
           Promise.resolve = function(value) {
@@ -3306,31 +3241,54 @@
             });
           };
 
-          Promise.race = function(values) {
-            return new Promise(function(resolve, reject) {
-              for (var i = 0, len = values.length; i < len; i++) {
-                values[i].then(resolve, reject);
+
+          return Promise;
+        }
+
+        mono.Promise = MakePromise(asap);
+      })(mono);
+
+      (function(Promise) {
+        Promise.all = Promise.all || function() {
+          var args = Array.prototype.slice.call(arguments.length === 1 && Array.isArray(arguments[0]) ? arguments[0] : arguments);
+
+          return new Promise(function(resolve, reject) {
+            if (args.length === 0) return resolve([]);
+            var remaining = args.length;
+
+            function res(i, val) {
+              try {
+                if (val && (typeof val === 'object' || typeof val === 'function')) {
+                  var then = val.then;
+                  if (typeof then === 'function') {
+                    then.call(val, function(val) {
+                      res(i, val)
+                    }, reject);
+                    return;
+                  }
+                }
+                args[i] = val;
+                if (--remaining === 0) {
+                  resolve(args);
+                }
+              } catch (ex) {
+                reject(ex);
               }
-            });
-          };
+            }
+            for (var i = 0; i < args.length; i++) {
+              res(i, args[i]);
+            }
+          });
+        };
 
-          /**
-           * Set the immediate function to execute callbacks
-           * @param fn {function} Function to execute
-           * @private
-           */
-          Promise._setImmediateFn = function _setImmediateFn(fn) {
-            asap = fn;
-          };
-
-          Promise._setUnhandledRejectionFn = function _setUnhandledRejectionFn(fn) {
-            onUnhandledRejection = fn;
-          };
-
-          root.Promise = Promise;
-
-        })(mono);
-      })();
+        Promise.race = Promise.race || function(values) {
+          return new Promise(function(resolve, reject) {
+            for (var i = 0, len = values.length; i < len; i++) {
+              values[i].then(resolve, reject);
+            }
+          });
+        };
+      })(mono.Promise);
       //@insert
 
       return mono;
@@ -3922,6 +3880,9 @@
       return false;
     }
     if (mono.isFF && !engine.varCache.ffButton) {
+      return false;
+    }
+    if (mono.isChrome && mono.isChromeMobile) {
       return false;
     }
     return true;
@@ -5557,13 +5518,6 @@
             });
           }
 
-          if ([48, 49, 50].indexOf(engine.preferences.expIndex) !== -1) {
-            engine.track({
-              t: 'screenview',
-              cd: 'init',
-              tid: 'UA-67738130-6'
-            });
-          } else
           if (engine.preferences.expIndex) {
             engine.track({
               t: 'screenview',
@@ -6114,58 +6068,13 @@
     "use strict";
     engine.checkUpdate();
   });
-  engine.defaultPreferences.onceUmmyInstall = 0;
-  engine.defaultPreferences.onceUmmyUse = 0;
-  engine.expList[48] = function() {
-    "use strict";
-    if ((new Date()).toISOString() > '2016-08-01') {
-      return engine.exp.disable();
-    }
-  };
-  engine.expList[49] = function() {
-    "use strict";
-    if ((new Date()).toISOString() > '2016-08-01') {
-      return engine.exp.disable();
-    }
-
-    var changeDefaultPref = function() {
-      engine.preferences.button = 0;
-      mono.storage.get('button', function(storage) {
-        if (storage.button !== undefined) {
-          engine.preferences.button = storage.button;
-          setTimeout(function() {
-            engine.gmShowButton(storage.button);
-          }, 100);
-        }
-      });
-    };
-
-    changeDefaultPref();
-  };
-  engine.expList[50] = function() {
-    "use strict";
-    if ((new Date()).toISOString() > '2016-08-01') {
-      return engine.exp.disable();
-    }
-
-    var changeDefaultPref = function() {
-      engine.preferences.button = 0;
-      mono.storage.get('button', function(storage) {
-        if (storage.button !== undefined) {
-          engine.preferences.button = storage.button;
-          setTimeout(function() {
-            engine.gmShowButton(storage.button);
-          }, 100);
-        }
-      });
-    };
-
-    changeDefaultPref();
-  };
   engine.forceMetaRequest = true;
   engine.loader.when('init', function() {
     "use strict";
     if (mono.isFF && !engine.varCache.ffButton) {
+      return;
+    }
+    if (mono.isChrome && mono.isChromeMobile) {
       return;
     }
 
@@ -6289,6 +6198,9 @@
   engine.loader.when('init', function() {
     "use strict";
     if (mono.isFF && !engine.varCache.ffButton) {
+      return;
+    }
+    if (mono.isChrome && mono.isChromeMobile) {
       return;
     }
 
@@ -6471,7 +6383,8 @@
       var travelBar = {};
 
       travelBar.appInfo = {
-        id: 'sfHelper',
+        id: '89756.sfHelper',
+        skyScannerKey: 'ma886898464874104741079504072756',
         track: true
       };
 
@@ -8013,6 +7926,10 @@
         return callback(null, '', '');
       };
 
+      if (!videoId) {
+        return abort();
+      }
+
       mono.request({
         url: 'https://player.vimeo.com/video/' + videoId
       }, function(err, resp, data) {
@@ -8093,7 +8010,7 @@
         return cb(null, '', '');
       };
 
-      if (url && !/vimeo\.com\/[^\/]+\/review\/\d+/i.test(url)) {
+      if (videoId && url && !/vimeo\.com\/[^\/]+\/review\/\d+/i.test(url)) {
         url = null;
       }
 
@@ -8513,11 +8430,16 @@
     /**
      * @private
      */
-    lastSts: ["17001", [
-      ["splice", 1],
+    lastSts: ["17011", [
       ["swap", 17],
+      ["splice", 3],
       ["reverse", null],
-      ["splice", 3]
+      ["splice", 3],
+      ["swap", 26],
+      ["reverse", null],
+      ["swap", 19],
+      ["splice", 2],
+      ["swap", 8]
     ]],
     /**
      * @type {Object}
@@ -13533,12 +13455,22 @@
         }
       }
     },
-    createUmmyInfo: function(params, details, targetNode) {
+    createUmmyInfo: function(details, targetNode) {
       "use strict";
       details = details || {};
-      params = params || {};
-      if (!params.vid) {
-        params.vid = 111;
+      var params = mono.extend({
+        vid: 111,
+        utm_source: 'savefrom-helper',
+        utm_medium: 'youtube-helper'
+      }, details.params);
+
+      if (!params.utm_campaign) {
+        if (details.itemType === 'hd') {
+          params.utm_campaign = 'youtube-helper-hd';
+        } else
+        if (details.itemType === 'mp3') {
+          params.utm_campaign = 'youtube-helper-mp3';
+        }
       }
 
       var ummyUrl = 'http://videodownloader.ummy.net/?' + mono.param(params);
@@ -13792,7 +13724,7 @@
 
       return infoContainer;
     },
-    bindUmmyInfo: function(container, params, details) {
+    bindUmmyInfo: function(container, details) {
       "use strict";
       details = details || {};
       // menu
@@ -13887,9 +13819,9 @@
 
         if (!infoPopup) {
           if (details.expUmmyInfo) {
-            infoPopup = details.expUmmyInfo(params);
+            infoPopup = details.expUmmyInfo(details.createUmmyInfoDetails, container);
           } else {
-            infoPopup = SaveFrom_Utils.createUmmyInfo(params, details, container);
+            infoPopup = SaveFrom_Utils.createUmmyInfo(details.createUmmyInfoDetails, container);
           }
 
           popupArrow = infoPopup.firstChild;
@@ -14216,11 +14148,15 @@
         itemContainer.appendChild(infoConteiner);
 
         if (listItem.quality === 'ummy') {
-          var ummyInfoParams = {
+          var bInfoDetails = mono.extend({}, options.bindUmmyInfoDetails);
+          var cInfoDetails = bInfoDetails.createUmmyInfoDetails = mono.extend({
+            itemType: listItem.uIsAudio ? 'mp3' : 'hd'
+          }, bInfoDetails.createUmmyInfoDetails);
+          cInfoDetails.params = mono.extend({
             video: listItem.videoId,
             vid: listItem.vid
-          };
-          SaveFrom_Utils.bindUmmyInfo(itemContainer, ummyInfoParams, options.ummyInfoDetails);
+          }, cInfoDetails.params);
+          SaveFrom_Utils.bindUmmyInfo(itemContainer, bInfoDetails);
         }
 
         return {
@@ -15125,6 +15061,25 @@
           links.push(audioLink);
 
           return links;
+        },
+        mailru: function(links, title) {
+          var menuLinks = [];
+          var popupLink;
+          links.forEach(function(link) {
+            var ext = link.ext;
+            var format = link.name;
+            var quality = link.subname;
+            popupLink = {
+              href: link.url,
+              title: title,
+              ext: ext,
+              format: format,
+              quality: quality,
+              forceDownload: true
+            };
+            menuLinks.push(popupLink);
+          });
+          return menuLinks;
         }
       },
 
@@ -15556,11 +15511,14 @@
             color: '#fff'
           },
           linkClass: 'sf-menu-item',
-          ummyInfoDetails: {
+          bindUmmyInfoDetails: {
             posLeft: true,
-            darkTheme: true,
             widthLimit: 480,
-            container: _options.container
+            container: _options.container,
+            createUmmyInfoDetails: {
+              posLeft: true,
+              darkTheme: true
+            }
           },
           getHiddenListFunc: this.getHiddenList.bind(this)
         };
@@ -16517,6 +16475,7 @@
    * Code distributed by Google as part of the polymer project is also
    * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
    */
+  // @url https://github.com/webcomponents/webcomponentsjs
   // @version 0.7.15
   var WeakMap = (typeof WeakMap !== 'undefined') ? WeakMap : undefined;
   if (typeof WeakMap === "undefined") {
@@ -21431,11 +21390,30 @@
                     continue;
                   }
 
-                  video.insertBtnInPage(videoInfo, info);
+                  video.insertBtnInPage(videoInfo, info, 1);
                 }
               }
 
-              summary = summaryList[6];
+              for (i = 6; i < 8; i++) {
+                summary = summaryList[i];
+                for (n = 0; node = summary.added[n]; n++) {
+                  if (node.dataset.sfSkip > 0) {
+                    continue;
+                  }
+                  node.dataset.sfSkip = '1';
+
+                  parent = mono.getParentByClass(node, 'sp-video__item-page-new__video-content');
+                  info = parent && parent.querySelector('.sp-video__item-page-new__info__additional');
+                  videoInfo = parent && video.getVideoContentVideoId(parent);
+                  if (!info || !videoInfo) {
+                    continue;
+                  }
+
+                  video.insertBtnInPage(videoInfo, info, 2);
+                }
+              }
+
+              summary = summaryList[0];
               for (n = 0; node = summary.removed[n]; n++) {
                 mono.onRemoveListener(node);
               }
@@ -21457,6 +21435,12 @@
               is: 'added'
             }, {
               css: '.sp-video__item-page .sp-video__item-page__video-wrapper video',
+              is: 'added'
+            }, {
+              css: '.sp-video__item-page-new .sp-video__item-page-new__video-content video',
+              is: 'added'
+            }, {
+              css: '.sp-video__item-page-new .sp-video__item-page-new__video-content object',
               is: 'added'
             }, {
               css: '.' + mono.onRemoveClassName,
@@ -22017,8 +22001,7 @@
             ext: ext,
             format: format,
             quality: quality,
-            forceDownload: true,
-            noSize: true
+            forceDownload: true
           };
           menuLinks.push(popupLink);
         }
@@ -22050,15 +22033,17 @@
         });
       },
 
-      appendPageBtn: function(container, btnIndex) {
+      appendPageBtn: function(container, btnIndex, styleIndex) {
         var exBtn = container.querySelector('.' + video.className);
         if (exBtn !== null) {
           return;
         }
 
-        var child = container.lastChild;
         var style = {};
         style.marginLeft = '15px';
+        if (styleIndex === 2) {
+          style.marginLeft = '8px';
+        }
 
         var btn = mono.create('span', {
           class: video.className,
@@ -22091,9 +22076,18 @@
           ]
         });
 
-        container.insertBefore(btn, child);
-
-        child = null;
+        if (styleIndex === 1) {
+          var child = container.lastChild;
+          container.insertBefore(btn, child);
+          child = null;
+        } else {
+          var child = container.lastChild;
+          if (child.previousElementSibling) {
+            child = child.previousElementSibling;
+          }
+          container.insertBefore(btn, child);
+          child = null;
+        }
       },
 
       appendBtn: function(container, btnIndex) {
@@ -22159,6 +22153,9 @@
               return abort();
             }
             video.showLinkList(SaveFrom_Utils.popupMenu.prepareLinks.rutube(response.links), button, 1);
+          } else
+          if (response.action === 'getMailruLinks') {
+            video.showLinkList(SaveFrom_Utils.popupMenu.prepareLinks.mailru(response.links, response.title), button, 1);
           } else {
             video.showLinkList(video.prepareLinks(response.links), button, 1);
           }
@@ -22167,50 +22164,56 @@
         var cacheItem = video.domCache[parseInt(index)];
         if (cacheItem.links) {
           showLinks(cacheItem);
-          return;
-        }
+        } else
         if (cacheItem.metadataUrl) {
           var metadataUrl = cacheItem.metadataUrl;
           if (/^\/\//.test(metadataUrl)) {
             metadataUrl = 'http:' + metadataUrl;
           }
-          var onResponse = function(data) {
-            if (!data || typeof data === 'string') {
-              return abort();
-            }
-            video.readMeta(data, function(response) {
-              if (!response.links) {
-                return abort();
-              }
+
+          var always = function(data) {
+            if (!data || typeof data !== 'object') {
+              abort();
+            } else
+              video.readMeta(data, function(response) {
+                if (!response.links) {
+                  abort();
+                } else {
+                  cacheItem.links = response.links;
+                  cacheItem.action = response.action;
+
+                  showLinks(cacheItem);
+                }
+              });
+          };
+
+          mono.request({
+            url: metadataUrl,
+            withCredentials: true,
+            json: true,
+            localXHR: true
+          }, function(err, resp) {
+            always(err ? null : resp.body);
+          });
+        } else
+        if (cacheItem.url) {
+          mono.sendMessage({
+            action: 'getMailruLinks',
+            extVideoId: cacheItem.url
+          }, function(response) {
+            if (!response.links) {
+              abort();
+            } else {
+              cacheItem.title = response.title;
               cacheItem.links = response.links;
               cacheItem.action = response.action;
 
               showLinks(cacheItem);
-            });
-          };
-
-          if (mono.isOpera) {
-            mono.request({
-              url: metadataUrl,
-              withCredentials: true,
-              json: true,
-              localXHR: true
-            }, function(err, resp) {
-              if (err) {
-                return onResponse();
-              }
-
-              onResponse(resp.body);
-            });
-            return;
-          }
-          mono.sendMessage({
-            action: 'getOkMetadata',
-            url: metadataUrl
-          }, onResponse);
-          return;
+            }
+          });
+        } else {
+          abort();
         }
-        abort();
       },
 
       readMeta: function(metadata, cb) {
@@ -22347,15 +22350,31 @@
         }
       },
 
-      insertBtnInPage: function(videoInfo, info) {
+      getVideoContentVideoId: function(conteiner) {
+        var videoId = null;
+
+        var shareBtn = conteiner.querySelector('.sp-video__item-page-new__share__item[data-share-type][data-location]')
+        if (shareBtn) {
+          videoId = {
+            url: shareBtn.dataset.location
+          };
+        }
+
+        return videoId;
+      },
+
+      insertBtnInPage: function(videoInfo, info, styleIndex) {
         if (videoInfo.metadataUrl) {
           videoInfo.metadataUrl = decodeURIComponent(videoInfo.metadataUrl);
           video.domCache[video.btnIndex] = {
             metadataUrl: videoInfo.metadataUrl
           };
+        } else {
+          video.domCache[video.btnIndex] = mono.extend({}, videoInfo);
         }
 
-        video.appendPageBtn(info, video.btnIndex);
+
+        video.appendPageBtn(info, video.btnIndex, styleIndex);
 
         video.btnIndex++;
       },
@@ -25564,7 +25583,8 @@
           AVIA_CAL_MONTH_PRICE_EMPTY: 94,
           AVIA_R5_PARSE_ERROR: 101,
           AVIA_R5_EMPTY_RESPONSE: 102,
-          AVIA_R5_EMPTY_DATA: 103
+          AVIA_R5_EMPTY_DATA: 103,
+          SC_KEY_EMPTY: 104
         },
         /**
          * @param {string} hostname
@@ -26239,6 +26259,10 @@
             en: 'us'
           },
           requestSkyscannerPrice: function(pageInfo, cb) {
+            if (!appInfo.skyScannerKey) {
+              return cb('SC_KEY_EMPTY');
+            }
+
             main.currency.setSupportedCcy(['USD', 'EUR', 'RUB', 'UAH', 'BYR', 'KZT']);
 
             var ccy = pageInfo.currency;
@@ -26246,7 +26270,7 @@
               ccy = main.currency.defaultCcy;
             }
 
-            var apiKey = 'ma886898464874104741079504072756';
+            var apiKey = appInfo.skyScannerKey;
 
             var data = {
               apiKey: apiKey
@@ -26769,7 +26793,7 @@
               adults: pageInfo.adults
             };
 
-            data.marker = 89756 + '.' + appInfo.id;
+            data.marker = appInfo.id;
             data.host = 'h2.savefrom.net';
 
             return tbr.getData({
@@ -27449,7 +27473,7 @@
                 trip_class: 0,
                 depart_date: pageInfo.dateStart,
                 return_date: pageInfo.dateEnd,
-                marker: 89756 + '.' + appInfo.id,
+                marker: appInfo.id,
                 with_request: true
               });
             }
@@ -28655,6 +28679,16 @@
             }
           },
           BYR: {
+            symbol: "р.",
+            standard: "#,##0.00 ¤",
+            details: {
+              symbolRight: true,
+              symbolSep: ' ',
+              threeSep: ',',
+              toFixed: 2
+            }
+          },
+          BYN: {
             symbol: "р.",
             standard: "#,##0.00 ¤",
             details: {
@@ -30109,7 +30143,7 @@
             formWatcher: {
               ctr: {
                 query: {
-                  css: '.b-flight_offers-offers-list'
+                  css: '.offers-tickets-container'
                 },
                 cb: function(profile) {
                   var page = profile.page;
@@ -30156,7 +30190,7 @@
               },
               ccy: {
                 query: {
-                  css: '.b-currency-section .b-menu-item-button-text--title'
+                  css: '.header-sidebar-DropdownCurrency .b-menu-item-button-text'
                 },
                 template: 'currency'
               }
@@ -30164,7 +30198,7 @@
             priceWatcher: {
               price: {
                 query: {
-                  css: '.b-flight_offers-offers-list .j-buy_button .b-price'
+                  css: '.offers-tickets-container .fareTickets .b-price'
                 },
                 template: 'price'
               }
@@ -30286,7 +30320,7 @@
               },
               ccy: {
                 query: {
-                  css: '.currency_buttons label.ui-button.ui-state-active .ui-button-text'
+                  css: '.currency-change-block .nav-currency .iradio_minimal.checked + label'
                 },
                 template: 'currency',
                 currencyMap: {
@@ -30297,7 +30331,7 @@
             priceWatcher: {
               price: {
                 query: {
-                  css: '#offers_table .your_price strong span:not(.hidden)'
+                  css: '#offers_table .item-block .price-block strong span:not(.hidden)'
                 },
                 template: 'price'
               }
@@ -30937,7 +30971,8 @@
               ccy: {
                 query: {
                   css: [
-                    '#room-grid-table .price span.room-grouping-room-price'
+                    '#room-grid-table .price span.room-grouping-room-price',
+                    '#room-grid-table .price-panel .sellprice'
                   ]
                 },
                 cb: function(profile) {
@@ -30954,7 +30989,8 @@
               price: {
                 query: {
                   css: [
-                    '#room-grid-table .price span.room-grouping-room-price'
+                    '#room-grid-table .price span.room-grouping-room-price',
+                    '#room-grid-table .price-panel .sellprice'
                   ]
                 },
                 template: 'price',
@@ -32743,17 +32779,25 @@
             return;
           }
 
+          var url = null;
+          if (/"url"/.test(id)) {
+            url = JSON.parse(id).url;
+            id = null;
+          }
+
           mono.sendMessage({
             action: 'getVimeoLinks',
-            extVideoId: id
+            extVideoId: id,
+            url: url
           }, function(response) {
+            var menuLinks = null;
             if (response.links) {
               vimeo.linkCache[id] = response;
-              var menuLinks = SaveFrom_Utils.popupMenu.prepareLinks.vimeo(response.links, response.title);
-              menu.update(menuLinks);
-              return;
+              menuLinks = SaveFrom_Utils.popupMenu.prepareLinks.vimeo(response.links, response.title);
+            } else {
+              menuLinks = language.noLinksFound;
             }
-            menu.update(language.noLinksFound);
+            menu.update(menuLinks);
           });
         },
         getBtn: function(details) {
@@ -32836,16 +32880,14 @@
             parent = this;
             var linkNode = this.querySelector('a.iris_link-box');
             if (linkNode) {
-              id = linkNode.href.match(/\/([0-9]+)/);
+              var url = linkNode.href;
+              id = url.match(/\/([0-9]+)/);
               id = id && id[1];
-            }
 
-            if (!id) {
-              var chip = this.querySelector('.iris_chip[data-custom]');
-              if (chip) {
-                try {
-                  id = JSON.parse(chip.dataset.custom).clip_id;
-                } catch (e) {}
+              if (!id && url) {
+                id = JSON.stringify({
+                  'url': url
+                });
               }
             }
           }
@@ -33484,6 +33526,7 @@
 
                   var layer = SaveFrom_Utils.getParentById(node, 'mv_box');
                   var player = video.getPlayerNode(layer);
+
                   if (player) {
                     video.getLinksFromPlayer(layer, player, video.newAppendButton.bind(video));
                   }
@@ -33532,7 +33575,7 @@
                 },
 
                 {
-                  css: '#mv_box div.mv_wide_column',
+                  css: '#mv_box #mv_player_box > .video_box_wrap',
                   is: 'added'
                 },
 
@@ -36015,21 +36058,21 @@
       newAppendButton: function(links, container) {
         var funcClassName = 'sf-under-video';
 
-        var controls = container.querySelector('#mv_controls');
-        var actionsPanel = controls && controls.querySelector('.mv_actions_panel > div');
+        var controls = container.querySelector('#mv_info');
+        var actionBlock = controls && controls.querySelector('.mv_actions_block > div');
         controls = null;
 
         var topControls = container.querySelector('#mv_top_controls');
 
-        if (actionsPanel && audio.elIsHidden(actionsPanel)) {
-          actionsPanel = null;
+        if (actionBlock && audio.elIsHidden(actionBlock)) {
+          actionBlock = null;
         }
 
-        if (!actionsPanel && !topControls) {
+        if (!actionBlock && !topControls) {
           return;
         }
 
-        var isInTopControls = !!(!actionsPanel && topControls);
+        var isInTopControls = !!(!actionBlock && topControls);
 
         var oldBtnList = container.querySelectorAll('.' + downloadLinkClassName);
         for (var i = 0, node; node = oldBtnList[i]; i++) {
@@ -36128,7 +36171,7 @@
           ]
         });
 
-        if (actionsPanel) {
+        if (actionBlock) {
           mono.create(dlBtn, {
             class: ['flat_button', 'secondary', 'button_light', 'fl_l'],
             append: [
@@ -36147,11 +36190,11 @@
             ]
           });
 
-          var more = actionsPanel.querySelector('.mv_more');
+          var more = actionBlock.querySelector('.mv_more');
           if (more) {
             more.parentNode.insertBefore(dlBtn, more);
           } else {
-            actionsPanel.appendChild(dlBtn);
+            actionBlock.appendChild(dlBtn);
           }
         } else
         if (isInTopControls) {
@@ -38558,13 +38601,6 @@
 
         var videoId = btnObj.videoId;
 
-        var sortDetails = {};
-        if (preference.expIndex === 49) {
-          sortDetails.strQualityExtend = {
-            ummy: '8K'
-          };
-        }
-
         var menu = youtube.currentMenu = SaveFrom_Utils.popupMenu.quickInsert(btnObj.node, language.download + ' ...', 'sf-popupMenu', {
           onShow: function() {
             mono.onRemoveEvent(btnObj.node, youtube.hideCurrentMenu);
@@ -38589,53 +38625,7 @@
               isPageItem: 1,
               videoId: videoId
             });
-
-            if ([48, 49, 50].indexOf(preference.expIndex) !== -1) {
-              if (itag === 'ummy') {
-                var prefix = menuItem.itag === 'ummyAudio' ? 'Audio' : '';
-                if (!preference.onceUmmyUse) {
-                  mono.sendMessage({
-                    action: 'track',
-                    t: 'event',
-                    ec: 'exp',
-                    ea: preference.expIndex,
-                    el: 'ytMenuUmmy' + prefix,
-                    tid: 'UA-67738130-6'
-                  });
-                  preference.onceUmmyUse = 1;
-                  mono.storage.set({
-                    onceUmmyUse: 1
-                  });
-                }
-              }
-            }
           },
-          ummyInfoDetails: {
-            onCreateUmmyInfo: function(infoContainer) {
-              var btn = infoContainer.querySelector('a.green-btn-2');
-              if (btn) {
-                btn.addEventListener('click', function() {
-                  if ([48, 49, 50].indexOf(preference.expIndex) !== -1) {
-                    if (!preference.onceUmmyInstall) {
-                      mono.sendMessage({
-                        action: 'track',
-                        t: 'event',
-                        ec: 'exp',
-                        ea: preference.expIndex,
-                        el: 'ytMenuUmmyInstall',
-                        tid: 'UA-67738130-6'
-                      });
-                      preference.onceUmmyInstall = 1;
-                      mono.storage.set({
-                        onceUmmyInstall: 1
-                      });
-                    }
-                  }
-                });
-              }
-            }
-          },
-          sortDetails: sortDetails,
           offsetTop: btnObj.popupMenu && btnObj.popupMenu.offsetTop,
           offsetRight: btnObj.popupMenu && btnObj.popupMenu.offsetRight,
           parent: btnObj.popupMenu && btnObj.popupMenu.parent
@@ -39360,11 +39350,11 @@
               }
               if (_this.titleChangeObserver) {
                 _this.titleChangeObserver.stop();
-                this.titleChangeObserver = null;
+                _this.titleChangeObserver = null;
               }
               if (_this.playerStateChangeObserver) {
                 _this.playerStateChangeObserver.stop();
-                this.playerStateChangeObserver = null;
+                _this.playerStateChangeObserver = null;
               }
               _this.hideCurrentMenu();
               if (btnObj.container.parentNode) {
@@ -40658,10 +40648,6 @@
       "use strict";
       ytUmmyBtn.rmBtn();
 
-      if (preferences.expIndex === 49) {
-        return;
-      }
-
       if (!preferences.showUmmyItem) {
         return;
       }
@@ -40748,23 +40734,6 @@
                   ea: 'download',
                   el: 'ummy hd'
                 });
-
-                if ([48, 49, 50].indexOf(preference.expIndex) !== -1) {
-                  if (!preference.onceUmmyUse) {
-                    mono.sendMessage({
-                      action: 'track',
-                      t: 'event',
-                      ec: 'exp',
-                      ea: preference.expIndex,
-                      el: 'ytBtnUmmy',
-                      tid: 'UA-67738130-6'
-                    });
-                    preference.onceUmmyUse = 1;
-                    mono.storage.set({
-                      onceUmmyUse: 1
-                    });
-                  }
-                }
               }
             }]
           }),
@@ -40797,10 +40766,6 @@
         video: 'yt-' + videoId,
         vid: vid
       });
-
-      if (preferences.expIndex === 50) {
-        textNode.style.display = 'none';
-      }
 
       return btn;
     };
@@ -40904,48 +40869,13 @@
                             infoContainer.dataset.hide = '1';
                           });
                         }, 250);
-
-                        if ([48, 49, 50].indexOf(preference.expIndex) !== -1) {
-                          if (!preference.onceUmmyUse) {
-                            mono.sendMessage({
-                              action: 'track',
-                              t: 'event',
-                              ec: 'exp',
-                              ea: preference.expIndex,
-                              el: 'ytTooltipUmmy',
-                              tid: 'UA-67738130-6'
-                            });
-                            preference.onceUmmyUse = 1;
-                            mono.storage.set({
-                              onceUmmyUse: 1
-                            });
-                          }
-                        }
                       }]
                     }),
                     mono.create('a', {
                       class: 'sf-btn',
                       text: language.no,
                       href: noUrl,
-                      target: '_blank',
-                      on: ['click', function(e) {
-                        if ([48, 49, 50].indexOf(preference.expIndex) !== -1) {
-                          if (!preference.onceUmmyInstall) {
-                            mono.sendMessage({
-                              action: 'track',
-                              t: 'event',
-                              ec: 'exp',
-                              ea: preference.expIndex,
-                              el: 'ytTooltipUmmyInstall',
-                              tid: 'UA-67738130-6'
-                            });
-                            preference.onceUmmyInstall = 1;
-                            mono.storage.set({
-                              onceUmmyInstall: 1
-                            });
-                          }
-                        }
-                      }]
+                      target: '_blank'
                     })
                   ]
                 }),
@@ -41048,7 +40978,7 @@
           var ummyUrl = btn.href;
 
           if (storage.onceUmmyLandingOpened) {
-            return SaveFrom_Utils.bindUmmyInfo(container, {}, {
+            return SaveFrom_Utils.bindUmmyInfo(container, {
               expUmmyInfo: _this.createInfoPopup.bind(_this, ummyUrl, webUrl),
               noUmmy: true
             });
@@ -41065,27 +40995,10 @@
               });
               btn.target = '_self';
               btn.href = ummyUrl;
-              SaveFrom_Utils.bindUmmyInfo(container, {}, {
+              SaveFrom_Utils.bindUmmyInfo(container, {
                 expUmmyInfo: _this.createInfoPopup.bind(_this, ummyUrl, webUrl),
                 noUmmy: true
               });
-
-              if ([48, 49, 50].indexOf(preference.expIndex) !== -1) {
-                if (!preference.onceUmmyInstall) {
-                  mono.sendMessage({
-                    action: 'track',
-                    t: 'event',
-                    ec: 'exp',
-                    ea: preference.expIndex,
-                    el: 'ytBtnUmmyInstall',
-                    tid: 'UA-67738130-6'
-                  });
-                  preference.onceUmmyInstall = 1;
-                  mono.storage.set({
-                    onceUmmyInstall: 1
-                  });
-                }
-              }
             }, 250);
           };
 
@@ -41358,7 +41271,7 @@
            * @param {Node} details.target
            */
           bind: function(details) {
-            SaveFrom_Utils.bindUmmyInfo(details.target, {}, {
+            SaveFrom_Utils.bindUmmyInfo(details.target, {
               expUmmyInfo: getRateNode.bind(null, details),
               leftOffset: 10,
               noUmmy: true
@@ -42153,10 +42066,6 @@
           cb();
         } catch (e) {
           mono.error('Loading error!', e);
-          engine.actionList.trackError({
-            desc: 'l',
-            error: e
-          });
         }
       }
     };
