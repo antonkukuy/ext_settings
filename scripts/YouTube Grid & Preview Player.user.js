@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Grid & Preview Player
 // @namespace    YouTubeGridView
-// @version      1.1.6
+// @version      1.1.7
 // @description  YouTube grid view layout and preview player. Video ratings and definition info on thumbs. Auto load page content and search results.
 // @author       Costas
 // @match        http://www.youtube.com/*
@@ -88,15 +88,17 @@ var style_grid_search = "\
 /*Grid for search results*/\
 #content[gridtube_grid_search] {width: 96% !important;}\
 #results .item-section {margin-left:5px !important;}\
-#results ol.item-section > li {width: 196px !important; height: 176px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important;}\
+#results ol.item-section > li {width: 196px !important; height: 196px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important;}\
 #results ol.item-section > li:hover {overflow:visible !important;}\
 #results ol.item-section > li:hover > div {z-index:1 !important; background-color:white !important;}\
 #results ol.item-section > li > div {padding:0px 0px 3px 0px !important;}\
-#results .yt-lockup-content {float:left !important; width:100% !important; height:66px !important; overflow:hidden important!}\
-#results .yt-lockup-content:hover {overflow:visible !important; height:auto !important;}\
 #results .yt-lockup-channel .video-thumb {float:left !important;}\
-#results .yt-lockup-title {font-size: 13px !important;}\
-#results .yt-lockup-description {font-size: 11px !important;}\
+#results .yt-lockup-content {float:left !important; width:100% !important;}\
+#results .yt-lockup-title {font-size: 13px !important; line-height:1.2em !important; max-height:2.4em !important; margin-bottom:1px !important;}\
+#results .yt-lockup-title .yt-uix-tile-link {line-height:1.2em !important;}\
+#results .yt-lockup-byline {font-size: 11px !important; line-height:13px !important;}\
+#results .yt-lockup-meta {font-size: 11px !important; line-height:13px !important;}\
+#results .yt-lockup-description {font-size: 10px !important; line-height:12px !important;}\
 #results .yt-lockup-badges {margin:0px !important;}\
 #results .yt-lockup-playlist-items {margin:0px !important;}\
 #content[gridtube_grid_search] #results .yt-lockup-action-menu {margin-right:-8px !important;}\
@@ -108,16 +110,17 @@ var style_grid_history = "\
 #content[gridtube_grid_hist] {width: 96% !important;}\
 #content[gridtube_grid_hist] #browse-items-primary {margin-left:10px !important;}\
 #content[gridtube_grid_hist] .item-section-header {margin-left:-5px !important;}\
-#content[gridtube_grid_hist] ol.item-section > li:not(.item-section-header) {width: 196px !important; height: 176px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important;}\
+#content[gridtube_grid_hist] ol.item-section > li:not(.item-section-header) {width: 196px !important; height: 196px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important;}\
 #content[gridtube_grid_hist] ol.item-section > li:not(.item-section-header):hover {overflow:visible !important;}\
 #content[gridtube_grid_hist] ol.item-section > li:not(.item-section-header):hover > div {z-index:1 !important; background-color:white !important;}\
 #content[gridtube_grid_hist] ol.item-section > li:not(.item-section-header) > div {padding:0px 0px 3px 0px !important; border-bottom:0px !important;}\
-#content[gridtube_grid_hist] .yt-lockup-content {float:left !important; width:100% !important; height:66px !important; overflow:hidden important!}\
-#content[gridtube_grid_hist] .yt-lockup-content:hover {overflow:visible !important; height:auto !important;}\
 #content[gridtube_grid_hist] .yt-lockup-channel .video-thumb {float:left !important;}\
-#content[gridtube_grid_hist] .yt-lockup-title {font-size:13px !important; margin-right:15px !important;}\
-#content[gridtube_grid_hist] .yt-lockup-title .yt-uix-tile-link {margin-right:0px !important;}\
-#content[gridtube_grid_hist] .yt-lockup-description {font-size: 11px !important;}\
+#content[gridtube_grid_hist] .yt-lockup-content {float:left !important; width:100% !important;}\
+#content[gridtube_grid_hist] .yt-lockup-title {font-size:13px !important; line-height:1.2em !important; max-height:2.4em !important; margin-bottom:1px !important; margin-right:15px !important;}\
+#content[gridtube_grid_hist] .yt-lockup-title .yt-uix-tile-link {line-height:1.2em !important; margin-right:0px !important;}\
+#content[gridtube_grid_hist] .yt-lockup-byline {font-size: 11px !important; line-height:13px !important;}\
+#content[gridtube_grid_hist] .yt-lockup-meta {font-size: 11px !important; line-height:13px !important;}\
+#content[gridtube_grid_hist] .yt-lockup-description {font-size: 10px !important; line-height:12px !important;}\
 #content[gridtube_grid_hist] .yt-lockup-badges {margin:0px !important;}\
 #content[gridtube_grid_hist] .yt-uix-menu-top-level-button-container {margin-right:-4px !important;}\
 ";
@@ -125,12 +128,14 @@ var style_grid_history = "\
 var style_grid_trending = "\
 /*Grid for trending*/\
 #content[gridtube_grid_trend] {width: 96% !important;}\
-#content[gridtube_grid_trend] .expanded-shelf-content-item-wrapper {width: 196px !important; height: 205px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important;}\
+#content[gridtube_grid_trend] .expanded-shelf-content-item-wrapper {width: 196px !important; height: 196px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important;}\
 #content[gridtube_grid_trend] .yt-lockup-channel .video-thumb {float:left !important;}\
 #content[gridtube_grid_trend] .yt-lockup-content {float:left !important; width:100% !important;}\
-#content[gridtube_grid_trend] .yt-lockup-title {font-size:13px !important; margin-bottom:0px !important;}\
-#content[gridtube_grid_trend] .yt-lockup-title .yt-uix-tile-link {margin-right:0px !important;}\
-#content[gridtube_grid_trend] .yt-lockup-description {font-size: 11px !important; margin:0px !important;}\
+#content[gridtube_grid_trend] .yt-lockup-title {font-size:13px !important; line-height:1.2em !important; max-height:2.4em !important; margin-bottom:1px !important;}\
+#content[gridtube_grid_trend] .yt-lockup-title .yt-uix-tile-link {line-height:1.2em !important; margin-right:0px !important;}\
+#content[gridtube_grid_trend] .yt-lockup-byline {font-size: 11px !important; line-height:13px !important;}\
+#content[gridtube_grid_trend] .yt-lockup-meta {font-size: 11px !important; line-height:13px !important;}\
+#content[gridtube_grid_trend] .yt-lockup-description {font-size: 10px !important; line-height:12px !important;}\
 ";
 
 var style_grid_related = "\
@@ -139,11 +144,10 @@ var style_grid_related = "\
 /*#watch7-sidebar-contents {min-height:1770px !important;}*/\
 #watch-related {position:absolute !important;}\
 #watch-related li:not(.related-list-item) {display:none !important;} /*ads*/\
-#watch-related li {width: 130px !important; height:125px !important; margin-bottom:0px !important; float: left !important; overflow:hidden !important;}\
-#watch-related .content-wrapper {width:120px !important; margin-left:5px !important; margin-top:69px !important;}\
-#watch-related .title {font-size:11px !important; line-height:1.1em !important; max-height:2.2em !important; margin-bottom:0px !important;}\
-#watch-related .stat {font-size:9px !important;}\
-#watch-related .yt-pl-thumb-link .title {margin-top:69px !important;}\
+#watch-related li {width: 195px !important; height:160px !important; margin-bottom:0px !important; float: left !important; overflow:hidden !important;}\
+#watch-related .content-wrapper {width:168px !important; margin-left:5px !important; margin-top:94px !important;}\
+#watch-related .yt-pl-thumb-link .title {width:168px !important; margin-top:95px !important;}\
+#watch-related .title {font-size:12px !important; line-height:1.2em !important; max-height:2.4em !important; margin:1px 0px !important;}\
 ";
 
 var style_grid_plist = "\
@@ -192,7 +196,7 @@ var style_basic = "\
 #gridtube_pref_button[bottom] {position:fixed; right:0px; bottom:0px; visibility:visible;}\
 #gridtube_pref_button:hover {opacity:0.9;}\
 #gridtube_pref_button {background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAeUlEQVR42u2UwQ2AMAwDk52YCWaCmdgp7QshKP6QKn7Yv0pudEqcuBXLBXB/7GaBzFv3Z3k+AdYY/z3cr+IZHgywPCZzxrv4T48AyAFAeKaH0ICmr2GFuDpAkQGOLRBAOQAIjw5Rtrg6QJEBji0QQDkACI8OUbYE0ADbonowcNn6sgAAAABJRU5ErkJggg==');}\
-#yt-masthead-container:hover  #gridtube_pref_button {visibility:visible;}\
+#yt-masthead-container:hover  #gridtube_pref_button {visibility:visible !important;}\
 /* meta data */\
 .gridtube_meta_def_container {font:bold 10px/13px arial,sans-serif; position:absolute; bottom:0px; left:0px; background:#F0F0F0; padding:0px 3px; border-radius:2px; opacity:0.9; display:none; cursor:default;}\
 .gridtube_meta_def_container[reveal] {display:block;}\
@@ -221,7 +225,7 @@ evTpnfv329aiUQyXC+qceRF2lG3T0tzM8f7+OW3m8eP++NrajXvT061SSqRSZb8Ny6FoCpqGEIIGw8Dl
 /* preview player */\
 #gridtube_player_area {position:fixed; width:100%; height:100%; top:0px; left:0px; background:rgba(0,0,0,0.5); overflow:hidden !important; z-index:2147483646 !important; }\
 #gridtube_player_area2 {position:relative; width:100%; height:100%; visibility:hidden;}\
-#gridtube_player_box {position:absolute; background:linear-gradient(#606060,#505050,#606060); box-shadow:0px 0px 10px 5px #606060; border-radius:10px; max-width:100%; max-height:100%;}\
+#gridtube_player_box {position:absolute; background:linear-gradient(#606060,#505050,#606060) !important; box-shadow:0px 0px 10px 5px #606060; border-radius:10px; max-width:100%; max-height:100%;}\
 #gridtube_player_box[player_pos='00']:not([player_size='fit']) {top:0px; left:0px;}\
 #gridtube_player_box[player_pos='01']:not([player_size='fit']) {top:0px; left:0px; right:0px; margin:auto;}\
 #gridtube_player_box[player_pos='02']:not([player_size='fit']) {top:0px; right:0px;}\
@@ -575,6 +579,30 @@ function pref_button() {
 
 pref_button();
 
+var pref_button_timeout = null;
+
+function pref_button_show() {
+    var node = doc.getElementById("gridtube_pref_button");
+    if (!node) return;
+
+    var pos = node.getAttribute("top");
+    if (!(pos == "true")) return;
+
+    node.style.visibility = "visible";
+    if (pref_button_timeout)
+        win.clearTimeout(pref_button_timeout);
+}
+
+function pref_button_hide() {
+    var node = doc.getElementById("gridtube_pref_button");
+    if (!node) return;
+
+    var pos = node.getAttribute("top");
+    if (!(pos == "true")) return;
+
+    //node.style.visibility = "hidden";
+    pref_button_timeout = win.setTimeout(function () { node.style.visibility = "hidden"; }, 2000);
+}
 
 
 //==================================================================
@@ -594,6 +622,9 @@ function choice_icons(page_kind) {
     function build_icons(pref_grid_value, pref_grid_name, refnode, position) {
         var icon_box = newNode("span", "gridtube_icon_area", "gridtube_icon_area_" + page_kind, refnode, position);
         if (!icon_box) return;
+
+        icon_box.onmouseover = pref_button_show;
+        icon_box.onmouseout = pref_button_hide;
 
         //list icon
         var img_list = newNode("img", null, null, icon_box);
@@ -976,7 +1007,7 @@ function build_player() {
         var myimg = innersearch(playing.parentNode, ".//img[@src or @data-thumb]").snapshotItem(0);
         if (myimg) {
             //l = docsearch("//*[(" + basic_str + ") and (not(ancestor::*[contains(@class,'vve-check')]))]//img[contains(@src,'vi/') or contains(@src,'vi_webp/')]");
-            l = docsearch("//*[(" + basic_str + ")]//img[contains(@src,'vi/') or contains(@src,'vi_webp/')]");
+            l = docsearch("//*[(" + basic_str + ")]//img[contains(@src,'vi/') or contains(@src,'vi_webp/') or contains(@src,'/p/')]");
 
             myimg.setAttribute("matchfind", "true");
 
@@ -999,15 +1030,13 @@ function build_player() {
                 var vid = filter(str1, "vi/", "/&?#");
                 if (!vid) vid = filter(str1, "vi_webp/", "/&?#");
 
-                if (vid) {
-                    var pid = find_plist(img);
-                    img.setAttribute("matchfindimg", true);
-                    var target = docsearch("//*[" + basic_str + " and (.//img[@matchfindimg])]").snapshotItem(0);
-                    if (target) {
-                        that.playerShow(vid, pid, target);
-                    }
-                    img.removeAttribute("matchfindimg");
+                var pid = find_plist(img);
+                img.setAttribute("matchfindimg", true);
+                var target = docsearch("//*[" + basic_str + " and (.//img[@matchfindimg])]").snapshotItem(0);
+                if (target) {
+                    that.playerShow(vid, pid, target);
                 }
+                img.removeAttribute("matchfindimg");
             }
         }
     }
@@ -1351,6 +1380,8 @@ function callback2(json_txt, def_node, buildHD, buildRate, parent) {
 
             var rateBrief = newNode("div", null, "gridtube_meta_rate", parent);
             rateBrief.title = perc + "% likes: +" + number_comma(num_likes.toString()) + "  -" + number_comma(num_dislikes.toString());
+            rateBrief.onmouseover = pref_button_show;
+            rateBrief.onmouseout = pref_button_hide;
 
             if (entry.views != null) {
                 var view_num = number_comma(entry.views);
@@ -1407,6 +1438,8 @@ function def_rate(v_id, parent) {
     if (pref_defEnable) {
         var def_node = newNode("span", null, "gridtube_meta_def_container", parent);
         httpReq(url1, callback1, def_node, url2, parent);
+        def_node.onmouseover = pref_button_show;
+        def_node.onmouseout = pref_button_hide;
     }
     else
         if (pref_rateEnable)
@@ -1436,6 +1469,8 @@ function play(vid, pid, parent) {
     }
 
     playNode.onclick = play_handle;
+    playNode.onmouseover = pref_button_show;
+    playNode.onmouseout = pref_button_hide;
 }
 
 
@@ -1508,7 +1543,7 @@ function meta_data() {
             for (var i = 0; i < p.snapshotLength; i++) {
                 var parent = p.snapshotItem(i);
                 parent.setAttribute('gridtube_meta_thumb_mark', 'true');
-                var img = innersearch(parent, ".//img[contains(@src,'vi/') or contains(@src,'vi_webp/')]").snapshotItem(0);
+                var img = innersearch(parent, ".//img[contains(@src,'vi/') or contains(@src,'vi_webp/') or contains(@src,'/p/')]").snapshotItem(0);
                 if (!img) continue;
 
                 var vid = filter(img.src, "vi/", "/&?#");
@@ -1517,22 +1552,13 @@ function meta_data() {
                 if (vid) {//video or playlist
                     if (pref_defEnable || pref_rateEnable)
                         def_rate(vid, parent);
-
-                    if (pref_playerEnable) {
-                        //check for playlist
-                        var plist = find_plist(img);
-
-                        play(vid, plist, parent);
-                    }
                 }
-                else { //another kind of playlist
-                    if (pref_playerEnable)
-                        if (img.src.indexOf("/p/") >= 0) {
-                            var plist = find_plist(img);
-                            if (plist) {
-                                play(null, plist, parent);
-                            }
-                        }
+
+                if (pref_playerEnable) {
+                    //check for playlist
+                    var plist = find_plist(img);
+                    //message(plist);
+                    play(vid, plist, parent);
                 }
             }
         }
@@ -1988,8 +2014,6 @@ win.addEventListener("blur", function () { nochanges_count = -1; check_focus(); 
 win.addEventListener("resize", function () { nochanges_count = -1; related_adjust(true); auto_page_load(true); }, false);
 win.addEventListener("scroll", function () { nochanges_count = -1; auto_page_load(true); }, false);
 win.addEventListener("click", function (e) { nochanges_count = -1; player_close(e); }, false);
-win.addEventListener("keyup", function (e) { if(e.keyCode == 27) { nochanges_count = -1; player_close(e); }}, false);
-
 
 //main routine
 function check_changes() {
