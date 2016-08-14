@@ -19,6 +19,9 @@ setMutationHandler(document, '#hdtb .hdtb-mitem a', function(nodes) {
   var amazon = document.getElementById('__AMAZON_SEARCH__');
   var ebay = document.getElementById('__EBAY_SEARCH__');
   var yandex = document.getElementById('__YANDEX_SEARCH__');
+  var gitbook = document.getElementById('__GITBOOK_SEARCH__');
+  var stackoverflow = document.getElementById('__STACKOVERFLOW_SEARCH__');
+  var habrahabr = document.getElementById('__HABRAHABR_SEARCH__');
   if (state > 10)
     return;
 
@@ -52,33 +55,29 @@ setMutationHandler(document, '#hdtb .hdtb-mitem a', function(nodes) {
 		youtube.parentNode.insertBefore(youtube, node.nextElementSibling);
     }
 
-    if (amazon) {
-	  node = youtube || menu.lastElementChild;
-	  if (amazon.previousElementSibling != node)
-		amazon.parentNode.insertBefore(amazon, node.nextElementSibling);
-    }
-
-    if (ebay) {
-	  node = amazon || menu.lastElementChild;
-	  if (ebay.previousElementSibling != node)
-		ebay.parentNode.insertBefore(ebay, node.nextElementSibling);
-    }
-
-    if (yandex) {
-	  node = ebay || menu.lastElementChild;
-	  if (yandex.previousElementSibling != node)
-		yandex.parentNode.insertBefore(yandex, node.nextElementSibling);
-    }
+      arrangeElements(amazon, youtube);
+      arrangeElements(ebay, amazon);
+      arrangeElements(yandex, ebay);
+      arrangeElements(gitbook, yandex);
+      arrangeElements(stackoverflow, gitbook);
+      arrangeElements(habrahabr, stackoverflow);
   }
 
 newNodes(youtube, "__YOUTUBE_SEARCH__", "https://www.youtube.com/results?search_query=", "Youtube");
-
 newNodes(amazon, "__AMAZON_SEARCH__", "https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=", "Amazon");
-
 newNodes(ebay, "__EBAY_SEARCH__", "http://www.ebay.com/sch/i.html?_nkw=", "Ebay");
-
 newNodes(yandex, "__YANDEX_SEARCH__", "https://yandex.ru/search/?text=", "Yandex");
+newNodes(gitbook, "__GITBOOK_SEARCH__", "https://git-scm.com/search/results?search=", "Git book");
+newNodes(stackoverflow, "__STACKOVERFLOW_SEARCH__", "http://stackoverflow.com/search?q=", "Stackoverflow");
+newNodes(habrahabr, "__HABRAHABR_SEARCH__", "https://habrahabr.ru/search/?q=", "Habrahabr");
 
+function arrangeElements(element, prevElement){
+    if (element) {
+      node = prevElement || menu.lastElementChild;
+      if (element.previousElementSibling != node)
+        element.parentNode.insertBefore(element, node.nextElementSibling);
+    }
+}
 function newNodes(nameNode, nameId, queryPage, nameLink){
 
   if (!nameNode) {
@@ -103,7 +102,6 @@ function newNodes(nameNode, nameId, queryPage, nameLink){
                amazon, amazon && amazon.previousElementSibling == videos || images || youtube]);
 */
 });
-
 
 
 
