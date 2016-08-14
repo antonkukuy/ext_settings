@@ -244,6 +244,18 @@ var contentMarginChromeDeveloper = document.querySelector('div[itemprop="article
         document.querySelector('nav.inline-site-toc.no-permalink').style.display = "";
     }
 }
+
+var verify_google = document.getElementById('hdtb');
+if(verify_google){
+var fixedPos = document.querySelector('#hdtb').style.position;
+    if (fixedPos != "fixed") {
+        document.querySelector('#hdtb').style.position = "fixed";
+        document.querySelector('#hdtb').style.display = "none";
+    } else {
+        document.querySelector('#hdtb').style.position = "";
+        document.querySelector('#hdtb').style.display = "";
+    }
+}
 //console.log('that work');
 
     }}
