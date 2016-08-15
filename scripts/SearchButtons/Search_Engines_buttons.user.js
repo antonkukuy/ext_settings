@@ -7,7 +7,7 @@
 // @namespace     wOxxOm.scripts
 // @license       MIT License
 // @grant         none
-// @run-at        document-start
+// @run-at        document-body
 // @require       https://greasyfork.org/scripts/12228/code/setMutationHandler.js
 // ==/UserScript==
 
@@ -20,6 +20,7 @@ setMutationHandler(document, '#hdtb .hdtb-mitem a', function(nodes) {
   var ebay = document.getElementById('__EBAY_SEARCH__');
   var yandex = document.getElementById('__YANDEX_SEARCH__');
   var gitbook = document.getElementById('__GITBOOK_SEARCH__');
+  var javascript = document.getElementById('__JAVASCRIPT_SEARCH__');
   var stackoverflow = document.getElementById('__STACKOVERFLOW_SEARCH__');
   var habrahabr = document.getElementById('__HABRAHABR_SEARCH__');
   if (state > 10)
@@ -59,15 +60,17 @@ setMutationHandler(document, '#hdtb .hdtb-mitem a', function(nodes) {
       arrangeElements(ebay, amazon);
       arrangeElements(yandex, ebay);
       arrangeElements(gitbook, yandex);
-      arrangeElements(stackoverflow, gitbook);
-      arrangeElements(habrahabr, stackoverflow);
+      arrangeElements(javascript, gitbook);
+      arrangeElements(stackoverflow, javascript);
+      arrangeElements(javascript, stackoverflow);
   }
 
 newNodes(youtube, "__YOUTUBE_SEARCH__", "https://www.youtube.com/results?search_query=", "Youtube");
 newNodes(amazon, "__AMAZON_SEARCH__", "https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=", "Amazon");
 newNodes(ebay, "__EBAY_SEARCH__", "http://www.ebay.com/sch/i.html?_nkw=", "Ebay");
 newNodes(yandex, "__YANDEX_SEARCH__", "https://yandex.ru/search/?text=", "Yandex");
-newNodes(gitbook, "__GITBOOK_SEARCH__", "https://git-scm.com/search/results?search=", "Git book");
+newNodes(gitbook, "__GITBOOK_SEARCH__", "https://git-scm.com/search/results?search=", "GitBook");
+newNodes(javascript, "__JAVASCRIPT_SEARCH__", "https://learn.javascript.ru/search?query=", "Learn.js");
 newNodes(stackoverflow, "__STACKOVERFLOW_SEARCH__", "http://stackoverflow.com/search?q=", "Stackoverflow");
 newNodes(habrahabr, "__HABRAHABR_SEARCH__", "https://habrahabr.ru/search/?q=", "Habrahabr");
 
@@ -99,9 +102,10 @@ function newNodes(nameNode, nameId, queryPage, nameLink){
                images, images && images.previousElementSibling == menu.firstElementChild,
                videos, videos && videos.previousElementSibling == images,
                youtube, youtube && youtube.previousElementSibling == videos || images,
-               amazon, amazon && amazon.previousElementSibling == videos || images || youtube]);
+               amazon, amazon && amazon.previousElementSibling == youtube]);
 */
 });
+
 
 
 
