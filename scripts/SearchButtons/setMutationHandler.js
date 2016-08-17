@@ -1,4 +1,49 @@
-/* EXAMPLE:
+/* 
+A MutationObserver wrapper to wait for an element (or elements) with the specified CSS selector.
+
+First, load the function in your script metablock:
+
+..............
+// @require       https://greasyfork.org/scripts/12228/code/setMutationHandler.js
+..............
+
+Watch for added nodes:
+
+setMutationHandler(document, '.container p.some-selector', function(nodes) {
+    nodes.forEach(function(node) {
+        node.style.display = 'none';
+    });
+    //this.disconnect(); // stop observing 
+});
+Watch for added nodes only inside the specified container element that already exists in the document:
+
+setMutationHandler(document.querySelector('.container-selector'), '.some-selector', function(nodes) {
+    nodes.forEach(function(node) {
+        node.style.display = 'none';
+    });
+    //this.disconnect(); // stop observing 
+});
+Advanced example with customized options to watch for changes in the title attribute:
+
+setMutationHandler(document, '.some-selector', processNodes, {
+    attributes: true, attributeFilter: ['title'],
+    subtree: true
+});
+function processNodes(nodes) {
+    console.log(nodes);
+    //this.disconnect(); // stop observing 
+});
+You may want to make your userscript run at document-start to catch the mutations during page load:
+
+..............
+// @run-at        document-start
+// @require       https://greasyfork.org/scripts/12228/code/setMutationHandler.js
+..............
+
+PS: you should load the scpript from your local machine for a more excelent work !!!!!
+  
+  
+   EXAMPLE:
     
     setMutationHandler(document, '.container p.some-child', function(nodes) {
         // single node:
