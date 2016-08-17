@@ -49,6 +49,8 @@
 
         let mapleader="x"
         map <Leader>n :set numerichints!<CR>
+        map <Leader>f createHint
+        map f createActiveTabbedHint
         map P yhP
         map ? openLinkSearchBar
         map $ lastTab
@@ -56,8 +58,8 @@
         map g0 scrollToLeft
         map g$ scrollToRight
         map gas :settings<CR>
-        map q closeTab
-        map Q lastClosedTab
+        "map q closeTab
+        map Q closeTab
         map a createHoverHint
         map A createUnhoverHint
         map H :help<CR>
@@ -166,7 +168,8 @@
               unmap m
               unmap n
               unmap p
-              map a createHint
+              map a createActiveTabbedHint
+              map <Leader>a createHint
               map A createTabbedHint
         }
     "}}}
@@ -537,6 +540,16 @@ scrollToCenter -> {{
 */
 
 window.scrollBy(5,0); // horizontal and vertical scroll increments
+
+}}
+"}}}
+
+map q :call openLinkTab<CR>
+"{{{
+openLinkTab -> {{
+
+Mappings.actions.closeTab();
+Mappings.actions.previousTab();
 
 }}
 "}}}
