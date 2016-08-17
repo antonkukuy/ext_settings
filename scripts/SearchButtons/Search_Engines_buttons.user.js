@@ -17,10 +17,11 @@
 // ==/UserScript==
 
 function addCustomSearchResult (jNode) {
-var rearrangeImagesVideosYoutube = true; // always put (if present!) "Images" to 2nd place, "Videos" to 3rd place, "Youtube" to 4th place
 
+var rearrangeImagesVideosYoutube = true; // always put (if present!) "Images" to 2nd place, "Videos" to 3rd place, "Youtube" to 4th place
 var state = 0;
-setMutationHandler(document, '#hdtb .hdtb-mitem a', function (nodes) {
+setMutationHandler(document, '#hdtb .hdtb-mitem a', newEngines);
+    function newEngines (nodes){
   var youtube = document.getElementById('__YOUTUBE_SEARCH__');
   var amazon = document.getElementById('__AMAZON_SEARCH__');
   var ebay = document.getElementById('__EBAY_SEARCH__');
@@ -29,7 +30,9 @@ setMutationHandler(document, '#hdtb .hdtb-mitem a', function (nodes) {
   var javascript = document.getElementById('__JAVASCRIPT_SEARCH__');
   var stackoverflow = document.getElementById('__STACKOVERFLOW_SEARCH__');
   var habrahabr = document.getElementById('__HABRAHABR_SEARCH__');
-  if (state > 10)
+  var mozila = document.getElementById('__MOZILA_SEARCH__');
+  if (state > 2)
+  //if (state > 10)
     return;
 
   var menu = document.getElementById('hdtb-msb');
@@ -69,6 +72,8 @@ setMutationHandler(document, '#hdtb .hdtb-mitem a', function (nodes) {
       arrangeElements(javascript, gitbook);
       arrangeElements(stackoverflow, javascript);
       arrangeElements(javascript, stackoverflow);
+      arrangeElements(mozila, javascript);
+      arrangeElements(habrahabr, mozila);
   }
 
 newNodes(youtube, "__YOUTUBE_SEARCH__", "https://www.youtube.com/results?search_query=", "Youtube");
@@ -79,6 +84,7 @@ newNodes(gitbook, "__GITBOOK_SEARCH__", "https://git-scm.com/search/results?sear
 newNodes(javascript, "__JAVASCRIPT_SEARCH__", "https://learn.javascript.ru/search?query=", "Learn.js");
 newNodes(stackoverflow, "__STACKOVERFLOW_SEARCH__", "http://stackoverflow.com/search?q=", "Stackoverflow");
 newNodes(habrahabr, "__HABRAHABR_SEARCH__", "https://habrahabr.ru/search/?q=", "Habrahabr");
+newNodes(mozila, "__MOZILA_SEARCH__", "https://developer.mozilla.org/en-US/search?q=", "MDN");
 
 function arrangeElements(element, prevElement){
     if (element) {
@@ -111,9 +117,10 @@ function newNodes(nameNode, nameId, queryPage, nameLink){
                youtube, youtube && youtube.previousElementSibling == videos || images,
                amazon, amazon && amazon.previousElementSibling == youtube]);
 */
-});
+//});
 
    // alert('it works');
+}
 }
 
 waitForKeyElements ("#hdtb-msb", addCustomSearchResult);
