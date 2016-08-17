@@ -6,15 +6,21 @@
 // @author        wOxxOm
 // @namespace     wOxxOm.scripts
 // @license       MIT License
-// @grant         none
-// @run-at        document-body
-// @require       https://greasyfork.org/scripts/12228/code/setMutationHandler.js
+// @run-at        document-start
+// @require      file://j:\GOOGLE\ext_settings\scripts\SearchButtons\setMutationHandler.js
+// @require      file://j:\GOOGLE\ext_settings\scripts\Shared\waitForKeyElements.js
+// @require      file://j:\GOOGLE\ext_settings\scripts\Shared\jquery.min_1_7_2.js
+//// @require       https://greasyfork.org/scripts/12228/code/setMutationHandler.js
+//// @require       http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
+//// @require       https://gist.github.com/raw/2625891/waitForKeyElements.js
+//// @grant         GM_addStyle
 // ==/UserScript==
 
+function addCustomSearchResult (jNode) {
 var rearrangeImagesVideosYoutube = true; // always put (if present!) "Images" to 2nd place, "Videos" to 3rd place, "Youtube" to 4th place
 
 var state = 0;
-setMutationHandler(document, '#hdtb .hdtb-mitem a', function(nodes) {
+setMutationHandler(document, '#hdtb .hdtb-mitem a', function (nodes) {
   var youtube = document.getElementById('__YOUTUBE_SEARCH__');
   var amazon = document.getElementById('__AMAZON_SEARCH__');
   var ebay = document.getElementById('__EBAY_SEARCH__');
@@ -97,7 +103,8 @@ function newNodes(nameNode, nameId, queryPage, nameLink){
 }
 
   state++;
-/*
+
+  /*
   console.log([state,
                images, images && images.previousElementSibling == menu.firstElementChild,
                videos, videos && videos.previousElementSibling == images,
@@ -106,8 +113,10 @@ function newNodes(nameNode, nameId, queryPage, nameLink){
 */
 });
 
+   // alert('it works');
+}
 
-
+waitForKeyElements ("#hdtb-msb", addCustomSearchResult);
 
 
 
