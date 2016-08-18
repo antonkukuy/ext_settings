@@ -251,12 +251,22 @@ var contentMarginChromeDeveloper = document.querySelector('div[itemprop="article
 var verify_google = document.getElementById('hdtb');
 if(verify_google){
 var fixedPos = document.querySelector('#hdtb').style.position;
+var previewBox = document.querySelector('.sp-preview').style.display;
     if (fixedPos != "fixed") {
         document.querySelector('#hdtb').style.position = "fixed";
         document.querySelector('#hdtb').style.display = "none";
     } else {
         document.querySelector('#hdtb').style.position = "";
         document.querySelector('#hdtb').style.display = "";
+    }
+}
+var verify_preview = document.querySelector('.sp-preview');
+if(verify_preview){
+var previewBox = document.querySelector('.sp-preview').style.display;
+    if (previewBox != "none") {
+        document.querySelector('.sp-preview').style.display = "none";
+    } else {
+        document.querySelector('.sp-preview').style.display = "";
     }
 }
 //console.log('that work');
