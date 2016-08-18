@@ -7,9 +7,9 @@
 // @namespace     wOxxOm.scripts
 // @license       MIT License
 // @run-at        document-start
-// @require      file://j:\GOOGLE\ext_settings\scripts\SearchButtons\setMutationHandler.js
-// @require      file://j:\GOOGLE\ext_settings\scripts\Shared\waitForKeyElements.js
-// @require      file://j:\GOOGLE\ext_settings\scripts\Shared\jquery.min_1_7_2.js
+//// @require      file://j:\GOOGLE\ext_settings\scripts\SearchButtons\setMutationHandler.js
+//// @require      file://j:\GOOGLE\ext_settings\scripts\Shared\waitForKeyElements.js
+//// @require      file://j:\GOOGLE\ext_settings\scripts\Shared\jquery.min_1_7_2.js
 //// @require       https://greasyfork.org/scripts/12228/code/setMutationHandler.js
 //// @require       http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
 //// @require       https://gist.github.com/raw/2625891/waitForKeyElements.js
