@@ -31,6 +31,7 @@ setMutationHandler(document, '#hdtb .hdtb-mitem a', newEngines);
   var stackoverflow = document.getElementById('__STACKOVERFLOW_SEARCH__');
   var habrahabr = document.getElementById('__HABRAHABR_SEARCH__');
   var mozila = document.getElementById('__MOZILA_SEARCH__');
+  var vim = document.getElementById('__VIM_SEARCH__');
   if (state > 2)
   //if (state > 10)
     return;
@@ -74,6 +75,7 @@ setMutationHandler(document, '#hdtb .hdtb-mitem a', newEngines);
       arrangeElements(javascript, stackoverflow);
       arrangeElements(mozila, javascript);
       arrangeElements(habrahabr, mozila);
+      arrangeElements(vim, habrahabr);
   }
 
 newNodes(youtube, "__YOUTUBE_SEARCH__", "https://www.youtube.com/results?search_query=", "Youtube");
@@ -85,6 +87,7 @@ newNodes(javascript, "__JAVASCRIPT_SEARCH__", "https://learn.javascript.ru/searc
 newNodes(stackoverflow, "__STACKOVERFLOW_SEARCH__", "http://stackoverflow.com/search?q=", "Stackoverflow");
 newNodes(habrahabr, "__HABRAHABR_SEARCH__", "https://habrahabr.ru/search/?q=", "Habrahabr");
 newNodes(mozila, "__MOZILA_SEARCH__", "https://developer.mozilla.org/en-US/search?q=", "MDN");
+newNodes(vim, "__VIM_SEARCH__", "https://www.google.ru/search?q=dogcart&gws_rd=cr&ei=oAi2V-qxM4G6sgHW7KaICw#newwindow=1&q=site:vimhelp.appspot.com+", "VIM");
 
 function arrangeElements(element, prevElement){
     if (element) {
@@ -103,7 +106,7 @@ function newNodes(nameNode, nameId, queryPage, nameLink){
     else q = '';
     node.insertAdjacentHTML(place,
       '<div class="hdtb-mitem hdtb-imb" id="' + nameId + '">\
-         <a class="q qs" href="' + queryPage + q + '">' + nameLink + '</a>\
+         <a class="q qs" href="' + queryPage + q + '" target = "_blank">' + nameLink + '</a>\
       </div>');
   }
 }
