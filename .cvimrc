@@ -49,8 +49,9 @@
 
         let mapleader="x"
         map <Leader>n :set numerichints!<CR>
-        map <Leader>f createHint
-        map f createActiveTabbedHint
+        map <Leader>b createBookmark
+        map ZQ quitChrome
+        map <Leader>f createActiveTabbedHint
         map P yhP
         map ? openLinkSearchBar
         map $ lastTab
@@ -168,8 +169,8 @@
               unmap m
               unmap n
               unmap p
-              map a createActiveTabbedHint
-              map <Leader>a createHint
+              map <Leader>a createActiveTabbedHint
+              map a createHint
               map A createTabbedHint
         }
     "}}}
