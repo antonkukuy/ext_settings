@@ -33,6 +33,8 @@ setMutationHandler(document, '#hdtb .hdtb-mitem a', newEngines);
   var mozila = document.getElementById('__MOZILA_SEARCH__');
   var vim = document.getElementById('__VIM_SEARCH__');
   var vimcast = document.getElementById('__VIMCAST_SEARCH__');
+  var w3schools = document.getElementById('__W3SCHOOLS_SEARCH__');
+  var bash = document.getElementById('__BASH_SEARCH__');
   if (state > 2)
   //if (state > 10)
     return;
@@ -78,6 +80,8 @@ setMutationHandler(document, '#hdtb .hdtb-mitem a', newEngines);
       arrangeElements(habrahabr, mozila);
       arrangeElements(vim, habrahabr);
       arrangeElements(vimcast, vim);
+      arrangeElements(w3schools, vimcast);
+      arrangeElements(bash ,w3schools);
   }
 
 newNodes(youtube, "__YOUTUBE_SEARCH__", "https://www.youtube.com/results?search_query=", "Youtube");
@@ -91,6 +95,8 @@ newNodes(habrahabr, "__HABRAHABR_SEARCH__", "https://habrahabr.ru/search/?q=", "
 newNodes(mozila, "__MOZILA_SEARCH__", "https://developer.mozilla.org/en-US/search?q=", "MDN");
 newNodes(vim, "__VIM_SEARCH__", "https://www.google.ru/search?q=dogcart&gws_rd=cr&ei=oAi2V-qxM4G6sgHW7KaICw#newwindow=1&q=site:vimhelp.appspot.com+", "VIM");
 newNodes(vimcast, "__VIMCAST_SEARCH__", "http://vimcasts.org/results/#stq=", "VimCast");
+newNodes(w3schools, "__W3SCHOOLS_SEARCH__", "https://www.google.ru/search?q=dogcart&gws_rd=cr&ei=oAi2V-qxM4G6sgHW7KaICw#newwindow=1&q=site:w3schools.com+", "w3schools");
+newNodes(bash, "__BASH_SEARCH__", "https://www.google.ru/search?q=dogcart&gws_rd=cr&ei=oAi2V-qxM4G6sgHW7KaICw#newwindow=1&q=site:tldp.org/LDP/abs/html+", "Bash");
 
 function arrangeElements(element, prevElement){
     if (element) {
@@ -109,7 +115,7 @@ function newNodes(nameNode, nameId, queryPage, nameLink){
     else q = '';
     node.insertAdjacentHTML(place,
       '<div class="hdtb-mitem hdtb-imb" id="' + nameId + '">\
-         <a class="q qs" href="' + queryPage + q + '" target = "_blank">' + nameLink + '</a>\
+         <a class="q qs" href="' + queryPage + q + '" >' + nameLink + '</a>\
       </div>');
   }
 }
