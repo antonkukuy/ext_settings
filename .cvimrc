@@ -35,6 +35,8 @@
     " }}}
 
     " NORMAL MODE {{{
+        unmap >
+        unmap <
         map gE :tabnew chrome://extensions<CR>
         map gB :tabnew chrome://bookmarks<CR>
         map gG :open google<Space>
@@ -65,7 +67,7 @@
         map A createUnhoverHint
         map H :help<CR>
         map S :settings<CR>
-        map <Space> :
+        "map <Space> :
         map cR reloadAllTabs
         map gar reloadAllTabs
         "map gy :duplicate<CR>
@@ -161,6 +163,8 @@
 
     " YOUTUBE  {{{
         site '*://*.youtube.com/*' {
+              unmap .
+              unmap r
               unmap f
               unmap j
               unmap k
@@ -169,6 +173,43 @@
               unmap m
               unmap n
               unmap p
+              unmap >
+              unmap <
+              map <Leader>a createActiveTabbedHint
+              map a createHint
+              map A createTabbedHint
+        }
+    "}}}
+    " VIMCASTS  {{{
+        site '*://vimcasts.org/*' {
+              unmap .
+              unmap r
+              unmap f
+              unmap j
+              unmap k
+              unmap l
+              unmap h
+              unmap m
+              unmap n
+              unmap p
+              map <Leader>a createActiveTabbedHint
+              map a createHint
+              map A createTabbedHint
+        }
+    "}}}
+    " VIMEO  {{{
+        site '*://vimeo.com/*' {
+              unmap .
+              unmap r
+              unmap f
+              unmap j
+              unmap k
+              unmap l
+              unmap h
+              unmap m
+              unmap n
+              unmap p
+              map k  
               map <Leader>a createActiveTabbedHint
               map a createHint
               map A createTabbedHint
@@ -215,11 +256,11 @@
 " {{{
 " We are now in JavaScript mode within any function
 " Variable is used by the code block
-"set hintset_a
+set hintset_a
 map <leader>w :call reading<CR>
 "{{{
 reading -> {{
-var verify = document.getElementById('content');
+var verify = document.querySelector('.mw-body');
 if (verify){
 var contentMargin = document.getElementById('content').style.marginLeft;
     if (contentMargin != "0px") {
@@ -249,6 +290,7 @@ var contentMarginChromeDeveloper = document.querySelector('div[itemprop="article
     }
 }
 
+// google.ru
 var verify_google = document.getElementById('hdtb');
 if(verify_google){
 var fixedPos = document.querySelector('#hdtb').style.position;
@@ -261,6 +303,7 @@ var previewBox = document.querySelector('.sp-preview').style.display;
         document.querySelector('#hdtb').style.display = "";
     }
 }
+// google.ru
 var verify_preview = document.querySelector('.sp-preview');
 if(verify_preview){
 var previewBox = document.querySelector('.sp-preview').style.display;
@@ -270,8 +313,38 @@ var previewBox = document.querySelector('.sp-preview').style.display;
         document.querySelector('.sp-preview').style.display = "";
     }
 }
-//console.log('that work');
+//http://www.w3schools.com/
+var verify_wwwSchools = document.querySelector('#topnav');
+if(verify_wwwSchools){
+var sideBars = document.querySelector('#topnav').style.display;
+    if (sideBars != "none") {
+        document.querySelector('#topnav').style.display = "none";
+    } else {
+        document.querySelector('#topnav').style.display = "";
+    }
+}
+//video html5
+var verify_video = document.querySelector('video');
+if(verify_video){
+settings.hintset_a = !settings.hintset_a;
+  if (!settings.hintset_a) {
+        document.styleSheets[0].insertRule('video::-webkit-media-controls { display: none }', 0);
+    }else {
+        document.styleSheets[0].deleteRule(0);
+    }
+}
+//http://www.youtube.com/
+var verify_youtube = document.querySelector('.ytp-chrome-bottom');
+if(verify_youtube){
+var contentDeveloper = document.querySelector('.ytp-chrome-bottom').style.display;
+    if (contentDeveloper != "none") {
+        document.querySelector('.ytp-chrome-bottom').style.display = "none";
+    } else {
+        document.querySelector('.ytp-chrome-bottom').style.display = "";
+    }
+}
 
+//console.log('that work');
     }}
     "}}}
 
