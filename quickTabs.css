@@ -1,0 +1,23 @@
+body {
+  font-size: 16px;
+  width: 1200px;
+}
+
+.item {
+  height: 40px;
+}
+
+.withfocus:hover,
+.withfocus:hover div.title,
+div.closed.withfocus:hover div.title,
+.withfocus:hover div.url,
+.withfocus,
+.withfocus div.title,
+div.closed.withfocus div.title,
+.withfocus div.url {
+  background-color: #332E33;
+}
+
+div.url {
+  font-size: 12px;
+}
