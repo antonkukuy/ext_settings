@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name        SaveFrom.net helper
 // @namespace   http://savefrom.net/
-// @version     6.60.2
-// @date        2016-08-22
+// @version     6.65.2
+// @date        2016-09-12
 // @author      Magicbit, Inc
 // @description Youtube Downloader: all in one script to get Vimeo, Facebook, Dailymotion videos for free
 // @homepage    http://savefrom.net/user.php?helper=userjs
@@ -624,14 +624,14 @@
     }
   };
 
-  _languageList.de = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helfer%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22Laden%20Sie%20von%20YouTube,%20Facebook,%20VK.com%20und%20mehr%20als%2040%20anderen%20Seiten%20mit%20einem%20Klick%20herunter.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helfer%20Lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22Herunterladen%20von%20Facebook,%20VK.com%20und%20mehr%20als%2040%20weiteren%20Seiten%20mit%20einem%20Klick%20herunter.%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22de%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helfer%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helfer%20deaktiviert%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22Aktivieren%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22Deaktivieren%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22Erweiterungs%20Knopf%20anzeigen%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22Kopie%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22Herunterladen%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22Klicken%20Sie%20den%20Link%20w%C3%A4hrend%20Sie%20die%20Alt/Einstellung%20oder%20Ctrl/Strg%20Taste%20dr%C3%BCcken%20zum%20Herunterladen%20der%20Dateien.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22Keine%20Links%20wurden%20gefunden%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22Mehr%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22Schlie%C3%9Fen%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22without%20audio%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22gr%C3%B6%C3%9Fe%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22Untertitel%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22Wiedergabliste%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22List%20of%20files%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22Die%20komplette%20Wiedergabliste%20herunterladen%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22Dateigr%C3%B6%C3%9Fe%20bestimmen%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22Fehler%20bei%20bestimmung%20der%20Dateigr%C3%B6%C3%9Fe.%20Bitte%20versuchen%20Sie%20es%20erneut.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22Holen%20Sie%20sich%20einen%20direkten%20Link.%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22Zu%20SaveFrom.net%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22Links%20aktualisieren%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22Links%20aktualisiert%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22Download%20Audiodateien%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22Download%20Playlist%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22Download%20Bilder%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22Install%20full%20version%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22Deaktivieren%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22Einstellungen%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22Fehler%20melden%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22Become%20better%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22Auf%20dieser%20Webseite%20deaktivieren%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22Auf%20dieser%20Webseite%20aktivieren%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22Ein/Aus%20auf%20dieser%20Webseite%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22Erweitern%20Ein-/Ausblenden%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22Update%20auf%20%25d%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22%C3%9Cber%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helfer%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22Version%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22Hilft%20den%20Nutzern%20direkte%20Links%20zu%20Herunterladen%20von%20mehr%20als%2040%20Webseiten,%20inklusive%20Dailymotion.com,%20YouTube.com,%20VK.com%20und%20weiteren%20zu%20bekommen.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22Hilft%20den%20Nutzern%20direkte%20Links%20zu%20Herunterladen%20von%20mehr%20als%2040%20Webseiten,%20inklusive%20Dailymotion.com,%20VK.com%20und%20weiteren%20zu%20bekommen.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22Unterst%C3%BCtzte%20Ressourcen%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22Homepage%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helfer%20-%20Einstellungen%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22Links%20handhaben%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22Zu%20Dateihoster%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22Zu%20Medienhoster%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22Module%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22Links%20ausblenden%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22VK%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22Odnoklassniki%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22Moy%20Mir%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22Bitrate%20sofort%20zeigen%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22Advisor%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22Tipps%20f%C3%BCr%20UVD%20einblenden%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22Erweiterter%20Download-Modus%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22Schaltfl%C3%A4che%20Ummy%20anzeigen%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22Cheap%20Flights%20Advisor%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22Laden%20Sie%20die%20Dateien%20mit%20SaveFrom.net%20von%20der%20aktuellen%20Seite%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22Hier%20klicken,%20wenn%20die%20Download-Taste%20nicht%20erscheint%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22Alle%20auf%20dieser%20Seite%20gefundenen%20Audiodateien%20herunterladen%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22Playliste%20mit%20den%20Links%20zu%20den%20Audiodateien%20generieren%20und%20downloaden%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22Alle%20auf%20der%20aktuellen%20Seite%20gefundenen%20Bilder%20herunterladen%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22Schreiben%20Sie%20uns,%20wenn%20Probleme%20auftreten%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22AN/AUS%20unterst%C3%BCtzte%20Ressourcen%20und%20Helperoptionen%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22Qualit%C3%A4t%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22Wenn%20es%20nicht%20um%20Qualit%C3%A4t%20geht,%20wird%20das%20n%C3%A4chste%20verf%C3%BCgbare%20Video%20heruntergeladen.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22Die%20Liste%20der%20gefundenen%20dateien%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'Zum%20Herunterladen%20aller%20datien%20kopieren%20Sie%20die%20liste%20der%20Links%20in%20Ihren%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'Download%20Manager'%7D%7D,'.%20Wenn%20Sie%20noch%20keinen%20Download%20Manager%20haben%20we%20empfehlen%20wir%20Ihnen%20die%20Installation%20des%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22Wiedergabliste%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22Zur%20Wiedergabe%20Ihrer%20gespeicherten%20Wiedergabliste%20kann%20es%20nun%20mit%20einem%20Musik-Player%20ge%C3%B6ffnet%20werden.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20oder%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B%7Bspan:%7B%7D%7D,'%20mithilfe%20von%20Ummy%20herunterladen'%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Btext:'Schnell%20und%20einfach%20HD%20Videos%20und%20MP3%20%C3%BCber%20Ummy%20Video%20Downloader%20herunterladen!'%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'Jetzt%20installieren'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'Nach%20der%20Installation%20startet%20jederzeit%20ein%20Download,%20wenn%20Sie%20auf%20',%7Bimg:%7Bsrc:'#'%7D%7D,'%20klicken'%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22%C3%9Cberpr%C3%BCfen%20Sie%20die%20Browsereinstellungen%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22Die%20Option%20%5C%22Jedes%20Mal%20nachfragen,%20wo%20eine%20Datei%20gespeichert%20werden%20soll%5C%22%20muss%20deaktiviert%20sein.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22Mehr%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22Nicht%20benachrichtigen%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22Abbrechen%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22Fortsetzen%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22Achtung!%20Der%20Download%20kann%20nicht%20abgebrochen%20oder%20angehalten%20werden.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22Info%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22Dateigr%C3%B6%C3%9Fe%20und%20Bitrate%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22Links%20zu%20MP3%20Dateien%20wurden%20nicht%20gefunden%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22Photos%20are%20not%20found%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22Album%20herunterladen%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22Alle%20Alben%20herunterladen%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22Gefundene%20Fotos%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20Foto(s)%20vor%C3%BCbergehend%20nicht%20verf%C3%BCgbar%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22Gefundene%20Links%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22von%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22Zeigen%20als%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22Liste%20der%20Links%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'Um%20alle%20Fotos%20herunterzuladen,%20kopieren%20Sie%20die%20Links%20aus%20der%20Liste%20und%20f%C3%BCgen%20Sie%20diese%20in%20Ihren%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'Download%20Manager'%7D%7D,'%20ein.%20Wenn%20Sie%20noch%20keinen%20Download%20Manager%20haben%20we%20empfehlen%20wir%20Ihnen%20die%20Installation%20des%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22Tabelle%20der%20Thumbnails%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22Liste%20der%20Fotos%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22Klicken%20Sie%20auf%20ein%20Foto%20um%20es%20herunterzuladen.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22B%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22kB%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22MB%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22GB%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22TB%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'Herunterladen:%20%C3%96ffnen%20Sie%20',%7Ba:%7Bhref:'%7Burl%7D',text:'die%20Video%20Seite'%7D%7D,'%20und%20dr%C3%BCcken%20Sie%20den%20%5C%22Herunterladen%5C%22%20Knopf%20%C3%BCber%20dem%20Video-Spieler'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22Dateien%20gefunden:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22In%20%25w%20teilen%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22Der%20SaveFrom.net%20Helper%20erm%C3%B6glicht%20es%20Ihnen%20Dateien%20YouTube.com,%20Facebook.com,%20VK.com%20und%20mehr%20als%2040%20andere%20Seiten%20mit%20einem%20Klick%20herunterzuladen%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22Gute%20Nachrichten!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'SaveFrom.net%20Helper%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,'%20wurde%20erfolgreich%20installiert.%20Jetzt%20kannst%20due%20jedes%20Video%20mit%20einem%20Klick%20von%20YouTube%20herunterladen'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'Wie%20das%20geht?',%7Bbr:%7B%7D%7D,'Hier%20erf%C3%A4hrst%20du%20es'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22W%C3%A4hle%20das%20Format%20des%20Videos,%20das%20du%20herunterladen%20m%C3%B6chtest%20und%20klicken%20auf%20%5C%22Herunterladen%5C%22%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22Historie%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'Du%20m%C3%B6chtest%20ein%20Video%20aus%20Historie%20herunterladen?%20Klicken%20einfach%20in%20der%20Vorschau%20des%20zuletzt%20gesehenen%20Videos%20auf%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'Du%20musst%20dir%20das%20Video%20nicht%20ansehen%20%E2%80%94%20klicke%20einfach%20auf%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20',%20w%C3%A4hle%20die%20Qualit%C3%A4t%20und%20lade%20es%20herunter.%20Ganz%20einfach,%20oder?'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22Viel%20Spa%C3%9F%20mit%20SaveFrom.net%20Helper!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'Noch%20Fragen?%20Vorschl%C3%A4ge?%20Willkommen%20auf%20unserer%20',%20%7Ba:%20%7Btext:%20'Support-Seite',%20href:%20'#support'%7D%7D%20,'.%20Schlie%C3%9Fe%20dich%20uns%20bei%20',%20%7Ba:%20%7Btext:%20'Facebook',%20href:%20'#fb'%7D%7D%20,'%20an'%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B'Klicken%20Sie%20zum%20',%7Bb:%20%7Btext:%20'Download'%7D%7D,',%20einfach%20auf%20die%20Schaltfl%C3%A4che'%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B'Hatten%20Sie%20',%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader%20bereits%20zuvor%20installiert?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22Ja%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22Nein%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22Diese%20Meldung%20nicht%20wieder%20anzeigen%22%7D%0A%7D";
-  _languageList.en = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22Download%20YouTube,%20Facebook,%20VK.com%20and%2040+%20sites%20in%20one%20click.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%20lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22Download%20Facebook,%20VK.com%20and%2040+%20sites%20in%20one%20click.%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22en%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%20disabled%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22Enable%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22Disable%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22Show%20extension%20button%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22Copy%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22Download%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22Click%20the%20link%20while%20holding%20Alt/Option%20or%20Ctrl%20key%20to%20download%20the%20file.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22No%20links%20were%20found%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22More%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22Close%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22without%20audio%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22size%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22Subtitles%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22Playlist%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22List%20of%20files%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22Download%20the%20whole%20playlist%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22Get%20file%20size%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22Unable%20to%20get%20the%20file%20size.%20Please%20try%20again.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22Get%20a%20direct%20link%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22Go%20to%20SaveFrom.net%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22Refresh%20links%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22Links%20updated%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22Download%20audio%20files%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22Download%20a%20playlist%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22Download%20pictures%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22Install%20full%20version%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22Disable%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22Settings%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22Report%20a%20bug%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22Become%20better%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22Disable%20on%20this%20website%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22Enable%20on%20this%20website%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22Turn%20On/Off%20on%20this%20website%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22Show/hide%20extension%20button%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22Update%20to%20%25d%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22About%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22Version%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22Helps%20users%20to%20get%20direct%20links%20to%20download%20from%20more%20than%2040%20websites,%20including%20Dailymotion.com,%20YouTube.com,%20VK.com%20and%20others.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22Helps%20users%20to%20get%20direct%20links%20to%20download%20from%20more%20than%2040%20websites,%20including%20Dailymotion.com,%20VK.com%20and%20others.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22Supported%20resources%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22Home%20page%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%20-%20Preferences%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22Handle%20links%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22To%20filehostings%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22To%20mediahostings%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22Modules%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22Hide%20links%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22VK%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22Odnoklassniki%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22Moy%20Mir%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22Show%20bitrate%20instantly%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22Advisor%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22Show%20tips%20for%20Ummy%20Video%20Downloader%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22Advanced%20download%20mode%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22Show%20the%20Ummy%20button%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22Cheap%20Flights%20Advisor%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22Download%20files%20from%20the%20current%20page%20using%20SaveFrom.net%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22Press%20if%20Download%20button%20doesn't%20appear%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22Download%20all%20audio%20files%20found%20on%20the%20current%20page%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22Generates%20and%20downloads%20the%20playlist%20consisting%20of%20links%20to%20audio%20files%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22Download%20all%20pictures%20found%20on%20the%20current%20page%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22Let%20us%20know%20if%20you%20have%20any%20problems%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22ON/OFF%20supported%20resources%20and%20Helper%20options%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22We%20work%20hard%20to%20become%20better.%20Please,%20give%20us%20a%20hand!%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22Quality%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22The%20best%20available%20video%20will%20be%20downloaded%20If%20there%20is%20no%20chosen%20quality.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22The%20list%20of%20the%20found%20files%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'To%20download%20all%20files%20copy%20the%20list%20of%20links%20and%20paste%20it%20into%20the%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'download%20manager'%7D%7D,'.%20If%20you%20do%20not%20have%20a%20download%20manager%20installed%20we%20recommend%20installing%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22Playlist%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22To%20playback%20the%20saved%20playlist%20it%20may%20be%20now%20opened%20in%20the%20music%20player.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20or%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B%7Bspan:%7B%7D%7D,'%20via%20Ummy'%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Btext:'Fast%20and%20easy%20download%20HD%20videos%20and%20MP3%20via%20Ummy%20Video%20Downloader!'%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'Install%20Now'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'When%20installed,%20a%20download%20will%20start%20anytime%20you%20click%20on%20',%7Bimg:%7Bsrc:'#'%7D%7D%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22Check%20browser%20settings%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22The%20option%20%5C%22Always%20ask%20me%20where%20to%20save%20files%5C%22%20must%20be%20turned%20off.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22More%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22Don't%20notify%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22Cancel%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22Continue%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22Warning!%20Downloading%20cannot%20be%20canceled%20or%20suspended.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22Info%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22File%20size%20and%20bitrate%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22Links%20to%20MP3%20files%20are%20not%20found%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22Photos%20are%20not%20found%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22Download%20album%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22Download%20all%20albums%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22Found%20photos%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20photos%20are%20temporarily%20unavailable%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22Found%20links%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22of%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22Show%20as%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22List%20of%20links%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'To%20download%20all%20photos%20copy%20the%20list%20of%20links%20and%20paste%20it%20into%20the%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'download%20manager'%7D%7D,'.%20If%20you%20do%20not%20have%20a%20download%20manager%20installed%20we%20recommend%20installing%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22Table%20of%20thumbnails%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22List%20of%20photos%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22Click%20on%20the%20photo%20to%20download%20it.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22B%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22kB%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22MB%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22GB%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22TB%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'Download:%20open%20',%7Ba:%7Bhref:'%7Burl%7D',text:'the%20video%20page'%7D%7D,'%20and%20press%20the%20%5C%22Download%5C%22%20button%20above%20the%20player'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22Files%20found:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22Share%20on%20%25w%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%20enables%20you%20to%20download%20files%20from%20YouTube.com,%20Facebook.com,%20VK.com%20and%20more%20than%2040%20other%20just%20in%20one%20click%20for%20free%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22Good%20news!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'SaveFrom.net%20Helper%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,'%20has%20been%20successfully%20installed%20and%20now%20you%20can%20download%20any%20video%20from%20YouTube%20in%20one%20click'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'Want%20to%20know%20how?',%7Bbr:%7B%7D%7D,'Click%20here'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22To%20download%20a%20video%20choose%20a%20format%20and%20click%20the%20%5C%22Download%5C%22%20button%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22History%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'Do%20you%20want%20to%20download%20a%20video%20from%20History?',%7Bbr:%7B%7D%7D,'Just%20click%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,'%20on%20the%20preview%20of%20the%20previously%20watched%20video'%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'No%20need%20to%20watch%20a%20video%20%E2%80%94%20just%20click%20on%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,',%20choose%20the%20quality,%20and%20download.%20Quite%20easy,%20isn%E2%80%99t%20it?'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22Enjoy%20SaveFrom.net%20Helper!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'Still%20have%20questions?%20Want%20to%20share%20your%20ideas?%20Welcome%20to%20',%7Ba:%20%7Btext:%20'our%20support%20page',%20href:%20'#support'%7D%7D,'%20or%20join%20us%20on%20',%20%7Ba:%20%7Btext:%20'Facebook',%20href:%20'#fb'%7D%7D%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B'Just%20click%20the%20button%20to%20',%7Bb:%20%7Btext:%20'download'%7D%7D%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B'Have%20you%20already%20installed',%7Bbr:%7B%7D%7D,%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader%20earlier?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22Yes%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22No%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22Do%20not%20show%20this%20message%20again%22%7D%0A%7D";
-  _languageList.es = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22Descargas%20desde%20YouTube,%20Facebook,%20VK.com%20y%2040+%20sitios%20en%20un%20s%C3%B3lo%20clic.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%20lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22Descargas%20desde%20Facebook,%20VK.com%20y%2040+%20sitios%20en%20un%20s%C3%B3lo%20clic.%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22es%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%20deshabilitado%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22Habilitar%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22Deshabilitar%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22Mostrar%20bot%C3%B3n%20de%20extensi%C3%B3n%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22Copiar%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22Descargar%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22Haga%20clic%20en%20el%20enlace%20mientras%20presiona%20la%20tecla%20Alt/Opci%C3%B3n%20o%20Ctrl%20para%20descargar%20el%20archivo.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22No%20se%20han%20encontrado%20enlaces%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22M%C3%A1s%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22Cerrar%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22sin%20audio%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22tama%C3%B1o%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22Subt%C3%ADtulos%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22Lista%20de%20reproducci%C3%B3n%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22Lista%20de%20archivos%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22Descargar%20toda%20la%20lista%20de%20reproducci%C3%B3n%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22Obtener%20tama%C3%B1o%20de%20archivo%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22No%20se%20pudo%20obtener%20el%20tama%C3%B1o%20del%20archivo.%20Por%20favor,%20int%C3%A9ntelo%20de%20nuevo.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22Obtener%20un%20enlace%20directo%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22Ir%20a%20SaveFrom.net%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22Actualizar%20enlaces%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22Enlaces%20actualizados%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22Descargar%20archivos%20de%20audio%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22Descargar%20una%20lista%20de%20reproducci%C3%B3n%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22Descargar%20im%C3%A1genes%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22Instalar%20la%20versi%C3%B3n%20completa%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22Deshabilitar%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22Ajustes%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22Informar%20sobre%20un%20problema%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22Mejorar%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22Desactivar%20en%20este%20sitio%20web%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22Activar%20en%20este%20sitio%20web%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22Activ./Desactiv.%20en%20esta%20web%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22Mostrar/ocultar%20bot%C3%B3n%20extens%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22Actualizar%20a%20la%20%25d%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22Acerca%20de%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22Versi%C3%B3n%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22Ayuda%20a%20los%20usuarios%20a%20obtener%20enlaces%20directos%20para%20descargar%20desde%20m%C3%A1s%20de%2040%20sitios%20web,%20incluidos%20Dailymotion.com,%20YouTube.com,%20VK.com%20y%20otros.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22Ayuda%20a%20los%20usuarios%20a%20obtener%20enlaces%20directos%20para%20descargar%20desde%20m%C3%A1s%20de%2040%20sitios%20web,%20incluidos%20Dailymotion.com,%20VK.com%20y%20otros.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22Recursos%20admitidos%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22P%C3%A1gina%20de%20inicio%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%20-%20Preferencias%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22Manejar%20enlaces%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22A%20servidores%20de%20archivos%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22A%20servidores%20multimedia%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22M%C3%B3dulos%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22Ocultar%20enlaces%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22VK%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22Odnoklassniki%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22Moy%20Mir%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22Mostrar%20velocidad%20de%20bits%20instant%C3%A1neamente%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22Consejero%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22Muestra%20consejos%20para%20Ummy%20Video%20Downloader%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22M%C3%B3udlo%20de%20descarga%20avanzada%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22Mostrar%20el%20bot%C3%B3n%20Ummy%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22Cheap%20Flights%20Advisor%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22Descargar%20archivos%20de%20la%20p%C3%A1gina%20actual%20usando%20SaveFrom.net%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22Pulse%20si%20no%20aparece%20el%20bot%C3%B3n%20Descargar%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22Descargar%20todos%20los%20archivos%20de%20audio%20de%20la%20p%C3%A1gina%20actual%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22Genera%20y%20descarga%20la%20lista%20de%20reproducci%C3%B3n%20que%20consiste%20en%20enlaces%20a%20archivos%20de%20audio%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22Descargar%20todas%20las%20im%C3%A1genes%20encontradas%20en%20la%20p%C3%A1gina%20actual%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22H%C3%A1ganos%20saber%20si%20tiene%20alg%C3%BAn%20problema%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22ACTIVAR/DESACTIVAR%20recursos%20admitidos%20y%20opciones%20del%20Helper%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22Trabajamos%20duro%20para%20mejorar.%20%C2%A1%C3%89chenos%20una%20mano!%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22Calidad%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22Si%20no%20se%20elige%20ninguna%20calidad,%20se%20descargar%C3%A1%20el%20mejor%20v%C3%ADdeo%20disponible.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22La%20lista%20de%20los%20archivos%20encontrados%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'Para%20descargar%20todos%20los%20archivos,%20copie%20la%20lista%20de%20enlaces%20y%20p%C3%A9guela%20en%20el%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'gestor%20de%20descargas'%7D%7D,'.%20Si%20no%20tiene%20instalado%20un%20gestor%20de%20descargas,%20le%20recomendamos%20que%20instale%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22Lista%20de%20reproducci%C3%B3n%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22Para%20reproducir%20la%20lista%20de%20reproducci%C3%B3n%20guardada,%20puede%20abrirla%20ahora%20en%20el%20reproductor%20de%20m%C3%BAsica.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20o%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B%7Bspan:%7B%7D%7D,'%20via%20Ummy'%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Btext:'Instale%20Ummy%20Video%20Downloader%20y%20descargue%20sus%20v%C3%ADdeos%20favoritos%20en%20HD%20o%20MP3.'%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'Descargar'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'Despu%C3%A9s%20de%20la%20instalaci%C3%B3n,%20se%20iniciar%C3%A1%20una%20descarga%20autom%C3%A1ticamente%20siempre%20que%20haga%20clic%20en%20',%7Bimg:%7Bsrc:'#'%7D%7D%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22Compruebe%20la%20configuraci%C3%B3n%20de%20su%20navegador%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22La%20opci%C3%B3n%20%5C%22Preguntarme%20siempre%20d%C3%B3nde%20guardar%20los%20archivos%5C%22%20debe%20estar%20desactivada.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22M%C3%A1s%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22No%20notificar%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22Cancelar%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22Continuar%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22%C2%A1Advertencia!%20La%20descarga%20no%20se%20puede%20cancelar%20o%20suspender.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22Informaci%C3%B3n%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22Tama%C3%B1o%20de%20archivo%20y%20velocidad%20de%20bits%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22No%20se%20han%20encontrado%20enlaces%20a%20archivos%20MP3%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22No%20se%20han%20encontrado%20im%C3%A1genes%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22Descargar%20%C3%A1lbum%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22Descargar%20todos%20los%20%C3%A1lbums%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22Im%C3%A1genes%20encontradas%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20im%C3%A1genes%20est%C3%A1n%20temporalmente%20no%20disponibles%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22Enlaces%20encontrados%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22de%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22Mostrar%20como%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22Lista%20de%20enlaces%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'Para%20descargar%20todas%20las%20im%C3%A1genes,%20copie%20la%20lista%20de%20enlaces%20y%20p%C3%A9guela%20en%20el%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'gestor%20de%20descargas'%7D%7D,'.%20Si%20no%20tiene%20instalado%20un%20gestor%20de%20descargas,%20le%20recomendamos%20que%20instale%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22Tabla%20de%20miniaturas%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22Lista%20de%20im%C3%A1genes%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22Haga%20clic%20en%20la%20imagen%20para%20descargarla.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22B%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22kB%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22MB%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22GB%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22TB%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'Descargar:%20abra%20',%7Ba:%7Bhref:'%7Burl%7D',text:'la%20p%C3%A1gina%20del%20v%C3%ADdeo'%7D%7D,'%20y%20pulse%20el%20bot%C3%B3n%20%5C%22Descargar%5C%22%20sobre%20el%20reproductor'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22Archivos%20encontrados:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22Compartir%20en%20%25w%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%20le%20permite%20descargar%20archivos%20desde%20YouTube.com,%20Facebook.com,%20VK.com%20y%20m%C3%A1s%20de%2040%20sitios%20distintos%20con%20tan%20s%C3%B3lo%20un%20clic%20y%20gratis%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22%C2%A1Excelentes%20noticias!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'SaveFrom.net%20Helper%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,%20'%20se%20instal%C3%B3%20con%20%C3%A9xito%20y%20ahora%20puedes%20descargar%20cualquier%20video%20de%20YouTube%20con%20un%20solo%20clic'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'%C2%BFQuieres%20saber%20c%C3%B3mo?',%20%7Bbr:%7B%7D%7D,%20'Haz%20clic%20aqu%C3%AD'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22Para%20descargar%20un%20video,%20elige%20el%20formato%20y%20haz%20clic%20en%20el%20bot%C3%B3n%20%5C%22Descargar%5C%22%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22Historial%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'%C2%BFDeseas%20descargar%20un%20video%20del%20Historial?',%20%7Bbr:%7B%7D%7D,%20'Simplemente%20haz%20clic%20en%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20'%20en%20la%20vista%20previa%20del%20video%20visto%20anteriormente.'%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'No%20es%20necesario%20mirar%20un%20video:%20simplemente%20haz%20clic%20en%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20',%20elige%20la%20calidad%20y%20desc%C3%A1rgalo.%20F%C3%A1cil,%20%C2%BFverdad?'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22%C2%A1Disfruta%20de%20SaveForm.net%20Helper!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'%C2%BFTodav%C3%ADa%20tienes%20preguntas?%20%C2%BFQuieres%20compartir%20tus%20ideas?%20Puedes%20ir%20a%20nuestra%20',%7Ba:%20%7Btext:%20'p%C3%A1gina%20de%20soporte',%20href:%20'#support'%7D%7D,'%20o%20unirte%20a%20nosotros%20en%20',%20%7Ba:%20%7Btext:%20'Facebook',%20href:%20'#fb'%7D%7D%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B'Simplemente%20haz%20clic%20en%20el%20bot%C3%B3n%20para%20',%7Bb:%20%7Btext:%20'descargar'%7D%7D%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B'%C2%BFYa%20has%20instalado',%7Bbr:%7B%7D%7D,%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader%20antes?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22S%C3%AD%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22No%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22No%20mostrar%20de%20nuevo%20este%20mensaje%22%7D%0A%7D";
-  _languageList.fr = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9chargez%20YouTube,%20Facebook,%20VK.com%20et%2040+%20sites%20en%20un%20seul%20clic.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%20lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9chargez%20Facebook,%20VK.com%20et%2040+%20sites%20en%20un%20seul%20clic.%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22fr%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22Assistant%20SaveFrom.net%20d%C3%A9sactiv%C3%A9%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22Activer%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22D%C3%A9sactiver%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22Afficher%20le%20bouton%20d'extension%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22Copier%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22Cliquer%20sur%20le%20lien%20tout%20en%20maintenant%20la%20touche%20Alt/Option%20ou%20Ctrl%20pour%20t%C3%A9l%C3%A9charger%20le%20fichier.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22Aucun%20lien%20n'a%20%C3%A9t%C3%A9%20trouv%C3%A9%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22Plus%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22Fermer%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22sans%20audio%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22taille%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22Sous-titres%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22Playlist%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22Liste%20de%20fichiers%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20toute%20la%20playlist%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22Obtenir%20la%20taille%20du%20fichier%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22Impossible%20d'obtenir%20la%20taille%20du%20fichier.%20Veuillez%20r%C3%A9essayer.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22Obtenir%20un%20lien%20direct%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22Aller%20%C3%A0%20SaveFrom.net%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22Rafra%C3%AEchir%20les%20liens%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22Liens%20mis%20%C3%A0%20jour%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20les%20fichiers%20audio%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20une%20playlist%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20les%20images%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22Installer%20la%20version%20compl%C3%A8te%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22D%C3%A9sactiver%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22Param%C3%A8tres%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22Signaler%20un%20bug%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22Am%C3%A9liorer%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22D%C3%A9sactiver%20sur%20ce%20site%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22Activer%20sur%20ce%20site%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22Activer%20On/Off%20sur%20ce%20site%20web%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22Afficher/masquer%20le%20bouton%20d'extension%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22Passer%20%C3%A0%20la%20version%20%25d%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22%C3%80%20propos%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22Version%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22Aide%20les%20utilisateurs%20%C3%A0%20obtenir%20des%20liens%20directs%20pour%20t%C3%A9l%C3%A9charger%20depuis%20plus%20de%2040%20sites%20web,%20y%20compris%20Dailymotion.com,%20YouTube.com,%20VK.com%20et%20d'autres.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22Aide%20les%20utilisateurs%20%C3%A0%20obtenir%20des%20liens%20directs%20pour%20t%C3%A9l%C3%A9charger%20depuis%20plus%20de%2040%20sites%20web,%20y%20compris%20Dailymotion.com,%20VK.com%20et%20d'autres.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22Ressources%20prises%20en%20charge%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22Page%20d'accueil%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%20-%20Pr%C3%A9f%C3%A9rences%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22manipuler%20les%20liens%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22Vers%20l'h%C3%A9bergement%20de%20fichiers%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22Vers%20l'h%C3%A9bergement%20de%20m%C3%A9dias%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22Modules%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22Masquer%20les%20liens%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22VK%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22Odnoklassniki%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22Moy%20Mir%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22Afficher%20instantan%C3%A9ment%20le%20bitrate%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22Advisor%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22Afficher%20les%20astuces%20pour%20Ummy%20Video%20Downloader%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22Mode%20de%20t%C3%A9l%C3%A9chargement%20avanc%C3%A9%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22Montrer%20le%20bouton%20Ummy%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22Cheap%20Flights%20Advisor%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9chargement%20des%20fichiers%20depuis%20la%20page%20actuelle%20en%20utilisant%20SaveFrom.net%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22Appuyez%20si%20le%20bouton%20T%C3%A9l%C3%A9charger%20n'appara%C3%AEt%20pas%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20tous%20les%20fichiers%20audio%20trouv%C3%A9s%20sur%20la%20page%20actuelle%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22G%C3%A9n%C3%A8re%20et%20t%C3%A9l%C3%A9charge%20la%20playlist%20consistant%20en%20liens%20vers%20les%20fichiers%20audio%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20toutes%20les%20images%20trouv%C3%A9es%20sur%20la%20page%20actuelle%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22Pr%C3%A9venez-nous%20si%20vous%20avez%20des%20probl%C3%A8mes%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22ON/OFF%20ressources%20prises%20en%20charge%20et%20options%20Helper%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22Nous%20faisons%20tout%20pour%20nous%20am%C3%A9liorer.%20N'h%C3%A9sitez%20pas%20%C3%A0%20nous%20aider%20!%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22Qualit%C3%A9%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22La%20meilleure%20vid%C3%A9o%20disponible%20sera%20t%C3%A9l%C3%A9charg%C3%A9e%20s'il%20n'y%20a%20pas%20de%20qualit%C3%A9%20choisie.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22La%20liste%20des%20fichiers%20trouv%C3%A9s%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'Pour%20t%C3%A9l%C3%A9charger%20tous%20les%20fichiers%20copiez%20la%20liste%20des%20liens%20et%20collez-la%20dans%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'download%20manager'%7D%7D,'.%20Si%20vous%20n%5C%5C'avez%20pas%20install%C3%A9%20de%20gestionnaire%20de%20t%C3%A9l%C3%A9chargement,%20nous%20vous%20recommandons%20d%5C%5C'installer%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22Playlist%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22Pour%20lire%20la%20playlist%20sauvegard%C3%A9e,%20ouvrez-la%20dans%20le%20lecteur%20musical.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20ou%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B%7Bspan:%7B%7D%7D,'%20via%20Ummy'%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Btext:'Installez%20Ummy%20Video%20Downloader%20et%20t%C3%A9l%C3%A9chargez%20vos%20vid%C3%A9os%20favorites%20en%20HD%20ou%20MP3.'%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'Download'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'Apr%C3%A8s%20l%5C%5C'installation,%20un%20t%C3%A9l%C3%A9chargement%20d%C3%A9marrera%20automatiquement%20d%C3%A8s%20que%20vous%20cliquez%20sur%20',%7Bimg:%7Bsrc:'#'%7D%7D%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22V%C3%A9rifier%20les%20param%C3%A8tres%20du%20navigateur%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22L'option%20%5C%22Toujours%20me%20demander%20o%C3%B9%20sauvegarder%20les%20fichiers%5C%22%20doit%20%C3%AAtre%20d%C3%A9sactiv%C3%A9e.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22Plus%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22ne%20pas%20notifier'%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22Annuler%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22Continuer%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22Attention!%20Le%20t%C3%A9l%C3%A9chargement%20ne%20peut%20pas%20%C3%AAtre%20annul%C3%A9%20ou%20suspendu.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22Info%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22Taille%20de%20fichier%20et%20bitrate%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22Les%20liens%20vers%20les%20fichiers%20MP3%20sont%20introuvables%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22Photos%20introuvables%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20l'album%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20tous%20les%20albums%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22Photos%20trouv%C3%A9es%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20photos%20sont%20temporairement%20indisponibles%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22Liens%20trouv%C3%A9s%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22de%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22Afficher%20comme%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22Liste%20des%20liens%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'Pour%20t%C3%A9l%C3%A9charger%20toutes%20les%20photos%20copiez%20la%20liste%20des%20liens%20et%20collez-la%20dans%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'download%20manager'%7D%7D,'.%20Si%20vous%20n%5C%5C'avez%20pas%20install%C3%A9%20de%20gestionnaire%20de%20t%C3%A9l%C3%A9chargement%20nous%20vous%20recommandons%20d%5C%5C'installer%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22Tableau%20des%20vignettes%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22Liste%20des%20photos%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22Cliquez%20sur%20la%20photo%20pour%20la%20t%C3%A9l%C3%A9charger.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22O%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22ko%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22Mo%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22Go%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22To%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'Download:%20open%20',%7Ba:%7Bhref:'%7Burl%7D',text:'the%20video%20page'%7D%7D,'%20et%20appuyez%20sur%20le%20bouton%20%5C%22T%C3%A9l%C3%A9charger%5C%22%20au-dessus%20du%20lecteur'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22Fichiers%20trouv%C3%A9s%20:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22Partager%20sur%20%25w%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%20vous%20permet%20de%20t%C3%A9l%C3%A9charger%20des%20fichiers%20de%20YouTube.com,%20Facebook.com,%20VK.com%20et%20plus%20de%2040%20autres%20gratuitement%20et%20en%20un%20seul%20clic%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22Bonnes%20nouvelles%20!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'SaveFrom.net%20Helper%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,%20'%20a%20%C3%A9t%C3%A9%20install%C3%A9%20avec%20succ%C3%A8s%20et%20maintenant%20vous%20pouvez%20t%C3%A9l%C3%A9charger%20les%20vid%C3%A9os%20de%20YouTube%20en%20un%20clic'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'Vous%20voulez%20savoir%20comment%20?%20Cliquez%20ici'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22Pour%20t%C3%A9l%C3%A9charger%20une%20vid%C3%A9o,%20choisissez%20un%20format%20et%20cliquez%20sur%20le%20bouton%20%5C%22T%C3%A9l%C3%A9charger%5C%22%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22Historique%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'Voulez-vous%20t%C3%A9l%C3%A9charger%20une%20vid%C3%A9o%20depuis%20l%E2%80%99historique%20?',%20%7Bbr:%7B%7D%7D,%20'Il%20suffit%20de%20cliquer%20sur%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20'%20situ%C3%A9e%20sur%20l%5C%5C'aper%C3%A7u%20de%20la%20vid%C3%A9o%20pr%C3%A9c%C3%A9demment%20regard%C3%A9e'%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'Pas%20besoin%20de%20regarder%20une%20vid%C3%A9o%20%E2%80%94%20il%20suffit%20de%20cliquer%20sur%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20',%20faites%20le%20choix%20de%20la%20qualit%C3%A9,%20et%20t%C3%A9l%C3%A9charger.%20Facile,%20est-ce%20pas%20?'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22Profitez%20de%20SaveFrom.net%20Helper%20!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'Vous%20avez%20encore%20des%20questions%20?%20Vous%20voulez%20partager%20vos%20id%C3%A9es%20?%20Bienvenue%20sur%20notre%20page%20',%7Ba:%20%7Btext:%20'de%20d%E2%80%99Aide',%20href:%20'#support'%7D%7D,'%20ou%20rejoignez-nous%20sur%20',%20%7Ba:%20%7Btext:%20'Facebook',%20href:%20'#fb'%7D%7D%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B'Il%20suffit%20de%20cliquer%20sur%20le%20bouton%20pour%20',%7Bb:%20%7Btext:%20't%C3%A9l%C3%A9charger'%7D%7D%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B'Avez-vous%20d%C3%A9j%C3%A0%20install%C3%A9',%7Bbr:%7B%7D%7D,%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader%20avant%20?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22Oui%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22Non%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22Ne%20plus%20afficher%20ce%20message%22%7D%0A%7D";
-  _languageList.id = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22Bantuan%20SaveFrom.net%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22Unduh%20YouTube,%20Facebook,%20VK.com,%20dan%2040+%20situs%20dengan%20satu%20klik.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22Bantuan%20SaveFrom.net%20lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22Unduh%20Facebook,%20VK.com,%20dan%2040+%20situs%20dengan%20satu%20klik.%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22id%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22Bantuan%20SaveFrom.net%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22Bantuan%20SaveFrom.net%20nonaktif%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22Aktifkan%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22Nonaktifkan%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22Tampilkan%20tombol%20ekstensi%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22Salin%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22Unduh%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22Klik%20tautan%20sambil%20menahan%20tombol%20Alt/Option%20atau%20Ctrl%20untuk%20mengunduh%20file.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22Tautan%20tidak%20ditemukan%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22Lainnya%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22Tutup%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22tanpa%20audio%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22ukuran%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22Subtitel%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22Daftar%20putar%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22Daftar%20file%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22Unduh%20seluruh%20daftar%20putar%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22Dapatkan%20ukuran%20file%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22Gagal%20mendapatkan%20ukuran%20file.%20Mohon%20coba%20lagi.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22Dapatkan%20tautan%20langsung%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22Buka%20SaveFrom.net%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22Segarkan%20tautan%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22Tautan%20diperbarui%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22Unduh%20file%20audio%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22Unduh%20daftar%20putar%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22Unduh%20gambar%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22Pasang%20versi%20lengkap%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22Nonaktifkan%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22Setelan%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22Laporkan%20bug%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22Jadikan%20lebih%20baik%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22Nonaktifkan%20di%20situs%20web%20ini%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22Aktifkan%20di%20situs%20web%20ini%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22Nyalakan/Matikan%20di%20situs%20ini%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22Tampilkan/tutup%20tbl%20ekstensi%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22Perbarui%20ke%20%25d%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22Tentang%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22Bantuan%20SaveFrom.net%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22Versi%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22Membantu%20pengguna%20mendapatkan%20tautan%20langsung%20dari%2040+%20situs%20web,%20termasuk%20Dailymotion.com,%20YouTube.com,%20VK.com%20dan%20lain-lain.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22Membantu%20pengguna%20mendapatkan%20tautan%20langsung%20untuk%20mengunduh%20dari%2040+%20situs%20web,%20termasuk%20Dailymotion.com,%20VK.com%20dan%20lain-lain.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22Sumber%20daya%20yang%20didukung%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22Laman%20beranda%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22Bantuan%20SaveFrom.net%20-%20Preferensi%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22Tangani%20tautan%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22Ke%20filehosting%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22Ke%20mediahosting%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22Modul%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22Sembunyikan%20tautan%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22VK%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22Odnoklassniki%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22Moy%20Mir%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22Langsung%20tampilkan%20bitrate%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22Penasihat%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22Tampilkan%20tips%20untuk%20Ummy%20Video%20Downloader%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22Mode%20unduh%20lanjutan%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22Perlihatkan%20tombol%20Ummy%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22Cheap%20Flights%20Advisor%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22Unduh%20file%20dari%20laman%20saat%20ini%20dengan%20SaveFrom.net%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22Tekan%20jika%20tombol%20Unduh%20tidak%20muncul%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22Unduh%20semua%20file%20audio%20yang%20ada%20di%20laman%20saat%20ini%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22Buat%20dan%20unduh%20daftar%20putar%20berisi%20tautan%20ke%20file%20audio%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22Unduh%20semua%20gambar%20yang%20ada%20di%20laman%20saat%20ini%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22Beri%20tahu%20kami%20jika%20Anda%20mengalami%20masalah%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22AKTIFKAN/NONAKTIFKAN%20sumber%20daya%20yang%20didukung%20dan%20opsi%20Bantuan%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22Kami%20bekerja%20keras%20untuk%20jadi%20lebih%20baik.%20Tolong,%20bantu%20kami!%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22Kualitas%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22Video%20terbaik%20yang%20tersedia%20akan%20diunduh%20jika%20tidak%20ada%20kualitas%20yang%20dipilih.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22Daftar%20file%20yang%20ditemukan%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'Untuk%20mengunduh%20semua%20file,%20salin%20daftar%20tautan%20dan%20tempelkan%20ke%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'pengelola%20unduhan'%7D%7D,'.%20Jika%20Anda%20tidak%20memiliki%20pengelola%20unduhan,%20kami%20menyarankan%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22Daftar%20putar%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22Untuk%20memutar%20daftar%20putar%20yang%20disimpan,%20sekarang%20bisa%20dibuka%20di%20pemutar%20musik.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20atau%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B%7Bspan:%7B%7D%7D,'%20via%20Ummy'%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Btext:'Pasang%20Ummy%20Video%20Downloader%20%20dan%20unduh%20video%20favorit%20Anda%20dalam%20format%20HD%20atau%20MP3.'%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'Unduh'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'Setelah%20pemasangan,%20unduhan%20akan%20otomatis%20dimulai%20setiap%20kali%20Anda%20mengeklik%20',%7Bimg:%7Bsrc:'#'%7D%7D%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22Periksa%20setelan%20browser%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22Opsi%20%5C%22Selalu%20tanya%20saya%20di%20mana%20menyimpan%20file%5C%22%20harus%20dinonaktifkan.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22Lainnya%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22Jangan%20beri%20tahu%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22Batal%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22Lanjutkan%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22Perhatian!%20Pengunduhan%20tidak%20dapat%20dibatalkan%20atau%20ditunda.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22Info%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22Ukuran%20file%20dan%20bitrate%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22Tautan%20atau%20file%20MP3%20tidak%20ditemukan%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22Foto%20tidak%20ditemukan%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22Unduh%20album%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22Unduh%20semua%20album%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22Foto%20ditemukan%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20foto%20sementara%20ini%20tidak%20tersedia%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22Tautan%20ditemukan%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22dari%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22Tampilkan%20sebagai%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22Daftar%20tautan%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'Untuk%20mengunduh%20semua%20foto,%20salin%20daftar%20tautan%20dan%20tempelkan%20ke%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'pengelola%20unduhan'%7D%7D,'.%20Jika%20Anda%20tidak%20memiliki%20pengelola%20unduhan,%20kami%20menyarankan%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22Tabel%20gambar%20mini%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22Daftar%20foto%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22Klik%20foto%20untuk%20mengunduhnya.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22B%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22kB%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22MB%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22GB%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22TB%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'Mengunduh:%20buka%20',%7Ba:%7Bhref:'%7Burl%7D',text:'laman%20video'%7D%7D,'%20dan%20tekan%20tombol%20%5C%22Unduh%5C%22%20di%20atas%20pemutar'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22File%20ditemukan:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22Bagikan%20di%20%25w%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22Dengan%20bantuan%20SaveFrom.net,%20Anda%20dapat%20mengunduh%20file%20dari%20YouTube.com,%20Facebook.com,%20VK.com,%20dan%20lebih%20dari%2040%20lainnya%20hanya%20dengan%20satu%20klik%20gratis%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22Berita%20bagus!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'SaveFrom.net%20Helper%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,'%20telah%20berhasil%20diinstal%20dan%20kini%20Anda%20dapat%20mengunduh%20video%20apa%20pun%20dari%20YouTube%20dengan%20satu%20klik'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'Anda%20ingin%20tahu%20caranya?',%20%7Bbr:%7B%7D%7D,%20'Klik%20di%20sini'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22Untuk%20mengunduh%20video,%20pilih%20suatu%20format%20dan%20klik%20tombol%20%5C%22Unduh%5C%22%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22Riwayat%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'Apakah%20Anda%20ingin%20mengunduh%20video%20dari%20Riwayat?',%20%7Bbr:%7B%7D%7D,%20'Cukup%20klik%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20'%20pada%20pratinjau%20video%20yang%20telah%20ditonton%20sebelumnya'%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'Tidak%20perlu%20menonton%20video%20%E2%80%94%20cukup%20klik%20pada%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20',%20pilih%20mutunya,%20dan%20unduh.%20Cukup%20mudah,%20ya?'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22Nikmati%20SaveFrom.net%20Helper!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'Masih%20punya%20pertanyaan?%20Ingin%20berbagi%20ide?%20Selamat%20datang%20di%20',%20%7Ba:%20%7Btext:%20'halaman%20dukungan',%20href:%20'#support'%7D%7D,'%20kami%20atau%20bergabunglah%20dengan%20kami%20di%20',%20%7Ba:%20%7Btext:%20'Facebook',%20href:%20'#fb'%7D%7D%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B'Cukup%20klik%20tombol%20untuk%20',%7Bb:%20%7Btext:%20'mengunduh'%7D%7D%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B'Apakah%20Anda%20sudah%20menginstal',%7Bbr:%7B%7D%7D,%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader%20sebelumnya?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22Ya%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22Tidak%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22Jangan%20perlihatkan%20pesan%20ini%20lagi%22%7D%0A%7D";
-  _languageList.ru = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%B9%D1%82%D0%B5%20%D1%81%20%D0%92%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5,%20YouTube,%20%D0%9E%D0%B4%D0%BD%D0%BE%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BD%D0%B8%D0%BA%D0%B8%20%D0%B8%20%D0%B5%D1%89%D0%B5%2040%20%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%201%20%D0%BA%D0%BB%D0%B8%D0%BA.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%20lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%B9%D1%82%D0%B5%20%D1%81%20%D0%92%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5,%20%D0%9E%D0%B4%D0%BD%D0%BE%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BD%D0%B8%D0%BA%D0%B8%20%D0%B8%20%D0%B5%D1%89%D0%B5%2040%20%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%201%20%D0%BA%D0%BB%D0%B8%D0%BA.%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22ru%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%20%D0%B2%D1%8B%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22%D0%92%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22%D0%92%D1%8B%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22%D0%9A%D0%BE%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D0%B6%D0%BC%D0%B8%D1%82%D0%B5%20%D0%BD%D0%B0%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D1%83,%20%D1%83%D0%B4%D0%B5%D1%80%D0%B6%D0%B8%D0%B2%D0%B0%D1%8F%20%D0%BA%D0%BB%D0%B0%D0%B2%D0%B8%D1%88%D1%83%20Alt%20%D0%B8%D0%BB%D0%B8%20Ctrl,%20%D1%87%D1%82%D0%BE%D0%B1%D1%8B%20%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B8%D1%82%D1%8C%20%D1%84%D0%B0%D0%B9%D0%BB.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D1%83%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8C%20%D0%BD%D0%B0%D0%B9%D1%82%D0%B8%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22%D0%95%D1%89%D1%91%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%BA%D1%80%D1%8B%D1%82%D1%8C%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22%D0%BA%D0%B1/%D1%81%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22%D0%B1%D0%B5%D0%B7%20%D0%B0%D1%83%D0%B4%D0%B8%D0%BE%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22%D0%A1%D1%83%D0%B1%D1%82%D0%B8%D1%82%D1%80%D1%8B%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22%D0%9F%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B2%D0%B5%D1%81%D1%8C%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22%D0%9E%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D1%8C%20%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B0%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D1%83%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8C%20%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D1%8C%20%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B0.%20%D0%9F%D0%BE%D0%BF%D1%80%D0%BE%D0%B1%D1%83%D0%B9%D1%82%D0%B5%20%D0%BF%D0%BE%D0%B2%D1%82%D0%BE%D1%80%D0%B8%D1%82%D1%8C%20%D0%BF%D0%BE%D0%BF%D1%8B%D1%82%D0%BA%D1%83.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B8%20%D0%BF%D1%80%D1%8F%D0%BC%D1%83%D1%8E%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D1%83%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22%D0%9F%D0%B5%D1%80%D0%B5%D0%B9%D1%82%D0%B8%20%D0%BD%D0%B0%20SaveFrom.net%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22%D0%9E%D0%B1%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%20%D0%BE%D0%B1%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D1%8B%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B0%D1%83%D0%B4%D0%B8%D0%BE%20%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B8%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C%20%D0%BF%D0%BE%D0%BB%D0%BD%D1%83%D1%8E%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8E%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22%D0%92%D1%8B%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22%D0%A1%D0%BE%D0%BE%D0%B1%D1%89%D0%B8%D1%82%D1%8C%20%D0%BE%D0%B1%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B5%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22%D0%A1%D1%82%D0%B0%D1%82%D1%8C%20%D0%BB%D1%83%D1%87%D1%88%D0%B5%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22%D0%9E%D1%82%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BD%D0%B0%20%D1%8D%D1%82%D0%BE%D0%BC%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22%D0%92%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BD%D0%B0%20%D1%8D%D1%82%D0%BE%D0%BC%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22%D0%92%D0%BA%D0%BB/%D0%92%D1%8B%D0%BA%D0%BB%20%D0%BD%D0%B0%20%D1%8D%D1%82%D0%BE%D0%BC%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7./%D1%81%D0%BA%D1%80.%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22%D0%9E%D0%B1%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C%20%D0%B4%D0%BE%20%25d%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22%D0%9E%20%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B8%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22%D0%92%D0%B5%D1%80%D1%81%D0%B8%D1%8F%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B7%D0%B2%D0%BE%D0%BB%D1%8F%D0%B5%D1%82%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D1%8F%D0%BC%D1%8B%D0%B5%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%B1%D0%BE%D0%BB%D0%B5%D0%B5%20%D1%87%D0%B5%D0%BC%2040%20%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2,%20%D1%81%D1%80%D0%B5%D0%B4%D0%B8%20%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D1%85%20%20VK.com,%20YouTube.com%20%D0%B8%20%D0%B4%D1%80%D1%83%D0%B3%D0%B8%D0%B5.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B7%D0%B2%D0%BE%D0%BB%D1%8F%D0%B5%D1%82%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D1%8F%D0%BC%D1%8B%D0%B5%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%B1%D0%BE%D0%BB%D0%B5%D0%B5%20%D1%87%D0%B5%D0%BC%2040%20%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2,%20%D1%81%D1%80%D0%B5%D0%B4%D0%B8%20%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D1%85%20%20VK.com,%20Vimeo%20%D0%B8%20%D0%B4%D1%80%D1%83%D0%B3%D0%B8%D0%B5.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC%D1%8B%D0%B5%20%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D1%8B%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D1%8F%D1%8F%20%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%20-%20%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22%D0%9E%D0%B1%D1%80%D0%B0%D0%B1%D0%B0%D1%82%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%20%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%BD%D0%B8%D0%BA%D0%B8%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%20%D0%BC%D0%B5%D0%B4%D0%B8%D0%B0%D1%85%D0%BE%D1%81%D1%82%D0%B8%D0%BD%D0%B3%D0%B8%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D1%80%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22%D0%92%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22%D0%9E%D0%B4%D0%BD%D0%BE%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BD%D0%B8%D0%BA%D0%B8%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22%D0%9C%D0%BE%D0%B9%20%D0%BC%D0%B8%D1%80%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%B1%D0%B8%D1%82%D1%80%D0%B5%D0%B9%D1%82%20%D1%81%D1%80%D0%B0%D0%B7%D1%83%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B7%D0%BA%D0%B8%20%D0%B4%D0%BB%D1%8F%20Ummy%20Video%20Downloader%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%80%D0%B5%D0%B6%D0%B8%D0%BC%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D0%BA%D0%B8%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22%D0%9E%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20Ummy%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%D0%BD%D0%B8%D0%BA%20%D0%94%D0%B5%D1%88%D0%B5%D0%B2%D1%8B%D1%85%20%D0%90%D0%B2%D0%B8%D0%B0%D0%B1%D0%B8%D0%BB%D0%B5%D1%82%D0%BE%D0%B2%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%20%D1%81%20%D1%82%D0%B5%D0%BA%D1%83%D1%89%D0%B5%D0%B9%20%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D0%B0%20SaveFrom.net%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D0%B6%D0%BC%D0%B8%D1%82%D0%B5,%20%D0%B5%D1%81%D0%BB%D0%B8%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BD%D0%B5%20%D0%BF%D0%BE%D1%8F%D0%B2%D0%BB%D1%8F%D0%B5%D1%82%D1%81%D1%8F%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B2%D1%81%D0%B5%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BD%D0%B0%20%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B5%20%D0%B0%D1%83%D0%B4%D0%B8%D0%BE%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22%D0%A4%D0%BE%D1%80%D0%BC%D0%B8%D1%80%D1%83%D0%B5%D1%82%20%D0%B8%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%B5%D1%82%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%20%D1%81%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%D0%BC%D0%B8%20%D0%BD%D0%B0%20%D0%B0%D1%83%D0%B4%D0%B8%D0%BE%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B2%D1%81%D0%B5%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BD%D0%B0%20%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B5%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B8%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22%D0%94%D0%B0%D0%B9%D1%82%D0%B5%20%D0%BD%D0%B0%D0%BC%20%D0%B7%D0%BD%D0%B0%D1%82%D1%8C,%20%D0%B5%D1%81%D0%BB%D0%B8%20%D0%B2%D0%BE%D0%B7%D0%BD%D0%B8%D0%BA%D0%BB%D0%B8%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D1%8B%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22%D0%92%D0%BA%D0%BB./%D0%BE%D1%82%D0%BA%D0%BB.%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC%D1%8B%D0%B5%20%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D1%8B%20%D0%B8%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%D0%B0%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0,%20%D0%BE%D1%86%D0%B5%D0%BD%D0%B8%D1%82%D0%B5%20%D0%BA%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE%20%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F%20%5C%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%5C%22%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22%D0%9A%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22%D0%95%D1%81%D0%BB%D0%B8%20%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%20%D0%B2%20%D0%BD%D1%83%D0%B6%D0%BD%D0%BE%D0%BC%20%D0%BA%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%B5%20%D0%BD%D0%B5%D1%82,%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%B5%20%D0%B8%D0%B7%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D0%B3%D0%BE.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'%D0%A7%D1%82%D0%BE%D0%B1%D1%8B%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B2%D1%81%D0%B5%20%D1%84%D0%B0%D0%B9%D0%BB%D1%8B,%20%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%80%D1%83%D0%B9%D1%82%D0%B5%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%81%D1%81%D1%8B%D0%BB%D0%BE%D0%BA%20%D0%B8%20%D0%B2%D1%81%D1%82%D0%B0%D0%B2%D1%8C%D1%82%D0%B5%20%D0%B5%D0%B3%D0%BE%20%D0%B2%20',%7Ba:%7Bhref:'http://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80_%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BE%D0%BA',text:'%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D0%B5%D0%BA'%7D%7D,'.%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%83%20%D0%B2%D0%B0%D1%81%20%D0%BD%D0%B5%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D0%B5%D0%BA,%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D1%83%D0%B5%D0%BC%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C%20',%7Ba:%7Bhref:'http://www.westbyte.com/dm/',text:'Download%20Master'%7D%7D,'.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22%D0%9F%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22%D0%A1%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%20%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%20%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C%20%D0%B2%20%D0%BF%D0%BB%D0%B5%D0%B5%D1%80%D0%B5%20%D0%B4%D0%BB%D1%8F%20%20%D0%B2%D0%BE%D1%81%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20%D0%B8%D0%BB%D0%B8%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B%7Bspan:%7B%7D%7D,'%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20Ummy'%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Bappend:%5B'%D0%A1%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%B9%D1%82%D0%B5%20HD%20%D0%B8%20MP3%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%8B',%20%7Bbr:%7B%7D%7D,%20'Ummy%20Video%20Downloader!'%5D%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'%D0%9F%D0%BE%D1%81%D0%BB%D0%B5%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B8%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D1%83%D0%B4%D0%B5%D1%82%20%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8',%20%7Bbr:%7B%7D%7D,%20'%D0%BF%D1%80%D0%B8%20%D0%BA%D0%BB%D0%B8%D0%BA%D0%B5%20%D0%BD%D0%B0%20',%7Bimg:%7Bsrc:'#'%7D%7D%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22%D0%9F%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D1%8C%D1%82%D0%B5%20%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8%20%D0%B1%D1%80%D0%B0%D1%83%D0%B7%D0%B5%D1%80%D0%B0%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22%D0%92%D1%8B%D0%B1%D0%BE%D1%80%20%D0%BF%D0%B0%D0%BF%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B8%20%D0%B4%D0%BE%D0%BB%D0%B6%D0%B5%D0%BD%20%D0%B1%D1%8B%D1%82%D1%8C%20%D0%BE%D1%82%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5...%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D1%83%D0%BF%D1%80%D0%B5%D0%B6%D0%B4%D0%B0%D1%82%D1%8C%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22%D0%9E%D1%82%D0%BC%D0%B5%D0%BD%D0%B0%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22%D0%9F%D1%80%D0%BE%D0%B4%D0%BE%D0%BB%D0%B6%D0%B8%D1%82%D1%8C%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22%D0%92%D0%BD%D0%B8%D0%BC%D0%B0%D0%BD%D0%B8%D0%B5:%20%D0%BE%D1%82%D0%BC%D0%B5%D0%BD%D0%B8%D1%82%D1%8C%20%D0%B8%D0%BB%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D0%BA%D1%83%20%D0%B1%D1%83%D0%B4%D0%B5%D1%82%20%D0%BD%D0%B5%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%8B%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22%D0%A0%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B0%20%D0%B8%20%D0%B1%D0%B8%D1%82%D1%80%D0%B5%D0%B9%D1%82%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D1%8B%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%20%D0%BD%D0%B0%20MP3%20%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D1%8B%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%20%D0%BD%D0%B0%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B8%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B0%D0%BB%D1%8C%D0%B1%D0%BE%D0%BC%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B2%D1%81%D0%B5%20%D0%B0%D0%BB%D1%8C%D0%B1%D0%BE%D0%BC%D1%8B%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B9%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20%D1%84%D0%BE%D1%82%D0%BE%20%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%20%D0%BD%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%BE%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D1%81%D1%81%D1%8B%D0%BB%D0%BE%D0%BA%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22%D0%B8%D0%B7%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BA%D0%B0%D0%BA%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%81%D1%81%D1%8B%D0%BB%D0%BE%D0%BA%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'%D0%A7%D1%82%D0%BE%D0%B1%D1%8B%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B2%D1%81%D0%B5%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B8,%20%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%80%D1%83%D0%B9%D1%82%D0%B5%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%81%D1%81%D1%8B%D0%BB%D0%BE%D0%BA%20%D0%B8%20%D0%B2%D1%81%D1%82%D0%B0%D0%B2%D1%8C%D1%82%D0%B5%20%D0%B5%D0%B3%D0%BE%20%D0%B2%20',%7Ba:%7Bhref:'http://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80_%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BE%D0%BA',text:'%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D0%B5%D0%BA'%7D%7D,'.%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%83%20%D0%B2%D0%B0%D1%81%20%D0%BD%D0%B5%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D0%B5%D0%BA,%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D1%83%D0%B5%D0%BC%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C%20',%7Ba:%7Bhref:'http://www.westbyte.com/dm/',text:'Download%20Master'%7D%7D,'.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%83%20%D1%8D%D1%81%D0%BA%D0%B8%D0%B7%D0%BE%D0%B2%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B9%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22%D0%A7%D1%82%D0%BE%D0%B1%D1%8B%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8E,%20%D1%89%D0%B5%D0%BB%D0%BA%D0%BD%D0%B8%D1%82%D0%B5%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D0%B9%20%D0%BB%D0%B5%D0%B2%D0%BE%D0%B9%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%BE%D0%B9%20%D0%BC%D1%8B%D1%88%D0%B8.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22%D0%BA%D0%B1/%D1%81%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22%D0%91%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22%D0%BA%D0%91%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22%D0%9C%D0%91%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22%D0%93%D0%91%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22%D0%A2%D0%91%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C:%20%D0%BE%D1%82%D0%BA%D1%80%D0%BE%D0%B9%D1%82%D0%B5%20',%7Ba:%7Bhref:'%7Burl%7D',text:'%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%83%20%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%20%D1%80%D0%BE%D0%BB%D0%B8%D0%BA%D0%B0'%7D%7D,'%20%D0%B8%20%D0%BD%D0%B0%D0%B6%D0%BC%D0%B8%D1%82%D0%B5%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%5C%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%5C%22%20%D0%BD%D0%B0%D0%B4%20%D0%BF%D0%BB%D0%B5%D0%B5%D1%80%D0%BE%D0%BC'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D1%8C%D1%81%D1%8F%20%D0%B2%20%25w%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B0%D0%B5%D1%82%20%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D1%82%D1%8C%20%D1%81%20VK.com,%20YouTube.com,%20Odnoklassniki.ru%20%D0%B8%20%D0%B1%D0%BE%D0%BB%D0%B5%D0%B5%2040%20%D0%B4%D1%80%D1%83%D0%B3%D0%B8%D1%85%20%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2%20%D0%B2%201%20%D0%BA%D0%BB%D0%B8%D0%BA%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22%D0%A5%D0%BE%D1%80%D0%BE%D1%88%D0%B8%D0%B5%20%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'%D0%A3%20%D1%82%D0%B5%D0%B1%D1%8F%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%20SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,',%20%D0%B8%20%D1%82%D0%B5%D0%BF%D0%B5%D1%80%D1%8C%20%D1%82%D1%8B%20%D0%BC%D0%BE%D0%B6%D0%B5%D1%88%D1%8C%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%BB%D1%8E%D0%B1%D0%BE%D0%B5%20%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%20%D1%81%20YouTube%20%D0%B2%20%D0%BE%D0%B4%D0%B8%D0%BD%20%D0%BA%D0%BB%D0%B8%D0%BA'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'%D0%A5%D0%BE%D1%87%D0%B5%D1%88%D1%8C%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BA%D0%B0%D0%BA?',%7Bbr:%7B%7D%7D,'%D0%9D%D0%B0%D0%B6%D0%BC%D0%B8%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22%D0%A7%D1%82%D0%BE%D0%B1%D1%8B%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE,%20%D0%B2%D1%8B%D0%B1%D0%B5%D1%80%D0%B8%20%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%20%D0%B8%20%D0%BD%D0%B0%D0%B6%D0%BC%D0%B8%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%5C%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%5C%22%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22%D0%9F%D1%80%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'%D0%A5%D0%BE%D1%87%D0%B5%D1%88%D1%8C%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D1%83%D0%B6%D0%B5%20%D0%BF%D1%80%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%BE%D0%B5%20%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE?',%7Bbr:%7B%7D%7D,'%D0%9D%D0%B0%D0%B6%D0%B8%D0%BC%D0%B0%D0%B9%20%D0%BD%D0%B0%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,'%20%D0%BD%D0%B0%20%D0%BF%D1%80%D0%B5%D0%B2%D1%8C%D1%8E%20%D0%B2%20%D0%9F%D1%80%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE'%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%20%D0%BD%D0%B5%20%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20%D0%BF%D1%80%D0%BE%D1%81%D0%BC%D0%B0%D1%82%D1%80%D0%B8%D0%B2%D0%B0%D1%82%D1%8C%20%E2%80%94',%7Bbr:%7B%7D%7D,'%D0%BD%D0%B0%D0%B6%D0%B8%D0%BC%D0%B0%D0%B9%20%D0%BD%D0%B0%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,',%20%D0%B2%D1%8B%D0%B1%D0%B8%D1%80%D0%B0%D0%B9%20%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%20%D0%B8%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%B9.%20%D0%AD%D1%82%D0%BE%20%D1%83%D0%B4%D0%BE%D0%B1%D0%BD%D0%BE!'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22%D0%9F%D1%80%D0%B8%D1%8F%D1%82%D0%BD%D0%BE%D0%B9%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'%D0%9E%D1%81%D1%82%D0%B0%D0%BB%D0%B8%D1%81%D1%8C%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D1%8B?%20%D0%95%D1%81%D1%82%D1%8C%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F?%20%D0%97%D0%B0%D0%B3%D0%BB%D1%8F%D0%BD%D0%B8%D1%82%D0%B5%20%D0%BD%D0%B0%20',%20%7Ba:%20%7Btext:%20'%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%83%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B8',%20href:%20'#support'%7D%7D,'%20%D0%B8%D0%BB%D0%B8%20%D0%B2%D1%81%D1%82%D1%83%D0%BF%D0%B0%D0%B9%D1%82%D0%B5%20%D0%B2%20%D0%BD%D0%B0%D1%88%D0%B5%20',%20%7Ba:%20%7Btext:%20'%D0%92%D0%9A-%D1%81%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%BE',%20href:%20'#vk'%7D%7D%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B'%D0%A7%D1%82%D0%BE%D0%B1%D1%8B%20',%7Bb:%20%7Btext:%20'%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C'%7D%7D,',%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%BE%20%D0%BA%D0%BB%D0%B8%D0%BA%D0%BD%D0%B8%D1%82%D0%B5%20%D0%BF%D0%BE%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B5'%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B'%D0%92%D1%8B%20%D1%83%D0%B6%D0%B5%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D0%BB%D0%B8',%7Bbr:%7B%7D%7D,%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22%D0%94%D0%B0%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%D1%82%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B5%20%D0%BD%D0%B5%20%D0%BF%D0%BE%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D1%8D%D1%82%D0%BE%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5%22%7D%0A%7D";
-  _languageList.tr = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22SaveFrom.net%20asistan%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22Sadece%20bir%20t%C4%B1klama%20ile%20YouTube,%20Facebook,%20VK.com%20ve%2040'dan%20fazla%20siteden%20dosya%20indirin.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22SaveFrom.net%20asistan%20lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22Sadece%20bir%20t%C4%B1klama%20ile%20Facebook,%20VK.com%20ve%2040'dan%20fazla%20siteden%20dosya%20indirin%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22tr%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22SaveFrom.net%20asistan%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22SaveFrom.net%20asistan%20devre%20d%C4%B1%C5%9F%C4%B1%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22Etkin%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22Devre%20d%C4%B1%C5%9F%C4%B1%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22Eklenti%20d%C3%BC%C4%9Fmesini%20g%C3%B6ster%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22Kopyala%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22%C4%B0ndir%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22Dosyay%C4%B1%20indirmek%20i%C3%A7in%20Alt/Option%20veya%20Ctrl%20tu%C5%9Funa%20bas%C4%B1l%C4%B1%20tutarak%20ba%C4%9Flant%C4%B1y%C4%B1%20t%C4%B1klay%C4%B1n.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22Hi%C3%A7bir%20ba%C4%9Flant%C4%B1%20bulunamad%C4%B1%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22Daha%20fazla%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22Kapat%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22without%20audio%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22boyut%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22Alt%20yaz%C4%B1%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22%C3%87alma%20listesi%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22Dosya%20listesi%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22T%C3%BCm%20%C3%A7alma%20listesini%20indir%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22Dosya%20boyutunu%20al%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22Dosya%20boyutu%20al%C4%B1namad%C4%B1.%20L%C3%BCtfen%20tekrar%20deneyiniz.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22Do%C4%9Frudan%20ba%C4%9Flant%C4%B1%20al%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22SaveFrom.net'e%20git%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22Ba%C4%9Flant%C4%B1lar%C4%B1%20yenile%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22Ba%C4%9Flant%C4%B1lar%20g%C3%BCncellendi%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22Ses%20dosyalar%C4%B1n%C4%B1%20indir%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22%C3%87alma%20listesini%20indir%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22Resimleri%20indir%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22Tam%20versiyonu%20kur%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22Devre%20d%C4%B1%C5%9F%C4%B1%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22Ayarlar%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22Hata%20bildir%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22Become%20better%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22Bu%20web%20sitesinde%20devre%20d%C4%B1%C5%9F%C4%B1%20b%C4%B1rak%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22Bu%20web%20sitesinde%20etkinle%C5%9Ftir%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22Bu%20sitede%20etkin/devre%20d%C4%B1%C5%9F%C4%B1%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22Eklenti%20butonunu%20g%C3%B6ster/gizle%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22%25d%20s%C3%BCr%C3%BCm%C3%BCne%20g%C3%BCncelle%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22Hakk%C4%B1nda%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Asistan%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22Versiyon%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22Kullan%C4%B1c%C4%B1lar%C4%B1n,%20Dailymotion.com,%20YouTube.com,%20VK.com%20ve%20di%C4%9Ferleri%20de%20dahil%20olmak%20%C3%BCzere%2040'dan%20fazla%20web%20sitesinden%20dosya%20indirmek%20i%C3%A7in%20do%C4%9Frudan%20ba%C4%9Flant%C4%B1lar%20almalar%C4%B1n%C4%B1%20sa%C4%9Flar.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22Kullan%C4%B1c%C4%B1lar%C4%B1n,%20Dailymotion.com,%20VK.com%20ve%20di%C4%9Ferleri%20de%20dahil%20olmak%20%C3%BCzere%2040'dan%20fazla%20web%20sitesinden%20dosya%20indirmek%20i%C3%A7in%20do%C4%9Frudan%20ba%C4%9Flant%C4%B1lar%20almalar%C4%B1n%C4%B1%20sa%C4%9Flar.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22Desteklenen%20kaynaklar%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22Ana%20Sayfa%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Asistan%20-%20Tercihler%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22Linkleri%20ta%C5%9F%C4%B1%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22Dosya%20payla%C5%9F%C4%B1ma%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22Medya%20payla%C5%9F%C4%B1ma%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22Mod%C3%BCller%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22Ba%C4%9Flant%C4%B1lar%C4%B1%20gizle%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22VK%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22Odnoklassniki%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22Moy%20Mir%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22Bit%20h%C4%B1z%C4%B1n%C4%B1%20anl%C4%B1k%20olarak%20g%C3%B6ster%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22Advisor%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22UVD%20i%C3%A7in%20ipu%C3%A7lar%C4%B1n%C4%B1%20g%C3%B6ster%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22Geli%C5%9Fmi%C5%9F%20indirme%20modu%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22Ummy%20d%C3%BC%C4%9Fmesini%20g%C3%B6ster%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22Cheap%20Flights%20Advisor%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22SaveFrom.net'i%20kullanarak%20ge%C3%A7erli%20sayfadan%20dosya%20indirin%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22Download%20d%C3%BC%C4%9Fmesi%20g%C3%B6r%C3%BCnm%C3%BCyorsa%20t%C4%B1klay%C4%B1n%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22Ge%C3%A7erli%20sayfada%20bulunan%20t%C3%BCm%20ses%20dosyalar%C4%B1n%C4%B1%20indirin%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22Ses%20dosyalar%C4%B1ndan%20olu%C5%9Fan%20bir%20%C3%A7alma%20listesi%20olu%C5%9Fturur%20ve%20indirir%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22Ge%C3%A7erli%20sayfada%20bulunan%20t%C3%BCm%20resimleri%20indirin%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22Herhangi%20bir%20sorun%20olmas%C4%B1%20durumunda%20bize%20bildirin%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22Desteklenen%20kaynaklar%C4%B1%20ve%20Helper%20se%C3%A7eneklerini%20A%C3%87/KAPAT%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22Kalite%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22Herhangi%20bir%20se%C3%A7ilebilir%20kalitenin%20olmamas%C4%B1%20durumunda%20mevcut%20olan%20en%20iyi%20video%20indirilecektir.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22Bulunan%20dosyalar%C4%B1n%C4%B1%20listesi%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'T%C3%BCm%20dosyalar%C4%B1n%C4%B1%20indirmek%20i%C3%A7in%20ba%C4%9Flant%C4%B1%20listesini%20kopyalay%C4%B1n%20ve%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'indirme%20y%C3%B6neticisine'%7D%7D,'%20yap%C4%B1%C5%9Ft%C4%B1r%C4%B1n.%20Kurulu%20bir%20indirme%20y%C3%B6neticiniz%20yoksa%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'%20y%C3%BCklemenizi%20tavsiye%20ederiz.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22%C3%87alma%20Listesi%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22Art%C4%B1k%20kaydedilen%20%C3%A7alma%20listenizi%20y%C3%BCr%C3%BCtmek%20i%C3%A7in%20m%C3%BCzik%20%C3%A7alar%C4%B1n%C4%B1zda%20a%C3%A7abilirsiniz.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20veya%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B'Ummy%20ile%20',%7Bspan:%7B%7D%7D%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Btext:'Ummy%20Video%20%C4%B0ndirici%5C%5C'yi%20y%C3%BCkleyin%20ve%20en%20sevdi%C4%9Finiz%20HD%20videolar%C4%B1%20ya%20da%20MP3%5C%5C'leri%20hemen%20indirin.'%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'%C4%B0ndir'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'Kurulumdan%20sonra%20',%7Bimg:%7Bsrc:'#'%7D%7D,'%20simgesine%20t%C4%B1klayarak%20dosya%20indirme%20i%C5%9Flemini%20otomatik%20olarak%20ba%C5%9Flatabilirsiniz.'%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22Taray%C4%B1c%C4%B1%20ayarlar%C4%B1n%C4%B1%20kontrol%20edin%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22%5C%22Dosyalar%C4%B1n%20nereye%20kaydedilece%C4%9Fini%20her%20seferinde%20sor%5C%22%20se%C3%A7ene%C4%9Fi%20kapal%C4%B1%20olmal%C4%B1d%C4%B1r.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22Daha%20fazla%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22Bildirme%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22%C4%B0ptal%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22Devam%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22Uyar%C4%B1!%20%C4%B0ndirme%20i%C5%9Flemi%20iptal%20edilemez%20ya%20da%20ertelenemez.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22Bilgi%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22Dosya%20boyutu%20ve%20bit%20h%C4%B1z%C4%B1%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22MP3%20dosyalar%C4%B1%20i%C3%A7in%20ba%C4%9Flant%C4%B1lar%20bulunam%C4%B1yor%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22Foto%C4%9Fraflar%20bulunamad%C4%B1%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22Alb%C3%BCm%C3%BC%20indir%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22T%C3%BCm%20alb%C3%BCmleri%20indir%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22Bulunan%20foto%C4%9Fraflar%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20resim%20ge%C3%A7ici%20olarak%20kullan%C4%B1lam%C4%B1yor%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22Bulunan%20ba%C4%9Flant%C4%B1lar%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22den%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22Olarak%20g%C3%B6ster%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22Ba%C4%9Flant%C4%B1%20listesi%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'T%C3%BCm%20foto%C4%9Fraflar%C4%B1%20indirmek%20i%C3%A7in%20ba%C4%9Flant%C4%B1%20listesini%20kopyalay%C4%B1n%20ve%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'indirme%20y%C3%B6neticisine'%7D%7D,'%20yap%C4%B1%C5%9Ft%C4%B1r%C4%B1n.%20Kurulu%20bir%20indirme%20y%C3%B6neticiniz%20yoksa%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'%20y%C3%BCklemenizi%20tavsiye%20ederiz.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22K%C3%BC%C3%A7%C3%BCkk%20resimler%20tablosu%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22Foto%C4%9Fraf%20listesi%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22%C4%B0ndirmek%20i%C3%A7in%20foto%C4%9Fraf%C4%B1n%20%C3%BCzerine%20t%C4%B1klay%C4%B1n.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22B%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22kB%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22MB%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22GB%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22TB%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'%C4%B0ndirme:%20',%7Ba:%7Bhref:'%7Burl%7D',text:'video%20sayfas%C4%B1n%C4%B1'%7D%7D,'%20a%C3%A7%C4%B1n%20ve%20oynat%C4%B1c%C4%B1%20%C3%BCzerindeki%20%5C%22%C4%B0ndir%5C%22%20d%C3%BCmesine%20bas%C4%B1n'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22Bulunan%20dosyalar:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22%25w%20%C3%BCzerinden%20payla%C5%9F%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper,%20sadece%20bir%20t%C4%B1klama%20ile%20YouTube.com,%20Facebook.com,%20VK.com%20ve%2040'dan%20fazla%20siteden%20%C3%BCcretsiz%20olarak%20dosya%20indirmenizi%20sa%C4%9Flar.%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22Size%20harika%20bir%20haberimiz%20var!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'SaveFrom.net%20Helper%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,%20'%20ba%C5%9Far%C4%B1yla%20kuruldu.%20Art%C4%B1k%20tek%20bir%20t%C4%B1klama%20ile%20YouTube%5C%5C'dan%20istedi%C4%9Finiz%20videoyu%20indirebilirsiniz'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'Nas%C4%B1l%20oldu%C4%9Funu%20%C3%B6%C4%9Frenmek%20ister%20misiniz?%20Buraya%20t%C4%B1klay%C4%B1n'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22Sadece%20indirmek%20istedi%C4%9Finiz%20videonun%20format%C4%B1n%C4%B1%20se%C3%A7in%20ve%20%5C%22%C4%B0ndir%5C%22%20butonuna%20t%C4%B1klay%C4%B1n%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22Ge%C3%A7mi%C5%9F%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'Web%20ge%C3%A7mi%C5%9Finizdeki%20videolar%C4%B1%20indirmek%20ister%20misiniz?',%20%7Bbr:%7B%7D%7D,%20'%20Sadece%20daha%20%C3%B6nce%20izledi%C4%9Finiz%20bir%20videonun%20%C3%B6nizlemesi%20%C3%BCzerindeki%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20'%20simgesine%20t%C4%B1klay%C4%B1n'%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'Videolar%C4%B1%20izlemenize%20gerek%20yok%20%E2%80%94%20sadece%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20'%20simgesine%20t%C4%B1klay%C4%B1n,%20kalite%20de%C4%9Ferini%20se%C3%A7in%20ve%20an%C4%B1nda%20indirin.%20Olduk%C3%A7a%20kolay,%20de%C4%9Fil%20mi?'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22Hemen%20SaveFrom.net%20Helper'in%20keyfini%20%C3%A7%C4%B1karmaya%20ba%C5%9Flay%C4%B1n!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'Hala%20kafan%C4%B1za%20tak%C4%B1lan%20sorular%20m%C4%B1%20var?%20D%C3%BC%C5%9F%C3%BCncelerinizi%20payla%C5%9Fmak%20m%C4%B1%20istiyorsunuz?%20',%7Ba:%20%7Btext:%20'Destek%20sayfam%C4%B1z%C4%B1',%20href:%20'#support'%7D%7D,'%20ziyaret%20edin%20veya%20',%7Ba:%20%7Btext:%20'Facebook',%20href:%20'#fb'%7D%7D,'%20toplulu%C4%9Fumuza%20kat%C4%B1l%C4%B1n'%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B%7Bb:%20%7Btext:%20'%C4%B0ndirmek'%7D%7D,%20'%20i%C3%A7in%20sadece%20butona%20t%C4%B1klay%C4%B1n'%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader%20program%C4%B1n%C4%B1%20daha%20%C3%B6nce%20y%C3%BCklediniz%20mi?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22Evet%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22Hay%C4%B1r%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22Bu%20mesaj%C4%B1%20tekrar%20g%C3%B6sterme%22%7D%0A%7D";
-  _languageList.uk = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D1%83%D0%B9%D1%82%D0%B5%20%D0%B7%20%C2%AB%D0%92%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5%C2%BB,%20YouTube,%20Facebook%20%D1%96%20%D1%89%D0%B5%2040%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%D0%B2%20%D0%B7%D0%B0%201%20%D0%BA%D0%BB%D1%96%D0%BA.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%20lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D1%83%D0%B9%D1%82%D0%B5%20%D0%B7%20%C2%AB%D0%92%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5%C2%BB,%20YouTube,%20Facebook%20%D1%96%20%D1%89%D0%B5%2040%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%D0%B2%20%D0%B7%D0%B0%201%20%D0%BA%D0%BB%D1%96%D0%BA.%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22uk%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%20%D0%B2%D0%B8%D0%BC%D0%BA%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22%D0%A3%D0%B2%D1%96%D0%BC%D0%BA%D0%BD%D1%83%D1%82%D0%B8%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22%D0%92%D0%B8%D0%BC%D0%BA%D0%BD%D1%83%D1%82%D0%B8%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%D1%80%D0%BE%D0%B7%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D1%8F%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22%D0%9A%D0%BE%D0%BF%D1%96%D1%8E%D0%B2%D0%B0%D1%82%D0%B8%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D1%82%D0%B8%D1%81%D0%BD%D1%96%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F,%20%D1%83%D1%82%D1%80%D0%B8%D0%BC%D1%83%D1%8E%D1%87%D0%B8%20%D0%BA%D0%BB%D0%B0%D0%B2%D1%96%D1%88%D1%83%20Alt%20%D1%87%D0%B8%20Ctrl,%20%D1%89%D0%BE%D0%B1%20%D0%B7%D0%B1%D0%B5%D1%80%D0%B5%D0%B3%D1%82%D0%B8%20%D1%84%D0%B0%D0%B9%D0%BB.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%B2%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8F%20%D0%B7%D0%BD%D0%B0%D0%B9%D1%82%D0%B8%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22%D0%A9%D0%B5%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%BA%D1%80%D0%B8%D1%82%D0%B8%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22%D0%BA%D0%B1/%D1%81%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22%D0%B1%D0%B5%D0%B7%20%D0%B0%D1%83%D0%B4%D1%96%D0%BE%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22%D1%80%D0%BE%D0%B7%D0%BC%D1%96%D1%80%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22%D0%A1%D1%83%D0%B1%D1%82%D0%B8%D1%82%D1%80%D0%B8%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22%D0%9F%D0%BB%D0%B5%D0%B9%D0%BB%D1%96%D1%81%D1%82%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%84%D0%B0%D0%B9%D0%BB%D1%96%D0%B2%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D0%B2%D0%B5%D1%81%D1%8C%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D1%96%D1%81%D1%82%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22%D0%92%D0%B8%D0%B7%D0%BD%D0%B0%D1%87%D0%B8%D1%82%D0%B8%20%D1%80%D0%BE%D0%B7%D0%BC%D1%96%D1%80%20%D1%84%D0%B0%D0%B9%D0%BB%D1%83%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%B2%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8F%20%D0%B2%D0%B8%D0%B7%D0%BD%D0%B0%D1%87%D0%B8%D1%82%D0%B8%20%D1%80%D0%BE%D0%B7%D0%BC%D1%96%D1%80%20%D1%84%D0%B0%D0%B9%D0%BB%D1%83.%20%D0%A1%D0%BF%D1%80%D0%BE%D0%B1%D1%83%D0%B9%D1%82%D0%B5%20%D1%89%D0%B5%20%D1%80%D0%B0%D0%B7.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22%D0%9E%D1%82%D1%80%D0%B8%D0%BC%D0%B0%D0%B9%20%D0%BF%D1%80%D1%8F%D0%BC%D0%B5%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22%D0%9F%D0%B5%D1%80%D0%B5%D0%B9%D1%82%D0%B8%20%D0%BD%D0%B0%20SaveFrom.net%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22%D0%92%D1%96%D0%B4%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D0%B8%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%BE%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D1%96%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D0%B8%20%D0%B0%D1%83%D0%B4%D1%96%D0%BE%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B8%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D0%B8%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D0%B8%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D1%96%D1%97%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22%D0%92%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D0%B8%20%D0%BF%D0%BE%D0%B2%D0%BD%D1%83%20%D0%B2%D0%B5%D1%80%D1%81%D1%96%D1%8E%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22%D0%92%D0%B8%D0%BC%D0%BA%D0%BD%D1%83%D1%82%D0%B8%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D0%BB%D0%B0%D1%88%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B2%D1%96%D0%B4%D0%BE%D0%BC%D0%B8%D1%82%D0%B8%20%D0%BF%D1%80%D0%BE%20%D0%BF%D0%BE%D0%BC%D0%B8%D0%BB%D0%BA%D1%83%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22%D0%A1%D1%82%D0%B0%D1%82%D0%B8%20%D0%BA%D1%80%D0%B0%D1%89%D0%B5%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22%D0%92%D0%B8%D0%BC%D0%BA%D0%BD%D1%83%D1%82%D0%B8%20%D0%BD%D0%B0%20%D1%86%D1%8C%D0%BE%D0%BC%D1%83%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22%D0%A3%D0%B2%D1%96%D0%BC%D0%BA%D0%BD%D1%83%D1%82%D0%B8%20%D0%BD%D0%B0%20%D1%86%D1%8C%D0%BE%D0%BC%D1%83%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22%D0%92%D0%BA%D0%BB./%D0%B2%D0%B8%D0%BC%D0%BA.%20%D0%BD%D0%B0%20%D1%86%D1%8C%D0%BE%D0%BC%D1%83%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7./%D1%81%D0%BA%D1%80.%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%D1%80%D0%BE%D0%B7%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22%D0%9E%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D0%B8%20%D0%B4%D0%BE%20%25d%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22%D0%9F%D1%80%D0%BE%20%D1%80%D0%BE%D0%B7%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22%D0%92%D0%B5%D1%80%D1%81%D1%96%D1%8F%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22%D0%94%D0%BE%D0%B7%D0%B2%D0%BE%D0%BB%D1%8F%D1%94%20%D0%BE%D1%82%D1%80%D0%B8%D0%BC%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D0%BF%D1%80%D1%8F%D0%BC%D1%96%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%B4%D0%BB%D1%8F%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F%20%D0%B7%20%D0%BF%D0%BE%D0%BD%D0%B0%D0%B4%2040%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%D0%B2,%20%D1%81%D0%B5%D1%80%D0%B5%D0%B4%20%D1%8F%D0%BA%D0%B8%D1%85%20VK.com,%20YouTube.com%20%D1%82%D0%B0%20%D1%96%D0%BD%D1%88%D1%96.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22%D0%94%D0%BE%D0%B7%D0%B2%D0%BE%D0%BB%D1%8F%D1%94%20%D0%BE%D1%82%D1%80%D0%B8%D0%BC%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D0%BF%D1%80%D1%8F%D0%BC%D1%96%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%B4%D0%BB%D1%8F%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F%20%D0%B7%20%D0%BF%D0%BE%D0%BD%D0%B0%D0%B4%2040%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%D0%B2,%20%D1%81%D0%B5%D1%80%D0%B5%D0%B4%20%D1%8F%D0%BA%D0%B8%D1%85%20VK.com%20%D1%82%D0%B0%20%D1%96%D0%BD%D1%88%D1%96.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22%D0%A0%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%B8,%20%D1%8F%D0%BA%D1%96%20%D0%BF%D1%96%D0%B4%D1%82%D1%80%D0%B8%D0%BC%D1%83%D1%8E%D1%82%D1%8C%D1%81%D1%8F%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D1%8F%20%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D0%BA%D0%B0%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%20-%20%D0%9D%D0%B0%D0%BB%D0%B0%D1%88%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22%D0%9E%D0%B1%D1%80%D0%BE%D0%B1%D0%BB%D1%8F%D1%82%D0%B8%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%20%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BE%D0%B1%D0%BC%D1%96%D0%BD%D0%BD%D0%B8%D0%BA%D0%B8%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%20%D0%BC%D0%B5%D0%B4%D1%96%D0%B0%D1%85%D0%BE%D1%81%D1%82%D0%B8%D0%BD%D0%B3%D0%B8%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D1%96%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22%D0%A1%D1%85%D0%BE%D0%B2%D0%B0%D1%82%D0%B8%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22%D0%92%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22%D0%9E%D0%B4%D0%BD%D0%BE%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BD%D0%B8%D0%BA%D0%B8%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22%D0%9C%D0%BE%D0%B9%20%D0%BC%D0%B8%D1%80%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D0%B1%D1%96%D1%82%D1%80%D0%B5%D0%B9%D1%82%20%D0%BE%D0%B4%D1%80%D0%B0%D0%B7%D1%83%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D1%80%D0%B0%D0%B4%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D0%BF%D1%96%D0%B4%D0%BA%D0%B0%D0%B7%D0%BA%D0%B8%20%D0%B4%D0%BB%D1%8F%20Ummy%20Video%20Downloader%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22%D0%A0%D0%BE%D0%B7%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B9%20%D1%80%D0%B5%D0%B6%D0%B8%D0%BC%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22%D0%92%D1%96%D0%B4%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D1%82%D0%B8%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20Ummy%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22Cheap%20Flights%20Advisor%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B8%20%D0%B7%20%D0%BF%D0%BE%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D1%97%20%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D0%BA%D0%B8%20%D0%B7%D0%B0%20%D0%B4%D0%BE%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%BE%D1%8E%20%D1%81%D0%B5%D1%80%D0%B2%D1%96%D1%81%D1%83%20SaveFrom.net%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D1%82%D0%B8%D1%81%D0%BD%D1%96%D1%82%D1%8C,%20%D1%8F%D0%BA%D1%89%D0%BE%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BA%D0%B0%D1%87%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%BD%D0%B5%20%D0%B7'%D1%8F%D0%B2%D0%BB%D1%8F%D1%94%D1%82%D1%8C%D1%81%D1%8F%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D0%B2%D1%81%D1%96%20%D0%B7%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D1%96%20%D0%BD%D0%B0%20%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D1%86%D1%96%20%D0%B0%D1%83%D0%B4%D1%96%D0%BE%D1%84%D0%B0%D0%B9%D0%BB%D0%B8%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22%D0%A4%D0%BE%D1%80%D0%BC%D1%83%D1%94%20%D1%82%D0%B0%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D1%83%D1%94%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%20%D0%B7%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%D0%BC%D0%B8%20%D0%BD%D0%B0%20%D0%B0%D1%83%D0%B4%D1%96%D0%BE%D1%84%D0%B0%D0%B9%D0%BB%D0%B8%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D0%B2%D1%81%D1%96%20%D0%B7%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D1%96%20%D0%BD%D0%B0%20%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D1%86%D1%96%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D1%96%D1%97%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22%D0%94%D0%B0%D0%B9%D1%82%D0%B5%20%D0%BD%D0%B0%D0%BC%20%D0%B7%D0%BD%D0%B0%D1%82%D0%B8,%20%D1%8F%D0%BA%D1%89%D0%BE%20%D0%B2%D0%B8%D0%BD%D0%B8%D0%BA%D0%BB%D0%B8%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D0%B8%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22%D0%92%D0%BA%D0%BB.%20/%20%D0%92%D0%B8%D0%BC%D0%BA.%20%D0%BF%D1%96%D0%B4%D1%82%D1%80%D0%B8%D0%BC%D1%83%D0%B2%D0%B0%D0%BD%D1%96%20%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%B8%20%D1%96%20%D0%BC%D0%BE%D0%B6%D0%BB%D0%B8%D0%B2%D0%BE%D1%81%D1%82%D1%96%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%D0%B0%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22%D0%91%D1%83%D0%B4%D1%8C%20%D0%BB%D0%B0%D1%81%D0%BA%D0%B0,%20%D0%BE%D1%86%D1%96%D0%BD%D1%96%D1%82%D1%8C%20%D1%8F%D0%BA%D1%96%D1%81%D1%82%D1%8C%20%D1%80%D0%BE%D0%B7%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D1%8F%20%5C%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%5C%22%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22%D0%AF%D0%BA%D1%96%D1%81%D1%82%D1%8C%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22%D0%AF%D0%BA%D1%89%D0%BE%20%D0%B2%D1%96%D0%B4%D0%B5%D0%BE%20%D0%B2%20%D0%BF%D0%BE%D1%82%D1%80%D1%96%D0%B1%D0%BD%D1%96%D0%B9%20%D1%8F%D0%BA%D0%BE%D1%81%D1%82%D1%96%20%D0%BD%D0%B5%D0%BC%D0%B0%D1%94,%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%94%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%D0%B9%D0%BA%D1%80%D0%B0%D1%89%D0%B5%20%D0%B7%20%D0%BC%D0%BE%D0%B6%D0%BB%D0%B8%D0%B2%D0%BE%D0%B3%D0%BE.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D0%B7%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%B8%D1%85%20%D1%84%D0%B0%D0%B9%D0%BB%D1%96%D0%B2%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'%D0%A9%D0%BE%D0%B1%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D1%83%D1%81%D1%96%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B8,%20%D1%81%D0%BA%D0%BE%D0%BF%D1%96%D1%8E%D0%B9%D1%82%D0%B5%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D1%8C%20%D1%96%20%D0%B2%D1%81%D1%82%D0%B0%D0%B2%D1%82%D0%B5%20%D0%B9%D0%BE%D0%B3%D0%BE%20%D1%83%20',%7Ba:%7Bhref:'http://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80_%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BE%D0%BA',text:'%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D1%8C'%7D%7D,'.%20%D0%AF%D0%BA%D1%89%D0%BE%20%D1%83%20%D0%B2%D0%B0%D1%81%20%D0%BD%D0%B5%20%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D1%8C,%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D1%83%D1%94%D0%BC%D0%BE%20%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D0%B8%20',%7Ba:%7Bhref:'http://www.westbyte.com/dm/',text:'Download%20Master'%7D%7D,'.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22%D0%9F%D0%BB%D0%B5%D0%B9%D0%BB%D1%96%D1%81%D1%82%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22%D0%97%D0%B1%D0%B5%D1%80%D0%B5%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D1%96%D1%81%D1%82%20%D0%BC%D0%BE%D0%B6%D0%BD%D0%B0%20%D0%B2%D1%96%D0%B4%D0%BA%D1%80%D0%B8%D1%82%D0%B8%20%D1%83%20%D0%BF%D0%BB%D0%B5%D1%94%D1%80%D1%96%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%96%D0%B4%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%D0%BD%D1%8F.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20%D0%B0%D0%B1%D0%BE%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B%7Bspan:%7B%7D%7D,'%20%D0%B7%20%D0%B4%D0%BE%D0%BC%D0%BE%D0%BC%D0%BE%D0%B3%D0%BE%D1%8E%20Ummy'%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Btext:'%D0%92%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D1%96%D1%82%D1%8C%20%D0%B1%D0%B5%D0%B7%D0%BA%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%BD%D0%B8%D0%B9%20Ummy%20Video%20Downloader%20%D1%96%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D1%83%D0%B9%D1%82%D0%B5%20%D1%81%D0%B2%D0%BE%D1%97%20%D1%83%D0%BB%D1%8E%D0%B1%D0%BB%D0%B5%D0%BD%D1%96%20%D0%B2%D1%96%D0%B4%D0%B5%D0%BE%20%D0%B2%20HD%20%D0%B0%D0%B1%D0%BE%20%D0%B2%20MP3.'%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'%D0%A1%D0%9A%D0%90%D0%A7%D0%90%D0%A2%D0%98'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'%D0%9F%D1%96%D1%81%D0%BB%D1%8F%20%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F%20%D0%BF%D1%80%D0%B8%20%D0%BA%D0%BB%D1%96%D1%86%D1%96%20%D0%BD%D0%B0%20',%7Bimg:%7Bsrc:'#'%7D%7D,'%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D0%BA%D0%B0%20%D0%B1%D1%83%D0%B4%D0%B5%20%D0%BF%D0%BE%D1%87%D0%B8%D0%BD%D0%B0%D1%82%D0%B8%D1%81%D1%8F%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%BD%D0%BE.'%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D1%96%D1%80%D1%82%D0%B5%20%D0%BD%D0%B0%D0%BB%D0%B0%D1%88%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%B1%D1%80%D0%B0%D1%83%D0%B7%D0%B5%D1%80%D0%B0%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22%D0%92%D0%B8%D0%B1%D1%96%D1%80%20%D0%BF%D0%B0%D0%BF%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%20%D1%81%D0%BA%D0%B0%D1%87%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%96%20%D0%BF%D0%BE%D0%B2%D0%B8%D0%BD%D0%B5%D0%BD%20%D0%B1%D1%83%D1%82%D0%B8%20%D0%B2%D1%96%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B9.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22%D0%94%D0%B5%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D1%96%D1%88%D0%B5...%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%BF%D0%BE%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D0%B6%D0%B0%D1%82%D0%B8%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%81%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22%D0%9F%D1%80%D0%BE%D0%B4%D0%BE%D0%B2%D0%B6%D0%B8%D1%82%D0%B8%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22%D0%A3%D0%B2%D0%B0%D0%B3%D0%B0:%20%D1%81%D0%BA%D0%B0%D1%81%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D0%B0%D0%B1%D0%BE%20%D0%BF%D1%80%D0%B8%D0%B7%D1%83%D0%BF%D0%B8%D0%BD%D0%B8%D1%82%D0%B8%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F%20%D0%B1%D1%83%D0%B4%D0%B5%20%D0%BD%D0%B5%D0%BC%D0%BE%D0%B6%D0%BB%D0%B8%D0%B2%D0%BE.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%B8%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22%D0%A0%D0%BE%D0%B7%D0%BC%D1%96%D1%80%20%D1%84%D0%B0%D0%B9%D0%BB%D1%83%20%D1%96%20%D0%B1%D1%96%D1%82%D1%80%D0%B5%D0%B9%D1%82%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%B7%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D1%8C%20%D0%BD%D0%B0%20MP3-%D1%84%D0%B0%D0%B9%D0%BB%D0%B8%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%B7%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D1%8C%20%D0%BD%D0%B0%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D1%96%D1%97%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D0%B0%D0%BB%D1%8C%D0%B1%D0%BE%D0%BC%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D1%83%D1%81%D1%96%20%D0%B0%D0%BB%D1%8C%D0%B1%D0%BE%D0%BC%D0%B8%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22%D0%97%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D1%96%D0%B9%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20%D1%84%D0%BE%D1%82%D0%BE%20%D1%82%D0%B8%D0%BC%D1%87%D0%B0%D1%81%D0%BE%D0%B2%D0%BE%20%D0%BD%D0%B5%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%BE%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22%D0%97%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D1%8C%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22%D0%B7%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D0%B8%20%D1%8F%D0%BA%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D1%8C%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'%D0%A9%D0%BE%D0%B1%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D1%83%D1%81%D1%96%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D1%96%D1%97,%20%D1%81%D0%BA%D0%BE%D0%BF%D1%96%D1%8E%D0%B9%D1%82%D0%B5%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D1%8C%20%D1%96%20%D0%B2%D1%81%D1%82%D0%B0%D0%B2%D1%82%D0%B5%20%D0%B9%D0%BE%D0%B3%D0%BE%20%D1%83%20',%7Ba:%7Bhref:'http://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80_%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BE%D0%BA',text:'%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D1%8C'%7D%7D,'.%20%D0%AF%D0%BA%D1%89%D0%BE%20%D1%83%20%D0%B2%D0%B0%D1%81%20%D0%BD%D0%B5%20%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D1%8C,%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D1%83%D1%94%D0%BC%D0%BE%20%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D0%B8%20',%7Ba:%7Bhref:'http://www.westbyte.com/dm/',text:'Download%20Master'%7D%7D,'.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8E%20%D0%B5%D1%81%D0%BA%D1%96%D0%B7%D1%96%D0%B2%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D1%96%D0%B9%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22%D0%A9%D0%BE%D0%B1%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D1%96%D1%8E,%20%D0%BD%D0%B0%D1%82%D0%B8%D1%81%D0%BD%D1%96%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%97%20%D0%BB%D1%96%D0%B2%D0%BE%D1%8E%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%BE%D1%8E%20%D0%BC%D0%B8%D1%88%D1%96.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22%D0%BA%D0%B1/%D1%81%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22%D0%91%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22%D0%BA%D0%91%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22%D0%9C%D0%91%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22%D0%93%D0%91%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22%D0%A2%D0%91%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8:%20%D0%B2%D1%96%D0%B4%D0%BA%D1%80%D0%B8%D0%B9%D1%82%D0%B5%20',%7Ba:%7Bhref:'%7Burl%7D',text:'%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D0%BA%D1%83%20%D0%B2%D1%96%D0%B4%D0%B5%D0%BE-%D1%80%D0%BE%D0%BB%D0%B8%D0%BA%D0%B0'%7D%7D,'%20%D1%96%20%D0%BD%D0%B0%D1%82%D0%B8%D1%81%D0%BD%D1%96%D1%82%D1%8C%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%5C%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%5C%22%20%D0%BD%D0%B0%D0%B4%20%D0%BF%D0%BB%D0%B5%D1%94%D1%80%D0%BE%D0%BC'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22%D0%97%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D1%84%D0%B0%D0%B9%D0%BB%D1%96%D0%B2:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B4%D1%96%D0%BB%D0%B8%D1%82%D0%B8%D1%81%D1%8F%20%D0%B2%20%25w%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%20%D0%B4%D0%B0%D1%94%20%D0%B2%D0%B0%D0%BC%20%D0%BC%D0%BE%D0%B6%D0%BB%D0%B8%D0%B2%D1%96%D1%81%D1%82%D1%8C%20%D0%B1%D0%B5%D0%B7%D0%BA%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%BD%D0%BE%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B8%20%D0%B7%20YouTube.com,%20Facebook.com,%20VK.com%20%D1%82%D0%B0%20%D0%B1%D1%96%D0%BB%D1%8C%D1%88%D0%B5%2040%20%D1%96%D0%BD%D1%88%D0%B8%D1%85%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%D0%B2%20%D0%BB%D0%B8%D1%88%D0%B5%20%D0%BE%D0%B4%D0%BD%D0%B8%D0%BC%20%D0%BA%D0%BB%D1%96%D0%BA%D0%BE%D0%BC%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22%D0%94%D0%BE%D0%B1%D1%80%D1%96%20%D0%BD%D0%BE%D0%B2%D0%B8%D0%BD%D0%B8!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'%D0%A3%20%D1%82%D0%B5%D0%B1%D0%B5%20%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9%20SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,%20',%20%D1%96%20%D1%82%D0%B5%D0%BF%D0%B5%D1%80%20%D1%82%D0%B8%20%D0%BC%D0%BE%D0%B6%D0%B5%D1%88%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D0%B1%D1%83%D0%B4%D1%8C-%D1%8F%D0%BA%D0%B5%20%D0%B2%D1%96%D0%B4%D0%B5%D0%BE%20%D0%B7%20YouTube%20%D0%B2%20%D0%BE%D0%B4%D0%B8%D0%BD%20%D0%BA%D0%BB%D1%96%D0%BA'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'%D0%9F%D1%80%D0%B0%D0%B3%D0%BD%D0%B5%D1%88%20%D0%B4%D0%BE%D0%B2%D1%96%D0%B4%D0%B0%D1%82%D0%B8%D1%81%D1%8F%20%D1%8F%D0%BA?',%20%7Bbr:%7B%7D%7D,%20'%D0%9D%D0%B0%D1%82%D0%B8%D1%81%D0%BD%D0%B8%20%D1%82%D1%83%D1%82'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22%D0%A9%D0%BE%D0%B1%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D0%B2%D1%96%D0%B4%D0%B5%D0%BE,%20%D0%BE%D0%B1%D0%B5%D1%80%D1%96%D1%82%D1%8C%20%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%20%D1%96%20%D0%BD%D0%B0%D1%82%D0%B8%D1%81%D0%BD%D0%B8%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%5C%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%5C%22%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22%D0%9F%D0%B5%D1%80%D0%B5%D0%B3%D0%BB%D1%8F%D0%BD%D1%83%D1%82%D1%96%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'%D0%A5%D0%BE%D1%87%D0%B5%D1%88%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D0%B8%20%D0%B2%D0%B6%D0%B5%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B3%D0%BB%D1%8F%D0%BD%D1%83%D1%82%D0%B5%20%D0%B2%D1%96%D0%B4%D0%B5%D0%BE?',%20%7Bbr:%7B%7D%7D,%20'%D0%9D%D0%B0%D1%82%D0%B8%D1%81%D0%BA%D0%B0%D0%B9%20%D0%BD%D0%B0%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20'%20%D0%BD%D0%B0%20%D0%BF%D1%80%D0%B5%D0%B2%D1%8C%D1%8E%20%D0%B2%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B3%D0%BB%D1%8F%D0%BD%D1%83%D1%82%D0%B8%D1%85%20%D0%B2%D1%96%D0%B4%D0%B5%D0%BE'%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'%D0%92%D1%96%D0%B4%D0%B5%D0%BE%20%D0%BD%D0%B5%20%D0%BE%D0%B1%D0%BE%D0%B2%5C%5C'%D1%8F%D0%B7%D0%BA%D0%BE%D0%B2%D0%BE%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B3%D0%BB%D1%8F%D0%B4%D0%B0%D1%82%D0%B8%20%E2%80%94',%20%7Bbr:%7B%7D%7D,%20'%D0%BD%D0%B0%D1%82%D0%B8%D1%81%D0%BA%D0%B0%D0%B9%20%D0%BD%D0%B0%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20',%20%D0%BE%D0%B1%D0%B8%D1%80%D0%B0%D0%B9%20%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%20%D1%96%20%D1%81%D0%BA%D0%B0%D1%87%D1%83%D0%B9.%20%D0%A6%D0%B5%20%D0%B7%D1%80%D1%83%D1%87%D0%BD%D0%BE!'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22%D0%9F%D1%80%D0%B8%D1%94%D0%BC%D0%BD%D0%BE%D1%97%20%D1%80%D0%BE%D0%B1%D0%BE%D1%82%D0%B8!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'%D0%97%D0%B0%D0%BB%D0%B8%D1%88%D0%B8%D0%BB%D0%B8%D1%81%D1%8F%20%D0%BF%D0%B8%D1%82%D0%B0%D0%BD%D0%BD%D1%8F?%20%D0%84%20%D0%BF%D1%80%D0%BE%D0%BF%D0%BE%D0%B7%D0%B8%D1%86%D1%96%D1%97?%20%D0%97%D0%B0%D0%B3%D0%BB%D1%8F%D0%BD%D1%8C%D1%82%D0%B5%20%D0%BD%D0%B0%20',%7Ba:%20%7Btext:%20'%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D0%BA%D1%83%20%D0%BF%D1%96%D0%B4%D1%82%D1%80%D0%B8%D0%BC%D0%BA%D0%B8',%20href:%20'#support'%7D%7D,'%20%D0%B0%D0%B1%D0%BE%20%D0%B2%D1%81%D1%82%D1%83%D0%BF%D0%B0%D0%B9%D1%82%D0%B5%20%D0%B4%D0%BE%20%D0%BD%D0%B0%D1%88%D0%BE%D1%97%20',%20%7Ba:%20%7Btext:%20'%D0%92%D0%9A-%D1%81%D0%BF%D1%96%D0%BB%D1%8C%D0%BD%D0%BE%D1%82%D0%B8',%20href:%20'#vk'%7D%7D%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B'%D0%A9%D0%BE%D0%B1%20',%7Bb:%20%7Btext:%20'%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D0%B8'%7D%7D,',%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%BE%20%D0%BA%D0%BB%D1%96%D0%BA%D0%BD%D1%96%D1%82%D1%8C%20%D0%BF%D0%BE%20%D0%BA%D0%BD%D0%BE%D0%BF%D1%86%D1%96'%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B'%D0%92%D0%B8%20%D0%B2%D0%B6%D0%B5%20%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D0%BB%D0%B8',%7Bbr:%7B%7D%7D,%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22%D0%A2%D0%B0%D0%BA%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22%D0%9D%D1%96%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22%D0%91%D1%96%D0%BB%D1%8C%D1%88%D0%B5%20%D0%BD%D0%B5%20%D0%BF%D0%BE%D0%BA%D0%B0%D0%B7%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D1%86%D0%B5%20%D0%BF%D0%BE%D0%B2%D1%96%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F%22%7D%0A%7D";
+  _languageList.de = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helfer%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22Laden%20Sie%20von%20YouTube,%20Facebook,%20VK.com%20und%20mehr%20als%2040%20anderen%20Seiten%20mit%20einem%20Klick%20herunter.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helfer%20Lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22Herunterladen%20von%20Facebook,%20VK.com%20und%20mehr%20als%2040%20weiteren%20Seiten%20mit%20einem%20Klick%20herunter.%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22de%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helfer%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helfer%20deaktiviert%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22Aktivieren%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22Deaktivieren%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22Erweiterungs%20Knopf%20anzeigen%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22Kopie%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22Herunterladen%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22Klicken%20Sie%20den%20Link%20w%C3%A4hrend%20Sie%20die%20Alt/Einstellung%20oder%20Ctrl/Strg%20Taste%20dr%C3%BCcken%20zum%20Herunterladen%20der%20Dateien.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22Keine%20Links%20wurden%20gefunden%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22Mehr%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22Schlie%C3%9Fen%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22without%20audio%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22gr%C3%B6%C3%9Fe%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22Untertitel%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22Wiedergabliste%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22List%20of%20files%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22Die%20komplette%20Wiedergabliste%20herunterladen%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22Dateigr%C3%B6%C3%9Fe%20bestimmen%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22Fehler%20bei%20bestimmung%20der%20Dateigr%C3%B6%C3%9Fe.%20Bitte%20versuchen%20Sie%20es%20erneut.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22Holen%20Sie%20sich%20einen%20direkten%20Link.%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22Zu%20SaveFrom.net%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22Links%20aktualisieren%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22Links%20aktualisiert%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22Download%20Audiodateien%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22Download%20Playlist%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22Download%20Bilder%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22Install%20full%20version%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22Deaktivieren%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22Einstellungen%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22Fehler%20melden%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22Become%20better%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22Auf%20dieser%20Webseite%20deaktivieren%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22Auf%20dieser%20Webseite%20aktivieren%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22Ein/Aus%20auf%20dieser%20Webseite%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22Erweitern%20Ein-/Ausblenden%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22Update%20auf%20%25d%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22%C3%9Cber%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helfer%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22Version%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22Hilft%20den%20Nutzern%20direkte%20Links%20zu%20Herunterladen%20von%20mehr%20als%2040%20Webseiten,%20inklusive%20Dailymotion.com,%20YouTube.com,%20VK.com%20und%20weiteren%20zu%20bekommen.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22Hilft%20den%20Nutzern%20direkte%20Links%20zu%20Herunterladen%20von%20mehr%20als%2040%20Webseiten,%20inklusive%20Dailymotion.com,%20VK.com%20und%20weiteren%20zu%20bekommen.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22Unterst%C3%BCtzte%20Ressourcen%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22Homepage%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helfer%20-%20Einstellungen%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22Links%20handhaben%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22Zu%20Dateihoster%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22Zu%20Medienhoster%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22Module%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22Links%20ausblenden%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22VK%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22Odnoklassniki%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22Moy%20Mir%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22Bitrate%20sofort%20zeigen%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22Advisor%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22Tipps%20f%C3%BCr%20UVD%20einblenden%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22Erweiterter%20Download-Modus%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22Schaltfl%C3%A4che%20Ummy%20anzeigen%22%7D,%0A%20%22optionsShowMp3Btn%22:%20%7B%22message%22:%20%22Schaltfl%C3%A4che%20mp3%20anzeigen%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22Cheap%20Flights%20Advisor%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22Laden%20Sie%20die%20Dateien%20mit%20SaveFrom.net%20von%20der%20aktuellen%20Seite%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22Hier%20klicken,%20wenn%20die%20Download-Taste%20nicht%20erscheint%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22Alle%20auf%20dieser%20Seite%20gefundenen%20Audiodateien%20herunterladen%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22Playliste%20mit%20den%20Links%20zu%20den%20Audiodateien%20generieren%20und%20downloaden%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22Alle%20auf%20der%20aktuellen%20Seite%20gefundenen%20Bilder%20herunterladen%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22Schreiben%20Sie%20uns,%20wenn%20Probleme%20auftreten%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22AN/AUS%20unterst%C3%BCtzte%20Ressourcen%20und%20Helperoptionen%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22Qualit%C3%A4t%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22Wenn%20es%20nicht%20um%20Qualit%C3%A4t%20geht,%20wird%20das%20n%C3%A4chste%20verf%C3%BCgbare%20Video%20heruntergeladen.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22Die%20Liste%20der%20gefundenen%20dateien%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'Zum%20Herunterladen%20aller%20datien%20kopieren%20Sie%20die%20liste%20der%20Links%20in%20Ihren%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'Download%20Manager'%7D%7D,'.%20Wenn%20Sie%20noch%20keinen%20Download%20Manager%20haben%20we%20empfehlen%20wir%20Ihnen%20die%20Installation%20des%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22Wiedergabliste%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22Zur%20Wiedergabe%20Ihrer%20gespeicherten%20Wiedergabliste%20kann%20es%20nun%20mit%20einem%20Musik-Player%20ge%C3%B6ffnet%20werden.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20oder%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B%7Bspan:%7B%7D%7D,'%20mithilfe%20von%20Ummy%20herunterladen'%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Btext:'Schnell%20und%20einfach%20HD%20Videos%20und%20MP3%20%C3%BCber%20Ummy%20Video%20Downloader%20herunterladen!'%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'Jetzt%20installieren'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'Nach%20der%20Installation%20startet%20jederzeit%20ein%20Download,%20wenn%20Sie%20auf%20',%7Bimg:%7Bsrc:'#'%7D%7D,'%20klicken'%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22%C3%9Cberpr%C3%BCfen%20Sie%20die%20Browsereinstellungen%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22Die%20Option%20%5C%22Jedes%20Mal%20nachfragen,%20wo%20eine%20Datei%20gespeichert%20werden%20soll%5C%22%20muss%20deaktiviert%20sein.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22Mehr%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22Nicht%20benachrichtigen%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22Abbrechen%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22Fortsetzen%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22Achtung!%20Der%20Download%20kann%20nicht%20abgebrochen%20oder%20angehalten%20werden.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22Info%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22Dateigr%C3%B6%C3%9Fe%20und%20Bitrate%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22Links%20zu%20MP3%20Dateien%20wurden%20nicht%20gefunden%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22Photos%20are%20not%20found%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22Album%20herunterladen%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22Alle%20Alben%20herunterladen%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22Gefundene%20Fotos%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20Foto(s)%20vor%C3%BCbergehend%20nicht%20verf%C3%BCgbar%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22Gefundene%20Links%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22von%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22Zeigen%20als%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22Liste%20der%20Links%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'Um%20alle%20Fotos%20herunterzuladen,%20kopieren%20Sie%20die%20Links%20aus%20der%20Liste%20und%20f%C3%BCgen%20Sie%20diese%20in%20Ihren%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'Download%20Manager'%7D%7D,'%20ein.%20Wenn%20Sie%20noch%20keinen%20Download%20Manager%20haben%20we%20empfehlen%20wir%20Ihnen%20die%20Installation%20des%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22Tabelle%20der%20Thumbnails%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22Liste%20der%20Fotos%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22Klicken%20Sie%20auf%20ein%20Foto%20um%20es%20herunterzuladen.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22B%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22kB%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22MB%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22GB%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22TB%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'Herunterladen:%20%C3%96ffnen%20Sie%20',%7Ba:%7Bhref:'%7Burl%7D',text:'die%20Video%20Seite'%7D%7D,'%20und%20dr%C3%BCcken%20Sie%20den%20%5C%22Herunterladen%5C%22%20Knopf%20%C3%BCber%20dem%20Video-Spieler'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22Dateien%20gefunden:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22In%20%25w%20teilen%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22Der%20SaveFrom.net%20Helper%20erm%C3%B6glicht%20es%20Ihnen%20Dateien%20YouTube.com,%20Facebook.com,%20VK.com%20und%20mehr%20als%2040%20andere%20Seiten%20mit%20einem%20Klick%20herunterzuladen%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22Gute%20Nachrichten!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'SaveFrom.net%20Helper%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,'%20wurde%20erfolgreich%20installiert.%20Jetzt%20kannst%20due%20jedes%20Video%20mit%20einem%20Klick%20von%20YouTube%20herunterladen'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'Wie%20das%20geht?',%7Bbr:%7B%7D%7D,'Hier%20erf%C3%A4hrst%20du%20es'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22W%C3%A4hle%20das%20Format%20des%20Videos,%20das%20du%20herunterladen%20m%C3%B6chtest%20und%20klicken%20auf%20%5C%22Herunterladen%5C%22%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22Historie%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'Du%20m%C3%B6chtest%20ein%20Video%20aus%20Historie%20herunterladen?%20Klicken%20einfach%20in%20der%20Vorschau%20des%20zuletzt%20gesehenen%20Videos%20auf%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'Du%20musst%20dir%20das%20Video%20nicht%20ansehen%20%E2%80%94%20klicke%20einfach%20auf%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20',%20w%C3%A4hle%20die%20Qualit%C3%A4t%20und%20lade%20es%20herunter.%20Ganz%20einfach,%20oder?'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22Viel%20Spa%C3%9F%20mit%20SaveFrom.net%20Helper!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'Noch%20Fragen?%20Vorschl%C3%A4ge?%20Willkommen%20auf%20unserer%20',%20%7Ba:%20%7Btext:%20'Support-Seite',%20href:%20'#support'%7D%7D%20,'.%20Schlie%C3%9Fe%20dich%20uns%20bei%20',%20%7Ba:%20%7Btext:%20'Facebook',%20href:%20'#fb'%7D%7D%20,'%20an'%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B'Klicken%20Sie%20zum%20',%7Bb:%20%7Btext:%20'Download'%7D%7D,',%20einfach%20auf%20die%20Schaltfl%C3%A4che'%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B'Hatten%20Sie%20',%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader%20bereits%20zuvor%20installiert?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22Ja%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22Nein%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22Diese%20Meldung%20nicht%20wieder%20anzeigen%22%7D%0A%7D";
+  _languageList.en = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22Download%20YouTube,%20Facebook,%20VK.com%20and%2040+%20sites%20in%20one%20click.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%20lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22Download%20Facebook,%20VK.com%20and%2040+%20sites%20in%20one%20click.%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22en%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%20disabled%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22Enable%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22Disable%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22Show%20extension%20button%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22Copy%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22Download%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22Click%20the%20link%20while%20holding%20Alt/Option%20or%20Ctrl%20key%20to%20download%20the%20file.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22No%20links%20were%20found%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22More%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22Close%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22without%20audio%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22size%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22Subtitles%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22Playlist%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22List%20of%20files%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22Download%20the%20whole%20playlist%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22Get%20file%20size%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22Unable%20to%20get%20the%20file%20size.%20Please%20try%20again.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22Get%20a%20direct%20link%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22Go%20to%20SaveFrom.net%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22Refresh%20links%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22Links%20updated%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22Download%20audio%20files%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22Download%20a%20playlist%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22Download%20pictures%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22Install%20full%20version%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22Disable%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22Settings%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22Report%20a%20bug%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22Become%20better%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22Disable%20on%20this%20website%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22Enable%20on%20this%20website%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22Turn%20On/Off%20on%20this%20website%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22Show/hide%20extension%20button%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22Update%20to%20%25d%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22About%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22Version%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22Helps%20users%20to%20get%20direct%20links%20to%20download%20from%20more%20than%2040%20websites,%20including%20Dailymotion.com,%20YouTube.com,%20VK.com%20and%20others.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22Helps%20users%20to%20get%20direct%20links%20to%20download%20from%20more%20than%2040%20websites,%20including%20Dailymotion.com,%20VK.com%20and%20others.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22Supported%20resources%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22Home%20page%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%20-%20Preferences%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22Handle%20links%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22To%20filehostings%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22To%20mediahostings%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22Modules%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22Hide%20links%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22VK%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22Odnoklassniki%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22Moy%20Mir%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22Show%20bitrate%20instantly%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22Advisor%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22Show%20tips%20for%20Ummy%20Video%20Downloader%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22Advanced%20download%20mode%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22Show%20the%20Ummy%20button%22%7D,%0A%20%22optionsShowMp3Btn%22:%20%7B%22message%22:%20%22Show%20the%20mp3%20button%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22Cheap%20Flights%20Advisor%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22Download%20files%20from%20the%20current%20page%20using%20SaveFrom.net%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22Press%20if%20Download%20button%20doesn't%20appear%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22Download%20all%20audio%20files%20found%20on%20the%20current%20page%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22Generates%20and%20downloads%20the%20playlist%20consisting%20of%20links%20to%20audio%20files%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22Download%20all%20pictures%20found%20on%20the%20current%20page%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22Let%20us%20know%20if%20you%20have%20any%20problems%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22ON/OFF%20supported%20resources%20and%20Helper%20options%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22We%20work%20hard%20to%20become%20better.%20Please,%20give%20us%20a%20hand!%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22Quality%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22The%20best%20available%20video%20will%20be%20downloaded%20If%20there%20is%20no%20chosen%20quality.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22The%20list%20of%20the%20found%20files%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'To%20download%20all%20files%20copy%20the%20list%20of%20links%20and%20paste%20it%20into%20the%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'download%20manager'%7D%7D,'.%20If%20you%20do%20not%20have%20a%20download%20manager%20installed%20we%20recommend%20installing%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22Playlist%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22To%20playback%20the%20saved%20playlist%20it%20may%20be%20now%20opened%20in%20the%20music%20player.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20or%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B%7Bspan:%7B%7D%7D,'%20via%20Ummy'%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Btext:'Fast%20and%20easy%20download%20HD%20videos%20and%20MP3%20via%20Ummy%20Video%20Downloader!'%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'Install%20Now'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'When%20installed,%20a%20download%20will%20start%20anytime%20you%20click%20on%20',%7Bimg:%7Bsrc:'#'%7D%7D%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22Check%20browser%20settings%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22The%20option%20%5C%22Always%20ask%20me%20where%20to%20save%20files%5C%22%20must%20be%20turned%20off.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22More%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22Don't%20notify%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22Cancel%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22Continue%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22Warning!%20Downloading%20cannot%20be%20canceled%20or%20suspended.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22Info%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22File%20size%20and%20bitrate%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22Links%20to%20MP3%20files%20are%20not%20found%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22Photos%20are%20not%20found%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22Download%20album%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22Download%20all%20albums%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22Found%20photos%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20photos%20are%20temporarily%20unavailable%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22Found%20links%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22of%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22Show%20as%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22List%20of%20links%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'To%20download%20all%20photos%20copy%20the%20list%20of%20links%20and%20paste%20it%20into%20the%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'download%20manager'%7D%7D,'.%20If%20you%20do%20not%20have%20a%20download%20manager%20installed%20we%20recommend%20installing%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22Table%20of%20thumbnails%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22List%20of%20photos%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22Click%20on%20the%20photo%20to%20download%20it.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22B%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22kB%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22MB%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22GB%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22TB%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'Download:%20open%20',%7Ba:%7Bhref:'%7Burl%7D',text:'the%20video%20page'%7D%7D,'%20and%20press%20the%20%5C%22Download%5C%22%20button%20above%20the%20player'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22Files%20found:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22Share%20on%20%25w%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%20enables%20you%20to%20download%20files%20from%20YouTube.com,%20Facebook.com,%20VK.com%20and%20more%20than%2040%20other%20just%20in%20one%20click%20for%20free%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22Good%20news!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'SaveFrom.net%20Helper%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,'%20has%20been%20successfully%20installed%20and%20now%20you%20can%20download%20any%20video%20from%20YouTube%20in%20one%20click'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'Want%20to%20know%20how?',%7Bbr:%7B%7D%7D,'Click%20here'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22To%20download%20a%20video%20choose%20a%20format%20and%20click%20the%20%5C%22Download%5C%22%20button%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22History%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'Do%20you%20want%20to%20download%20a%20video%20from%20History?',%7Bbr:%7B%7D%7D,'Just%20click%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,'%20on%20the%20preview%20of%20the%20previously%20watched%20video'%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'No%20need%20to%20watch%20a%20video%20%E2%80%94%20just%20click%20on%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,',%20choose%20the%20quality,%20and%20download.%20Quite%20easy,%20isn%E2%80%99t%20it?'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22Enjoy%20SaveFrom.net%20Helper!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'Still%20have%20questions?%20Want%20to%20share%20your%20ideas?%20Welcome%20to%20',%7Ba:%20%7Btext:%20'our%20support%20page',%20href:%20'#support'%7D%7D,'%20or%20join%20us%20on%20',%20%7Ba:%20%7Btext:%20'Facebook',%20href:%20'#fb'%7D%7D%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B'Just%20click%20the%20button%20to%20',%7Bb:%20%7Btext:%20'download'%7D%7D%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B'Have%20you%20already%20installed',%7Bbr:%7B%7D%7D,%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader%20earlier?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22Yes%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22No%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22Do%20not%20show%20this%20message%20again%22%7D%0A%7D";
+  _languageList.es = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22Descargas%20desde%20YouTube,%20Facebook,%20VK.com%20y%2040+%20sitios%20en%20un%20s%C3%B3lo%20clic.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%20lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22Descargas%20desde%20Facebook,%20VK.com%20y%2040+%20sitios%20en%20un%20s%C3%B3lo%20clic.%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22es%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%20deshabilitado%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22Habilitar%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22Deshabilitar%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22Mostrar%20bot%C3%B3n%20de%20extensi%C3%B3n%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22Copiar%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22Descargar%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22Haga%20clic%20en%20el%20enlace%20mientras%20presiona%20la%20tecla%20Alt/Opci%C3%B3n%20o%20Ctrl%20para%20descargar%20el%20archivo.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22No%20se%20han%20encontrado%20enlaces%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22M%C3%A1s%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22Cerrar%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22sin%20audio%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22tama%C3%B1o%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22Subt%C3%ADtulos%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22Lista%20de%20reproducci%C3%B3n%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22Lista%20de%20archivos%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22Descargar%20toda%20la%20lista%20de%20reproducci%C3%B3n%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22Obtener%20tama%C3%B1o%20de%20archivo%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22No%20se%20pudo%20obtener%20el%20tama%C3%B1o%20del%20archivo.%20Por%20favor,%20int%C3%A9ntelo%20de%20nuevo.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22Obtener%20un%20enlace%20directo%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22Ir%20a%20SaveFrom.net%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22Actualizar%20enlaces%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22Enlaces%20actualizados%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22Descargar%20archivos%20de%20audio%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22Descargar%20una%20lista%20de%20reproducci%C3%B3n%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22Descargar%20im%C3%A1genes%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22Instalar%20la%20versi%C3%B3n%20completa%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22Deshabilitar%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22Ajustes%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22Informar%20sobre%20un%20problema%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22Mejorar%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22Desactivar%20en%20este%20sitio%20web%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22Activar%20en%20este%20sitio%20web%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22Activ./Desactiv.%20en%20esta%20web%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22Mostrar/ocultar%20bot%C3%B3n%20extens%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22Actualizar%20a%20la%20%25d%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22Acerca%20de%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22Versi%C3%B3n%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22Ayuda%20a%20los%20usuarios%20a%20obtener%20enlaces%20directos%20para%20descargar%20desde%20m%C3%A1s%20de%2040%20sitios%20web,%20incluidos%20Dailymotion.com,%20YouTube.com,%20VK.com%20y%20otros.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22Ayuda%20a%20los%20usuarios%20a%20obtener%20enlaces%20directos%20para%20descargar%20desde%20m%C3%A1s%20de%2040%20sitios%20web,%20incluidos%20Dailymotion.com,%20VK.com%20y%20otros.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22Recursos%20admitidos%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22P%C3%A1gina%20de%20inicio%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%20-%20Preferencias%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22Manejar%20enlaces%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22A%20servidores%20de%20archivos%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22A%20servidores%20multimedia%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22M%C3%B3dulos%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22Ocultar%20enlaces%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22VK%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22Odnoklassniki%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22Moy%20Mir%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22Mostrar%20velocidad%20de%20bits%20instant%C3%A1neamente%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22Consejero%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22Muestra%20consejos%20para%20Ummy%20Video%20Downloader%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22M%C3%B3udlo%20de%20descarga%20avanzada%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22Mostrar%20el%20bot%C3%B3n%20Ummy%22%7D,%0A%20%22optionsShowMp3Btn%22:%20%7B%22message%22:%20%22Mostrar%20el%20bot%C3%B3n%20mp3%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22Cheap%20Flights%20Advisor%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22Descargar%20archivos%20de%20la%20p%C3%A1gina%20actual%20usando%20SaveFrom.net%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22Pulse%20si%20no%20aparece%20el%20bot%C3%B3n%20Descargar%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22Descargar%20todos%20los%20archivos%20de%20audio%20de%20la%20p%C3%A1gina%20actual%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22Genera%20y%20descarga%20la%20lista%20de%20reproducci%C3%B3n%20que%20consiste%20en%20enlaces%20a%20archivos%20de%20audio%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22Descargar%20todas%20las%20im%C3%A1genes%20encontradas%20en%20la%20p%C3%A1gina%20actual%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22H%C3%A1ganos%20saber%20si%20tiene%20alg%C3%BAn%20problema%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22ACTIVAR/DESACTIVAR%20recursos%20admitidos%20y%20opciones%20del%20Helper%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22Trabajamos%20duro%20para%20mejorar.%20%C2%A1%C3%89chenos%20una%20mano!%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22Calidad%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22Si%20no%20se%20elige%20ninguna%20calidad,%20se%20descargar%C3%A1%20el%20mejor%20v%C3%ADdeo%20disponible.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22La%20lista%20de%20los%20archivos%20encontrados%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'Para%20descargar%20todos%20los%20archivos,%20copie%20la%20lista%20de%20enlaces%20y%20p%C3%A9guela%20en%20el%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'gestor%20de%20descargas'%7D%7D,'.%20Si%20no%20tiene%20instalado%20un%20gestor%20de%20descargas,%20le%20recomendamos%20que%20instale%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22Lista%20de%20reproducci%C3%B3n%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22Para%20reproducir%20la%20lista%20de%20reproducci%C3%B3n%20guardada,%20puede%20abrirla%20ahora%20en%20el%20reproductor%20de%20m%C3%BAsica.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20o%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B%7Bspan:%7B%7D%7D,'%20via%20Ummy'%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Btext:'Instale%20Ummy%20Video%20Downloader%20y%20descargue%20sus%20v%C3%ADdeos%20favoritos%20en%20HD%20o%20MP3.'%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'Descargar'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'Despu%C3%A9s%20de%20la%20instalaci%C3%B3n,%20se%20iniciar%C3%A1%20una%20descarga%20autom%C3%A1ticamente%20siempre%20que%20haga%20clic%20en%20',%7Bimg:%7Bsrc:'#'%7D%7D%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22Compruebe%20la%20configuraci%C3%B3n%20de%20su%20navegador%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22La%20opci%C3%B3n%20%5C%22Preguntarme%20siempre%20d%C3%B3nde%20guardar%20los%20archivos%5C%22%20debe%20estar%20desactivada.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22M%C3%A1s%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22No%20notificar%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22Cancelar%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22Continuar%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22%C2%A1Advertencia!%20La%20descarga%20no%20se%20puede%20cancelar%20o%20suspender.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22Informaci%C3%B3n%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22Tama%C3%B1o%20de%20archivo%20y%20velocidad%20de%20bits%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22No%20se%20han%20encontrado%20enlaces%20a%20archivos%20MP3%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22No%20se%20han%20encontrado%20im%C3%A1genes%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22Descargar%20%C3%A1lbum%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22Descargar%20todos%20los%20%C3%A1lbums%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22Im%C3%A1genes%20encontradas%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20im%C3%A1genes%20est%C3%A1n%20temporalmente%20no%20disponibles%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22Enlaces%20encontrados%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22de%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22Mostrar%20como%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22Lista%20de%20enlaces%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'Para%20descargar%20todas%20las%20im%C3%A1genes,%20copie%20la%20lista%20de%20enlaces%20y%20p%C3%A9guela%20en%20el%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'gestor%20de%20descargas'%7D%7D,'.%20Si%20no%20tiene%20instalado%20un%20gestor%20de%20descargas,%20le%20recomendamos%20que%20instale%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22Tabla%20de%20miniaturas%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22Lista%20de%20im%C3%A1genes%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22Haga%20clic%20en%20la%20imagen%20para%20descargarla.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22B%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22kB%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22MB%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22GB%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22TB%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'Descargar:%20abra%20',%7Ba:%7Bhref:'%7Burl%7D',text:'la%20p%C3%A1gina%20del%20v%C3%ADdeo'%7D%7D,'%20y%20pulse%20el%20bot%C3%B3n%20%5C%22Descargar%5C%22%20sobre%20el%20reproductor'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22Archivos%20encontrados:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22Compartir%20en%20%25w%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%20le%20permite%20descargar%20archivos%20desde%20YouTube.com,%20Facebook.com,%20VK.com%20y%20m%C3%A1s%20de%2040%20sitios%20distintos%20con%20tan%20s%C3%B3lo%20un%20clic%20y%20gratis%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22%C2%A1Excelentes%20noticias!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'SaveFrom.net%20Helper%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,%20'%20se%20instal%C3%B3%20con%20%C3%A9xito%20y%20ahora%20puedes%20descargar%20cualquier%20video%20de%20YouTube%20con%20un%20solo%20clic'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'%C2%BFQuieres%20saber%20c%C3%B3mo?',%20%7Bbr:%7B%7D%7D,%20'Haz%20clic%20aqu%C3%AD'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22Para%20descargar%20un%20video,%20elige%20el%20formato%20y%20haz%20clic%20en%20el%20bot%C3%B3n%20%5C%22Descargar%5C%22%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22Historial%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'%C2%BFDeseas%20descargar%20un%20video%20del%20Historial?',%20%7Bbr:%7B%7D%7D,%20'Simplemente%20haz%20clic%20en%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20'%20en%20la%20vista%20previa%20del%20video%20visto%20anteriormente.'%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'No%20es%20necesario%20mirar%20un%20video:%20simplemente%20haz%20clic%20en%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20',%20elige%20la%20calidad%20y%20desc%C3%A1rgalo.%20F%C3%A1cil,%20%C2%BFverdad?'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22%C2%A1Disfruta%20de%20SaveForm.net%20Helper!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'%C2%BFTodav%C3%ADa%20tienes%20preguntas?%20%C2%BFQuieres%20compartir%20tus%20ideas?%20Puedes%20ir%20a%20nuestra%20',%7Ba:%20%7Btext:%20'p%C3%A1gina%20de%20soporte',%20href:%20'#support'%7D%7D,'%20o%20unirte%20a%20nosotros%20en%20',%20%7Ba:%20%7Btext:%20'Facebook',%20href:%20'#fb'%7D%7D%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B'Simplemente%20haz%20clic%20en%20el%20bot%C3%B3n%20para%20',%7Bb:%20%7Btext:%20'descargar'%7D%7D%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B'%C2%BFYa%20has%20instalado',%7Bbr:%7B%7D%7D,%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader%20antes?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22S%C3%AD%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22No%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22No%20mostrar%20de%20nuevo%20este%20mensaje%22%7D%0A%7D";
+  _languageList.fr = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9chargez%20YouTube,%20Facebook,%20VK.com%20et%2040+%20sites%20en%20un%20seul%20clic.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%20lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9chargez%20Facebook,%20VK.com%20et%2040+%20sites%20en%20un%20seul%20clic.%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22fr%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22Assistant%20SaveFrom.net%20d%C3%A9sactiv%C3%A9%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22Activer%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22D%C3%A9sactiver%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22Afficher%20le%20bouton%20d'extension%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22Copier%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22Cliquer%20sur%20le%20lien%20tout%20en%20maintenant%20la%20touche%20Alt/Option%20ou%20Ctrl%20pour%20t%C3%A9l%C3%A9charger%20le%20fichier.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22Aucun%20lien%20n'a%20%C3%A9t%C3%A9%20trouv%C3%A9%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22Plus%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22Fermer%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22sans%20audio%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22taille%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22Sous-titres%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22Playlist%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22Liste%20de%20fichiers%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20toute%20la%20playlist%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22Obtenir%20la%20taille%20du%20fichier%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22Impossible%20d'obtenir%20la%20taille%20du%20fichier.%20Veuillez%20r%C3%A9essayer.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22Obtenir%20un%20lien%20direct%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22Aller%20%C3%A0%20SaveFrom.net%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22Rafra%C3%AEchir%20les%20liens%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22Liens%20mis%20%C3%A0%20jour%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20les%20fichiers%20audio%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20une%20playlist%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20les%20images%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22Installer%20la%20version%20compl%C3%A8te%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22D%C3%A9sactiver%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22Param%C3%A8tres%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22Signaler%20un%20bug%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22Am%C3%A9liorer%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22D%C3%A9sactiver%20sur%20ce%20site%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22Activer%20sur%20ce%20site%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22Activer%20On/Off%20sur%20ce%20site%20web%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22Afficher/masquer%20le%20bouton%20d'extension%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22Passer%20%C3%A0%20la%20version%20%25d%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22%C3%80%20propos%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22Version%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22Aide%20les%20utilisateurs%20%C3%A0%20obtenir%20des%20liens%20directs%20pour%20t%C3%A9l%C3%A9charger%20depuis%20plus%20de%2040%20sites%20web,%20y%20compris%20Dailymotion.com,%20YouTube.com,%20VK.com%20et%20d'autres.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22Aide%20les%20utilisateurs%20%C3%A0%20obtenir%20des%20liens%20directs%20pour%20t%C3%A9l%C3%A9charger%20depuis%20plus%20de%2040%20sites%20web,%20y%20compris%20Dailymotion.com,%20VK.com%20et%20d'autres.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22Ressources%20prises%20en%20charge%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22Page%20d'accueil%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper%20-%20Pr%C3%A9f%C3%A9rences%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22manipuler%20les%20liens%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22Vers%20l'h%C3%A9bergement%20de%20fichiers%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22Vers%20l'h%C3%A9bergement%20de%20m%C3%A9dias%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22Modules%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22Masquer%20les%20liens%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22VK%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22Odnoklassniki%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22Moy%20Mir%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22Afficher%20instantan%C3%A9ment%20le%20bitrate%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22Advisor%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22Afficher%20les%20astuces%20pour%20Ummy%20Video%20Downloader%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22Mode%20de%20t%C3%A9l%C3%A9chargement%20avanc%C3%A9%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22Montrer%20le%20bouton%20Ummy%22%7D,%0A%20%22optionsShowMp3Btn%22:%20%7B%22message%22:%20%22Montrer%20le%20bouton%20mp3%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22Cheap%20Flights%20Advisor%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9chargement%20des%20fichiers%20depuis%20la%20page%20actuelle%20en%20utilisant%20SaveFrom.net%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22Appuyez%20si%20le%20bouton%20T%C3%A9l%C3%A9charger%20n'appara%C3%AEt%20pas%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20tous%20les%20fichiers%20audio%20trouv%C3%A9s%20sur%20la%20page%20actuelle%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22G%C3%A9n%C3%A8re%20et%20t%C3%A9l%C3%A9charge%20la%20playlist%20consistant%20en%20liens%20vers%20les%20fichiers%20audio%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20toutes%20les%20images%20trouv%C3%A9es%20sur%20la%20page%20actuelle%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22Pr%C3%A9venez-nous%20si%20vous%20avez%20des%20probl%C3%A8mes%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22ON/OFF%20ressources%20prises%20en%20charge%20et%20options%20Helper%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22Nous%20faisons%20tout%20pour%20nous%20am%C3%A9liorer.%20N'h%C3%A9sitez%20pas%20%C3%A0%20nous%20aider%20!%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22Qualit%C3%A9%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22La%20meilleure%20vid%C3%A9o%20disponible%20sera%20t%C3%A9l%C3%A9charg%C3%A9e%20s'il%20n'y%20a%20pas%20de%20qualit%C3%A9%20choisie.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22La%20liste%20des%20fichiers%20trouv%C3%A9s%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'Pour%20t%C3%A9l%C3%A9charger%20tous%20les%20fichiers%20copiez%20la%20liste%20des%20liens%20et%20collez-la%20dans%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'download%20manager'%7D%7D,'.%20Si%20vous%20n%5C%5C'avez%20pas%20install%C3%A9%20de%20gestionnaire%20de%20t%C3%A9l%C3%A9chargement,%20nous%20vous%20recommandons%20d%5C%5C'installer%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22Playlist%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22Pour%20lire%20la%20playlist%20sauvegard%C3%A9e,%20ouvrez-la%20dans%20le%20lecteur%20musical.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20ou%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B%7Bspan:%7B%7D%7D,'%20via%20Ummy'%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Btext:'Installez%20Ummy%20Video%20Downloader%20et%20t%C3%A9l%C3%A9chargez%20vos%20vid%C3%A9os%20favorites%20en%20HD%20ou%20MP3.'%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'Download'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'Apr%C3%A8s%20l%5C%5C'installation,%20un%20t%C3%A9l%C3%A9chargement%20d%C3%A9marrera%20automatiquement%20d%C3%A8s%20que%20vous%20cliquez%20sur%20',%7Bimg:%7Bsrc:'#'%7D%7D%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22V%C3%A9rifier%20les%20param%C3%A8tres%20du%20navigateur%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22L'option%20%5C%22Toujours%20me%20demander%20o%C3%B9%20sauvegarder%20les%20fichiers%5C%22%20doit%20%C3%AAtre%20d%C3%A9sactiv%C3%A9e.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22Plus%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22ne%20pas%20notifier'%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22Annuler%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22Continuer%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22Attention!%20Le%20t%C3%A9l%C3%A9chargement%20ne%20peut%20pas%20%C3%AAtre%20annul%C3%A9%20ou%20suspendu.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22Info%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22Taille%20de%20fichier%20et%20bitrate%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22Les%20liens%20vers%20les%20fichiers%20MP3%20sont%20introuvables%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22Photos%20introuvables%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20l'album%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22T%C3%A9l%C3%A9charger%20tous%20les%20albums%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22Photos%20trouv%C3%A9es%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20photos%20sont%20temporairement%20indisponibles%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22Liens%20trouv%C3%A9s%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22de%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22Afficher%20comme%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22Liste%20des%20liens%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'Pour%20t%C3%A9l%C3%A9charger%20toutes%20les%20photos%20copiez%20la%20liste%20des%20liens%20et%20collez-la%20dans%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'download%20manager'%7D%7D,'.%20Si%20vous%20n%5C%5C'avez%20pas%20install%C3%A9%20de%20gestionnaire%20de%20t%C3%A9l%C3%A9chargement%20nous%20vous%20recommandons%20d%5C%5C'installer%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22Tableau%20des%20vignettes%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22Liste%20des%20photos%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22Cliquez%20sur%20la%20photo%20pour%20la%20t%C3%A9l%C3%A9charger.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22O%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22ko%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22Mo%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22Go%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22To%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'Download:%20open%20',%7Ba:%7Bhref:'%7Burl%7D',text:'the%20video%20page'%7D%7D,'%20et%20appuyez%20sur%20le%20bouton%20%5C%22T%C3%A9l%C3%A9charger%5C%22%20au-dessus%20du%20lecteur'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22Fichiers%20trouv%C3%A9s%20:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22Partager%20sur%20%25w%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22SaveFrom.net%20helper%20vous%20permet%20de%20t%C3%A9l%C3%A9charger%20des%20fichiers%20de%20YouTube.com,%20Facebook.com,%20VK.com%20et%20plus%20de%2040%20autres%20gratuitement%20et%20en%20un%20seul%20clic%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22Bonnes%20nouvelles%20!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'SaveFrom.net%20Helper%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,%20'%20a%20%C3%A9t%C3%A9%20install%C3%A9%20avec%20succ%C3%A8s%20et%20maintenant%20vous%20pouvez%20t%C3%A9l%C3%A9charger%20les%20vid%C3%A9os%20de%20YouTube%20en%20un%20clic'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'Vous%20voulez%20savoir%20comment%20?%20Cliquez%20ici'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22Pour%20t%C3%A9l%C3%A9charger%20une%20vid%C3%A9o,%20choisissez%20un%20format%20et%20cliquez%20sur%20le%20bouton%20%5C%22T%C3%A9l%C3%A9charger%5C%22%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22Historique%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'Voulez-vous%20t%C3%A9l%C3%A9charger%20une%20vid%C3%A9o%20depuis%20l%E2%80%99historique%20?',%20%7Bbr:%7B%7D%7D,%20'Il%20suffit%20de%20cliquer%20sur%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20'%20situ%C3%A9e%20sur%20l%5C%5C'aper%C3%A7u%20de%20la%20vid%C3%A9o%20pr%C3%A9c%C3%A9demment%20regard%C3%A9e'%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'Pas%20besoin%20de%20regarder%20une%20vid%C3%A9o%20%E2%80%94%20il%20suffit%20de%20cliquer%20sur%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20',%20faites%20le%20choix%20de%20la%20qualit%C3%A9,%20et%20t%C3%A9l%C3%A9charger.%20Facile,%20est-ce%20pas%20?'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22Profitez%20de%20SaveFrom.net%20Helper%20!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'Vous%20avez%20encore%20des%20questions%20?%20Vous%20voulez%20partager%20vos%20id%C3%A9es%20?%20Bienvenue%20sur%20notre%20page%20',%7Ba:%20%7Btext:%20'de%20d%E2%80%99Aide',%20href:%20'#support'%7D%7D,'%20ou%20rejoignez-nous%20sur%20',%20%7Ba:%20%7Btext:%20'Facebook',%20href:%20'#fb'%7D%7D%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B'Il%20suffit%20de%20cliquer%20sur%20le%20bouton%20pour%20',%7Bb:%20%7Btext:%20't%C3%A9l%C3%A9charger'%7D%7D%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B'Avez-vous%20d%C3%A9j%C3%A0%20install%C3%A9',%7Bbr:%7B%7D%7D,%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader%20avant%20?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22Oui%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22Non%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22Ne%20plus%20afficher%20ce%20message%22%7D%0A%7D";
+  _languageList.id = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22Bantuan%20SaveFrom.net%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22Unduh%20YouTube,%20Facebook,%20VK.com,%20dan%2040+%20situs%20dengan%20satu%20klik.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22Bantuan%20SaveFrom.net%20lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22Unduh%20Facebook,%20VK.com,%20dan%2040+%20situs%20dengan%20satu%20klik.%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22id%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22Bantuan%20SaveFrom.net%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22Bantuan%20SaveFrom.net%20nonaktif%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22Aktifkan%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22Nonaktifkan%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22Tampilkan%20tombol%20ekstensi%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22Salin%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22Unduh%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22Klik%20tautan%20sambil%20menahan%20tombol%20Alt/Option%20atau%20Ctrl%20untuk%20mengunduh%20file.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22Tautan%20tidak%20ditemukan%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22Lainnya%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22Tutup%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22tanpa%20audio%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22ukuran%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22Subtitel%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22Daftar%20putar%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22Daftar%20file%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22Unduh%20seluruh%20daftar%20putar%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22Dapatkan%20ukuran%20file%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22Gagal%20mendapatkan%20ukuran%20file.%20Mohon%20coba%20lagi.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22Dapatkan%20tautan%20langsung%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22Buka%20SaveFrom.net%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22Segarkan%20tautan%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22Tautan%20diperbarui%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22Unduh%20file%20audio%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22Unduh%20daftar%20putar%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22Unduh%20gambar%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22Pasang%20versi%20lengkap%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22Nonaktifkan%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22Setelan%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22Laporkan%20bug%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22Jadikan%20lebih%20baik%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22Nonaktifkan%20di%20situs%20web%20ini%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22Aktifkan%20di%20situs%20web%20ini%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22Nyalakan/Matikan%20di%20situs%20ini%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22Tampilkan/tutup%20tbl%20ekstensi%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22Perbarui%20ke%20%25d%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22Tentang%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22Bantuan%20SaveFrom.net%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22Versi%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22Membantu%20pengguna%20mendapatkan%20tautan%20langsung%20dari%2040+%20situs%20web,%20termasuk%20Dailymotion.com,%20YouTube.com,%20VK.com%20dan%20lain-lain.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22Membantu%20pengguna%20mendapatkan%20tautan%20langsung%20untuk%20mengunduh%20dari%2040+%20situs%20web,%20termasuk%20Dailymotion.com,%20VK.com%20dan%20lain-lain.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22Sumber%20daya%20yang%20didukung%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22Laman%20beranda%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22Bantuan%20SaveFrom.net%20-%20Preferensi%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22Tangani%20tautan%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22Ke%20filehosting%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22Ke%20mediahosting%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22Modul%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22Sembunyikan%20tautan%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22VK%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22Odnoklassniki%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22Moy%20Mir%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22Langsung%20tampilkan%20bitrate%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22Penasihat%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22Tampilkan%20tips%20untuk%20Ummy%20Video%20Downloader%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22Mode%20unduh%20lanjutan%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22Perlihatkan%20tombol%20Ummy%22%7D,%0A%20%22optionsShowMp3Btn%22:%20%7B%22message%22:%20%22Perlihatkan%20tombol%20mp3%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22Cheap%20Flights%20Advisor%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22Unduh%20file%20dari%20laman%20saat%20ini%20dengan%20SaveFrom.net%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22Tekan%20jika%20tombol%20Unduh%20tidak%20muncul%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22Unduh%20semua%20file%20audio%20yang%20ada%20di%20laman%20saat%20ini%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22Buat%20dan%20unduh%20daftar%20putar%20berisi%20tautan%20ke%20file%20audio%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22Unduh%20semua%20gambar%20yang%20ada%20di%20laman%20saat%20ini%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22Beri%20tahu%20kami%20jika%20Anda%20mengalami%20masalah%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22AKTIFKAN/NONAKTIFKAN%20sumber%20daya%20yang%20didukung%20dan%20opsi%20Bantuan%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22Kami%20bekerja%20keras%20untuk%20jadi%20lebih%20baik.%20Tolong,%20bantu%20kami!%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22Kualitas%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22Video%20terbaik%20yang%20tersedia%20akan%20diunduh%20jika%20tidak%20ada%20kualitas%20yang%20dipilih.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22Daftar%20file%20yang%20ditemukan%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'Untuk%20mengunduh%20semua%20file,%20salin%20daftar%20tautan%20dan%20tempelkan%20ke%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'pengelola%20unduhan'%7D%7D,'.%20Jika%20Anda%20tidak%20memiliki%20pengelola%20unduhan,%20kami%20menyarankan%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22Daftar%20putar%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22Untuk%20memutar%20daftar%20putar%20yang%20disimpan,%20sekarang%20bisa%20dibuka%20di%20pemutar%20musik.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20atau%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B%7Bspan:%7B%7D%7D,'%20via%20Ummy'%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Btext:'Pasang%20Ummy%20Video%20Downloader%20%20dan%20unduh%20video%20favorit%20Anda%20dalam%20format%20HD%20atau%20MP3.'%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'Unduh'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'Setelah%20pemasangan,%20unduhan%20akan%20otomatis%20dimulai%20setiap%20kali%20Anda%20mengeklik%20',%7Bimg:%7Bsrc:'#'%7D%7D%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22Periksa%20setelan%20browser%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22Opsi%20%5C%22Selalu%20tanya%20saya%20di%20mana%20menyimpan%20file%5C%22%20harus%20dinonaktifkan.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22Lainnya%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22Jangan%20beri%20tahu%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22Batal%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22Lanjutkan%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22Perhatian!%20Pengunduhan%20tidak%20dapat%20dibatalkan%20atau%20ditunda.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22Info%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22Ukuran%20file%20dan%20bitrate%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22Tautan%20atau%20file%20MP3%20tidak%20ditemukan%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22Foto%20tidak%20ditemukan%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22Unduh%20album%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22Unduh%20semua%20album%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22Foto%20ditemukan%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20foto%20sementara%20ini%20tidak%20tersedia%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22Tautan%20ditemukan%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22dari%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22Tampilkan%20sebagai%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22Daftar%20tautan%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'Untuk%20mengunduh%20semua%20foto,%20salin%20daftar%20tautan%20dan%20tempelkan%20ke%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'pengelola%20unduhan'%7D%7D,'.%20Jika%20Anda%20tidak%20memiliki%20pengelola%20unduhan,%20kami%20menyarankan%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22Tabel%20gambar%20mini%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22Daftar%20foto%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22Klik%20foto%20untuk%20mengunduhnya.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22B%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22kB%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22MB%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22GB%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22TB%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'Mengunduh:%20buka%20',%7Ba:%7Bhref:'%7Burl%7D',text:'laman%20video'%7D%7D,'%20dan%20tekan%20tombol%20%5C%22Unduh%5C%22%20di%20atas%20pemutar'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22File%20ditemukan:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22Bagikan%20di%20%25w%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22Dengan%20bantuan%20SaveFrom.net,%20Anda%20dapat%20mengunduh%20file%20dari%20YouTube.com,%20Facebook.com,%20VK.com,%20dan%20lebih%20dari%2040%20lainnya%20hanya%20dengan%20satu%20klik%20gratis%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22Berita%20bagus!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'SaveFrom.net%20Helper%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,'%20telah%20berhasil%20diinstal%20dan%20kini%20Anda%20dapat%20mengunduh%20video%20apa%20pun%20dari%20YouTube%20dengan%20satu%20klik'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'Anda%20ingin%20tahu%20caranya?',%20%7Bbr:%7B%7D%7D,%20'Klik%20di%20sini'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22Untuk%20mengunduh%20video,%20pilih%20suatu%20format%20dan%20klik%20tombol%20%5C%22Unduh%5C%22%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22Riwayat%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'Apakah%20Anda%20ingin%20mengunduh%20video%20dari%20Riwayat?',%20%7Bbr:%7B%7D%7D,%20'Cukup%20klik%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20'%20pada%20pratinjau%20video%20yang%20telah%20ditonton%20sebelumnya'%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'Tidak%20perlu%20menonton%20video%20%E2%80%94%20cukup%20klik%20pada%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20',%20pilih%20mutunya,%20dan%20unduh.%20Cukup%20mudah,%20ya?'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22Nikmati%20SaveFrom.net%20Helper!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'Masih%20punya%20pertanyaan?%20Ingin%20berbagi%20ide?%20Selamat%20datang%20di%20',%20%7Ba:%20%7Btext:%20'halaman%20dukungan',%20href:%20'#support'%7D%7D,'%20kami%20atau%20bergabunglah%20dengan%20kami%20di%20',%20%7Ba:%20%7Btext:%20'Facebook',%20href:%20'#fb'%7D%7D%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B'Cukup%20klik%20tombol%20untuk%20',%7Bb:%20%7Btext:%20'mengunduh'%7D%7D%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B'Apakah%20Anda%20sudah%20menginstal',%7Bbr:%7B%7D%7D,%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader%20sebelumnya?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22Ya%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22Tidak%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22Jangan%20perlihatkan%20pesan%20ini%20lagi%22%7D%0A%7D";
+  _languageList.ru = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%B9%D1%82%D0%B5%20%D1%81%20%D0%92%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5,%20YouTube,%20%D0%9E%D0%B4%D0%BD%D0%BE%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BD%D0%B8%D0%BA%D0%B8%20%D0%B8%20%D0%B5%D1%89%D0%B5%2040%20%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%201%20%D0%BA%D0%BB%D0%B8%D0%BA.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%20lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%B9%D1%82%D0%B5%20%D1%81%20%D0%92%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5,%20%D0%9E%D0%B4%D0%BD%D0%BE%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BD%D0%B8%D0%BA%D0%B8%20%D0%B8%20%D0%B5%D1%89%D0%B5%2040%20%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%201%20%D0%BA%D0%BB%D0%B8%D0%BA.%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22ru%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%20%D0%B2%D1%8B%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22%D0%92%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22%D0%92%D1%8B%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22%D0%9A%D0%BE%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D0%B6%D0%BC%D0%B8%D1%82%D0%B5%20%D0%BD%D0%B0%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D1%83,%20%D1%83%D0%B4%D0%B5%D1%80%D0%B6%D0%B8%D0%B2%D0%B0%D1%8F%20%D0%BA%D0%BB%D0%B0%D0%B2%D0%B8%D1%88%D1%83%20Alt%20%D0%B8%D0%BB%D0%B8%20Ctrl,%20%D1%87%D1%82%D0%BE%D0%B1%D1%8B%20%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B8%D1%82%D1%8C%20%D1%84%D0%B0%D0%B9%D0%BB.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D1%83%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8C%20%D0%BD%D0%B0%D0%B9%D1%82%D0%B8%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22%D0%95%D1%89%D1%91%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%BA%D1%80%D1%8B%D1%82%D1%8C%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22%D0%BA%D0%B1/%D1%81%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22%D0%B1%D0%B5%D0%B7%20%D0%B0%D1%83%D0%B4%D0%B8%D0%BE%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22%D0%A1%D1%83%D0%B1%D1%82%D0%B8%D1%82%D1%80%D1%8B%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22%D0%9F%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B2%D0%B5%D1%81%D1%8C%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22%D0%9E%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D1%8C%20%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B0%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D1%83%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8C%20%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D1%8C%20%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B0.%20%D0%9F%D0%BE%D0%BF%D1%80%D0%BE%D0%B1%D1%83%D0%B9%D1%82%D0%B5%20%D0%BF%D0%BE%D0%B2%D1%82%D0%BE%D1%80%D0%B8%D1%82%D1%8C%20%D0%BF%D0%BE%D0%BF%D1%8B%D1%82%D0%BA%D1%83.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B8%20%D0%BF%D1%80%D1%8F%D0%BC%D1%83%D1%8E%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D1%83%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22%D0%9F%D0%B5%D1%80%D0%B5%D0%B9%D1%82%D0%B8%20%D0%BD%D0%B0%20SaveFrom.net%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22%D0%9E%D0%B1%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%20%D0%BE%D0%B1%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D1%8B%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B0%D1%83%D0%B4%D0%B8%D0%BE%20%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B8%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C%20%D0%BF%D0%BE%D0%BB%D0%BD%D1%83%D1%8E%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8E%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22%D0%92%D1%8B%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22%D0%A1%D0%BE%D0%BE%D0%B1%D1%89%D0%B8%D1%82%D1%8C%20%D0%BE%D0%B1%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B5%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22%D0%A1%D1%82%D0%B0%D1%82%D1%8C%20%D0%BB%D1%83%D1%87%D1%88%D0%B5%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22%D0%9E%D1%82%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BD%D0%B0%20%D1%8D%D1%82%D0%BE%D0%BC%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22%D0%92%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BD%D0%B0%20%D1%8D%D1%82%D0%BE%D0%BC%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22%D0%92%D0%BA%D0%BB/%D0%92%D1%8B%D0%BA%D0%BB%20%D0%BD%D0%B0%20%D1%8D%D1%82%D0%BE%D0%BC%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7./%D1%81%D0%BA%D1%80.%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22%D0%9E%D0%B1%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C%20%D0%B4%D0%BE%20%25d%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22%D0%9E%20%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B8%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22%D0%92%D0%B5%D1%80%D1%81%D0%B8%D1%8F%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B7%D0%B2%D0%BE%D0%BB%D1%8F%D0%B5%D1%82%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D1%8F%D0%BC%D1%8B%D0%B5%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%B1%D0%BE%D0%BB%D0%B5%D0%B5%20%D1%87%D0%B5%D0%BC%2040%20%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2,%20%D1%81%D1%80%D0%B5%D0%B4%D0%B8%20%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D1%85%20%20VK.com,%20YouTube.com%20%D0%B8%20%D0%B4%D1%80%D1%83%D0%B3%D0%B8%D0%B5.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B7%D0%B2%D0%BE%D0%BB%D1%8F%D0%B5%D1%82%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D1%8F%D0%BC%D1%8B%D0%B5%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%B1%D0%BE%D0%BB%D0%B5%D0%B5%20%D1%87%D0%B5%D0%BC%2040%20%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2,%20%D1%81%D1%80%D0%B5%D0%B4%D0%B8%20%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D1%85%20%20VK.com,%20Vimeo%20%D0%B8%20%D0%B4%D1%80%D1%83%D0%B3%D0%B8%D0%B5.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC%D1%8B%D0%B5%20%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D1%8B%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D1%8F%D1%8F%20%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%20-%20%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22%D0%9E%D0%B1%D1%80%D0%B0%D0%B1%D0%B0%D1%82%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%20%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%BD%D0%B8%D0%BA%D0%B8%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%20%D0%BC%D0%B5%D0%B4%D0%B8%D0%B0%D1%85%D0%BE%D1%81%D1%82%D0%B8%D0%BD%D0%B3%D0%B8%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D1%80%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22%D0%92%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22%D0%9E%D0%B4%D0%BD%D0%BE%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BD%D0%B8%D0%BA%D0%B8%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22%D0%9C%D0%BE%D0%B9%20%D0%BC%D0%B8%D1%80%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%B1%D0%B8%D1%82%D1%80%D0%B5%D0%B9%D1%82%20%D1%81%D1%80%D0%B0%D0%B7%D1%83%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B7%D0%BA%D0%B8%20%D0%B4%D0%BB%D1%8F%20Ummy%20Video%20Downloader%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%80%D0%B5%D0%B6%D0%B8%D0%BC%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D0%BA%D0%B8%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22%D0%9E%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20Ummy%22%7D,%0A%20%22optionsShowMp3Btn%22:%20%7B%22message%22:%20%22%D0%9E%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20mp3%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%D0%BD%D0%B8%D0%BA%20%D0%94%D0%B5%D1%88%D0%B5%D0%B2%D1%8B%D1%85%20%D0%90%D0%B2%D0%B8%D0%B0%D0%B1%D0%B8%D0%BB%D0%B5%D1%82%D0%BE%D0%B2%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%20%D1%81%20%D1%82%D0%B5%D0%BA%D1%83%D1%89%D0%B5%D0%B9%20%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D0%B0%20SaveFrom.net%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D0%B6%D0%BC%D0%B8%D1%82%D0%B5,%20%D0%B5%D1%81%D0%BB%D0%B8%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BD%D0%B5%20%D0%BF%D0%BE%D1%8F%D0%B2%D0%BB%D1%8F%D0%B5%D1%82%D1%81%D1%8F%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B2%D1%81%D0%B5%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BD%D0%B0%20%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B5%20%D0%B0%D1%83%D0%B4%D0%B8%D0%BE%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22%D0%A4%D0%BE%D1%80%D0%BC%D0%B8%D1%80%D1%83%D0%B5%D1%82%20%D0%B8%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%B5%D1%82%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%20%D1%81%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%D0%BC%D0%B8%20%D0%BD%D0%B0%20%D0%B0%D1%83%D0%B4%D0%B8%D0%BE%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B2%D1%81%D0%B5%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BD%D0%B0%20%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B5%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B8%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22%D0%94%D0%B0%D0%B9%D1%82%D0%B5%20%D0%BD%D0%B0%D0%BC%20%D0%B7%D0%BD%D0%B0%D1%82%D1%8C,%20%D0%B5%D1%81%D0%BB%D0%B8%20%D0%B2%D0%BE%D0%B7%D0%BD%D0%B8%D0%BA%D0%BB%D0%B8%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D1%8B%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22%D0%92%D0%BA%D0%BB./%D0%BE%D1%82%D0%BA%D0%BB.%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC%D1%8B%D0%B5%20%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D1%8B%20%D0%B8%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%D0%B0%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0,%20%D0%BE%D1%86%D0%B5%D0%BD%D0%B8%D1%82%D0%B5%20%D0%BA%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE%20%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F%20%5C%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%5C%22%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22%D0%9A%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22%D0%95%D1%81%D0%BB%D0%B8%20%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%20%D0%B2%20%D0%BD%D1%83%D0%B6%D0%BD%D0%BE%D0%BC%20%D0%BA%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%B5%20%D0%BD%D0%B5%D1%82,%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%B5%20%D0%B8%D0%B7%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D0%B3%D0%BE.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'%D0%A7%D1%82%D0%BE%D0%B1%D1%8B%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B2%D1%81%D0%B5%20%D1%84%D0%B0%D0%B9%D0%BB%D1%8B,%20%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%80%D1%83%D0%B9%D1%82%D0%B5%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%81%D1%81%D1%8B%D0%BB%D0%BE%D0%BA%20%D0%B8%20%D0%B2%D1%81%D1%82%D0%B0%D0%B2%D1%8C%D1%82%D0%B5%20%D0%B5%D0%B3%D0%BE%20%D0%B2%20',%7Ba:%7Bhref:'http://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80_%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BE%D0%BA',text:'%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D0%B5%D0%BA'%7D%7D,'.%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%83%20%D0%B2%D0%B0%D1%81%20%D0%BD%D0%B5%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D0%B5%D0%BA,%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D1%83%D0%B5%D0%BC%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C%20',%7Ba:%7Bhref:'http://www.westbyte.com/dm/',text:'Download%20Master'%7D%7D,'.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22%D0%9F%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22%D0%A1%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%20%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%20%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C%20%D0%B2%20%D0%BF%D0%BB%D0%B5%D0%B5%D1%80%D0%B5%20%D0%B4%D0%BB%D1%8F%20%20%D0%B2%D0%BE%D1%81%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20%D0%B8%D0%BB%D0%B8%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B%7Bspan:%7B%7D%7D,'%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20Ummy'%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Bappend:%5B'%D0%A1%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%B9%D1%82%D0%B5%20HD%20%D0%B8%20MP3%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%8B',%20%7Bbr:%7B%7D%7D,%20'Ummy%20Video%20Downloader!'%5D%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'%D0%9F%D0%BE%D1%81%D0%BB%D0%B5%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B8%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D1%83%D0%B4%D0%B5%D1%82%20%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8',%20%7Bbr:%7B%7D%7D,%20'%D0%BF%D1%80%D0%B8%20%D0%BA%D0%BB%D0%B8%D0%BA%D0%B5%20%D0%BD%D0%B0%20',%7Bimg:%7Bsrc:'#'%7D%7D%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22%D0%9F%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D1%8C%D1%82%D0%B5%20%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8%20%D0%B1%D1%80%D0%B0%D1%83%D0%B7%D0%B5%D1%80%D0%B0%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22%D0%92%D1%8B%D0%B1%D0%BE%D1%80%20%D0%BF%D0%B0%D0%BF%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B8%20%D0%B4%D0%BE%D0%BB%D0%B6%D0%B5%D0%BD%20%D0%B1%D1%8B%D1%82%D1%8C%20%D0%BE%D1%82%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5...%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D1%83%D0%BF%D1%80%D0%B5%D0%B6%D0%B4%D0%B0%D1%82%D1%8C%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22%D0%9E%D1%82%D0%BC%D0%B5%D0%BD%D0%B0%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22%D0%9F%D1%80%D0%BE%D0%B4%D0%BE%D0%BB%D0%B6%D0%B8%D1%82%D1%8C%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22%D0%92%D0%BD%D0%B8%D0%BC%D0%B0%D0%BD%D0%B8%D0%B5:%20%D0%BE%D1%82%D0%BC%D0%B5%D0%BD%D0%B8%D1%82%D1%8C%20%D0%B8%D0%BB%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D0%BA%D1%83%20%D0%B1%D1%83%D0%B4%D0%B5%D1%82%20%D0%BD%D0%B5%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%8B%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22%D0%A0%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B0%20%D0%B8%20%D0%B1%D0%B8%D1%82%D1%80%D0%B5%D0%B9%D1%82%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D1%8B%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%20%D0%BD%D0%B0%20MP3%20%D1%84%D0%B0%D0%B9%D0%BB%D1%8B%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D1%8B%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8%20%D0%BD%D0%B0%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B8%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B0%D0%BB%D1%8C%D0%B1%D0%BE%D0%BC%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B2%D1%81%D0%B5%20%D0%B0%D0%BB%D1%8C%D0%B1%D0%BE%D0%BC%D1%8B%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B9%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20%D1%84%D0%BE%D1%82%D0%BE%20%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%20%D0%BD%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%BE%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D1%81%D1%81%D1%8B%D0%BB%D0%BE%D0%BA%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22%D0%B8%D0%B7%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BA%D0%B0%D0%BA%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%81%D1%81%D1%8B%D0%BB%D0%BE%D0%BA%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'%D0%A7%D1%82%D0%BE%D0%B1%D1%8B%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B2%D1%81%D0%B5%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B8,%20%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%80%D1%83%D0%B9%D1%82%D0%B5%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%81%D1%81%D1%8B%D0%BB%D0%BE%D0%BA%20%D0%B8%20%D0%B2%D1%81%D1%82%D0%B0%D0%B2%D1%8C%D1%82%D0%B5%20%D0%B5%D0%B3%D0%BE%20%D0%B2%20',%7Ba:%7Bhref:'http://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80_%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BE%D0%BA',text:'%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D0%B5%D0%BA'%7D%7D,'.%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%83%20%D0%B2%D0%B0%D1%81%20%D0%BD%D0%B5%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D0%B5%D0%BA,%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D1%83%D0%B5%D0%BC%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C%20',%7Ba:%7Bhref:'http://www.westbyte.com/dm/',text:'Download%20Master'%7D%7D,'.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%83%20%D1%8D%D1%81%D0%BA%D0%B8%D0%B7%D0%BE%D0%B2%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B9%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22%D0%A7%D1%82%D0%BE%D0%B1%D1%8B%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8E,%20%D1%89%D0%B5%D0%BB%D0%BA%D0%BD%D0%B8%D1%82%D0%B5%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D0%B9%20%D0%BB%D0%B5%D0%B2%D0%BE%D0%B9%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%BE%D0%B9%20%D0%BC%D1%8B%D1%88%D0%B8.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22%D0%BA%D0%B1/%D1%81%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22%D0%91%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22%D0%BA%D0%91%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22%D0%9C%D0%91%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22%D0%93%D0%91%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22%D0%A2%D0%91%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C:%20%D0%BE%D1%82%D0%BA%D1%80%D0%BE%D0%B9%D1%82%D0%B5%20',%7Ba:%7Bhref:'%7Burl%7D',text:'%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%83%20%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%20%D1%80%D0%BE%D0%BB%D0%B8%D0%BA%D0%B0'%7D%7D,'%20%D0%B8%20%D0%BD%D0%B0%D0%B6%D0%BC%D0%B8%D1%82%D0%B5%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%5C%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%5C%22%20%D0%BD%D0%B0%D0%B4%20%D0%BF%D0%BB%D0%B5%D0%B5%D1%80%D0%BE%D0%BC'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D1%8C%D1%81%D1%8F%20%D0%B2%20%25w%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B0%D0%B5%D1%82%20%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D1%82%D1%8C%20%D1%81%20VK.com,%20YouTube.com,%20Odnoklassniki.ru%20%D0%B8%20%D0%B1%D0%BE%D0%BB%D0%B5%D0%B5%2040%20%D0%B4%D1%80%D1%83%D0%B3%D0%B8%D1%85%20%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2%20%D0%B2%201%20%D0%BA%D0%BB%D0%B8%D0%BA%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22%D0%A5%D0%BE%D1%80%D0%BE%D1%88%D0%B8%D0%B5%20%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'%D0%A3%20%D1%82%D0%B5%D0%B1%D1%8F%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%20SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,',%20%D0%B8%20%D1%82%D0%B5%D0%BF%D0%B5%D1%80%D1%8C%20%D1%82%D1%8B%20%D0%BC%D0%BE%D0%B6%D0%B5%D1%88%D1%8C%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%BB%D1%8E%D0%B1%D0%BE%D0%B5%20%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%20%D1%81%20YouTube%20%D0%B2%20%D0%BE%D0%B4%D0%B8%D0%BD%20%D0%BA%D0%BB%D0%B8%D0%BA'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'%D0%A5%D0%BE%D1%87%D0%B5%D1%88%D1%8C%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BA%D0%B0%D0%BA?',%7Bbr:%7B%7D%7D,'%D0%9D%D0%B0%D0%B6%D0%BC%D0%B8%20%D0%B7%D0%B4%D0%B5%D1%81%D1%8C'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22%D0%A7%D1%82%D0%BE%D0%B1%D1%8B%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE,%20%D0%B2%D1%8B%D0%B1%D0%B5%D1%80%D0%B8%20%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%20%D0%B8%20%D0%BD%D0%B0%D0%B6%D0%BC%D0%B8%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%5C%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%5C%22%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22%D0%9F%D1%80%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'%D0%A5%D0%BE%D1%87%D0%B5%D1%88%D1%8C%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D1%83%D0%B6%D0%B5%20%D0%BF%D1%80%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%BE%D0%B5%20%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE?',%7Bbr:%7B%7D%7D,'%D0%9D%D0%B0%D0%B6%D0%B8%D0%BC%D0%B0%D0%B9%20%D0%BD%D0%B0%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,'%20%D0%BD%D0%B0%20%D0%BF%D1%80%D0%B5%D0%B2%D1%8C%D1%8E%20%D0%B2%20%D0%9F%D1%80%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE'%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%20%D0%BD%D0%B5%20%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20%D0%BF%D1%80%D0%BE%D1%81%D0%BC%D0%B0%D1%82%D1%80%D0%B8%D0%B2%D0%B0%D1%82%D1%8C%20%E2%80%94',%7Bbr:%7B%7D%7D,'%D0%BD%D0%B0%D0%B6%D0%B8%D0%BC%D0%B0%D0%B9%20%D0%BD%D0%B0%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,',%20%D0%B2%D1%8B%D0%B1%D0%B8%D1%80%D0%B0%D0%B9%20%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%20%D0%B8%20%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%B9.%20%D0%AD%D1%82%D0%BE%20%D1%83%D0%B4%D0%BE%D0%B1%D0%BD%D0%BE!'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22%D0%9F%D1%80%D0%B8%D1%8F%D1%82%D0%BD%D0%BE%D0%B9%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'%D0%9E%D1%81%D1%82%D0%B0%D0%BB%D0%B8%D1%81%D1%8C%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D1%8B?%20%D0%95%D1%81%D1%82%D1%8C%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F?%20%D0%97%D0%B0%D0%B3%D0%BB%D1%8F%D0%BD%D0%B8%D1%82%D0%B5%20%D0%BD%D0%B0%20',%20%7Ba:%20%7Btext:%20'%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%83%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B8',%20href:%20'#support'%7D%7D,'%20%D0%B8%D0%BB%D0%B8%20%D0%B2%D1%81%D1%82%D1%83%D0%BF%D0%B0%D0%B9%D1%82%D0%B5%20%D0%B2%20%D0%BD%D0%B0%D1%88%D0%B5%20',%20%7Ba:%20%7Btext:%20'%D0%92%D0%9A-%D1%81%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%BE',%20href:%20'#vk'%7D%7D%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B'%D0%A7%D1%82%D0%BE%D0%B1%D1%8B%20',%7Bb:%20%7Btext:%20'%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C'%7D%7D,',%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%BE%20%D0%BA%D0%BB%D0%B8%D0%BA%D0%BD%D0%B8%D1%82%D0%B5%20%D0%BF%D0%BE%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B5'%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B'%D0%92%D1%8B%20%D1%83%D0%B6%D0%B5%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D0%BB%D0%B8',%7Bbr:%7B%7D%7D,%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22%D0%94%D0%B0%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%D1%82%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B5%20%D0%BD%D0%B5%20%D0%BF%D0%BE%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D1%8D%D1%82%D0%BE%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5%22%7D%0A%7D";
+  _languageList.tr = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22SaveFrom.net%20asistan%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22Sadece%20bir%20t%C4%B1klama%20ile%20YouTube,%20Facebook,%20VK.com%20ve%2040'dan%20fazla%20siteden%20dosya%20indirin.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22SaveFrom.net%20asistan%20lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22Sadece%20bir%20t%C4%B1klama%20ile%20Facebook,%20VK.com%20ve%2040'dan%20fazla%20siteden%20dosya%20indirin%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22tr%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22SaveFrom.net%20asistan%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22SaveFrom.net%20asistan%20devre%20d%C4%B1%C5%9F%C4%B1%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22Etkin%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22Devre%20d%C4%B1%C5%9F%C4%B1%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22Eklenti%20d%C3%BC%C4%9Fmesini%20g%C3%B6ster%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22Kopyala%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22%C4%B0ndir%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22Dosyay%C4%B1%20indirmek%20i%C3%A7in%20Alt/Option%20veya%20Ctrl%20tu%C5%9Funa%20bas%C4%B1l%C4%B1%20tutarak%20ba%C4%9Flant%C4%B1y%C4%B1%20t%C4%B1klay%C4%B1n.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22Hi%C3%A7bir%20ba%C4%9Flant%C4%B1%20bulunamad%C4%B1%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22Daha%20fazla%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22Kapat%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22without%20audio%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22boyut%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22Alt%20yaz%C4%B1%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22%C3%87alma%20listesi%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22Dosya%20listesi%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22T%C3%BCm%20%C3%A7alma%20listesini%20indir%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22Dosya%20boyutunu%20al%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22Dosya%20boyutu%20al%C4%B1namad%C4%B1.%20L%C3%BCtfen%20tekrar%20deneyiniz.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22Do%C4%9Frudan%20ba%C4%9Flant%C4%B1%20al%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22SaveFrom.net'e%20git%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22Ba%C4%9Flant%C4%B1lar%C4%B1%20yenile%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22Ba%C4%9Flant%C4%B1lar%20g%C3%BCncellendi%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22Ses%20dosyalar%C4%B1n%C4%B1%20indir%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22%C3%87alma%20listesini%20indir%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22Resimleri%20indir%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22Tam%20versiyonu%20kur%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22Devre%20d%C4%B1%C5%9F%C4%B1%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22Ayarlar%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22Hata%20bildir%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22Become%20better%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22Bu%20web%20sitesinde%20devre%20d%C4%B1%C5%9F%C4%B1%20b%C4%B1rak%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22Bu%20web%20sitesinde%20etkinle%C5%9Ftir%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22Bu%20sitede%20etkin/devre%20d%C4%B1%C5%9F%C4%B1%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22Eklenti%20butonunu%20g%C3%B6ster/gizle%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22%25d%20s%C3%BCr%C3%BCm%C3%BCne%20g%C3%BCncelle%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22Hakk%C4%B1nda%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Asistan%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22Versiyon%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22Kullan%C4%B1c%C4%B1lar%C4%B1n,%20Dailymotion.com,%20YouTube.com,%20VK.com%20ve%20di%C4%9Ferleri%20de%20dahil%20olmak%20%C3%BCzere%2040'dan%20fazla%20web%20sitesinden%20dosya%20indirmek%20i%C3%A7in%20do%C4%9Frudan%20ba%C4%9Flant%C4%B1lar%20almalar%C4%B1n%C4%B1%20sa%C4%9Flar.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22Kullan%C4%B1c%C4%B1lar%C4%B1n,%20Dailymotion.com,%20VK.com%20ve%20di%C4%9Ferleri%20de%20dahil%20olmak%20%C3%BCzere%2040'dan%20fazla%20web%20sitesinden%20dosya%20indirmek%20i%C3%A7in%20do%C4%9Frudan%20ba%C4%9Flant%C4%B1lar%20almalar%C4%B1n%C4%B1%20sa%C4%9Flar.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22Desteklenen%20kaynaklar%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22Ana%20Sayfa%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20Asistan%20-%20Tercihler%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22Linkleri%20ta%C5%9F%C4%B1%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22Dosya%20payla%C5%9F%C4%B1ma%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22Medya%20payla%C5%9F%C4%B1ma%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22Mod%C3%BCller%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22Ba%C4%9Flant%C4%B1lar%C4%B1%20gizle%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22VK%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22Odnoklassniki%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22Moy%20Mir%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22Bit%20h%C4%B1z%C4%B1n%C4%B1%20anl%C4%B1k%20olarak%20g%C3%B6ster%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22Advisor%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22UVD%20i%C3%A7in%20ipu%C3%A7lar%C4%B1n%C4%B1%20g%C3%B6ster%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22Geli%C5%9Fmi%C5%9F%20indirme%20modu%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22Ummy%20d%C3%BC%C4%9Fmesini%20g%C3%B6ster%22%7D,%0A%20%22optionsShowMp3Btn%22:%20%7B%22message%22:%20%22Mp3%20d%C3%BC%C4%9Fmesini%20g%C3%B6ster%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22Cheap%20Flights%20Advisor%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22SaveFrom.net'i%20kullanarak%20ge%C3%A7erli%20sayfadan%20dosya%20indirin%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22Download%20d%C3%BC%C4%9Fmesi%20g%C3%B6r%C3%BCnm%C3%BCyorsa%20t%C4%B1klay%C4%B1n%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22Ge%C3%A7erli%20sayfada%20bulunan%20t%C3%BCm%20ses%20dosyalar%C4%B1n%C4%B1%20indirin%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22Ses%20dosyalar%C4%B1ndan%20olu%C5%9Fan%20bir%20%C3%A7alma%20listesi%20olu%C5%9Fturur%20ve%20indirir%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22Ge%C3%A7erli%20sayfada%20bulunan%20t%C3%BCm%20resimleri%20indirin%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22Herhangi%20bir%20sorun%20olmas%C4%B1%20durumunda%20bize%20bildirin%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22Desteklenen%20kaynaklar%C4%B1%20ve%20Helper%20se%C3%A7eneklerini%20A%C3%87/KAPAT%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22Kalite%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22Herhangi%20bir%20se%C3%A7ilebilir%20kalitenin%20olmamas%C4%B1%20durumunda%20mevcut%20olan%20en%20iyi%20video%20indirilecektir.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22Bulunan%20dosyalar%C4%B1n%C4%B1%20listesi%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'T%C3%BCm%20dosyalar%C4%B1n%C4%B1%20indirmek%20i%C3%A7in%20ba%C4%9Flant%C4%B1%20listesini%20kopyalay%C4%B1n%20ve%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'indirme%20y%C3%B6neticisine'%7D%7D,'%20yap%C4%B1%C5%9Ft%C4%B1r%C4%B1n.%20Kurulu%20bir%20indirme%20y%C3%B6neticiniz%20yoksa%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'%20y%C3%BCklemenizi%20tavsiye%20ederiz.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22%C3%87alma%20Listesi%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22Art%C4%B1k%20kaydedilen%20%C3%A7alma%20listenizi%20y%C3%BCr%C3%BCtmek%20i%C3%A7in%20m%C3%BCzik%20%C3%A7alar%C4%B1n%C4%B1zda%20a%C3%A7abilirsiniz.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20veya%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B'Ummy%20ile%20',%7Bspan:%7B%7D%7D%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Btext:'Ummy%20Video%20%C4%B0ndirici%5C%5C'yi%20y%C3%BCkleyin%20ve%20en%20sevdi%C4%9Finiz%20HD%20videolar%C4%B1%20ya%20da%20MP3%5C%5C'leri%20hemen%20indirin.'%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'%C4%B0ndir'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'Kurulumdan%20sonra%20',%7Bimg:%7Bsrc:'#'%7D%7D,'%20simgesine%20t%C4%B1klayarak%20dosya%20indirme%20i%C5%9Flemini%20otomatik%20olarak%20ba%C5%9Flatabilirsiniz.'%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22Taray%C4%B1c%C4%B1%20ayarlar%C4%B1n%C4%B1%20kontrol%20edin%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22%5C%22Dosyalar%C4%B1n%20nereye%20kaydedilece%C4%9Fini%20her%20seferinde%20sor%5C%22%20se%C3%A7ene%C4%9Fi%20kapal%C4%B1%20olmal%C4%B1d%C4%B1r.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22Daha%20fazla%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22Bildirme%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22%C4%B0ptal%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22Devam%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22Uyar%C4%B1!%20%C4%B0ndirme%20i%C5%9Flemi%20iptal%20edilemez%20ya%20da%20ertelenemez.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22Bilgi%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22Dosya%20boyutu%20ve%20bit%20h%C4%B1z%C4%B1%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22MP3%20dosyalar%C4%B1%20i%C3%A7in%20ba%C4%9Flant%C4%B1lar%20bulunam%C4%B1yor%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22Foto%C4%9Fraflar%20bulunamad%C4%B1%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22Alb%C3%BCm%C3%BC%20indir%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22T%C3%BCm%20alb%C3%BCmleri%20indir%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22Bulunan%20foto%C4%9Fraflar%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20resim%20ge%C3%A7ici%20olarak%20kullan%C4%B1lam%C4%B1yor%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22Bulunan%20ba%C4%9Flant%C4%B1lar%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22den%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22Olarak%20g%C3%B6ster%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22Ba%C4%9Flant%C4%B1%20listesi%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'T%C3%BCm%20foto%C4%9Fraflar%C4%B1%20indirmek%20i%C3%A7in%20ba%C4%9Flant%C4%B1%20listesini%20kopyalay%C4%B1n%20ve%20',%7Ba:%7Bhref:'http://en.wikipedia.org/wiki/Download_manager',text:'indirme%20y%C3%B6neticisine'%7D%7D,'%20yap%C4%B1%C5%9Ft%C4%B1r%C4%B1n.%20Kurulu%20bir%20indirme%20y%C3%B6neticiniz%20yoksa%20',%7Ba:%7Bhref:'http://www.freedownloadmanager.org/',text:'Free%20Download%20Manager'%7D%7D,'%20y%C3%BCklemenizi%20tavsiye%20ederiz.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22K%C3%BC%C3%A7%C3%BCkk%20resimler%20tablosu%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22Foto%C4%9Fraf%20listesi%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22%C4%B0ndirmek%20i%C3%A7in%20foto%C4%9Fraf%C4%B1n%20%C3%BCzerine%20t%C4%B1klay%C4%B1n.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22kbps%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22B%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22kB%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22MB%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22GB%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22TB%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'%C4%B0ndirme:%20',%7Ba:%7Bhref:'%7Burl%7D',text:'video%20sayfas%C4%B1n%C4%B1'%7D%7D,'%20a%C3%A7%C4%B1n%20ve%20oynat%C4%B1c%C4%B1%20%C3%BCzerindeki%20%5C%22%C4%B0ndir%5C%22%20d%C3%BCmesine%20bas%C4%B1n'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22Bulunan%20dosyalar:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22%25w%20%C3%BCzerinden%20payla%C5%9F%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22SaveFrom.net%20Helper,%20sadece%20bir%20t%C4%B1klama%20ile%20YouTube.com,%20Facebook.com,%20VK.com%20ve%2040'dan%20fazla%20siteden%20%C3%BCcretsiz%20olarak%20dosya%20indirmenizi%20sa%C4%9Flar.%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22Size%20harika%20bir%20haberimiz%20var!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'SaveFrom.net%20Helper%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,%20'%20ba%C5%9Far%C4%B1yla%20kuruldu.%20Art%C4%B1k%20tek%20bir%20t%C4%B1klama%20ile%20YouTube%5C%5C'dan%20istedi%C4%9Finiz%20videoyu%20indirebilirsiniz'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'Nas%C4%B1l%20oldu%C4%9Funu%20%C3%B6%C4%9Frenmek%20ister%20misiniz?%20Buraya%20t%C4%B1klay%C4%B1n'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22Sadece%20indirmek%20istedi%C4%9Finiz%20videonun%20format%C4%B1n%C4%B1%20se%C3%A7in%20ve%20%5C%22%C4%B0ndir%5C%22%20butonuna%20t%C4%B1klay%C4%B1n%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22Ge%C3%A7mi%C5%9F%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'Web%20ge%C3%A7mi%C5%9Finizdeki%20videolar%C4%B1%20indirmek%20ister%20misiniz?',%20%7Bbr:%7B%7D%7D,%20'%20Sadece%20daha%20%C3%B6nce%20izledi%C4%9Finiz%20bir%20videonun%20%C3%B6nizlemesi%20%C3%BCzerindeki%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20'%20simgesine%20t%C4%B1klay%C4%B1n'%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'Videolar%C4%B1%20izlemenize%20gerek%20yok%20%E2%80%94%20sadece%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20'%20simgesine%20t%C4%B1klay%C4%B1n,%20kalite%20de%C4%9Ferini%20se%C3%A7in%20ve%20an%C4%B1nda%20indirin.%20Olduk%C3%A7a%20kolay,%20de%C4%9Fil%20mi?'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22Hemen%20SaveFrom.net%20Helper'in%20keyfini%20%C3%A7%C4%B1karmaya%20ba%C5%9Flay%C4%B1n!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'Hala%20kafan%C4%B1za%20tak%C4%B1lan%20sorular%20m%C4%B1%20var?%20D%C3%BC%C5%9F%C3%BCncelerinizi%20payla%C5%9Fmak%20m%C4%B1%20istiyorsunuz?%20',%7Ba:%20%7Btext:%20'Destek%20sayfam%C4%B1z%C4%B1',%20href:%20'#support'%7D%7D,'%20ziyaret%20edin%20veya%20',%7Ba:%20%7Btext:%20'Facebook',%20href:%20'#fb'%7D%7D,'%20toplulu%C4%9Fumuza%20kat%C4%B1l%C4%B1n'%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B%7Bb:%20%7Btext:%20'%C4%B0ndirmek'%7D%7D,%20'%20i%C3%A7in%20sadece%20butona%20t%C4%B1klay%C4%B1n'%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader%20program%C4%B1n%C4%B1%20daha%20%C3%B6nce%20y%C3%BCklediniz%20mi?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22Evet%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22Hay%C4%B1r%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22Bu%20mesaj%C4%B1%20tekrar%20g%C3%B6sterme%22%7D%0A%7D";
+  _languageList.uk = "%7B%0A%20%22extName%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22extDescription%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D1%83%D0%B9%D1%82%D0%B5%20%D0%B7%20%C2%AB%D0%92%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5%C2%BB,%20YouTube,%20Facebook%20%D1%96%20%D1%89%D0%B5%2040%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%D0%B2%20%D0%B7%D0%B0%201%20%D0%BA%D0%BB%D1%96%D0%BA.%22%7D,%0A%0A%20%22extNameLite%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%20lite%22%7D,%0A%20%22extDescriptionLite%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D1%83%D0%B9%D1%82%D0%B5%20%D0%B7%20%C2%AB%D0%92%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5%C2%BB,%20YouTube,%20Facebook%20%D1%96%20%D1%89%D0%B5%2040%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%D0%B2%20%D0%B7%D0%B0%201%20%D0%BA%D0%BB%D1%96%D0%BA.%22%7D,%0A%0A%20%22lang%22:%20%7B%22message%22:%20%22uk%22%7D,%0A%0A%20%22titleDefault%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22titleDesabled%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%20%D0%B2%D0%B8%D0%BC%D0%BA%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9%22%7D,%0A%0A%20%22menuEnable%22:%20%7B%22message%22:%20%22%D0%A3%D0%B2%D1%96%D0%BC%D0%BA%D0%BD%D1%83%D1%82%D0%B8%22%7D,%0A%20%22menuDisable%22:%20%7B%22message%22:%20%22%D0%92%D0%B8%D0%BC%D0%BA%D0%BD%D1%83%D1%82%D0%B8%22%7D,%0A%0A%20%22showButton%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%D1%80%D0%BE%D0%B7%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D1%8F%22%7D,%0A%0A%20%22copy%22:%20%7B%22message%22:%20%22%D0%9A%D0%BE%D0%BF%D1%96%D1%8E%D0%B2%D0%B0%D1%82%D0%B8%22%7D,%0A%20%22download%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%22%7D,%0A%20%22downloadTitle%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D1%82%D0%B8%D1%81%D0%BD%D1%96%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F,%20%D1%83%D1%82%D1%80%D0%B8%D0%BC%D1%83%D1%8E%D1%87%D0%B8%20%D0%BA%D0%BB%D0%B0%D0%B2%D1%96%D1%88%D1%83%20Alt%20%D1%87%D0%B8%20Ctrl,%20%D1%89%D0%BE%D0%B1%20%D0%B7%D0%B1%D0%B5%D1%80%D0%B5%D0%B3%D1%82%D0%B8%20%D1%84%D0%B0%D0%B9%D0%BB.%22%7D,%0A%20%22noLinksFound%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%B2%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8F%20%D0%B7%D0%BD%D0%B0%D0%B9%D1%82%D0%B8%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22more%22:%20%7B%22message%22:%20%22%D0%A9%D0%B5%22%7D,%0A%20%22close%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%BA%D1%80%D0%B8%D1%82%D0%B8%22%7D,%0A%20%22kbps%22:%20%7B%22message%22:%20%22%D0%BA%D0%B1/%D1%81%22%7D,%0A%20%22withoutAudio%22:%20%7B%22message%22:%20%22%D0%B1%D0%B5%D0%B7%20%D0%B0%D1%83%D0%B4%D1%96%D0%BE%22%7D,%0A%20%22size%22:%20%7B%22message%22:%20%22%D1%80%D0%BE%D0%B7%D0%BC%D1%96%D1%80%22%7D,%0A%0A%20%22subtitles%22:%20%7B%22message%22:%20%22%D0%A1%D1%83%D0%B1%D1%82%D0%B8%D1%82%D1%80%D0%B8%22%7D,%0A%20%22playlist%22:%20%7B%22message%22:%20%22%D0%9F%D0%BB%D0%B5%D0%B9%D0%BB%D1%96%D1%81%D1%82%22%7D,%0A%20%22filelist%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%84%D0%B0%D0%B9%D0%BB%D1%96%D0%B2%22%7D,%0A%20%22downloadWholePlaylist%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D0%B2%D0%B5%D1%81%D1%8C%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D1%96%D1%81%D1%82%22%7D,%0A%0A%20%22getFileSizeTitle%22:%20%7B%22message%22:%20%22%D0%92%D0%B8%D0%B7%D0%BD%D0%B0%D1%87%D0%B8%D1%82%D0%B8%20%D1%80%D0%BE%D0%B7%D0%BC%D1%96%D1%80%20%D1%84%D0%B0%D0%B9%D0%BB%D1%83%22%20%7D,%0A%20%22getFileSizeFailTitle%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%B2%D0%B4%D0%B0%D0%BB%D0%BE%D1%81%D1%8F%20%D0%B2%D0%B8%D0%B7%D0%BD%D0%B0%D1%87%D0%B8%D1%82%D0%B8%20%D1%80%D0%BE%D0%B7%D0%BC%D1%96%D1%80%20%D1%84%D0%B0%D0%B9%D0%BB%D1%83.%20%D0%A1%D0%BF%D1%80%D0%BE%D0%B1%D1%83%D0%B9%D1%82%D0%B5%20%D1%89%D0%B5%20%D1%80%D0%B0%D0%B7.%22%7D,%0A%0A%20%22lmButtonTitle%22:%20%7B%22message%22:%20%22%D0%9E%D1%82%D1%80%D0%B8%D0%BC%D0%B0%D0%B9%20%D0%BF%D1%80%D1%8F%D0%BC%D0%B5%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%0A%20%22downloadFromCurrentPage%22:%20%7B%22message%22:%20%22%D0%9F%D0%B5%D1%80%D0%B5%D0%B9%D1%82%D0%B8%20%D0%BD%D0%B0%20SaveFrom.net%22%7D,%0A%20%22updateLinks%22:%20%7B%22message%22:%20%22%D0%92%D1%96%D0%B4%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D0%B8%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22updateLinksNotification%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%BE%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D1%96%22%7D,%0A%20%22downloadMP3Files%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D0%B8%20%D0%B0%D1%83%D0%B4%D1%96%D0%BE%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B8%22%7D,%0A%20%22downloadPlaylist%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D0%B8%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%22%7D,%0A%20%22downloadPhotos%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D0%B8%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D1%96%D1%97%22%7D,%0A%20%22installFullVersion%22:%20%7B%22message%22:%20%22%D0%92%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D0%B8%20%D0%BF%D0%BE%D0%B2%D0%BD%D1%83%20%D0%B2%D0%B5%D1%80%D1%81%D1%96%D1%8E%22%7D,%0A%20%22disable%22:%20%7B%22message%22:%20%22%D0%92%D0%B8%D0%BC%D0%BA%D0%BD%D1%83%D1%82%D0%B8%22%7D,%0A%20%22showOptions%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D0%BB%D0%B0%D1%88%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22reportBug%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B2%D1%96%D0%B4%D0%BE%D0%BC%D0%B8%D1%82%D0%B8%20%D0%BF%D1%80%D0%BE%20%D0%BF%D0%BE%D0%BC%D0%B8%D0%BB%D0%BA%D1%83%22%7D,%0A%20%22openPoll%22:%20%7B%22message%22:%20%22%D0%A1%D1%82%D0%B0%D1%82%D0%B8%20%D0%BA%D1%80%D0%B0%D1%89%D0%B5%22%7D,%0A%20%22disableModule%22:%20%7B%22message%22:%20%22%D0%92%D0%B8%D0%BC%D0%BA%D0%BD%D1%83%D1%82%D0%B8%20%D0%BD%D0%B0%20%D1%86%D1%8C%D0%BE%D0%BC%D1%83%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%22%7D,%0A%20%22enableModule%22:%20%7B%22message%22:%20%22%D0%A3%D0%B2%D1%96%D0%BC%D0%BA%D0%BD%D1%83%D1%82%D0%B8%20%D0%BD%D0%B0%20%D1%86%D1%8C%D0%BE%D0%BC%D1%83%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%22%7D,%0A%20%22enableDisableModule%22:%20%7B%22message%22:%20%22%D0%92%D0%BA%D0%BB./%D0%B2%D0%B8%D0%BC%D0%BA.%20%D0%BD%D0%B0%20%D1%86%D1%8C%D0%BE%D0%BC%D1%83%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%22%7D,%0A%20%22showHideButton%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7./%D1%81%D0%BA%D1%80.%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%D1%80%D0%BE%D0%B7%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22updateTo%22:%20%7B%22message%22:%20%22%D0%9E%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D0%B8%20%D0%B4%D0%BE%20%25d%22%7D,%0A%0A%20%22aboutPage%22:%20%7B%22message%22:%20%22%D0%9F%D1%80%D0%BE%20%D1%80%D0%BE%D0%B7%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22aboutTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22aboutVersion%22:%20%7B%22message%22:%20%22%D0%92%D0%B5%D1%80%D1%81%D1%96%D1%8F%22%7D,%0A%20%22aboutDescription%22:%20%7B%22message%22:%20%22%D0%94%D0%BE%D0%B7%D0%B2%D0%BE%D0%BB%D1%8F%D1%94%20%D0%BE%D1%82%D1%80%D0%B8%D0%BC%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D0%BF%D1%80%D1%8F%D0%BC%D1%96%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%B4%D0%BB%D1%8F%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F%20%D0%B7%20%D0%BF%D0%BE%D0%BD%D0%B0%D0%B4%2040%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%D0%B2,%20%D1%81%D0%B5%D1%80%D0%B5%D0%B4%20%D1%8F%D0%BA%D0%B8%D1%85%20VK.com,%20YouTube.com%20%D1%82%D0%B0%20%D1%96%D0%BD%D1%88%D1%96.%22%7D,%0A%20%22aboutDescriptionLite%22:%20%7B%22message%22:%20%22%D0%94%D0%BE%D0%B7%D0%B2%D0%BE%D0%BB%D1%8F%D1%94%20%D0%BE%D1%82%D1%80%D0%B8%D0%BC%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D0%BF%D1%80%D1%8F%D0%BC%D1%96%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%B4%D0%BB%D1%8F%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F%20%D0%B7%20%D0%BF%D0%BE%D0%BD%D0%B0%D0%B4%2040%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%D0%B2,%20%D1%81%D0%B5%D1%80%D0%B5%D0%B4%20%D1%8F%D0%BA%D0%B8%D1%85%20VK.com%20%D1%82%D0%B0%20%D1%96%D0%BD%D1%88%D1%96.%22%7D,%0A%20%22aboutSupported%22:%20%7B%22message%22:%20%22%D0%A0%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%B8,%20%D1%8F%D0%BA%D1%96%20%D0%BF%D1%96%D0%B4%D1%82%D1%80%D0%B8%D0%BC%D1%83%D1%8E%D1%82%D1%8C%D1%81%D1%8F%22%7D,%0A%20%22homePage%22:%20%7B%22message%22:%20%22%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D1%8F%20%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D0%BA%D0%B0%22%7D,%0A%0A%20%22optionsTitle%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%20-%20%D0%9D%D0%B0%D0%BB%D0%B0%D1%88%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22optionsHandleLinks%22:%20%7B%22message%22:%20%22%D0%9E%D0%B1%D1%80%D0%BE%D0%B1%D0%BB%D1%8F%D1%82%D0%B8%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22optionsFileHostings%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%20%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BE%D0%B1%D0%BC%D1%96%D0%BD%D0%BD%D0%B8%D0%BA%D0%B8%22%7D,%0A%20%22optionsMediaHostings%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%20%D0%BC%D0%B5%D0%B4%D1%96%D0%B0%D1%85%D0%BE%D1%81%D1%82%D0%B8%D0%BD%D0%B3%D0%B8%22%7D,%0A%20%22optionsModules%22:%20%7B%22message%22:%20%22%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D1%96%22%7D,%0A%20%22optionsYoutube%22:%20%7B%22message%22:%20%22YouTube%22%7D,%0A%20%22optionsYTHideLinks%22:%20%7B%22message%22:%20%22%D0%A1%D1%85%D0%BE%D0%B2%D0%B0%D1%82%D0%B8%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22optionsDailymotion%22:%20%7B%22message%22:%20%22Dailymotion%22%7D,%0A%20%22optionsVimeo%22:%20%7B%22message%22:%20%22Vimeo%22%7D,%0A%20%22optionsFacebook%22:%20%7B%22message%22:%20%22Facebook%22%7D,%0A%20%22optionsSoundcloud%22:%20%7B%22message%22:%20%22SoundCloud%22%7D,%0A%20%22optionsVkontakte%22:%20%7B%22message%22:%20%22%D0%92%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5%22%7D,%0A%20%22optionsOdnoklassniki%22:%20%7B%22message%22:%20%22%D0%9E%D0%B4%D0%BD%D0%BE%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BD%D0%B8%D0%BA%D0%B8%22%7D,%0A%20%22optionsMailru%22:%20%7B%22message%22:%20%22%D0%9C%D0%BE%D0%B9%20%D0%BC%D0%B8%D1%80%22%7D,%0A%20%22optionsInstagram%22:%20%7B%22message%22:%20%22Instagram%22%7D,%0A%20%22optionsRutube%22:%20%7B%22message%22:%20%22Rutube%22%7D,%0A%20%22optionsBitrate%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D0%B1%D1%96%D1%82%D1%80%D0%B5%D0%B9%D1%82%20%D0%BE%D0%B4%D1%80%D0%B0%D0%B7%D1%83%22%7D,%0A%20%22optionsSovetnikEnabled%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D1%80%D0%B0%D0%B4%D0%BD%D0%B8%D0%BA%22%7D,%0A%20%22optionsShowUmmyInfo%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D0%BF%D1%96%D0%B4%D0%BA%D0%B0%D0%B7%D0%BA%D0%B8%20%D0%B4%D0%BB%D1%8F%20Ummy%20Video%20Downloader%22%7D,%0A%20%22optionsGmNativeDownload%22:%20%7B%22message%22:%20%22%D0%A0%D0%BE%D0%B7%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B9%20%D1%80%D0%B5%D0%B6%D0%B8%D0%BC%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22optionsShowUmmyBtn%22:%20%7B%22message%22:%20%22%D0%92%D1%96%D0%B4%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D1%82%D0%B8%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20Ummy%22%7D,%0A%20%22optionsShowMp3Btn%22:%20%7B%22message%22:%20%22%D0%92%D1%96%D0%B4%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D1%82%D0%B8%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20mp3%22%7D,%0A%20%22optionsAviaBarEnabled%22:%20%7B%22message%22:%20%22Cheap%20Flights%20Advisor%22%7D,%0A%0A%20%22menuDownloadFromCurrentPage%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B8%20%D0%B7%20%D0%BF%D0%BE%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D1%97%20%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D0%BA%D0%B8%20%D0%B7%D0%B0%20%D0%B4%D0%BE%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%BE%D1%8E%20%D1%81%D0%B5%D1%80%D0%B2%D1%96%D1%81%D1%83%20SaveFrom.net%22%7D,%0A%20%22menuUpdateLinks%22:%20%7B%22message%22:%20%22%D0%9D%D0%B0%D1%82%D0%B8%D1%81%D0%BD%D1%96%D1%82%D1%8C,%20%D1%8F%D0%BA%D1%89%D0%BE%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%BA%D0%B0%D1%87%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%BD%D0%B5%20%D0%B7'%D1%8F%D0%B2%D0%BB%D1%8F%D1%94%D1%82%D1%8C%D1%81%D1%8F%22%7D,%0A%20%22menuDownloadMP3Files%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D0%B2%D1%81%D1%96%20%D0%B7%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D1%96%20%D0%BD%D0%B0%20%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D1%86%D1%96%20%D0%B0%D1%83%D0%B4%D1%96%D0%BE%D1%84%D0%B0%D0%B9%D0%BB%D0%B8%22%7D,%0A%20%22menuDownloadPlaylist%22:%20%7B%22message%22:%20%22%D0%A4%D0%BE%D1%80%D0%BC%D1%83%D1%94%20%D1%82%D0%B0%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D1%83%D1%94%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D0%B8%D1%81%D1%82%20%D0%B7%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F%D0%BC%D0%B8%20%D0%BD%D0%B0%20%D0%B0%D1%83%D0%B4%D1%96%D0%BE%D1%84%D0%B0%D0%B9%D0%BB%D0%B8%22%7D,%0A%20%22menuDownloadPhotos%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D0%B2%D1%81%D1%96%20%D0%B7%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D1%96%20%D0%BD%D0%B0%20%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D1%86%D1%96%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D1%96%D1%97%22%7D,%0A%20%22menuReportBug%22:%20%7B%22message%22:%20%22%D0%94%D0%B0%D0%B9%D1%82%D0%B5%20%D0%BD%D0%B0%D0%BC%20%D0%B7%D0%BD%D0%B0%D1%82%D0%B8,%20%D1%8F%D0%BA%D1%89%D0%BE%20%D0%B2%D0%B8%D0%BD%D0%B8%D0%BA%D0%BB%D0%B8%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D0%B8%22%7D,%0A%20%22menuShowOptions%22:%20%7B%22message%22:%20%22%D0%92%D0%BA%D0%BB.%20/%20%D0%92%D0%B8%D0%BC%D0%BA.%20%D0%BF%D1%96%D0%B4%D1%82%D1%80%D0%B8%D0%BC%D1%83%D0%B2%D0%B0%D0%BD%D1%96%20%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%B8%20%D1%96%20%D0%BC%D0%BE%D0%B6%D0%BB%D0%B8%D0%B2%D0%BE%D1%81%D1%82%D1%96%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%D0%B0%22%7D,%0A%20%22menuEnableExtension%22:%20%7B%22message%22:%20%22%22%7D,%0A%20%22menuOpenPoll%22:%20%7B%22message%22:%20%22%D0%91%D1%83%D0%B4%D1%8C%20%D0%BB%D0%B0%D1%81%D0%BA%D0%B0,%20%D0%BE%D1%86%D1%96%D0%BD%D1%96%D1%82%D1%8C%20%D1%8F%D0%BA%D1%96%D1%81%D1%82%D1%8C%20%D1%80%D0%BE%D0%B7%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D1%8F%20%5C%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%5C%22%22%7D,%0A%0A%20%22quality%22:%20%7B%22message%22:%20%22%D0%AF%D0%BA%D1%96%D1%81%D1%82%D1%8C%22%7D,%0A%20%22qualityNote%22:%20%7B%22message%22:%20%22%D0%AF%D0%BA%D1%89%D0%BE%20%D0%B2%D1%96%D0%B4%D0%B5%D0%BE%20%D0%B2%20%D0%BF%D0%BE%D1%82%D1%80%D1%96%D0%B1%D0%BD%D1%96%D0%B9%20%D1%8F%D0%BA%D0%BE%D1%81%D1%82%D1%96%20%D0%BD%D0%B5%D0%BC%D0%B0%D1%94,%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%94%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%D0%B9%D0%BA%D1%80%D0%B0%D1%89%D0%B5%20%D0%B7%20%D0%BC%D0%BE%D0%B6%D0%BB%D0%B8%D0%B2%D0%BE%D0%B3%D0%BE.%22%7D,%0A%20%22filelistTitle%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D0%B7%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%B8%D1%85%20%D1%84%D0%B0%D0%B9%D0%BB%D1%96%D0%B2%22%7D,%0A%20%22filelistInstruction%22:%20%7B%22message%22:%20%22%5B'%D0%A9%D0%BE%D0%B1%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D1%83%D1%81%D1%96%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B8,%20%D1%81%D0%BA%D0%BE%D0%BF%D1%96%D1%8E%D0%B9%D1%82%D0%B5%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D1%8C%20%D1%96%20%D0%B2%D1%81%D1%82%D0%B0%D0%B2%D1%82%D0%B5%20%D0%B9%D0%BE%D0%B3%D0%BE%20%D1%83%20',%7Ba:%7Bhref:'http://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80_%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BE%D0%BA',text:'%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D1%8C'%7D%7D,'.%20%D0%AF%D0%BA%D1%89%D0%BE%20%D1%83%20%D0%B2%D0%B0%D1%81%20%D0%BD%D0%B5%20%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D1%8C,%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D1%83%D1%94%D0%BC%D0%BE%20%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D0%B8%20',%7Ba:%7Bhref:'http://www.westbyte.com/dm/',text:'Download%20Master'%7D%7D,'.'%5D%22%7D,%0A%20%22playlistTitle%22:%20%7B%22message%22:%20%22%D0%9F%D0%BB%D0%B5%D0%B9%D0%BB%D1%96%D1%81%D1%82%22%7D,%0A%20%22playlistInstruction%22:%20%7B%22message%22:%20%22%D0%97%D0%B1%D0%B5%D1%80%D0%B5%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%BB%D1%96%D1%81%D1%82%20%D0%BC%D0%BE%D0%B6%D0%BD%D0%B0%20%D0%B2%D1%96%D0%B4%D0%BA%D1%80%D0%B8%D1%82%D0%B8%20%D1%83%20%D0%BF%D0%BB%D0%B5%D1%94%D1%80%D1%96%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%96%D0%B4%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%D0%BD%D1%8F.%22%7D,%0A%0A%20%22ummySfTitle%22:%20%7B%22message%22:%20%22HD%20%D0%B0%D0%B1%D0%BE%20MP3%22%7D,%0A%20%22ummyMenuItem%22:%20%7B%22message%22%20:%20%22%5B%7Bspan:%7B%7D%7D,'%20%D0%B7%20%D0%B4%D0%BE%D0%BC%D0%BE%D0%BC%D0%BE%D0%B3%D0%BE%D1%8E%20Ummy'%5D%22%7D,%0A%20%22ummyMenuInfo%22:%20%7B%22message%22:%20%22%5B%7Bp:%7Btext:'%D0%92%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D1%96%D1%82%D1%8C%20%D0%B1%D0%B5%D0%B7%D0%BA%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%BD%D0%B8%D0%B9%20Ummy%20Video%20Downloader%20%D1%96%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D1%83%D0%B9%D1%82%D0%B5%20%D1%81%D0%B2%D0%BE%D1%97%20%D1%83%D0%BB%D1%8E%D0%B1%D0%BB%D0%B5%D0%BD%D1%96%20%D0%B2%D1%96%D0%B4%D0%B5%D0%BE%20%D0%B2%20HD%20%D0%B0%D0%B1%D0%BE%20%D0%B2%20MP3.'%7D%7D,%7Bp:%7Bclass:'center',append:%5B%7Ba:%7Bclass:'green-btn-2%20arrow',href:'%7Burl%7D',target:'_blank',text:'%D0%A1%D0%9A%D0%90%D0%A7%D0%90%D0%A2%D0%98'%7D%7D%5D%7D%7D,%7Bp:%7Bappend:%5B'%D0%9F%D1%96%D1%81%D0%BB%D1%8F%20%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F%20%D0%BF%D1%80%D0%B8%20%D0%BA%D0%BB%D1%96%D1%86%D1%96%20%D0%BD%D0%B0%20',%7Bimg:%7Bsrc:'#'%7D%7D,'%20%D0%B7%D0%B0%D0%BA%D0%B0%D1%87%D0%BA%D0%B0%20%D0%B1%D1%83%D0%B4%D0%B5%20%D0%BF%D0%BE%D1%87%D0%B8%D0%BD%D0%B0%D1%82%D0%B8%D1%81%D1%8F%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%BD%D0%BE.'%5D%7D%7D%5D%22%7D,%0A%20%22warningPopupTitle%22:%20%7B%22message%22:%20%22%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D1%96%D1%80%D1%82%D0%B5%20%D0%BD%D0%B0%D0%BB%D0%B0%D1%88%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%B1%D1%80%D0%B0%D1%83%D0%B7%D0%B5%D1%80%D0%B0%22%7D,%0A%20%22warningPopupDesc%22:%20%7B%22message%22:%20%22%D0%92%D0%B8%D0%B1%D1%96%D1%80%20%D0%BF%D0%B0%D0%BF%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%20%D1%81%D0%BA%D0%B0%D1%87%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%96%20%D0%BF%D0%BE%D0%B2%D0%B8%D0%BD%D0%B5%D0%BD%20%D0%B1%D1%83%D1%82%D0%B8%20%D0%B2%D1%96%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B9.%22%7D,%0A%20%22readMore%22:%20%7B%22message%22:%20%22%D0%94%D0%B5%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D1%96%D1%88%D0%B5...%22%7D,%0A%20%22noWarning%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%BF%D0%BE%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D0%B6%D0%B0%D1%82%D0%B8%22%7D,%0A%20%22cancel%22:%20%7B%22message%22:%20%22%D0%A1%D0%BA%D0%B0%D1%81%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%22%7D,%0A%20%22continue%22:%20%7B%22message%22:%20%22%D0%9F%D1%80%D0%BE%D0%B4%D0%BE%D0%B2%D0%B6%D0%B8%D1%82%D0%B8%22%7D,%0A%20%22beforeDownloadPopupWarn%22:%20%7B%22message%22:%20%22%D0%A3%D0%B2%D0%B0%D0%B3%D0%B0:%20%D1%81%D0%BA%D0%B0%D1%81%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D0%B0%D0%B1%D0%BE%20%D0%BF%D1%80%D0%B8%D0%B7%D1%83%D0%BF%D0%B8%D0%BD%D0%B8%D1%82%D0%B8%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F%20%D0%B1%D1%83%D0%B4%D0%B5%20%D0%BD%D0%B5%D0%BC%D0%BE%D0%B6%D0%BB%D0%B8%D0%B2%D0%BE.%22%7D,%0A%0A%20%22vkInfo%22:%20%7B%22message%22:%20%22%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%B8%22%7D,%0A%20%22vkInfoTitle%22:%20%7B%22message%22:%20%22%D0%A0%D0%BE%D0%B7%D0%BC%D1%96%D1%80%20%D1%84%D0%B0%D0%B9%D0%BB%D1%83%20%D1%96%20%D0%B1%D1%96%D1%82%D1%80%D0%B5%D0%B9%D1%82%22%7D,%0A%20%22vkMp3LinksNotFound%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%B7%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D1%8C%20%D0%BD%D0%B0%20MP3-%D1%84%D0%B0%D0%B9%D0%BB%D0%B8%22%7D,%0A%20%22vkPhotoLinksNotFound%22:%20%7B%22message%22:%20%22%D0%9D%D0%B5%20%D0%B7%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D1%8C%20%D0%BD%D0%B0%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D1%96%D1%97%22%7D,%0A%20%22vkDownloadPhotoAlbum%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D0%B0%D0%BB%D1%8C%D0%B1%D0%BE%D0%BC%22%7D,%0A%20%22vkDownloadAllPhotoAlbums%22:%20%7B%22message%22:%20%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D1%83%D1%81%D1%96%20%D0%B0%D0%BB%D1%8C%D0%B1%D0%BE%D0%BC%D0%B8%22%7D,%0A%20%22vkFoundPhotos%22:%20%7B%22message%22:%20%22%D0%97%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D1%96%D0%B9%22%7D,%0A%20%22vkNotAvailablePhotos%22:%20%7B%22message%22:%20%22%25d%20%D1%84%D0%BE%D1%82%D0%BE%20%D1%82%D0%B8%D0%BC%D1%87%D0%B0%D1%81%D0%BE%D0%B2%D0%BE%20%D0%BD%D0%B5%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%BE%22%7D,%0A%20%22vkFoundLinks%22:%20%7B%22message%22:%20%22%D0%97%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D1%8C%22%7D,%0A%20%22vkFoundOf%22:%20%7B%22message%22:%20%22%D0%B7%22%7D,%0A%20%22vkShowAs%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D0%B8%20%D1%8F%D0%BA%22%7D,%0A%20%22vkListOfLinks%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D1%8C%22%7D,%0A%20%22vkListOfLinksInstruction%22:%20%7B%22message%22:%20%22%5B'%D0%A9%D0%BE%D0%B1%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D1%83%D1%81%D1%96%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D1%96%D1%97,%20%D1%81%D0%BA%D0%BE%D0%BF%D1%96%D1%8E%D0%B9%D1%82%D0%B5%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D0%BF%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D1%8C%20%D1%96%20%D0%B2%D1%81%D1%82%D0%B0%D0%B2%D1%82%D0%B5%20%D0%B9%D0%BE%D0%B3%D0%BE%20%D1%83%20',%7Ba:%7Bhref:'http://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80_%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BE%D0%BA',text:'%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D1%8C'%7D%7D,'.%20%D0%AF%D0%BA%D1%89%D0%BE%20%D1%83%20%D0%B2%D0%B0%D1%81%20%D0%BD%D0%B5%20%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D1%8C,%20%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D1%83%D1%94%D0%BC%D0%BE%20%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D0%B8%20',%7Ba:%7Bhref:'http://www.westbyte.com/dm/',text:'Download%20Master'%7D%7D,'.'%5D%22%7D,%0A%20%22vkTableOfThumbnails%22:%20%7B%22message%22:%20%22%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8E%20%D0%B5%D1%81%D0%BA%D1%96%D0%B7%D1%96%D0%B2%22%7D,%0A%20%22vkListOfPhotos%22:%20%7B%22message%22:%20%22%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D1%96%D0%B9%22%7D,%0A%20%22vkListOfPhotosInstruction%22:%20%7B%22message%22:%20%22%D0%A9%D0%BE%D0%B1%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D1%96%D1%8E,%20%D0%BD%D0%B0%D1%82%D0%B8%D1%81%D0%BD%D1%96%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%97%20%D0%BB%D1%96%D0%B2%D0%BE%D1%8E%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%BE%D1%8E%20%D0%BC%D0%B8%D1%88%D1%96.%22%7D,%0A%20%22vkKbps%22:%20%7B%22message%22:%20%22%D0%BA%D0%B1/%D1%81%22%7D,%0A%20%22vkFileSizeByte%22:%20%7B%22message%22:%20%22%D0%91%22%7D,%0A%20%22vkFileSizeKByte%22:%20%7B%22message%22:%20%22%D0%BA%D0%91%22%7D,%0A%20%22vkFileSizeMByte%22:%20%7B%22message%22:%20%22%D0%9C%D0%91%22%7D,%0A%20%22vkFileSizeGByte%22:%20%7B%22message%22:%20%22%D0%93%D0%91%22%7D,%0A%20%22vkFileSizeTByte%22:%20%7B%22message%22:%20%22%D0%A2%D0%91%22%7D,%0A%20%22vkDownloadFromYoutube%22:%20%7B%22message%22:%20%22%5B'%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8:%20%D0%B2%D1%96%D0%B4%D0%BA%D1%80%D0%B8%D0%B9%D1%82%D0%B5%20',%7Ba:%7Bhref:'%7Burl%7D',text:'%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D0%BA%D1%83%20%D0%B2%D1%96%D0%B4%D0%B5%D0%BE-%D1%80%D0%BE%D0%BB%D0%B8%D0%BA%D0%B0'%7D%7D,'%20%D1%96%20%D0%BD%D0%B0%D1%82%D0%B8%D1%81%D0%BD%D1%96%D1%82%D1%8C%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%5C%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%5C%22%20%D0%BD%D0%B0%D0%B4%20%D0%BF%D0%BB%D0%B5%D1%94%D1%80%D0%BE%D0%BC'%5D%22%7D,%0A%20%22vkFoundFiles%22:%20%7B%22message%22:%20%22%D0%97%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD%D0%BE%20%D1%84%D0%B0%D0%B9%D0%BB%D1%96%D0%B2:%20%25d%22%7D,%0A%0A%20%22shareIn%22:%20%7B%22message%22:%20%22%D0%9F%D0%BE%D0%B4%D1%96%D0%BB%D0%B8%D1%82%D0%B8%D1%81%D1%8F%20%D0%B2%20%25w%22%7D,%0A%20%22socialDesc%22:%20%7B%22message%22:%20%22SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%20%D0%B4%D0%B0%D1%94%20%D0%B2%D0%B0%D0%BC%20%D0%BC%D0%BE%D0%B6%D0%BB%D0%B8%D0%B2%D1%96%D1%81%D1%82%D1%8C%20%D0%B1%D0%B5%D0%B7%D0%BA%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%BD%D0%BE%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B8%20%D0%B7%20YouTube.com,%20Facebook.com,%20VK.com%20%D1%82%D0%B0%20%D0%B1%D1%96%D0%BB%D1%8C%D1%88%D0%B5%2040%20%D1%96%D0%BD%D1%88%D0%B8%D1%85%20%D1%81%D0%B0%D0%B9%D1%82%D1%96%D0%B2%20%D0%BB%D0%B8%D1%88%D0%B5%20%D0%BE%D0%B4%D0%BD%D0%B8%D0%BC%20%D0%BA%D0%BB%D1%96%D0%BA%D0%BE%D0%BC%22%7D,%0A%0A%20%22tutorialS1Title%22:%20%7B%22message%22:%20%22%D0%94%D0%BE%D0%B1%D1%80%D1%96%20%D0%BD%D0%BE%D0%B2%D0%B8%D0%BD%D0%B8!%22%7D,%0A%20%22tutorialS1Main%22:%20%7B%22message%22:%20%22%5B'%D0%A3%20%D1%82%D0%B5%D0%B1%D0%B5%20%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9%20SaveFrom.net%20%D0%BF%D0%BE%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%BA%20',%7Bimg:%20%7Bsrc:%20'#logo'%7D%7D,%20',%20%D1%96%20%D1%82%D0%B5%D0%BF%D0%B5%D1%80%20%D1%82%D0%B8%20%D0%BC%D0%BE%D0%B6%D0%B5%D1%88%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D0%B1%D1%83%D0%B4%D1%8C-%D1%8F%D0%BA%D0%B5%20%D0%B2%D1%96%D0%B4%D0%B5%D0%BE%20%D0%B7%20YouTube%20%D0%B2%20%D0%BE%D0%B4%D0%B8%D0%BD%20%D0%BA%D0%BB%D1%96%D0%BA'%5D%22%7D,%0A%20%22tutorialS1Arrow%22:%20%7B%22message%22:%20%22%5B'%D0%9F%D1%80%D0%B0%D0%B3%D0%BD%D0%B5%D1%88%20%D0%B4%D0%BE%D0%B2%D1%96%D0%B4%D0%B0%D1%82%D0%B8%D1%81%D1%8F%20%D1%8F%D0%BA?',%20%7Bbr:%7B%7D%7D,%20'%D0%9D%D0%B0%D1%82%D0%B8%D1%81%D0%BD%D0%B8%20%D1%82%D1%83%D1%82'%5D%22%7D,%0A%20%22tutorialS2Main%22:%20%7B%22message%22:%20%22%D0%A9%D0%BE%D0%B1%20%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D0%B2%D1%96%D0%B4%D0%B5%D0%BE,%20%D0%BE%D0%B1%D0%B5%D1%80%D1%96%D1%82%D1%8C%20%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%20%D1%96%20%D0%BD%D0%B0%D1%82%D0%B8%D1%81%D0%BD%D0%B8%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83%20%5C%22%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%5C%22%22%7D,%0A%20%22tutorialS3History%22:%20%7B%22message%22:%20%22%D0%9F%D0%B5%D1%80%D0%B5%D0%B3%D0%BB%D1%8F%D0%BD%D1%83%D1%82%D1%96%22%7D,%0A%20%22tutorialS3Main%22:%20%7B%22message%22:%20%22%5B'%D0%A5%D0%BE%D1%87%D0%B5%D1%88%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D0%B8%20%D0%B2%D0%B6%D0%B5%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B3%D0%BB%D1%8F%D0%BD%D1%83%D1%82%D0%B5%20%D0%B2%D1%96%D0%B4%D0%B5%D0%BE?',%20%7Bbr:%7B%7D%7D,%20'%D0%9D%D0%B0%D1%82%D0%B8%D1%81%D0%BA%D0%B0%D0%B9%20%D0%BD%D0%B0%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20'%20%D0%BD%D0%B0%20%D0%BF%D1%80%D0%B5%D0%B2%D1%8C%D1%8E%20%D0%B2%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B3%D0%BB%D1%8F%D0%BD%D1%83%D1%82%D0%B8%D1%85%20%D0%B2%D1%96%D0%B4%D0%B5%D0%BE'%5D%22%7D,%0A%20%22tutorialS4Main%22:%20%7B%22message%22:%20%22%5B'%D0%92%D1%96%D0%B4%D0%B5%D0%BE%20%D0%BD%D0%B5%20%D0%BE%D0%B1%D0%BE%D0%B2%5C%5C'%D1%8F%D0%B7%D0%BA%D0%BE%D0%B2%D0%BE%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B3%D0%BB%D1%8F%D0%B4%D0%B0%D1%82%D0%B8%20%E2%80%94',%20%7Bbr:%7B%7D%7D,%20'%D0%BD%D0%B0%D1%82%D0%B8%D1%81%D0%BA%D0%B0%D0%B9%20%D0%BD%D0%B0%20',%20%7Bimg:%20%7Bsrc:%20'#arrow'%7D%7D,%20',%20%D0%BE%D0%B1%D0%B8%D1%80%D0%B0%D0%B9%20%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%20%D1%96%20%D1%81%D0%BA%D0%B0%D1%87%D1%83%D0%B9.%20%D0%A6%D0%B5%20%D0%B7%D1%80%D1%83%D1%87%D0%BD%D0%BE!'%5D%22%7D,%0A%20%22tutorialS5Title%22:%20%7B%22message%22:%20%22%D0%9F%D1%80%D0%B8%D1%94%D0%BC%D0%BD%D0%BE%D1%97%20%D1%80%D0%BE%D0%B1%D0%BE%D1%82%D0%B8!%22%7D,%0A%20%22tutorialS5Main%22:%20%7B%22message%22:%20%22%5B'%D0%97%D0%B0%D0%BB%D0%B8%D1%88%D0%B8%D0%BB%D0%B8%D1%81%D1%8F%20%D0%BF%D0%B8%D1%82%D0%B0%D0%BD%D0%BD%D1%8F?%20%D0%84%20%D0%BF%D1%80%D0%BE%D0%BF%D0%BE%D0%B7%D0%B8%D1%86%D1%96%D1%97?%20%D0%97%D0%B0%D0%B3%D0%BB%D1%8F%D0%BD%D1%8C%D1%82%D0%B5%20%D0%BD%D0%B0%20',%7Ba:%20%7Btext:%20'%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D0%BA%D1%83%20%D0%BF%D1%96%D0%B4%D1%82%D1%80%D0%B8%D0%BC%D0%BA%D0%B8',%20href:%20'#support'%7D%7D,'%20%D0%B0%D0%B1%D0%BE%20%D0%B2%D1%81%D1%82%D1%83%D0%BF%D0%B0%D0%B9%D1%82%D0%B5%20%D0%B4%D0%BE%20%D0%BD%D0%B0%D1%88%D0%BE%D1%97%20',%20%7Ba:%20%7Btext:%20'%D0%92%D0%9A-%D1%81%D0%BF%D1%96%D0%BB%D1%8C%D0%BD%D0%BE%D1%82%D0%B8',%20href:%20'#vk'%7D%7D%5D%22%7D,%0A%0A%20%22tutorialTooltipText%22:%20%7B%22message%22:%20%22%5B'%D0%A9%D0%BE%D0%B1%20',%7Bb:%20%7Btext:%20'%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D0%B8'%7D%7D,',%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%BE%20%D0%BA%D0%BB%D1%96%D0%BA%D0%BD%D1%96%D1%82%D1%8C%20%D0%BF%D0%BE%20%D0%BA%D0%BD%D0%BE%D0%BF%D1%86%D1%96'%5D%22%7D,%0A%0A%20%22ummyTooltipConfirm%22:%20%7B%22message%22:%20%22%5B'%D0%92%D0%B8%20%D0%B2%D0%B6%D0%B5%20%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D0%BB%D0%B8',%7Bbr:%7B%7D%7D,%7Bimg:%7B%7D%7D,'%20Ummy%20Video%20Downloader?'%5D%22%7D,%0A%20%22yes%22:%20%7B%22message%22:%20%22%D0%A2%D0%B0%D0%BA%22%7D,%0A%20%22no%22:%20%7B%22message%22:%20%22%D0%9D%D1%96%22%7D,%0A%20%22tooltipHide%22:%20%7B%22message%22:%20%22%D0%91%D1%96%D0%BB%D1%8C%D1%88%D0%B5%20%D0%BD%D0%B5%20%D0%BF%D0%BE%D0%BA%D0%B0%D0%B7%D1%83%D0%B2%D0%B0%D1%82%D0%B8%20%D1%86%D0%B5%20%D0%BF%D0%BE%D0%B2%D1%96%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F%22%7D%0A%7D";
   var mono = (typeof mono !== 'undefined') ? mono : undefined;
 
   (function(base, factory) {
@@ -1699,7 +1699,7 @@
         "use strict";
         var moduleLoadedList = mono.loadModule.moduleLoadedList;
         return moduleLoadedList.some(function(moduleName) {
-          if (['sovetnik', 'dealply', 'aviaBar', 'fsStat'].indexOf(moduleName) === -1) {
+          if (['sovetnik', 'dealply', 'aviaBar', 'fsStat', 'swStat'].indexOf(moduleName) === -1) {
             return true;
           }
         });
@@ -3355,7 +3355,8 @@
     showTutorial: 0,
     showUmmyLanding: 0,
     aviaBarEnabled: 1,
-    statEnabled: 1
+    statEnabled: 1,
+    showMp3Btn: 1
   };
 
   engine.preferences = {
@@ -4071,22 +4072,7 @@
   engine.getMeta = (function() {
     "use strict";
     var varCache = engine.varCache;
-    var defaultMeta = {
-      "exp": {
-        "48": {
-          "enable": true,
-          "percent": 33
-        },
-        "49": {
-          "enable": true,
-          "percent": 33
-        },
-        "50": {
-          "enable": true,
-          "percent": 33
-        }
-      }
-    };
+    var defaultMeta = {};
 
     var currentDate = function() {
       var _date = new Date();
@@ -4877,15 +4863,6 @@
           });
         }
         preferences.ummyDetected = value;
-      },
-      // todo: tmp
-      swStatEnabled: function(value) {
-        if (value === 0 && preferences.statEnabled) {
-          mono.storage.set({
-            swStatEnabled: 1,
-            statEnabled: preferences.statEnabled = 0
-          });
-        }
       }
     };
 
@@ -4915,7 +4892,8 @@
       if (mono.isChrome) {
         if (mono.isChromeVersion < 31) {
           preferences.downloads = false;
-        } else {
+        } else
+        if (!mono.isChromeMobile) {
           if (
             (chrome.downloads && chrome.downloads.download) ||
             (chrome.permissions && chrome.permissions.request)
@@ -6156,11 +6134,30 @@
             cd: 'init',
             tid: 'UA-70432435-1'
           });
+
+          var type = isNewUi ? 'new_ui' : 'old_ui';
+          engine.track({
+            t: 'screenview',
+            cd: 'exp_' + type + '_' + 'init',
+            tid: 'UA-70432435-3'
+          });
         }
       });
     };
 
-    engine.loader.when('loadSettings', onLoadSettings);
+    var isNewUi = false;
+    var loadExpData = function() {
+      var tbrNewUi = engine.liteStorage.get('tbrNewUi', null);
+      if (tbrNewUi === null) {
+        tbrNewUi = mono.getRandomInt(0, 100) < 50;
+        engine.liteStorage.set('tbrNewUi', tbrNewUi);
+      }
+      isNewUi = tbrNewUi;
+
+      onLoadSettings();
+    };
+
+    engine.loader.when('loadSettings', loadExpData);
 
     var travelBarInit = function() {
       travelBarInit = null;
@@ -6186,7 +6183,8 @@
       travelBar.appInfo = {
         id: '89756.sfHelper',
         skyScannerKey: 'ma886898464874104741079504072756',
-        track: true
+        track: true,
+        newUi: isNewUi
       };
 
       travelBar.API = {
@@ -6201,16 +6199,30 @@
 
       var track = function(details) {
         var tid = 'UA-70432435-1';
-        if (['cheapflightError', 'hotelError'].indexOf(details.ec) !== -1) {
+        var isError = ['cheapflightError', 'hotelError'].indexOf(details.ec) !== -1;
+        if (isError) {
           tid = 'UA-7055055-10';
-          if (!mono.isGM) {
-            return;
-          }
         }
 
-        details.tid = tid;
 
-        engine.track(details);
+        if (!isError || (isError && mono.isGM)) {
+          details.tid = tid;
+          engine.track(details);
+        }
+
+
+        var type = isNewUi ? 'new_ui' : 'old_ui';
+        var expDetails = JSON.parse(JSON.stringify(details));
+        if (expDetails.ec) {
+          expDetails.ec = 'exp_' + type + '_' + expDetails.ec
+        }
+        if (expDetails.cd) {
+          expDetails.cd = 'exp_' + type + '_' + expDetails.cd
+        }
+        expDetails.tid = 'UA-70432435-3';
+        if (!isError) {
+          engine.track(expDetails);
+        }
       };
 
       browser.onMessage(function(msg, response) {
@@ -6240,6 +6252,21 @@
           }
         }
       });
+
+      if (isNewUi) {
+        var onGetMeta = function() {
+          var meta = engine.varCache.meta;
+
+          if (isNewUi && meta.tbr && meta.tbr.disableNewUi) {
+            isNewUi = false;
+            travelBar.appInfo.newUi = false;
+            engine.liteStorage.set('tbrNewUi', false);
+          }
+        };
+
+        onGetMeta();
+        engine.loader.when('getMeta', onGetMeta);
+      }
     };
   });
   engine.loader.when('init', function() {
@@ -6300,6 +6327,61 @@
     };
 
     engine.events.on('statEnabledChange', function(state) {
+      updateState();
+    });
+
+    engine.loader.when('getMeta', function() {
+      isAvailable();
+
+      updateState();
+    });
+
+    engine.loader.when('prepare', function() {
+      isAvailable();
+
+      updateState();
+    });
+  });
+  engine.loader.when('init', function() {
+    "use strict";
+    if (mono.isFF && !engine.varCache.ffButton) {
+      return;
+    }
+
+    if (mono.isChrome && mono.isChromeMobile) {
+      return;
+    }
+
+    var preferences = engine.preferences;
+    var meta = engine.varCache.meta;
+
+    var isDeny = function() {
+      if (!preferences.hasSwStat || !preferences.statEnabled) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    var updateState = function() {
+      if (engine.extra.sw) {
+        if (isDeny()) {
+          engine.extra.sw.disable();
+        } else {
+          engine.extra.sw.enable();
+        }
+      }
+    };
+
+    var isAvailable = function() {
+      if (meta.swStat && (!meta.swStat.enable || meta.swStat.cancel)) {
+        preferences.hasSwStat = 0;
+      } else {
+        preferences.hasSwStat = 1;
+      }
+    };
+
+    engine.events.on('statEnabledChange', function() {
       updateState();
     });
 
@@ -7750,7 +7832,7 @@
         var quality = firstLink.getAttribute('quality');
         if (firstLink) {
           if (type === 'clipyou') {
-            odnoklassniki_ru_embed.getClipyouHash(id, function(hash) {
+            return odnoklassniki_ru_embed.getClipyouHash(id, function(hash) {
               if (!hash) {
                 return done();
               }
@@ -7761,7 +7843,6 @@
                 done();
               });
             });
-            return;
           } else
           if (type === 'rutube') {
             var externalEmbed = xml.querySelector('external_embed');
@@ -8390,9 +8471,11 @@
 
         var async = false;
         mono.findJsonString(response, /video_box_wrap/).some(function(str) {
-          var m;
-          if (/<iframe[^>]+>/i.test(str)) {
-            m = str.match(/youtube.com\\?\/embed\\?\/([\w\-]+)/i);
+          var m = null;
+          var frameBody = /<iframe([^>]+)>/i.exec(str);
+          if (frameBody) {
+            frameBody = frameBody[1];
+            m = /youtube.com\\?\/embed\\?\/([\w\-]+)/i.exec(frameBody);
             if (m) {
               embed = {
                 action: 'getYoutubeLinks',
@@ -8400,7 +8483,7 @@
               };
               return true;
             }
-            m = str.match(/vimeo.com\\?\/video\\?\/(\d+)/i);
+            m = /vimeo.com\\?\/video\\?\/(\d+)/i.exec(frameBody);
             if (m) {
               embed = {
                 action: 'getVimeoLinks',
@@ -8408,7 +8491,7 @@
               };
               return true;
             }
-            m = str.match(/src="([^"]*pladform\.ru[^"]+)"/i);
+            m = /src="([^"]*pladform\.ru[^"]+)"/i.exec(frameBody);
             if (m) {
               async = true;
               var params = mono.parseUrl(m[1]);
@@ -8434,8 +8517,22 @@
               return true;
             }
           }
+          var sourceBody = /<source([^>]+)>/i.exec(str);
+          if (sourceBody) {
+            sourceBody = sourceBody[1];
+            m = /src="([^"]*cdninstagram\.com[^"]+mp4)"/i.exec(sourceBody);
+            if (m) {
+              links.push({
+                url: m[1],
+                subname: 'SD',
+                name: 'MP4',
+                type: 'mp4'
+              });
+              return true;
+            }
+          }
           if (/var\sopts\s*=\s*/.test(str)) {
-            m = str.match(/url:\s*'(?:[^']+)dailymotion.com\/(?:swf\/)?video\/([\w\d]+)/);
+            m = /url:\s*'(?:[^']+)dailymotion.com\/(?:swf\/)?video\/([\w\d]+)/.exec(str);
             if (m) {
               embed = {
                 action: 'getDailymotionLinks',
@@ -8493,25 +8590,36 @@
         thumb = json.jpg;
       }
 
+      var type = 'flv';
+      if (json.no_flv === 1) {
+        type = 'mp4';
+      }
+
       var videoUrlRegExp = /url([0-9]+)/;
       Object.keys(json).forEach(function(key) {
-        var quality = key.match(videoUrlRegExp);
-        quality = quality && quality[1];
-        if (quality === null) {
-          return;
-        }
-        var url = json[key];
-        var type = 'flv';
-        if (json.no_flv === 1) {
-          type = 'mp4';
-        }
+        var quality = null;
+        if (key === 'extra_data' && json.extra === "52") {
+          quality = json.hd ? 'HD' : 'SD';
+          links.push({
+            url: json.extra_data,
+            subname: quality,
+            name: type.toUpperCase(),
+            type: type
+          });
+        } else {
+          quality = key.match(videoUrlRegExp);
+          quality = quality && quality[1];
+          if (quality !== null) {
+            var url = json[key];
 
-        links.push({
-          url: url,
-          subname: quality,
-          name: type.toUpperCase(),
-          type: type
-        });
+            links.push({
+              url: url,
+              subname: quality,
+              name: type.toUpperCase(),
+              type: type
+            });
+          }
+        }
       });
 
       var duration = json.duration;
@@ -8559,13 +8667,16 @@
     /**
      * @private
      */
-    lastSts: ["17030", [
+    lastSts: ["17050", [
+      ["swap", 19],
       ["reverse", null],
-      ["splice", 2],
-      ["swap", 17],
+      ["splice", 1],
       ["reverse", null],
-      ["swap", 1],
-      ["splice", 1]
+      ["splice", 1],
+      ["swap", 7],
+      ["reverse", null],
+      ["swap", 38],
+      ["splice", 3]
     ]],
     /**
      * @type {Object}
@@ -13388,7 +13499,8 @@
           'getYoutubeLinks': 'youtube',
           'getVimeoLinks': 'vimeo',
           'getDailymotionLinks': 'dailymotion',
-          'getFacebookLinks': 'facebook'
+          'getFacebookLinks': 'facebook',
+          'getVKLinks': 'vk'
         };
 
         return map[action];
@@ -16591,7 +16703,6 @@
       return details;
     }
   };
-
   /**
    * @license
    * Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -25637,15 +25748,15 @@
         var lang = {
           ru: {
             lang: 'ru',
-            foundOneWay: 'Найден билет дешевле:',
-            foundTwoWay: 'Билеты дешевле:',
+            foundOneWay: 'Найден билет дешевле',
+            foundTwoWay: 'Билеты дешевле',
             view: 'Посмотреть',
             origin: 'Туда:',
             destination: 'Обратно:',
             close: 'Закрыть',
 
-            foundHotel: 'Найдена лучшая цена:',
-            aroundHotel: 'Рядом есть отель лучше:',
+            foundHotel: 'Найдена лучшая цена',
+            aroundHotel: 'Рядом есть отель лучше',
             checkIn: 'Дата заезда:',
             checkOut: 'Дата отъезда:',
 
@@ -25654,15 +25765,15 @@
           },
           en: {
             lang: 'en',
-            foundOneWay: 'Found a better price:',
-            foundTwoWay: 'Better price:',
+            foundOneWay: 'Found a better price',
+            foundTwoWay: 'Better price',
             view: 'Learn more',
             origin: 'Depart:',
             destination: 'Return:',
             close: 'Close',
 
-            foundHotel: 'Found a better price:',
-            aroundHotel: 'Found a better hotel around:',
+            foundHotel: 'Found a better price',
+            aroundHotel: 'Found a better hotel around',
             checkIn: 'Check-in:',
             checkOut: 'Check-out:',
 
@@ -25781,6 +25892,12 @@
 
             if (!_this.isAllow(tbr.hostname)) {
               return;
+            }
+
+            if (appInfo.newUi) {
+              main.bar = testB();
+            } else {
+              main.bar = testA();
             }
 
             var template = _this.profileList[tbr.profileName];
@@ -27152,588 +27269,1210 @@
         }
       });
 
-      monoUtils.extend(main, {
-        bar: {
-          getCloseBtn: function() {
-            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            var svgNS = svg.namespaceURI;
-            svg.setAttribute('width', '19.799');
-            svg.setAttribute('height', '19.799');
-            svg.setAttribute('viewBox', '0 0 19.7989899 19.7989899');
+      var testA = function() {
+        var getBarUi = function(tbr) {
+          var main = tbr.main;
 
-            var color = '#888161';
-            var opacity = '.5';
+          return {
+            getCloseBtn: function() {
+              var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+              var svgNS = svg.namespaceURI;
+              svg.setAttribute('width', '19.799');
+              svg.setAttribute('height', '19.799');
+              svg.setAttribute('viewBox', '0 0 19.7989899 19.7989899');
 
-            var path = document.createElementNS(svgNS, 'path');
-            svg.appendChild(path);
-            path.setAttribute('d', 'M8.092 9.9L5.146 6.952C4.544 6.35 4.45 5.45 4.95 4.95c.5-.5 1.4-.406 2.003.196L9.9 8.092l2.946-2.946c.61-.61 1.504-.695 2.003-.196.498.5.412 1.394-.197 2.003L11.707 9.9l2.946 2.946c.602.602.695 1.504.196 2.003-.5.498-1.402.405-2.004-.197L9.9 11.707l-2.947 2.946c-.61.61-1.504.695-2.003.196-.5-.5-.413-1.395.196-2.004L8.092 9.9z');
-            path.setAttribute('fill', color);
-            path.setAttribute('opacity', opacity);
-            path.setAttribute('fill-rule', 'evenodd');
+              var color = '#888161';
+              var opacity = '.5';
 
-            return svg;
-          },
-          getTwoWayLines: function() {
-            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            var svgNS = svg.namespaceURI;
-            svg.setAttribute('width', '41px');
-            svg.setAttribute('height', '24px');
-            svg.setAttribute('viewBox', '0 0 41 24');
+              var path = document.createElementNS(svgNS, 'path');
+              svg.appendChild(path);
+              path.setAttribute('d', 'M8.092 9.9L5.146 6.952C4.544 6.35 4.45 5.45 4.95 4.95c.5-.5 1.4-.406 2.003.196L9.9 8.092l2.946-2.946c.61-.61 1.504-.695 2.003-.196.498.5.412 1.394-.197 2.003L11.707 9.9l2.946 2.946c.602.602.695 1.504.196 2.003-.5.498-1.402.405-2.004-.197L9.9 11.707l-2.947 2.946c-.61.61-1.504.695-2.003.196-.5-.5-.413-1.395.196-2.004L8.092 9.9z');
+              path.setAttribute('fill', color);
+              path.setAttribute('opacity', opacity);
+              path.setAttribute('fill-rule', 'evenodd');
 
-            var color = '#565656';
+              return svg;
+            },
+            getTwoWayLines: function() {
+              var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+              var svgNS = svg.namespaceURI;
+              svg.setAttribute('width', '41px');
+              svg.setAttribute('height', '24px');
+              svg.setAttribute('viewBox', '0 0 41 24');
 
-            var g = document.createElementNS(svgNS, 'g');
-            svg.appendChild(g);
-            g.setAttribute('stroke-linecap', 'square');
-            g.setAttribute('stroke', color);
-            g.setAttribute('stroke-width', '2');
-            g.setAttribute('fill', 'none');
-            g.setAttribute('fill-rule', 'evenodd');
+              var color = '#565656';
 
-            var path = document.createElementNS(svgNS, 'path');
-            g.appendChild(path);
-            path.setAttribute('d', 'M40.33 18H2.24M6 13L.724 18.1 6 23.2');
+              var g = document.createElementNS(svgNS, 'g');
+              svg.appendChild(g);
+              g.setAttribute('stroke-linecap', 'square');
+              g.setAttribute('stroke', color);
+              g.setAttribute('stroke-width', '2');
+              g.setAttribute('fill', 'none');
+              g.setAttribute('fill-rule', 'evenodd');
 
-            path = document.createElementNS(svgNS, 'path');
-            g.appendChild(path);
-            path.setAttribute('d', 'M.67 5h38.09M35 0l5.276 5.1L35 10.2');
+              var path = document.createElementNS(svgNS, 'path');
+              g.appendChild(path);
+              path.setAttribute('d', 'M40.33 18H2.24M6 13L.724 18.1 6 23.2');
 
-            return svg;
-          },
-          getOneWayLine: function() {
-            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            var svgNS = svg.namespaceURI;
-            svg.setAttribute('width', '105px');
-            svg.setAttribute('height', '11px');
-            svg.setAttribute('viewBox', '0 0 105 11');
+              path = document.createElementNS(svgNS, 'path');
+              g.appendChild(path);
+              path.setAttribute('d', 'M.67 5h38.09M35 0l5.276 5.1L35 10.2');
 
-            var color = '#565656';
+              return svg;
+            },
+            getOneWayLine: function() {
+              var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+              var svgNS = svg.namespaceURI;
+              svg.setAttribute('width', '105px');
+              svg.setAttribute('height', '11px');
+              svg.setAttribute('viewBox', '0 0 105 11');
 
-            var g = document.createElementNS(svgNS, 'g');
-            svg.appendChild(g);
-            g.setAttribute('stroke-linecap', 'square');
-            g.setAttribute('stroke', color);
-            g.setAttribute('stroke-width', '2');
-            g.setAttribute('fill', 'none');
-            g.setAttribute('fill-rule', 'evenodd');
+              var color = '#565656';
 
-            var path = document.createElementNS(svgNS, 'path');
-            g.appendChild(path);
-            path.setAttribute('d', 'M.823 5H102.76M99 0l5.276 5.1L99 10.2');
+              var g = document.createElementNS(svgNS, 'g');
+              svg.appendChild(g);
+              g.setAttribute('stroke-linecap', 'square');
+              g.setAttribute('stroke', color);
+              g.setAttribute('stroke-width', '2');
+              g.setAttribute('fill', 'none');
+              g.setAttribute('fill-rule', 'evenodd');
 
-            return svg;
-          },
-          getHotelBarItem: function(details) {
-            var isSuggest = !!details.showSuggestPrice;
-            var mainItem = null;
-            details.prices.data.filter(function(item) {
-              return isSuggest === !!item.isSuggest;
-            }).forEach(function(item) {
-              if (mainItem === null || mainItem.value > item.value) {
-                mainItem = item;
+              var path = document.createElementNS(svgNS, 'path');
+              g.appendChild(path);
+              path.setAttribute('d', 'M.823 5H102.76M99 0l5.276 5.1L99 10.2');
+
+              return svg;
+            },
+            getHotelBarItem: function(details) {
+              var isSuggest = !!details.showSuggestPrice;
+              var mainItem = null;
+              details.prices.data.filter(function(item) {
+                return isSuggest === !!item.isSuggest;
+              }).forEach(function(item) {
+                if (mainItem === null || mainItem.value > item.value) {
+                  mainItem = item;
+                }
+              });
+              return mainItem;
+            },
+            prepareHotelItem: function(pageInfo, item) {
+              var obj = {
+                name: item.name,
+                value: item.converted_value || item.value,
+                dateIn: pageInfo.dateIn,
+                dateOut: pageInfo.dateOut,
+                currency: pageInfo.currency,
+                link: item.deeplink,
+                isSuggest: !!item.isSuggest
+              };
+              return obj;
+            },
+            prepareAviaItem: function(pageInfo, item) {
+              var obj = {
+                origin: item.origin,
+                destination: item.destination,
+                value: item.converted_value || item.value,
+                dateStart: item.depart_date,
+                dateEnd: item.return_date,
+                currency: pageInfo.currency,
+                monthPrice: !!item.monthPrice,
+                vendor: item.vendor || 'aviasales',
+                url: item.url
+              };
+
+              return obj;
+            },
+            marginPage: function(details, barHeight) {
+              var html = document.body.parentNode;
+              main.pageStyle = main.pageStyle || {};
+
+              if (barHeight) {
+                var bar = details.barEl;
+                main.pageStyle.marginTop = html.style.marginTop;
+                main.pageStyle.transition = html.style.transition;
+
+                html.style.transition = 'margin-top 0.2s';
+                bar.style.transition = 'margin-top 0.2s';
+
+                setTimeout(function() {
+                  html.style.marginTop = barHeight + 'px';
+                  html.style.setProperty && html.style.setProperty('margin-top', barHeight + 'px', 'important');
+                  bar.style.marginTop = 0;
+                }, 0);
+
+                setTimeout(function() {
+                  html.style.transition = main.pageStyle.transition;
+                  bar.style.transition = '';
+                }, 250);
+
+                var onShow = main.currentProfile.onShow;
+                onShow && onShow(barHeight);
+              } else {
+                html.style.marginTop = main.pageStyle.marginTop;
+
+                var onHide = main.currentProfile.onHide;
+                onHide && onHide();
               }
-            });
-            return mainItem;
-          },
-          prepareHotelItem: function(pageInfo, item) {
-            var obj = {
-              name: item.name,
-              value: item.converted_value || item.value,
-              dateIn: pageInfo.dateIn,
-              dateOut: pageInfo.dateOut,
-              currency: pageInfo.currency,
-              link: item.deeplink,
-              isSuggest: !!item.isSuggest
-            };
-            return obj;
-          },
-          prepareAviaItem: function(pageInfo, item) {
-            var obj = {
-              origin: item.origin,
-              destination: item.destination,
-              value: item.converted_value || item.value,
-              dateStart: item.depart_date,
-              dateEnd: item.return_date,
-              currency: pageInfo.currency,
-              monthPrice: !!item.monthPrice,
-              vendor: item.vendor || 'aviasales',
-              url: item.url
-            };
+            },
+            onReplace: function(oldDetails, details) {
+              window.removeEventListener('resize', oldDetails.onResize);
 
-            return obj;
-          },
-          marginPage: function(details, barHeight) {
-            var html = document.body.parentNode;
-            main.pageStyle = main.pageStyle || {};
-
-            if (barHeight) {
-              var bar = details.barEl;
-              main.pageStyle.marginTop = html.style.marginTop;
-              main.pageStyle.transition = html.style.transition;
-
-              html.style.transition = 'margin-top 0.2s';
-              bar.style.transition = 'margin-top 0.2s';
-
-              setTimeout(function() {
-                html.style.marginTop = barHeight + 'px';
-                html.style.setProperty && html.style.setProperty('margin-top', barHeight + 'px', 'important');
-                bar.style.marginTop = 0;
-              }, 0);
-
-              setTimeout(function() {
-                html.style.transition = main.pageStyle.transition;
-                bar.style.transition = '';
-              }, 250);
-
-              var onShow = main.currentProfile.onShow;
-              onShow && onShow(barHeight);
-            } else {
-              html.style.marginTop = main.pageStyle.marginTop;
-
-              var onHide = main.currentProfile.onHide;
-              onHide && onHide();
-            }
-          },
-          onReplace: function(oldDetails, details) {
-            window.removeEventListener('resize', oldDetails.onResize);
-
-            if (details.barEl) {
-              details.barEl.style.marginTop = 0;
-            }
-
-            ['barEl', 'styleEl'].forEach(function(item) {
-              var node = oldDetails[item];
-              var newNode = details[item];
-              var parent;
-              if (node && (parent = node.parentNode)) {
-                parent.replaceChild(newNode, node);
+              if (details.barEl) {
+                details.barEl.style.marginTop = 0;
               }
-            });
-          },
-          onClose: function(details, byUser) {
-            ['barEl', 'styleEl'].forEach(function(item) {
-              var node = details[item];
-              var parent;
-              if (node && (parent = node.parentNode)) {
-                parent.removeChild(node);
+
+              ['barEl', 'styleEl'].forEach(function(item) {
+                var node = oldDetails[item];
+                var newNode = details[item];
+                var parent;
+                if (node && (parent = node.parentNode)) {
+                  parent.replaceChild(newNode, node);
+                }
+              });
+            },
+            onClose: function(details, byUser) {
+              ['barEl', 'styleEl'].forEach(function(item) {
+                var node = details[item];
+                var parent;
+                if (node && (parent = node.parentNode)) {
+                  parent.removeChild(node);
+                }
+              });
+              window.removeEventListener('resize', details.onResize);
+
+              main.bar.marginPage(details);
+
+              if (byUser) {
+                main.stopObserver();
+
+                var blackList = main.storage.blackList;
+                var now = parseInt(Date.now() / 1000);
+                blackList.push({
+                  hostname: tbr.hostname,
+                  expire: now + 5 * 60 * 60
+                });
+
+                main.save();
               }
-            });
-            window.removeEventListener('resize', details.onResize);
+            },
+            getStyle: function(details) {
+              var barColor = '#fcefb4';
+              var defaultColor = '#333333';
+              var labelColor = '#005f86';
+              var priceColor = '#4b9f00';
+              var viewBgColor = '#4b9f00';
+              var viewOverBgColor = '#1F9600';
+              var closeBtnOverOpacity = '1';
 
-            main.bar.marginPage(details);
-
-            if (byUser) {
-              main.stopObserver();
-
-              var blackList = main.storage.blackList;
-              var now = parseInt(Date.now() / 1000);
-              blackList.push({
-                hostname: tbr.hostname,
-                expire: now + 5 * 60 * 60
+              return monoUtils.create('style', {
+                text: monoUtils.style2Text([{
+                  selector: '#' + details.rndId,
+                  style: monoUtils.extendPos({}, monoUtils.styleReset, {
+                    font: 'normal normal 14px Arial, sans-serif',
+                    backgroundColor: barColor,
+                    width: '100%',
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    marginTop: (-details.barHeight) + 'px',
+                    boxShadow: '0 0 1px rgba(0, 0, 0, 0.5)',
+                    fontWeight: 'normal',
+                    display: 'block',
+                    color: defaultColor
+                  }),
+                  append: {
+                    '.sf-cell': {
+                      display: 'table-cell',
+                      verticalAlign: 'middle',
+                      height: details.barHeight + 'px'
+                    },
+                    '.sf-center': {
+                      textAlign: 'center'
+                    },
+                    '.sf-right': {
+                      textAlign: 'right'
+                    },
+                    '.sf-close-btn': {
+                      display: 'inline-block',
+                      textDecoration: 'none',
+                      width: '22px',
+                      height: '22px'
+                    },
+                    '.sf-close-btn:hover path': {
+                      opacity: closeBtnOverOpacity
+                    },
+                    '.sf-nowrap': {
+                      whiteSpace: 'nowrap'
+                    },
+                    '.sf-label': {
+                      color: labelColor
+                    },
+                    '.sf-point': {
+                      fontSize: '18px'
+                    },
+                    '.sf-place': {
+                      fontSize: 'inherit'
+                    },
+                    '.sf-price': {
+                      color: priceColor,
+                      fontSize: '26px',
+                      fontWeight: 'bold'
+                    },
+                    '.sf-view-btn': {
+                      fontSize: '14px',
+                      backgroundColor: viewBgColor,
+                      padding: '7px 18px',
+                      color: '#fff',
+                      display: 'inline-block',
+                      borderRadius: '4px',
+                      height: '32px',
+                      boxSizing: 'border-box',
+                      textDecoration: 'none',
+                      whiteSpace: 'nowrap'
+                    },
+                    '.sf-view-btn:hover': {
+                      backgroundColor: viewOverBgColor
+                    }
+                  }
+                }])
+              });
+            },
+            getFontSizeSandbox: function() {
+              var sandbox = monoUtils.create('div', {
+                style: monoUtils.extendPos({}, monoUtils.styleReset, {
+                  font: 'normal normal 12px Arial, sans-serif',
+                  position: 'absolute',
+                  opacity: 0,
+                  top: 0,
+                  left: 0
+                })
               });
 
-              main.save();
-            }
-          },
-          getStyle: function(details) {
-            var barColor = '#fcefb4';
-            var defaultColor = '#333333';
-            var labelColor = '#005f86';
-            var priceColor = '#4b9f00';
-            var viewBgColor = '#4b9f00';
-            var viewOverBgColor = '#1F9600';
-            var closeBtnOverOpacity = '1';
+              document.body.appendChild(sandbox);
 
-            return monoUtils.create('style', {
-              text: monoUtils.style2Text([{
-                selector: '#' + details.rndId,
-                style: monoUtils.extendPos({}, monoUtils.styleReset, {
-                  font: 'normal normal 14px Arial, sans-serif',
-                  backgroundColor: barColor,
-                  width: '100%',
-                  position: 'fixed',
-                  top: 0,
-                  left: 0,
-                  marginTop: (-details.barHeight) + 'px',
-                  boxShadow: '0 0 1px rgba(0, 0, 0, 0.5)',
-                  fontWeight: 'normal',
-                  display: 'block',
-                  color: defaultColor
-                }),
-                append: {
-                  '.sf-cell': {
-                    display: 'table-cell',
-                    verticalAlign: 'middle',
-                    height: details.barHeight + 'px'
-                  },
-                  '.sf-center': {
-                    textAlign: 'center'
-                  },
-                  '.sf-right': {
-                    textAlign: 'right'
-                  },
-                  '.sf-close-btn': {
-                    display: 'inline-block',
-                    textDecoration: 'none',
-                    width: '22px',
-                    height: '22px'
-                  },
-                  '.sf-close-btn:hover path': {
-                    opacity: closeBtnOverOpacity
-                  },
-                  '.sf-nowrap': {
-                    whiteSpace: 'nowrap'
-                  },
-                  '.sf-label': {
-                    color: labelColor
-                  },
-                  '.sf-point': {
-                    fontSize: '18px'
-                  },
-                  '.sf-place': {
-                    fontSize: 'inherit'
-                  },
-                  '.sf-price': {
-                    color: priceColor,
-                    fontSize: '26px',
-                    fontWeight: 'bold'
-                  },
-                  '.sf-view-btn': {
-                    fontSize: '14px',
-                    backgroundColor: viewBgColor,
-                    padding: '7px 18px',
-                    color: '#fff',
-                    display: 'inline-block',
-                    borderRadius: '4px',
-                    height: '32px',
-                    boxSizing: 'border-box',
-                    textDecoration: 'none',
-                    whiteSpace: 'nowrap'
-                  },
-                  '.sf-view-btn:hover': {
-                    backgroundColor: viewOverBgColor
-                  }
+              return {
+                getNodeSize: function(node, cb) {
+                  sandbox.appendChild(node);
+                  return setTimeout(function() {
+                    var clientWidth = window.getComputedStyle(node, null).getPropertyValue("width");
+                    clientWidth = Math.ceil(parseFloat(clientWidth));
+                    return cb(clientWidth);
+                  }, 0);
+                },
+                remove: function() {
+                  sandbox.parentNode.removeChild(sandbox);
                 }
-              }])
-            });
-          },
-          getFontSizeSandbox: function() {
-            var sandbox = monoUtils.create('div', {
-              style: monoUtils.extendPos({}, monoUtils.styleReset, {
-                font: 'normal normal 12px Arial, sans-serif',
-                position: 'absolute',
-                opacity: 0,
-                top: 0,
-                left: 0
-              })
-            });
-
-            document.body.appendChild(sandbox);
-
-            return {
-              getNodeSize: function(node, cb) {
-                sandbox.appendChild(node);
-                return setTimeout(function() {
-                  var clientWidth = window.getComputedStyle(node, null).getPropertyValue("width");
-                  clientWidth = Math.ceil(parseFloat(clientWidth));
-                  return cb(clientWidth);
-                }, 0);
-              },
-              remove: function() {
-                sandbox.parentNode.removeChild(sandbox);
               }
-            }
-          },
-          calcBlockSize: function(blocks, cb) {
-            var _this = this;
-            var defaultStyle = {
-              display: 'inline-block',
-              whiteSpace: 'nowrap'
-            };
+            },
+            calcBlockSize: function(blocks, cb) {
+              var _this = this;
+              var defaultStyle = {
+                display: 'inline-block',
+                whiteSpace: 'nowrap'
+              };
 
-            var sandbox = null;
+              var sandbox = null;
 
-            var ready = 0;
-            var wait = 0;
+              var ready = 0;
+              var wait = 0;
 
-            var onReady = function() {
-              ready++;
-              if (wait !== ready) {
-                return;
-              }
-              sandbox && sandbox.remove();
+              var onReady = function() {
+                ready++;
+                if (wait !== ready) {
+                  return;
+                }
+                sandbox && sandbox.remove();
 
+                Object.keys(blocks).forEach(function(key) {
+                  var block = blocks[key];
+
+                  var width = null;
+                  if (!block.fontSizeWidth) {
+                    width = block.width;
+                  } else {
+                    block.widthList = [];
+                    var maxWidth = 999999;
+                    var keys = Object.keys(block.fontSizeWidth);
+                    keys.reverse().forEach(function(fontSize) {
+                      var minWidth = (block.fontSizeWidth[fontSize] || block.width.default) + (block.width.plus || 0);
+                      var obj = {
+                        fontSize: parseFloat(fontSize),
+                        minWidth: minWidth,
+                        maxWidth: maxWidth
+                      };
+                      maxWidth = minWidth;
+                      block.widthList.push(obj);
+                    });
+                    delete block.fontSizeWidth;
+                    width = block.widthList[0].minWidth;
+                    block.widthList.slice(-1)[0].minWidth = 0;
+                    if (block.widthList.length === 1) {
+                      block.width = width;
+                      delete block.widthList;
+                    }
+                  }
+
+                  block.node.style.width = width + 'px';
+                });
+
+                return cb();
+              };
+
+              wait++;
               Object.keys(blocks).forEach(function(key) {
                 var block = blocks[key];
-
-                var width = null;
-                if (!block.fontSizeWidth) {
-                  width = block.width;
-                } else {
-                  block.widthList = [];
-                  var maxWidth = 999999;
-                  var keys = Object.keys(block.fontSizeWidth);
-                  keys.reverse().forEach(function(fontSize) {
-                    var minWidth = (block.fontSizeWidth[fontSize] || block.width.default) + (block.width.plus || 0);
-                    var obj = {
-                      fontSize: parseFloat(fontSize),
-                      minWidth: minWidth,
-                      maxWidth: maxWidth
-                    };
-                    maxWidth = minWidth;
-                    block.widthList.push(obj);
-                  });
-                  delete block.fontSizeWidth;
-                  width = block.widthList[0].minWidth;
-                  block.widthList.slice(-1)[0].minWidth = 0;
-                  if (block.widthList.length === 1) {
-                    block.width = width;
-                    delete block.widthList;
-                  }
+                if (!block.width || !block.width.strings) {
+                  return;
                 }
 
-                block.node.style.width = width + 'px';
-              });
+                if (!sandbox) {
+                  sandbox = _this.getFontSizeSandbox();
+                }
 
-              return cb();
-            };
+                if (!Array.isArray(block.width.fontSize)) {
+                  block.width.fontSize = [block.width.fontSize];
+                }
 
-            wait++;
-            Object.keys(blocks).forEach(function(key) {
-              var block = blocks[key];
-              if (!block.width || !block.width.strings) {
-                return;
-              }
-
-              if (!sandbox) {
-                sandbox = _this.getFontSizeSandbox();
-              }
-
-              if (!Array.isArray(block.width.fontSize)) {
-                block.width.fontSize = [block.width.fontSize];
-              }
-
-              block.fontSizeWidth = {};
-              block.width.strings.forEach(function(text) {
-                block.width.fontSize.forEach(function(fontSize) {
-                  wait++;
-                  return sandbox.getNodeSize(monoUtils.create('span', {
-                    text: text,
-                    style: monoUtils.extend({}, defaultStyle, {
-                      fontSize: fontSize + 'px'
-                    }, block.width.fontStyle)
-                  }), function(size) {
-                    var cSize = block.fontSizeWidth[fontSize];
-                    if (cSize === undefined || cSize < size) {
-                      block.fontSizeWidth[fontSize] = size;
-                    }
-                    return onReady();
+                block.fontSizeWidth = {};
+                block.width.strings.forEach(function(text) {
+                  block.width.fontSize.forEach(function(fontSize) {
+                    wait++;
+                    return sandbox.getNodeSize(monoUtils.create('span', {
+                      text: text,
+                      style: monoUtils.extend({}, defaultStyle, {
+                        fontSize: fontSize + 'px'
+                      }, block.width.fontStyle)
+                    }), function(size) {
+                      var cSize = block.fontSizeWidth[fontSize];
+                      if (cSize === undefined || cSize < size) {
+                        block.fontSizeWidth[fontSize] = size;
+                      }
+                      return onReady();
+                    });
                   });
                 });
               });
-            });
 
-            onReady();
-          },
-          /**
-           *
-           * @param {{origin: String, destination: String, currency: String, price: Number, dateStart: String, dateEnd: String}} pageInfo
-           */
-          aviaBarSaveInHistory: function(pageInfo) {
-            var originCity = main.getCityName(pageInfo.origin);
-            var destinationCity = main.getCityName(pageInfo.destination);
-            if (!originCity || !destinationCity) {
-              return;
-            }
+              onReady();
+            },
+            /**
+             *
+             * @param {{origin: String, destination: String, currency: String, price: Number, dateStart: String, dateEnd: String}} pageInfo
+             */
+            aviaBarSaveInHistory: function(pageInfo) {
+              var originCity = main.getCityName(pageInfo.origin);
+              var destinationCity = main.getCityName(pageInfo.destination);
+              if (!originCity || !destinationCity) {
+                return;
+              }
 
-            var data = {
-              originCity: originCity,
-              destinationCity: destinationCity,
-              origin: pageInfo.origin,
-              destination: pageInfo.destination,
-              dateStart: pageInfo.dateStart,
-              dateEnd: pageInfo.dateEnd,
-              time: parseInt(Date.now() / 1000)
-            };
-
-            return tbr.emit('history', data);
-          },
-          aviaBarCreate: function(details, oldBar) {
-            var prices = details.prices;
-            var pageInfo = details.pageInfo;
-
-            var mainItemIndex = main.getAviaBarItemIndex(prices.data);
-            if (mainItemIndex === -1) {
-              tbr.error('Bar item is not found!', details);
-              return;
-            }
-
-            var isOneWay = !pageInfo.dateEnd;
-
-            var mainItem = main.bar.prepareAviaItem(pageInfo, prices.data[mainItemIndex]);
-            var isCalendar = !!mainItem.monthPrice;
-
-            var trackByVendor = function(data) {
-              var map = {
-                aviasales: 'as',
-                skyscanner: 'sc'
+              var data = {
+                originCity: originCity,
+                destinationCity: destinationCity,
+                origin: pageInfo.origin,
+                destination: pageInfo.destination,
+                dateStart: pageInfo.dateStart,
+                dateEnd: pageInfo.dateEnd,
+                time: parseInt(Date.now() / 1000)
               };
 
-              var prefix = map[mainItem.vendor];
-              if (prefix) {
-                data.ec += '-' + prefix;
-                return tbr.emit('track', data);
-              } else {
-                return tbr.error('Prefix is not found!', mainItem.vendor);
+              return tbr.emit('history', data);
+            },
+            aviaBarCreate: function(details, oldBar) {
+              var prices = details.prices;
+              var pageInfo = details.pageInfo;
+
+              var mainItemIndex = main.getAviaBarItemIndex(prices.data);
+              if (mainItemIndex === -1) {
+                tbr.error('Bar item is not found!', details);
+                return;
               }
-            };
 
-            var barUrl = null;
-            if (mainItem.url) {
-              barUrl = mainItem.url;
-            } else {
-              barUrl = 'http://hydra.aviasales.ru/searches/new' + '?' + monoUtils.param({
-                origin_iata: pageInfo.origin,
-                destination_iata: pageInfo.destination,
-                adults: 1,
-                children: 0,
-                infants: 0,
-                trip_class: 0,
-                depart_date: pageInfo.dateStart,
-                return_date: pageInfo.dateEnd,
-                marker: appInfo.id,
-                with_request: true
-              });
-            }
+              var isOneWay = !pageInfo.dateEnd;
 
-            var priceObj = main.getPrice(mainItem.currency, mainItem.value);
+              var mainItem = main.bar.prepareAviaItem(pageInfo, prices.data[mainItemIndex]);
+              var isCalendar = !!mainItem.monthPrice;
 
-            var strings = {
-              price: priceObj.string,
-              pointA: main.getCityName(mainItem.origin),
-              pointB: main.getCityName(mainItem.destination),
-              view: tbr.language.view
-            };
+              var trackByVendor = function(data) {
+                var map = {
+                  aviasales: 'as',
+                  skyscanner: 'sc'
+                };
 
-            if (!strings.pointA || !strings.pointB) {
-              tbr.error('City name is not defined!', mainItem);
-              return;
-            }
-
-            var blocks = {};
-
-            blocks.closeBlock = {
-              node: monoUtils.create('div', {
-                class: ['sf-cell', 'sf-center'],
-                style: {
-                  cursor: 'default'
+                var prefix = map[mainItem.vendor];
+                if (prefix) {
+                  data.ec += '-' + prefix;
+                  return tbr.emit('track', data);
+                } else {
+                  return tbr.error('Prefix is not found!', mainItem.vendor);
                 }
-              }),
-              closeBtn: monoUtils.create('a', {
-                class: 'sf-close-btn',
-                href: '#close',
-                title: tbr.language.close,
-                append: [
-                  main.bar.getCloseBtn()
-                ],
-                on: ['click', function(e) {
-                  e.preventDefault();
-                  e.stopPropagation();
+              };
 
-                  details.close(1);
+              var barUrl = null;
+              if (mainItem.url) {
+                barUrl = mainItem.url;
+              } else {
+                barUrl = 'http://hydra.aviasales.ru/searches/new' + '?' + monoUtils.param({
+                  origin_iata: pageInfo.origin,
+                  destination_iata: pageInfo.destination,
+                  adults: 1,
+                  children: 0,
+                  infants: 0,
+                  trip_class: 0,
+                  depart_date: pageInfo.dateStart,
+                  return_date: pageInfo.dateEnd,
+                  marker: appInfo.id,
+                  with_request: true
+                });
+              }
 
-                  tbr.emit('track', {
-                    ec: 'cheapflight',
-                    ea: 'close',
-                    el: tbr.hostname,
-                    t: 'event'
-                  });
+              var priceObj = main.getPrice(mainItem.currency, mainItem.value);
 
-                  trackByVendor({
-                    ec: 'cheapflight',
-                    ea: 'close',
-                    el: tbr.hostname,
-                    t: 'event'
-                  });
-                }]
-              }),
-              width: 36,
-              leftFixed: 1
-            };
-            blocks.closeBlock.node.appendChild(blocks.closeBlock.closeBtn);
+              var strings = {
+                price: priceObj.string,
+                pointA: main.getCityName(mainItem.origin),
+                pointB: main.getCityName(mainItem.destination),
+                view: tbr.language.view
+              };
 
-            blocks.leftResizeBlock = {
-              node: monoUtils.create('div', {
-                class: ['sf-cell']
-              }),
-              width: 0
-            };
+              if (!strings.pointA || !strings.pointB) {
+                tbr.error('City name is not defined!', mainItem);
+                return;
+              }
 
-            if (isCalendar) {
-              strings.calLabel = tbr.language.calLabel;
+              var blocks = {};
 
-              blocks.calLabel = {
+              blocks.closeBlock = {
                 node: monoUtils.create('div', {
-                  class: ['sf-cell', 'sf-label'],
-                  text: strings.calLabel
+                  class: ['sf-cell', 'sf-center'],
+                  style: {
+                    cursor: 'default'
+                  }
+                }),
+                closeBtn: monoUtils.create('a', {
+                  class: 'sf-close-btn',
+                  href: '#close',
+                  title: tbr.language.close,
+                  append: [
+                    main.bar.getCloseBtn()
+                  ],
+                  on: ['click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    details.close(1);
+
+                    tbr.emit('track', {
+                      ec: 'cheapflight',
+                      ea: 'close',
+                      el: tbr.hostname,
+                      t: 'event'
+                    });
+
+                    trackByVendor({
+                      ec: 'cheapflight',
+                      ea: 'close',
+                      el: tbr.hostname,
+                      t: 'event'
+                    });
+                  }]
+                }),
+                width: 36,
+                leftFixed: 1
+              };
+              blocks.closeBlock.node.appendChild(blocks.closeBlock.closeBtn);
+
+              blocks.leftResizeBlock = {
+                node: monoUtils.create('div', {
+                  class: ['sf-cell']
+                }),
+                width: 0
+              };
+
+              if (isCalendar) {
+                strings.calLabel = tbr.language.calLabel;
+
+                blocks.calLabel = {
+                  node: monoUtils.create('div', {
+                    class: ['sf-cell', 'sf-label'],
+                    text: strings.calLabel
+                  }),
+                  width: {
+                    strings: [
+                      strings.calLabel
+                    ],
+                    fontSize: 14,
+                    default: 200
+                  },
+                  leftFixed: 1
+                };
+              } else if (isOneWay) {
+                strings.foundOneWay = tbr.language.foundOneWay + ':';
+                strings.dateStart = main.getDate(mainItem.dateStart);
+
+                blocks.dateBlock = {
+                  node: monoUtils.create('div', {
+                    class: ['sf-cell'],
+                    append: [
+                      monoUtils.create('div', {
+                        class: ['sf-label'],
+                        text: strings.foundOneWay
+                      }),
+                      monoUtils.create('div', {
+                        class: ['sf-date'],
+                        text: strings.dateStart
+                      })
+                    ]
+                  }),
+                  width: {
+                    strings: [
+                      strings.foundOneWay,
+                      strings.dateStart
+                    ],
+                    fontSize: 14,
+                    default: 200
+                  },
+                  leftFixed: 1
+                };
+              } else {
+                strings.foundTwoWay = tbr.language.foundTwoWay + ':';
+
+                blocks.dateFoundBlock = {
+                  node: monoUtils.create('div', {
+                    class: ['sf-cell', 'sf-label', 'sf-right'],
+                    text: strings.foundTwoWay
+                  }),
+                  width: {
+                    strings: [
+                      strings.foundTwoWay
+                    ],
+                    fontSize: 14,
+                    default: 120
+                  },
+                  leftFixed: 1
+                };
+
+                strings.origin = tbr.language.origin + String.fromCharCode(160);
+                strings.destination = tbr.language.destination + String.fromCharCode(160);
+
+                blocks.dateLabesBlock = {
+                  node: monoUtils.create('div', {
+                    class: ['sf-cell'],
+                    append: [
+                      monoUtils.create('div', {
+                        class: ['sf-right'],
+                        text: strings.origin
+                      }),
+                      monoUtils.create('div', {
+                        class: ['sf-right'],
+                        text: strings.destination
+                      })
+                    ]
+                  }),
+                  width: {
+                    strings: [
+                      strings.origin,
+                      strings.destination
+                    ],
+                    fontSize: 14,
+                    plus: 10,
+                    default: 80
+                  },
+                  leftFixed: 1
+                };
+
+                strings.dateStart = main.getDate(mainItem.dateStart);
+                strings.dateEnd = main.getDate(mainItem.dateEnd);
+
+                blocks.dateBlock = {
+                  node: monoUtils.create('div', {
+                    class: ['sf-cell'],
+                    append: [
+                      monoUtils.create('div', {
+                        class: ['sf-nowrap'],
+                        text: strings.dateStart
+                      }),
+                      monoUtils.create('div', {
+                        class: ['sf-nowrap'],
+                        text: strings.dateEnd
+                      })
+                    ]
+                  }),
+                  width: {
+                    strings: [
+                      strings.dateStart,
+                      strings.dateEnd
+                    ],
+                    fontSize: 14,
+                    default: 100
+                  },
+                  leftFixed: 1
+                };
+              }
+
+              if (isCalendar) {
+                strings.calMonth = main.getCalMonth(mainItem.dateStart);
+                strings.calMonth = tbr.language.inMonth.replace('%month%', strings.calMonth);
+
+                var inlineArrow = null;
+                var plusWidth = 0;
+                if (isOneWay) {
+                  inlineArrow = main.bar.getOneWayLine();
+                  plusWidth = 140;
+                } else {
+                  inlineArrow = main.bar.getTwoWayLines();
+                  plusWidth = 75;
+                }
+                inlineArrow.style.display = 'block';
+
+                blocks.calendarCanterBlock = {
+                  node: monoUtils.create('div', {
+                    class: ['sf-cell', 'sf-center', 'sf-point'],
+                    append: [
+                      monoUtils.create('div', {
+                        class: ['sf-place'],
+                        append: [
+                          strings.pointA,
+                          ' ',
+                          monoUtils.create('div', {
+                            style: {
+                              display: 'inline-block',
+                              verticalAlign: 'middle'
+                            },
+                            append: inlineArrow
+                          }),
+                          ' ',
+                          strings.pointB,
+                          ' ',
+                          strings.calMonth
+                        ]
+                      })
+                    ]
+                  }),
+                  width: {
+                    strings: [
+                      strings.pointA + ' ' + strings.pointB + ' ' + strings.calMonth
+                    ],
+                    fontSize: [26, 22, 18],
+                    plus: plusWidth
+                  }
+                };
+              } else {
+                blocks.pointABlock = {
+                  node: monoUtils.create('div', {
+                    class: ['sf-cell', 'sf-right', 'sf-point'],
+                    append: [
+                      monoUtils.create('div', {
+                        class: ['sf-place', 'sf-right'],
+                        text: strings.pointA
+                      })
+                    ]
+                  }),
+                  width: {
+                    strings: [
+                      strings.pointA
+                    ],
+                    fontSize: [26, 22, 18]
+                  }
+                };
+
+                if (isOneWay) {
+                  blocks.arrowBlock = {
+                    node: monoUtils.create('div', {
+                      class: ['sf-cell', 'sf-center'],
+                      append: [
+                        main.bar.getOneWayLine()
+                      ]
+                    }),
+                    width: 140
+                  };
+                } else {
+                  blocks.arrowBlock = {
+                    node: monoUtils.create('div', {
+                      class: ['sf-cell', 'sf-center'],
+                      append: [
+                        main.bar.getTwoWayLines()
+                      ]
+                    }),
+                    width: 75
+                  };
+                }
+
+                blocks.pointBBlock = {
+                  node: monoUtils.create('div', {
+                    class: ['sf-cell', 'sf-point'],
+                    append: [
+                      monoUtils.create('div', {
+                        class: ['sf-place'],
+                        text: strings.pointB
+                      })
+                    ]
+                  }),
+                  width: {
+                    strings: [
+                      strings.pointB
+                    ],
+                    fontSize: [26, 22, 18]
+                  }
+                };
+              }
+
+              blocks.priceBlock = {
+                node: monoUtils.create('div', {
+                  class: ['sf-cell', 'sf-price', 'sf-center', 'sf-nowrap'],
+                  append: main.getPriceNode(priceObj)
                 }),
                 width: {
                   strings: [
-                    strings.calLabel
+                    strings.price
                   ],
-                  fontSize: 14,
-                  default: 200
+                  fontSize: 26,
+                  fontStyle: {
+                    fontWeight: 'bold'
+                  },
+                  default: 120
                 },
+                rightFixed: 1
+              };
+
+              var viewLink = null;
+              blocks.viewBlock = {
+                node: monoUtils.create('div', {
+                  class: ['sf-cell', 'sf-center'],
+                  append: [
+                    viewLink = monoUtils.create('a', {
+                      class: 'sf-view-btn',
+                      href: barUrl,
+                      target: '_blank',
+                      text: strings.view,
+                      on: ['click', function(e) {
+                        e.stopPropagation();
+
+                        tbr.emit('track', {
+                          cd: 'flightclick',
+                          t: 'screenview'
+                        });
+
+                        tbr.emit('track', {
+                          ec: 'cheapflight',
+                          ea: 'click',
+                          el: tbr.hostname,
+                          cd: 'flightclick',
+                          t: 'event'
+                        });
+
+                        if (!isCalendar) {
+                          tbr.emit('track', {
+                            cd: 'flight_betterprice_click',
+                            t: 'screenview'
+                          });
+
+                          tbr.emit('track', {
+                            ec: 'cheapflight',
+                            ea: 'betterpriceclick',
+                            el: tbr.hostname,
+                            cd: 'flight_betterprice_click',
+                            t: 'event'
+                          });
+
+                          trackByVendor({
+                            ec: 'cheapflight',
+                            ea: 'betterpriceclick',
+                            el: tbr.hostname,
+                            cd: 'flight_betterprice_click',
+                            t: 'event'
+                          });
+                        } else {
+                          tbr.emit('track', {
+                            cd: 'flight_calendar_click',
+                            t: 'screenview'
+                          });
+
+                          tbr.emit('track', {
+                            ec: 'cheapflight',
+                            ea: 'calendarclick',
+                            el: tbr.hostname,
+                            cd: 'flight_calendar_click',
+                            t: 'event'
+                          });
+                        }
+                      }]
+                    })
+                  ]
+                }),
+                width: 130,
+                rightFixed: 1
+              };
+
+              blocks.rightResizeBlock = {
+                node: monoUtils.create('div', {
+                  class: ['sf-cell']
+                }),
+                width: 0
+              };
+
+              var leftFixedBlocks = [];
+              var rightFixedBlocks = [];
+
+              var rndId = 's' + Math.random().toString(36).substring(7);
+              var bar = details.barEl = monoUtils.create('div', {
+                id: rndId,
+                style: {
+                  top: '-1px !important',
+                  display: 'table !important',
+                  opacity: '1 !important',
+                  zIndex: 99999999,
+                  cursor: 'pointer'
+                },
+                append: (function() {
+                  var blockList = [];
+                  for (var key in blocks) {
+                    var block = blocks[key];
+                    if (block.leftFixed) {
+                      leftFixedBlocks.push(key);
+                    }
+                    if (block.rightFixed) {
+                      rightFixedBlocks.push(key);
+                    }
+                    blockList.push(block.node);
+                  }
+                  return blockList;
+                })(),
+                on: ['click', function(e) {
+                  e.stopPropagation();
+                  e.preventDefault();
+
+                  viewLink.dispatchEvent(new CustomEvent('click'));
+                }]
+              });
+
+              var currentFontSizeObj = {};
+              if (isCalendar) {
+                details.onBlocksResize = function(width, leftBlocksSize, rightBlockSize) {
+                  var type = 'calendarCanterBlock';
+                  var blockWidth = parseInt(width - leftBlocksSize - rightBlockSize);
+
+                  var needResize = false;
+                  (function() {
+                    var currentFontSize = currentFontSizeObj[type];
+                    if (currentFontSize) {
+                      if (blockWidth >= currentFontSize.minWidth && blockWidth < currentFontSize.maxWidth) {
+                        return;
+                      }
+                    }
+
+                    needResize = true;
+
+                    var found = blocks[type].widthList.some(function(item) {
+                      if (blockWidth >= item.minWidth && blockWidth < item.maxWidth) {
+                        currentFontSizeObj[type] = item;
+                        return true;
+                      }
+                    });
+
+                    if (!found) {
+                      currentFontSizeObj[type] = blocks[type].widthList.slice(-1)[0];
+                    }
+                  })();
+
+                  if (needResize) {
+                    var fontSize = currentFontSizeObj[type].fontSize;
+                    blocks[type].node.style.fontSize = fontSize + 'px';
+                  }
+
+                  blocks[type].node.style.width = blockWidth + 'px';
+                };
+              } else {
+                details.onBlocksResize = function(width, leftBlocksSize, rightBlockSize) {
+                  var arrowBlockWidth = width / 2 - blocks.arrowBlock.width / 2;
+
+                  var blockWidthObj = {
+                    pointABlock: parseInt(arrowBlockWidth - leftBlocksSize),
+                    pointBBlock: parseInt(arrowBlockWidth - rightBlockSize)
+                  };
+
+                  var needResize = false;
+                  ['pointABlock', 'pointBBlock'].forEach(function(type) {
+                    var blockWidth = blockWidthObj[type];
+
+                    var currentFontSize = currentFontSizeObj[type];
+                    if (currentFontSize) {
+                      if (blockWidth >= currentFontSize.minWidth && blockWidth < currentFontSize.maxWidth) {
+                        return;
+                      }
+                    }
+
+                    needResize = true;
+
+                    var found = blocks[type].widthList.some(function(item) {
+                      if (blockWidth >= item.minWidth && blockWidth < item.maxWidth) {
+                        currentFontSizeObj[type] = item;
+                        return true;
+                      }
+                    });
+
+                    if (!found) {
+                      currentFontSizeObj[type] = blocks[type].widthList.slice(-1)[0];
+                    }
+                  });
+
+                  if (needResize) {
+                    var fontSize = Math.min(currentFontSizeObj.pointABlock.fontSize, currentFontSizeObj.pointBBlock.fontSize);
+                    blocks.pointABlock.node.style.fontSize = fontSize + 'px';
+                    blocks.pointBBlock.node.style.fontSize = fontSize + 'px';
+                  }
+
+                  blocks.pointABlock.node.style.width = blockWidthObj.pointABlock + 'px';
+                  blocks.pointBBlock.node.style.width = blockWidthObj.pointBBlock + 'px';
+                };
+              }
+
+              var barHeight = 46;
+              return main.bar.calcBlockSize(blocks, function() {
+                var style = details.styleEl = main.bar.getStyle({
+                  rndId: rndId,
+                  barHeight: barHeight
+                });
+
+                var leftBlocksSize = 0;
+                leftFixedBlocks.forEach(function(key) {
+                  leftBlocksSize += blocks[key].width;
+                });
+
+                var rightBlockSize = 0;
+                rightFixedBlocks.forEach(function(key) {
+                  rightBlockSize += blocks[key].width;
+                });
+
+                var lastBarWidth = 0;
+                var currentWidthFix = 0;
+                var barMaxWidth = 1200;
+
+                var updateBarWidth = function() {
+                  var width = document.documentElement.clientWidth;
+
+                  var sizeFix = width - barMaxWidth;
+                  if (sizeFix > 0) {
+                    width = barMaxWidth;
+
+                    var fixWidth = Math.floor(sizeFix / 2);
+                    if (fixWidth !== currentWidthFix) {
+                      currentWidthFix = fixWidth;
+                      blocks.leftResizeBlock.node.style.width = fixWidth + 'px';
+                      blocks.rightResizeBlock.node.style.width = fixWidth + 'px';
+                    }
+                  } else if (currentWidthFix !== 0) {
+                    currentWidthFix = 0;
+                    blocks.leftResizeBlock.node.style.width = 0;
+                    blocks.rightResizeBlock.node.style.width = 0;
+                  }
+
+                  if (lastBarWidth === width) {
+                    return;
+                  }
+                  lastBarWidth = width;
+
+                  return details.onBlocksResize(width, leftBlocksSize, rightBlockSize);
+                };
+
+                details.onResize = updateBarWidth;
+                window.addEventListener('resize', details.onResize);
+
+                if (oldBar) {
+                  oldBar.replace(details);
+                  updateBarWidth();
+
+                  tbr.emit('track', {
+                    ec: 'cheapflight',
+                    ea: 'update',
+                    el: tbr.hostname,
+                    t: 'event'
+                  });
+
+                  if (!isCalendar) {
+                    trackByVendor({
+                      ec: 'cheapflight',
+                      ea: 'update',
+                      el: tbr.hostname,
+                      t: 'event'
+                    });
+
+                    tbr.emit('track', {
+                      cd: 'flight_betterprice_update',
+                      t: 'screenview'
+                    });
+                  } else {
+                    tbr.emit('track', {
+                      cd: 'flight_calendar_update',
+                      t: 'screenview'
+                    });
+                  }
+                } else {
+                  main.bar.rndClassName(bar, style);
+                  var ctr = monoUtils.create(document.createDocumentFragment(), {
+                    append: [bar, style]
+                  });
+
+                  document.body.appendChild(ctr);
+
+                  setTimeout(function() {
+                    updateBarWidth();
+                    main.bar.marginPage(details, barHeight);
+                  }, 0);
+
+                  tbr.emit('track', {
+                    cd: 'flightshow',
+                    t: 'screenview'
+                  });
+
+                  tbr.emit('track', {
+                    ec: 'cheapflight',
+                    ea: 'show',
+                    el: tbr.hostname,
+                    cd: 'flightshow',
+                    t: 'event'
+                  });
+
+                  if (!isCalendar) {
+                    trackByVendor({
+                      ec: 'cheapflight',
+                      ea: 'show',
+                      el: tbr.hostname,
+                      cd: 'flightshow',
+                      t: 'event'
+                    });
+
+                    tbr.emit('track', {
+                      cd: 'flight_betterprice_show',
+                      t: 'screenview'
+                    });
+                  } else {
+                    tbr.emit('track', {
+                      cd: 'flight_calendar_show',
+                      t: 'screenview'
+                    });
+                  }
+                }
+
+                if (isCalendar) {
+                  tbr.emit('track', {
+                    ec: 'cheapflight',
+                    ea: 'calendarPrice',
+                    el: tbr.hostname,
+                    t: 'event'
+                  });
+                }
+              });
+            },
+            hotelBarCreate: function(details, oldBar) {
+              var pageInfo = details.pageInfo;
+
+              var mainItem = main.bar.prepareHotelItem(pageInfo, main.bar.getHotelBarItem(details));
+              var isSuggest = !!mainItem.isSuggest;
+
+              var priceObj = main.getPrice(mainItem.currency, mainItem.value);
+
+              var strings = {
+                foundHotel: tbr.language.foundHotel + ':' + String.fromCharCode(160),
+                aroundHotel: tbr.language.aroundHotel + ':' + String.fromCharCode(160),
+                name: mainItem.name,
+                checkIn: tbr.language.checkIn + String.fromCharCode(160),
+                checkOut: tbr.language.checkOut + String.fromCharCode(160),
+                dateIn: main.getDate(mainItem.dateIn),
+                dateOut: main.getDate(mainItem.dateOut),
+                price: priceObj.string
+              };
+
+              var blocks = {};
+              blocks.closeBlock = {
+                node: monoUtils.create('div', {
+                  class: ['sf-cell', 'sf-center'],
+                  style: {
+                    cursor: 'default'
+                  }
+                }),
+                closeBtn: monoUtils.create('a', {
+                  class: 'sf-close-btn',
+                  href: '#close',
+                  title: tbr.language.close,
+                  append: [
+                    main.bar.getCloseBtn()
+                  ],
+                  on: ['click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    details.close(1);
+
+                    tbr.emit('track', {
+                      ec: 'hotel',
+                      ea: 'close',
+                      el: tbr.hostname,
+                      t: 'event'
+                    });
+                  }]
+                }),
+                width: 36,
                 leftFixed: 1
               };
-            } else if (isOneWay) {
-              strings.foundOneWay = tbr.language.foundOneWay;
-              strings.dateStart = main.getDate(mainItem.dateStart);
+              blocks.closeBlock.node.appendChild(blocks.closeBlock.closeBtn);
 
-              blocks.dateBlock = {
+              blocks.leftResizeBlock = {
                 node: monoUtils.create('div', {
-                  class: ['sf-cell'],
+                  class: ['sf-cell']
+                }),
+                width: 0
+              };
+
+              if (isSuggest) {
+                blocks.dateFoundBlock = {
+                  node: monoUtils.create('div', {
+                    class: ['sf-cell', 'sf-label', 'sf-right'],
+                    text: strings.aroundHotel
+                  }),
+                  width: {
+                    strings: [
+                      strings.aroundHotel
+                    ],
+                    fontSize: 14,
+                    default: 190
+                  },
+                  leftFixed: 1
+                };
+              } else {
+                blocks.dateFoundBlock = {
+                  node: monoUtils.create('div', {
+                    class: ['sf-cell', 'sf-label', 'sf-right'],
+                    text: strings.foundHotel
+                  }),
+                  width: {
+                    strings: [
+                      strings.foundHotel
+                    ],
+                    fontSize: 14,
+                    default: 160
+                  },
+                  leftFixed: 1
+                };
+              }
+
+              blocks.pointABlock = {
+                node: monoUtils.create('div', {
+                  class: ['sf-cell', 'sf-point'],
                   append: [
                     monoUtils.create('div', {
-                      class: ['sf-label'],
-                      text: strings.foundOneWay
-                    }),
-                    monoUtils.create('div', {
-                      class: ['sf-date'],
-                      text: strings.dateStart
+                      class: ['sf-place'],
+                      text: strings.name
                     })
                   ]
                 }),
                 width: {
                   strings: [
-                    strings.foundOneWay,
-                    strings.dateStart
+                    strings.name
                   ],
-                  fontSize: 14,
-                  default: 200
-                },
-                leftFixed: 1
+                  fontSize: [26, 22, 18]
+                }
               };
-            } else {
-              strings.foundTwoWay = tbr.language.foundTwoWay;
-
-              blocks.dateFoundBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell', 'sf-label', 'sf-right'],
-                  text: strings.foundTwoWay
-                }),
-                width: {
-                  strings: [
-                    strings.foundTwoWay
-                  ],
-                  fontSize: 14,
-                  default: 120
-                },
-                leftFixed: 1
-              };
-
-              strings.origin = tbr.language.origin + String.fromCharCode(160);
-              strings.destination = tbr.language.destination + String.fromCharCode(160);
 
               blocks.dateLabesBlock = {
                 node: monoUtils.create('div', {
@@ -27741,28 +28480,24 @@
                   append: [
                     monoUtils.create('div', {
                       class: ['sf-right'],
-                      text: strings.origin
+                      text: strings.checkIn
                     }),
                     monoUtils.create('div', {
                       class: ['sf-right'],
-                      text: strings.destination
+                      text: strings.checkOut
                     })
                   ]
                 }),
                 width: {
                   strings: [
-                    strings.origin,
-                    strings.destination
+                    strings.checkIn,
+                    strings.checkOut
                   ],
                   fontSize: 14,
-                  plus: 10,
-                  default: 80
+                  default: 95
                 },
-                leftFixed: 1
+                rightFixed: 1
               };
-
-              strings.dateStart = main.getDate(mainItem.dateStart);
-              strings.dateEnd = main.getDate(mainItem.dateEnd);
 
               blocks.dateBlock = {
                 node: monoUtils.create('div', {
@@ -27770,266 +28505,137 @@
                   append: [
                     monoUtils.create('div', {
                       class: ['sf-nowrap'],
-                      text: strings.dateStart
+                      text: strings.dateIn
                     }),
                     monoUtils.create('div', {
                       class: ['sf-nowrap'],
-                      text: strings.dateEnd
+                      text: strings.dateOut
                     })
                   ]
                 }),
                 width: {
                   strings: [
-                    strings.dateStart,
-                    strings.dateEnd
+                    strings.dateIn,
+                    strings.dateOut
                   ],
                   fontSize: 14,
                   default: 100
                 },
-                leftFixed: 1
+                rightFixed: 1
               };
-            }
 
-            if (isCalendar) {
-              strings.calMonth = main.getCalMonth(mainItem.dateStart);
-              strings.calMonth = tbr.language.inMonth.replace('%month%', strings.calMonth);
-
-              var inlineArrow = null;
-              var plusWidth = 0;
-              if (isOneWay) {
-                inlineArrow = main.bar.getOneWayLine();
-                plusWidth = 140;
-              } else {
-                inlineArrow = main.bar.getTwoWayLines();
-                plusWidth = 75;
-              }
-              inlineArrow.style.display = 'block';
-
-              blocks.calendarCanterBlock = {
+              blocks.priceBlock = {
                 node: monoUtils.create('div', {
-                  class: ['sf-cell', 'sf-center', 'sf-point'],
-                  append: [
-                    monoUtils.create('div', {
-                      class: ['sf-place'],
-                      append: [
-                        strings.pointA,
-                        ' ',
-                        monoUtils.create('div', {
-                          style: {
-                            display: 'inline-block',
-                            verticalAlign: 'middle'
-                          },
-                          append: inlineArrow
-                        }),
-                        ' ',
-                        strings.pointB,
-                        ' ',
-                        strings.calMonth
-                      ]
-                    })
-                  ]
+                  class: ['sf-cell', 'sf-price', 'sf-center', 'sf-nowrap'],
+                  append: main.getPriceNode(priceObj)
                 }),
                 width: {
                   strings: [
-                    strings.pointA + ' ' + strings.pointB + ' ' + strings.calMonth
+                    strings.price
                   ],
-                  fontSize: [26, 22, 18],
-                  plus: plusWidth
-                }
-              };
-            } else {
-              blocks.pointABlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell', 'sf-right', 'sf-point'],
-                  append: [
-                    monoUtils.create('div', {
-                      class: ['sf-place', 'sf-right'],
-                      text: strings.pointA
-                    })
-                  ]
-                }),
-                width: {
-                  strings: [
-                    strings.pointA
-                  ],
-                  fontSize: [26, 22, 18]
-                }
-              };
-
-              if (isOneWay) {
-                blocks.arrowBlock = {
-                  node: monoUtils.create('div', {
-                    class: ['sf-cell', 'sf-center'],
-                    append: [
-                      main.bar.getOneWayLine()
-                    ]
-                  }),
-                  width: 140
-                };
-              } else {
-                blocks.arrowBlock = {
-                  node: monoUtils.create('div', {
-                    class: ['sf-cell', 'sf-center'],
-                    append: [
-                      main.bar.getTwoWayLines()
-                    ]
-                  }),
-                  width: 75
-                };
-              }
-
-              blocks.pointBBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell', 'sf-point'],
-                  append: [
-                    monoUtils.create('div', {
-                      class: ['sf-place'],
-                      text: strings.pointB
-                    })
-                  ]
-                }),
-                width: {
-                  strings: [
-                    strings.pointB
-                  ],
-                  fontSize: [26, 22, 18]
-                }
-              };
-            }
-
-            blocks.priceBlock = {
-              node: monoUtils.create('div', {
-                class: ['sf-cell', 'sf-price', 'sf-center', 'sf-nowrap'],
-                append: main.getPriceNode(priceObj)
-              }),
-              width: {
-                strings: [
-                  strings.price
-                ],
-                fontSize: 26,
-                fontStyle: {
-                  fontWeight: 'bold'
+                  fontSize: 26,
+                  fontStyle: {
+                    fontWeight: 'bold'
+                  },
+                  plus: 30,
+                  default: 120
                 },
-                default: 120
-              },
-              rightFixed: 1
-            };
+                rightFixed: 1
+              };
 
-            var viewLink = null;
-            blocks.viewBlock = {
-              node: monoUtils.create('div', {
-                class: ['sf-cell', 'sf-center'],
-                append: [
-                  viewLink = monoUtils.create('a', {
-                    class: 'sf-view-btn',
-                    href: barUrl,
-                    target: '_blank',
-                    text: strings.view,
-                    on: ['click', function(e) {
-                      e.stopPropagation();
+              var viewLink = null;
+              blocks.viewBlock = {
+                node: monoUtils.create('div', {
+                  class: ['sf-cell', 'sf-center'],
+                  append: [
+                    viewLink = monoUtils.create('a', {
+                      class: 'sf-view-btn',
+                      href: mainItem.link,
+                      target: '_blank',
+                      text: tbr.language.view,
+                      on: ['click', function(e) {
+                        e.stopPropagation();
 
-                      tbr.emit('track', {
-                        cd: 'flightclick',
-                        t: 'screenview'
-                      });
-
-                      tbr.emit('track', {
-                        ec: 'cheapflight',
-                        ea: 'click',
-                        el: tbr.hostname,
-                        cd: 'flightclick',
-                        t: 'event'
-                      });
-
-                      if (!isCalendar) {
                         tbr.emit('track', {
-                          cd: 'flight_betterprice_click',
+                          cd: 'hotelclick',
                           t: 'screenview'
                         });
 
                         tbr.emit('track', {
-                          ec: 'cheapflight',
-                          ea: 'betterpriceclick',
+                          ec: 'hotel',
+                          ea: 'click',
                           el: tbr.hostname,
-                          cd: 'flight_betterprice_click',
+                          cd: 'hotelclick',
                           t: 'event'
                         });
 
-                        trackByVendor({
-                          ec: 'cheapflight',
-                          ea: 'betterpriceclick',
-                          el: tbr.hostname,
-                          cd: 'flight_betterprice_click',
-                          t: 'event'
-                        });
-                      } else {
-                        tbr.emit('track', {
-                          cd: 'flight_calendar_click',
-                          t: 'screenview'
-                        });
+                        if (isSuggest) {
+                          tbr.emit('track', {
+                            cd: 'hotelNearbyClick',
+                            t: 'screenview'
+                          });
 
-                        tbr.emit('track', {
-                          ec: 'cheapflight',
-                          ea: 'calendarclick',
-                          el: tbr.hostname,
-                          cd: 'flight_calendar_click',
-                          t: 'event'
-                        });
-                      }
-                    }]
-                  })
-                ]
-              }),
-              width: 130,
-              rightFixed: 1
-            };
+                          tbr.emit('track', {
+                            ec: 'hotel',
+                            ea: 'nearbyClick',
+                            el: tbr.hostname,
+                            cd: 'hotelNearbyClick',
+                            t: 'event'
+                          });
+                        }
+                      }]
+                    })
+                  ]
+                }),
+                width: 130,
+                rightFixed: 1
+              };
 
-            blocks.rightResizeBlock = {
-              node: monoUtils.create('div', {
-                class: ['sf-cell']
-              }),
-              width: 0
-            };
+              blocks.rightResizeBlock = {
+                node: monoUtils.create('div', {
+                  class: ['sf-cell']
+                }),
+                width: 0
+              };
 
-            var leftFixedBlocks = [];
-            var rightFixedBlocks = [];
+              var leftFixedBlocks = [];
+              var rightFixedBlocks = [];
 
-            var rndId = 's' + Math.random().toString(36).substring(7);
-            var bar = details.barEl = monoUtils.create('div', {
-              id: rndId,
-              style: {
-                top: '-1px !important',
-                display: 'table !important',
-                opacity: '1 !important',
-                zIndex: 99999999,
-                cursor: 'pointer'
-              },
-              append: (function() {
-                var blockList = [];
-                for (var key in blocks) {
-                  var block = blocks[key];
-                  if (block.leftFixed) {
-                    leftFixedBlocks.push(key);
+              var rndId = 's' + Math.random().toString(36).substring(7);
+              var bar = details.barEl = monoUtils.create('div', {
+                id: rndId,
+                style: {
+                  top: '-1px !important',
+                  display: 'table !important',
+                  opacity: '1 !important',
+                  zIndex: 99999999,
+                  cursor: 'pointer'
+                },
+                append: (function() {
+                  var blockList = [];
+                  for (var key in blocks) {
+                    var block = blocks[key];
+                    if (block.leftFixed) {
+                      leftFixedBlocks.push(key);
+                    }
+                    if (block.rightFixed) {
+                      rightFixedBlocks.push(key);
+                    }
+                    blockList.push(block.node);
                   }
-                  if (block.rightFixed) {
-                    rightFixedBlocks.push(key);
-                  }
-                  blockList.push(block.node);
-                }
-                return blockList;
-              })(),
-              on: ['click', function(e) {
-                e.stopPropagation();
-                e.preventDefault();
+                  return blockList;
+                })(),
+                on: ['click', function(e) {
+                  e.stopPropagation();
+                  e.preventDefault();
 
-                viewLink.dispatchEvent(new CustomEvent('click'));
-              }]
-            });
+                  viewLink.dispatchEvent(new CustomEvent('click'));
+                }]
+              });
 
-            var currentFontSizeObj = {};
-            if (isCalendar) {
+              var currentFontSizeObj = {};
               details.onBlocksResize = function(width, leftBlocksSize, rightBlockSize) {
-                var type = 'calendarCanterBlock';
+                var type = 'pointABlock';
                 var blockWidth = parseInt(width - leftBlocksSize - rightBlockSize);
 
                 var needResize = false;
@@ -28062,648 +28668,252 @@
 
                 blocks[type].node.style.width = blockWidth + 'px';
               };
-            } else {
-              details.onBlocksResize = function(width, leftBlocksSize, rightBlockSize) {
-                var arrowBlockWidth = width / 2 - blocks.arrowBlock.width / 2;
 
-                var blockWidthObj = {
-                  pointABlock: parseInt(arrowBlockWidth - leftBlocksSize),
-                  pointBBlock: parseInt(arrowBlockWidth - rightBlockSize)
+              var barHeight = 46;
+              main.bar.calcBlockSize(blocks, function() {
+                var style = details.styleEl = main.bar.getStyle({
+                  rndId: rndId,
+                  barHeight: barHeight
+                });
+
+                var leftBlocksSize = 0;
+                leftFixedBlocks.forEach(function(key) {
+                  leftBlocksSize += blocks[key].width;
+                });
+
+                var rightBlockSize = 0;
+                rightFixedBlocks.forEach(function(key) {
+                  rightBlockSize += blocks[key].width;
+                });
+
+                var lastBarWidth = 0;
+                var currentWidthFix = 0;
+                var barMaxWidth = 1200;
+
+                var updateBarWidth = function() {
+                  var width = document.documentElement.clientWidth;
+
+                  var sizeFix = width - barMaxWidth;
+                  if (sizeFix > 0) {
+                    width = barMaxWidth;
+
+                    var fixWidth = Math.floor(sizeFix / 2);
+                    if (fixWidth !== currentWidthFix) {
+                      currentWidthFix = fixWidth;
+                      blocks.leftResizeBlock.node.style.width = fixWidth + 'px';
+                      blocks.rightResizeBlock.node.style.width = fixWidth + 'px';
+                    }
+                  } else if (currentWidthFix !== 0) {
+                    currentWidthFix = 0;
+                    blocks.leftResizeBlock.node.style.width = 0;
+                    blocks.rightResizeBlock.node.style.width = 0;
+                  }
+
+                  if (lastBarWidth === width) {
+                    return;
+                  }
+                  lastBarWidth = width;
+
+                  return details.onBlocksResize(width, leftBlocksSize, rightBlockSize);
                 };
 
-                var needResize = false;
-                ['pointABlock', 'pointBBlock'].forEach(function(type) {
-                  var blockWidth = blockWidthObj[type];
+                details.onResize = updateBarWidth;
+                window.addEventListener('resize', details.onResize);
 
-                  var currentFontSize = currentFontSizeObj[type];
-                  if (currentFontSize) {
-                    if (blockWidth >= currentFontSize.minWidth && blockWidth < currentFontSize.maxWidth) {
-                      return;
-                    }
-                  }
+                if (oldBar) {
+                  oldBar.replace(details);
+                  updateBarWidth();
 
-                  needResize = true;
-
-                  var found = blocks[type].widthList.some(function(item) {
-                    if (blockWidth >= item.minWidth && blockWidth < item.maxWidth) {
-                      currentFontSizeObj[type] = item;
-                      return true;
-                    }
-                  });
-
-                  if (!found) {
-                    currentFontSizeObj[type] = blocks[type].widthList.slice(-1)[0];
-                  }
-                });
-
-                if (needResize) {
-                  var fontSize = Math.min(currentFontSizeObj.pointABlock.fontSize, currentFontSizeObj.pointBBlock.fontSize);
-                  blocks.pointABlock.node.style.fontSize = fontSize + 'px';
-                  blocks.pointBBlock.node.style.fontSize = fontSize + 'px';
-                }
-
-                blocks.pointABlock.node.style.width = blockWidthObj.pointABlock + 'px';
-                blocks.pointBBlock.node.style.width = blockWidthObj.pointBBlock + 'px';
-              };
-            }
-
-            var barHeight = 46;
-            return main.bar.calcBlockSize(blocks, function() {
-              var style = details.styleEl = main.bar.getStyle({
-                rndId: rndId,
-                barHeight: barHeight
-              });
-
-              var leftBlocksSize = 0;
-              leftFixedBlocks.forEach(function(key) {
-                leftBlocksSize += blocks[key].width;
-              });
-
-              var rightBlockSize = 0;
-              rightFixedBlocks.forEach(function(key) {
-                rightBlockSize += blocks[key].width;
-              });
-
-              var lastBarWidth = 0;
-              var currentWidthFix = 0;
-              var barMaxWidth = 1200;
-
-              var updateBarWidth = function() {
-                var width = document.documentElement.clientWidth;
-
-                var sizeFix = width - barMaxWidth;
-                if (sizeFix > 0) {
-                  width = barMaxWidth;
-
-                  var fixWidth = Math.floor(sizeFix / 2);
-                  if (fixWidth !== currentWidthFix) {
-                    currentWidthFix = fixWidth;
-                    blocks.leftResizeBlock.node.style.width = fixWidth + 'px';
-                    blocks.rightResizeBlock.node.style.width = fixWidth + 'px';
-                  }
-                } else if (currentWidthFix !== 0) {
-                  currentWidthFix = 0;
-                  blocks.leftResizeBlock.node.style.width = 0;
-                  blocks.rightResizeBlock.node.style.width = 0;
-                }
-
-                if (lastBarWidth === width) {
-                  return;
-                }
-                lastBarWidth = width;
-
-                return details.onBlocksResize(width, leftBlocksSize, rightBlockSize);
-              };
-
-              details.onResize = updateBarWidth;
-              window.addEventListener('resize', details.onResize);
-
-              if (oldBar) {
-                oldBar.replace(details);
-                updateBarWidth();
-
-                tbr.emit('track', {
-                  ec: 'cheapflight',
-                  ea: 'update',
-                  el: tbr.hostname,
-                  t: 'event'
-                });
-
-                if (!isCalendar) {
-                  trackByVendor({
-                    ec: 'cheapflight',
+                  tbr.emit('track', {
+                    ec: 'hotel',
                     ea: 'update',
                     el: tbr.hostname,
                     t: 'event'
                   });
 
-                  tbr.emit('track', {
-                    cd: 'flight_betterprice_update',
-                    t: 'screenview'
-                  });
+                  if (isSuggest) {
+                    tbr.emit('track', {
+                      cd: 'hotelNearbyUpdate',
+                      t: 'screenview'
+                    });
+
+                    tbr.emit('track', {
+                      ec: 'hotel',
+                      ea: 'nearbyUpdate',
+                      el: tbr.hostname,
+                      cd: 'hotelNearbyUpdate',
+                      t: 'event'
+                    });
+                  }
                 } else {
+                  main.bar.rndClassName(bar, style);
+                  var ctr = monoUtils.create(document.createDocumentFragment(), {
+                    append: [bar, style]
+                  });
+
+                  document.body.appendChild(ctr);
+
+                  setTimeout(function() {
+                    updateBarWidth();
+                    main.bar.marginPage(details, barHeight);
+                  }, 0);
+
                   tbr.emit('track', {
-                    cd: 'flight_calendar_update',
+                    cd: 'hotelshow',
                     t: 'screenview'
                   });
-                }
-              } else {
-                main.bar.rndClassName(bar, style);
-                var ctr = monoUtils.create(document.createDocumentFragment(), {
-                  append: [bar, style]
-                });
 
-                document.body.appendChild(ctr);
-
-                setTimeout(function() {
-                  updateBarWidth();
-                  main.bar.marginPage(details, barHeight);
-                }, 0);
-
-                tbr.emit('track', {
-                  cd: 'flightshow',
-                  t: 'screenview'
-                });
-
-                tbr.emit('track', {
-                  ec: 'cheapflight',
-                  ea: 'show',
-                  el: tbr.hostname,
-                  cd: 'flightshow',
-                  t: 'event'
-                });
-
-                if (!isCalendar) {
-                  trackByVendor({
-                    ec: 'cheapflight',
+                  tbr.emit('track', {
+                    ec: 'hotel',
                     ea: 'show',
                     el: tbr.hostname,
-                    cd: 'flightshow',
+                    cd: 'hotelshow',
                     t: 'event'
                   });
 
-                  tbr.emit('track', {
-                    cd: 'flight_betterprice_show',
-                    t: 'screenview'
-                  });
-                } else {
-                  tbr.emit('track', {
-                    cd: 'flight_calendar_show',
-                    t: 'screenview'
-                  });
-                }
-              }
+                  if (isSuggest) {
+                    tbr.emit('track', {
+                      cd: 'hotelNearbyShow',
+                      t: 'screenview'
+                    });
 
-              if (isCalendar) {
-                tbr.emit('track', {
-                  ec: 'cheapflight',
-                  ea: 'calendarPrice',
-                  el: tbr.hostname,
-                  t: 'event'
-                });
-              }
-            });
-          },
-          hotelBarCreate: function(details, oldBar) {
-            var pageInfo = details.pageInfo;
-
-            var mainItem = main.bar.prepareHotelItem(pageInfo, main.bar.getHotelBarItem(details));
-            var isSuggest = !!mainItem.isSuggest;
-
-            var priceObj = main.getPrice(mainItem.currency, mainItem.value);
-
-            var strings = {
-              foundHotel: tbr.language.foundHotel + String.fromCharCode(160),
-              aroundHotel: tbr.language.aroundHotel + String.fromCharCode(160),
-              name: mainItem.name,
-              checkIn: tbr.language.checkIn + String.fromCharCode(160),
-              checkOut: tbr.language.checkOut + String.fromCharCode(160),
-              dateIn: main.getDate(mainItem.dateIn),
-              dateOut: main.getDate(mainItem.dateOut),
-              price: priceObj.string
-            };
-
-            var blocks = {};
-            blocks.closeBlock = {
-              node: monoUtils.create('div', {
-                class: ['sf-cell', 'sf-center'],
-                style: {
-                  cursor: 'default'
-                }
-              }),
-              closeBtn: monoUtils.create('a', {
-                class: 'sf-close-btn',
-                href: '#close',
-                title: tbr.language.close,
-                append: [
-                  main.bar.getCloseBtn()
-                ],
-                on: ['click', function(e) {
-                  e.preventDefault();
-                  e.stopPropagation();
-
-                  details.close(1);
-
-                  tbr.emit('track', {
-                    ec: 'hotel',
-                    ea: 'close',
-                    el: tbr.hostname,
-                    t: 'event'
-                  });
-                }]
-              }),
-              width: 36,
-              leftFixed: 1
-            };
-            blocks.closeBlock.node.appendChild(blocks.closeBlock.closeBtn);
-
-            blocks.leftResizeBlock = {
-              node: monoUtils.create('div', {
-                class: ['sf-cell']
-              }),
-              width: 0
-            };
-
-            if (isSuggest) {
-              blocks.dateFoundBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell', 'sf-label', 'sf-right'],
-                  text: strings.aroundHotel
-                }),
-                width: {
-                  strings: [
-                    strings.aroundHotel
-                  ],
-                  fontSize: 14,
-                  default: 190
-                },
-                leftFixed: 1
-              };
-            } else {
-              blocks.dateFoundBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell', 'sf-label', 'sf-right'],
-                  text: strings.foundHotel
-                }),
-                width: {
-                  strings: [
-                    strings.foundHotel
-                  ],
-                  fontSize: 14,
-                  default: 160
-                },
-                leftFixed: 1
-              };
-            }
-
-            blocks.pointABlock = {
-              node: monoUtils.create('div', {
-                class: ['sf-cell', 'sf-point'],
-                append: [
-                  monoUtils.create('div', {
-                    class: ['sf-place'],
-                    text: strings.name
-                  })
-                ]
-              }),
-              width: {
-                strings: [
-                  strings.name
-                ],
-                fontSize: [26, 22, 18]
-              }
-            };
-
-            blocks.dateLabesBlock = {
-              node: monoUtils.create('div', {
-                class: ['sf-cell'],
-                append: [
-                  monoUtils.create('div', {
-                    class: ['sf-right'],
-                    text: strings.checkIn
-                  }),
-                  monoUtils.create('div', {
-                    class: ['sf-right'],
-                    text: strings.checkOut
-                  })
-                ]
-              }),
-              width: {
-                strings: [
-                  strings.checkIn,
-                  strings.checkOut
-                ],
-                fontSize: 14,
-                default: 95
-              },
-              rightFixed: 1
-            };
-
-            blocks.dateBlock = {
-              node: monoUtils.create('div', {
-                class: ['sf-cell'],
-                append: [
-                  monoUtils.create('div', {
-                    class: ['sf-nowrap'],
-                    text: strings.dateIn
-                  }),
-                  monoUtils.create('div', {
-                    class: ['sf-nowrap'],
-                    text: strings.dateOut
-                  })
-                ]
-              }),
-              width: {
-                strings: [
-                  strings.dateIn,
-                  strings.dateOut
-                ],
-                fontSize: 14,
-                default: 100
-              },
-              rightFixed: 1
-            };
-
-            blocks.priceBlock = {
-              node: monoUtils.create('div', {
-                class: ['sf-cell', 'sf-price', 'sf-center', 'sf-nowrap'],
-                append: main.getPriceNode(priceObj)
-              }),
-              width: {
-                strings: [
-                  strings.price
-                ],
-                fontSize: 26,
-                fontStyle: {
-                  fontWeight: 'bold'
-                },
-                plus: 30,
-                default: 120
-              },
-              rightFixed: 1
-            };
-
-            var viewLink = null;
-            blocks.viewBlock = {
-              node: monoUtils.create('div', {
-                class: ['sf-cell', 'sf-center'],
-                append: [
-                  viewLink = monoUtils.create('a', {
-                    class: 'sf-view-btn',
-                    href: mainItem.link,
-                    target: '_blank',
-                    text: tbr.language.view,
-                    on: ['click', function(e) {
-                      e.stopPropagation();
-
-                      tbr.emit('track', {
-                        cd: 'hotelclick',
-                        t: 'screenview'
-                      });
-
-                      tbr.emit('track', {
-                        ec: 'hotel',
-                        ea: 'click',
-                        el: tbr.hostname,
-                        cd: 'hotelclick',
-                        t: 'event'
-                      });
-
-                      if (isSuggest) {
-                        tbr.emit('track', {
-                          cd: 'hotelNearbyClick',
-                          t: 'screenview'
-                        });
-
-                        tbr.emit('track', {
-                          ec: 'hotel',
-                          ea: 'nearbyClick',
-                          el: tbr.hostname,
-                          cd: 'hotelNearbyClick',
-                          t: 'event'
-                        });
-                      }
-                    }]
-                  })
-                ]
-              }),
-              width: 130,
-              rightFixed: 1
-            };
-
-            blocks.rightResizeBlock = {
-              node: monoUtils.create('div', {
-                class: ['sf-cell']
-              }),
-              width: 0
-            };
-
-            var leftFixedBlocks = [];
-            var rightFixedBlocks = [];
-
-            var rndId = 's' + Math.random().toString(36).substring(7);
-            var bar = details.barEl = monoUtils.create('div', {
-              id: rndId,
-              style: {
-                top: '-1px !important',
-                display: 'table !important',
-                opacity: '1 !important',
-                zIndex: 99999999,
-                cursor: 'pointer'
-              },
-              append: (function() {
-                var blockList = [];
-                for (var key in blocks) {
-                  var block = blocks[key];
-                  if (block.leftFixed) {
-                    leftFixedBlocks.push(key);
-                  }
-                  if (block.rightFixed) {
-                    rightFixedBlocks.push(key);
-                  }
-                  blockList.push(block.node);
-                }
-                return blockList;
-              })(),
-              on: ['click', function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-
-                viewLink.dispatchEvent(new CustomEvent('click'));
-              }]
-            });
-
-            var currentFontSizeObj = {};
-            details.onBlocksResize = function(width, leftBlocksSize, rightBlockSize) {
-              var type = 'pointABlock';
-              var blockWidth = parseInt(width - leftBlocksSize - rightBlockSize);
-
-              var needResize = false;
-              (function() {
-                var currentFontSize = currentFontSizeObj[type];
-                if (currentFontSize) {
-                  if (blockWidth >= currentFontSize.minWidth && blockWidth < currentFontSize.maxWidth) {
-                    return;
+                    tbr.emit('track', {
+                      ec: 'hotel',
+                      ea: 'nearbyShow',
+                      el: tbr.hostname,
+                      cd: 'hotelNearbyShow',
+                      t: 'event'
+                    });
                   }
                 }
-
-                needResize = true;
-
-                var found = blocks[type].widthList.some(function(item) {
-                  if (blockWidth >= item.minWidth && blockWidth < item.maxWidth) {
-                    currentFontSizeObj[type] = item;
-                    return true;
-                  }
-                });
-
-                if (!found) {
-                  currentFontSizeObj[type] = blocks[type].widthList.slice(-1)[0];
-                }
-              })();
-
-              if (needResize) {
-                var fontSize = currentFontSizeObj[type].fontSize;
-                blocks[type].node.style.fontSize = fontSize + 'px';
-              }
-
-              blocks[type].node.style.width = blockWidth + 'px';
-            };
-
-            var barHeight = 46;
-            main.bar.calcBlockSize(blocks, function() {
-              var style = details.styleEl = main.bar.getStyle({
-                rndId: rndId,
-                barHeight: barHeight
               });
+            },
+            create: function(details) {
+              var oldBar = main.bar.current;
+              if (oldBar && oldBar.isClosed) {
+                oldBar = null;
+              }
 
-              var leftBlocksSize = 0;
-              leftFixedBlocks.forEach(function(key) {
-                leftBlocksSize += blocks[key].width;
-              });
+              main.bar.current = details;
 
-              var rightBlockSize = 0;
-              rightFixedBlocks.forEach(function(key) {
-                rightBlockSize += blocks[key].width;
-              });
-
-              var lastBarWidth = 0;
-              var currentWidthFix = 0;
-              var barMaxWidth = 1200;
-
-              var updateBarWidth = function() {
-                var width = document.documentElement.clientWidth;
-
-                var sizeFix = width - barMaxWidth;
-                if (sizeFix > 0) {
-                  width = barMaxWidth;
-
-                  var fixWidth = Math.floor(sizeFix / 2);
-                  if (fixWidth !== currentWidthFix) {
-                    currentWidthFix = fixWidth;
-                    blocks.leftResizeBlock.node.style.width = fixWidth + 'px';
-                    blocks.rightResizeBlock.node.style.width = fixWidth + 'px';
-                  }
-                } else if (currentWidthFix !== 0) {
-                  currentWidthFix = 0;
-                  blocks.leftResizeBlock.node.style.width = 0;
-                  blocks.rightResizeBlock.node.style.width = 0;
-                }
-
-                if (lastBarWidth === width) {
+              details.isClosed = false;
+              details.close = function(byUser) {
+                if (details.isClosed) {
                   return;
                 }
-                lastBarWidth = width;
+                details.isClosed = true;
 
-                return details.onBlocksResize(width, leftBlocksSize, rightBlockSize);
+                main.bar.onClose(details, byUser);
               };
 
-              details.onResize = updateBarWidth;
-              window.addEventListener('resize', details.onResize);
+              details.replace = function(newDetails) {
+                main.bar.onReplace(details, newDetails);
+              };
 
-              if (oldBar) {
-                oldBar.replace(details);
-                updateBarWidth();
-
-                tbr.emit('track', {
-                  ec: 'hotel',
-                  ea: 'update',
-                  el: tbr.hostname,
-                  t: 'event'
-                });
-
-                if (isSuggest) {
-                  tbr.emit('track', {
-                    cd: 'hotelNearbyUpdate',
-                    t: 'screenview'
-                  });
-
-                  tbr.emit('track', {
-                    ec: 'hotel',
-                    ea: 'nearbyUpdate',
-                    el: tbr.hostname,
-                    cd: 'hotelNearbyUpdate',
-                    t: 'event'
-                  });
-                }
+              if (details.type === 'hotel') {
+                main.bar.hotelBarCreate(details, oldBar);
               } else {
-                main.bar.rndClassName(bar, style);
-                var ctr = monoUtils.create(document.createDocumentFragment(), {
-                  append: [bar, style]
-                });
+                main.bar.aviaBarCreate(details, oldBar);
+              }
+            },
+            rndClassName: function(bar, style) {
+              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+              var dDbl = {};
 
-                document.body.appendChild(ctr);
+              var getRnd = function() {
+                var limit = 10;
+                var rnd = 't';
+                do {
+                  limit--;
+                  for (var i = 0; i < 21; i++) {
+                    rnd += possible.charAt(Math.floor(Math.random() * possible.length));
+                  }
+                } while (dDbl[rnd] && limit > 0);
+
+                dDbl[rnd] = 1;
+
+                return rnd;
+              };
+
+              var classMap = {};
+              var slice = [].slice;
+              slice.call(bar.querySelectorAll('[class]')).forEach(function(node) {
+                slice.call(node.classList).forEach(function(className) {
+                  if (!classMap[className]) {
+                    classMap[className] = getRnd();
+                  }
+                  node.classList.remove(className);
+                  var rnd = classMap[className];
+                  node.classList.add(rnd);
+                });
+              });
+
+              var styleText = style.textContent;
+              Object.keys(classMap).forEach(function(origClassName) {
+                var newClassName = classMap[origClassName];
+                styleText = styleText.replace(new RegExp(origClassName, 'gi'), newClassName);
+              });
+              style.textContent = styleText;
+            }
+          }
+        };
+        return getBarUi(tbr);
+      };
+
+      var testB = function() {
+        var getBarUi = function(tbr) {
+          "use strict";
+
+          var main = tbr.main;
+
+          var origPageStyle = {};
+          var marginPage = function(barObj, show) {
+            var barHeight = 55;
+            var barNode = barObj.body.node;
+            var htmlNode = document.body.parentNode;
+            if (show) {
+              origPageStyle.marginTop = htmlNode.style.marginTop;
+              origPageStyle.transition = htmlNode.style.transition;
+
+              htmlNode.style.transition = 'margin-top 0.2s';
+              barNode.style.transition = 'margin-top 0.2s';
+
+              setTimeout(function() {
+                htmlNode.style.marginTop = barHeight + 'px';
+                barNode.style.marginTop = 0;
+
+                if (htmlNode.style.setProperty) {
+                  htmlNode.style.setProperty('margin-top', barHeight + 'px', 'important');
+                }
 
                 setTimeout(function() {
-                  updateBarWidth();
-                  main.bar.marginPage(details, barHeight);
-                }, 0);
+                  htmlNode.style.transition = origPageStyle.transition;
+                  barNode.style.transition = '';
+                }, 250);
+              }, 0);
 
-                tbr.emit('track', {
-                  cd: 'hotelshow',
-                  t: 'screenview'
-                });
-
-                tbr.emit('track', {
-                  ec: 'hotel',
-                  ea: 'show',
-                  el: tbr.hostname,
-                  cd: 'hotelshow',
-                  t: 'event'
-                });
-
-                if (isSuggest) {
-                  tbr.emit('track', {
-                    cd: 'hotelNearbyShow',
-                    t: 'screenview'
-                  });
-
-                  tbr.emit('track', {
-                    ec: 'hotel',
-                    ea: 'nearbyShow',
-                    el: tbr.hostname,
-                    cd: 'hotelNearbyShow',
-                    t: 'event'
-                  });
-                }
-              }
-            });
-          },
-          create: function(details) {
-            var oldBar = main.bar.current;
-            if (oldBar && oldBar.isClosed) {
-              oldBar = null;
-            }
-
-            main.bar.current = details;
-
-            details.isClosed = false;
-            details.close = function(byUser) {
-              if (details.isClosed) {
-                return;
-              }
-              details.isClosed = true;
-
-              main.bar.onClose(details, byUser);
-            };
-
-            details.replace = function(newDetails) {
-              main.bar.onReplace(details, newDetails);
-            };
-
-            if (details.type === 'hotel') {
-              main.bar.hotelBarCreate(details, oldBar);
+              var onShow = main.currentProfile.onShow;
+              onShow && onShow(barHeight);
             } else {
-              main.bar.aviaBarCreate(details, oldBar);
+              htmlNode.style.marginTop = origPageStyle.marginTop;
+
+              var onHide = main.currentProfile.onHide;
+              onHide && onHide();
             }
-          },
-          rndClassName: function(bar, style) {
+          };
+
+          var rndClassName = function(barNode, styleNode) {
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             var dDbl = {};
+
             var getRnd = function() {
               var limit = 10;
-              var rnd = null;
+              var rnd = 't';
               do {
                 limit--;
-                rnd = 's' + (Math.random().toString(36).substring(7) || Date.now());
+                for (var i = 0; i < 21; i++) {
+                  rnd += possible.charAt(Math.floor(Math.random() * possible.length));
+                }
               } while (dDbl[rnd] && limit > 0);
 
               dDbl[rnd] = 1;
@@ -28713,7 +28923,7 @@
 
             var classMap = {};
             var slice = [].slice;
-            slice.call(bar.querySelectorAll('[class]')).forEach(function(node) {
+            slice.call(barNode.querySelectorAll('[class]')).forEach(function(node) {
               slice.call(node.classList).forEach(function(className) {
                 if (!classMap[className]) {
                   classMap[className] = getRnd();
@@ -28724,15 +28934,1366 @@
               });
             });
 
-            var styleText = style.textContent;
+            var styleText = styleNode.textContent;
             Object.keys(classMap).forEach(function(origClassName) {
               var newClassName = classMap[origClassName];
               styleText = styleText.replace(new RegExp(origClassName, 'gi'), newClassName);
             });
-            style.textContent = styleText;
-          }
-        }
-      });
+            styleNode.textContent = styleText;
+          };
+
+          var Bar = function(details) {
+            this.hostname = tbr.hostname;
+            this.type = details.type;
+            this.details = details;
+            this.isClosed = false;
+            this.isRemoved = false;
+            this.container = document.createDocumentFragment();
+
+            this.styleCss = [];
+
+            this.barContent = this.getBarContent();
+
+            this.body = this.getBody();
+
+            this.content = this.getContent();
+
+            this.body.content.appendChild(this.content.node);
+
+            this.style = this.getStyle();
+
+            this.container.appendChild(this.body.node);
+            this.container.appendChild(this.style.node);
+
+            rndClassName(this.container, this.style.node);
+          };
+
+          Bar.prototype.trackByVendor = function(data) {
+            var map = {
+              aviasales: 'as',
+              skyscanner: 'sc'
+            };
+
+            var vendor = this.barContent.vendor;
+            var prefix = map[vendor];
+            if (prefix) {
+              data.ec += '-' + prefix;
+              return tbr.emit('track', data);
+            } else {
+              return tbr.error('Prefix is not found!', vendor);
+            }
+          };
+
+          Bar.prototype.getAviaBarContent = function() {
+            var pageInfo = this.details.pageInfo;
+            var prices = this.details.prices;
+
+            var getAviaBarItemIndex = function(priceList) {
+              var minDate = null;
+              var minItem = null;
+
+              priceList.forEach(function(item) {
+                var m = /(\d{4}.\d{2}.\d{2})/.exec(item.depart_date);
+                if (!m) {
+                  return;
+                }
+
+                var date = m[1];
+
+                if (minDate === null || minDate > date) {
+                  minDate = date;
+                  minItem = null;
+                }
+
+                if (date === minDate) {
+                  if (minItem === null || item.value < minItem.value) {
+                    minItem = item;
+                  }
+                }
+              });
+
+              var index = priceList.indexOf(minItem);
+
+              tbr.log('Bar item', index, minItem);
+              tbr.log('Result prices', priceList);
+
+              return index;
+            };
+
+            var barItem = prices.data[getAviaBarItemIndex(prices.data)];
+            if (!barItem) {
+              tbr.error('Bar item is not found!', this.details);
+              return null;
+            }
+
+            var isCalendar = !!barItem.monthPrice;
+            var isOneWay = !pageInfo.dateEnd;
+
+            var barUrl = barItem.url;
+            if (!barUrl) {
+              barUrl = 'http://hydra.aviasales.ru/searches/new' + '?' + monoUtils.param({
+                origin_iata: pageInfo.origin,
+                destination_iata: pageInfo.destination,
+                adults: 1,
+                children: 0,
+                infants: 0,
+                trip_class: 0,
+                depart_date: pageInfo.dateStart,
+                return_date: pageInfo.dateEnd,
+                marker: appInfo.id,
+                with_request: true
+              });
+            }
+
+            var content = {
+              value: barItem.converted_value || barItem.value,
+              currency: pageInfo.currency,
+
+              origin: barItem.origin,
+              destination: barItem.destination,
+
+              dateStart: barItem.depart_date,
+              dateEnd: barItem.return_date,
+
+              monthPrice: !!barItem.monthPrice,
+              vendor: barItem.vendor || 'aviasales',
+              url: barUrl,
+              isCalendar: isCalendar,
+              isOneWay: isOneWay
+            };
+
+            if (isCalendar) {
+              content.barTitle = tbr.language.calLabel;
+              content.dateStartText = tbr.language.inMonth.replace('%month%', main.getCalMonth(content.dateStart));
+            } else if (isOneWay) {
+              content.barTitle = tbr.language.foundOneWay;
+              content.dateStartText = main.getDate(content.dateStart, true);
+            } else {
+              content.barTitle = tbr.language.foundTwoWay;
+              content.dateStartText = main.getDate(content.dateStart, true);
+              content.dateEndText = main.getDate(content.dateEnd, true);
+            }
+
+            content.originName = main.getCityName(content.origin);
+            content.destinationName = main.getCityName(content.destination);
+
+            return content;
+          };
+
+          Bar.prototype.getHotelBarContent = function() {
+            var details = this.details;
+            var pageInfo = details.pageInfo;
+            var prices = details.prices;
+
+            var getHotelBarItem = function(prices) {
+              var mainItem = null;
+              var isSuggest = !!details.showSuggestPrice;
+
+              prices.data.filter(function(item) {
+                return isSuggest === !!item.isSuggest;
+              }).forEach(function(item) {
+                if (mainItem === null || mainItem.value > item.value) {
+                  mainItem = item;
+                }
+              });
+
+              return mainItem;
+            };
+
+            var barItem = getHotelBarItem(prices);
+            if (!barItem) {
+              tbr.error('Bar item is not found!', details);
+              return null;
+            }
+
+            var isSuggest = !!barItem.isSuggest;
+
+            var content = {
+              name: barItem.name,
+              stars: barItem.stars,
+
+              value: barItem.converted_value || barItem.value,
+              currency: pageInfo.currency,
+
+              dateIn: pageInfo.dateIn,
+              dateOut: pageInfo.dateOut,
+
+              url: barItem.deeplink,
+              isSuggest: isSuggest
+            };
+
+            if (typeof content.stars !== 'number' || content.stars < 0 || content.stars > 5) {
+              content.stars = 0;
+            }
+
+            if (isSuggest) {
+              content.barTitle = tbr.language.aroundHotel;
+            } else {
+              content.barTitle = tbr.language.foundHotel;
+            }
+
+            content.dateInText = main.getDate(content.dateIn, true, true);
+            content.dateOutText = main.getDate(content.dateOut, true);
+
+            return content;
+          };
+
+          Bar.prototype.getBarContent = function() {
+            if (this.type === 'avia') {
+              return this.getAviaBarContent();
+            } else if (this.type === 'hotel') {
+              return this.getHotelBarContent();
+            }
+          };
+
+          Bar.prototype.insertAviaBar = function() {
+            var _this = this;
+            var barContent = this.barContent;
+
+            var content = document.createDocumentFragment();
+
+            this.styleCss.push({
+              '.tbr-cell': {
+                display: 'inline-block'
+              }
+            }, {
+              '.tbr-cell': {
+                display: 'inline-flex'
+              }
+            });
+
+            this.styleCss.push({
+              '.tbr-title': {
+                fontSize: '20px',
+                fontWeight: 'bold',
+                margin: 'auto 10px'
+              }
+            });
+
+            content.appendChild(monoUtils.create('div', {
+              class: ['tbr-cell', 'tbr-title'],
+              style: {
+                verticalAlign: 'middle'
+              },
+              text: barContent.barTitle
+            }));
+
+            var flightInfoCell = monoUtils.create('div', {
+              class: ['tbr-cell'],
+              style: {
+                verticalAlign: 'middle',
+                flex: 2,
+                overflow: 'hidden'
+              }
+            });
+
+            content.appendChild(flightInfoCell);
+
+            this.styleCss.push({
+              '.tbr-info': {
+                height: '38px',
+                border: '1px solid rgba(255,255,255,.3)',
+                margin: 'auto 10px',
+                borderRadius: '19px',
+                padding: '0 15px'
+              }
+            });
+
+            var flightInfoWrapper = monoUtils.create('div', {
+              class: ['tbr-cell', 'tbr-info'],
+              style: {
+                overflow: 'hidden'
+              }
+            });
+
+            flightInfoCell.appendChild(flightInfoWrapper);
+
+            this.styleCss.push({
+              '.tbr-point': {
+                display: 'inline-block',
+                verticalAlign: 'middle',
+                margin: 'auto 0',
+                textOverflow: 'ellipsis',
+                color: '#fcea00',
+                fontWeight: 'bold',
+                fontSize: '14px'
+              }
+            });
+
+            var getPoint = function(name) {
+              return monoUtils.create('div', {
+                class: ['tbr-point'],
+                style: {
+                  overflow: 'hidden'
+                },
+                title: name,
+                text: name
+              });
+            };
+
+            var flightWrapper = monoUtils.create('div', {
+              class: ['tbr-cell'],
+              style: {
+                verticalAlign: 'middle',
+                overflow: 'hidden',
+                margin: 'auto 0'
+              }
+            });
+
+            flightInfoWrapper.appendChild(flightWrapper);
+
+            flightWrapper.appendChild(getPoint(barContent.originName));
+
+            this.styleCss.push({
+              '.tbr-way-icon': {
+                display: 'inline-block',
+                verticalAlign: 'middle',
+                margin: 'auto 6px'
+              }
+            });
+
+            if (barContent.isOneWay) {
+              flightWrapper.appendChild(monoUtils.create('div', {
+                class: ['tbr-way-icon'],
+                append: this.getOneWaySvg()
+              }));
+            } else {
+              flightWrapper.appendChild(monoUtils.create('div', {
+                class: ['tbr-way-icon'],
+                append: this.getTwoWaySvg()
+              }));
+            }
+
+            flightWrapper.appendChild(getPoint(barContent.destinationName));
+
+            this.styleCss.push({
+              '.tbr-dates': {
+                verticalAlign: 'middle',
+                margin: 'auto 0 auto 10px',
+                fontSize: '14px'
+              }
+            });
+
+            var flightDates = monoUtils.create('div', {
+              class: ['tbr-cell', 'tbr-dates']
+            });
+
+            flightInfoWrapper.appendChild(flightDates);
+
+            var flightDatesText = [barContent.dateStartText];
+            if (!barContent.isOneWay && !barContent.isCalendar) {
+              flightDatesText.push(' — ');
+              flightDatesText.push(barContent.dateEndText);
+            }
+            flightDates.appendChild(document.createTextNode(flightDatesText.join(' ')));
+
+            this.styleCss.push({
+              '.tbr-price': {
+                verticalAlign: 'middle',
+                fontSize: '20px',
+                fontWeight: 'bold',
+                margin: 'auto 10px',
+                lineHeight: '23px'
+              }
+            });
+
+            this.styleCss.push({
+              '.tbr-price *': {
+                fontWeight: 'inherit',
+                fontSize: 'inherit',
+                lineHeight: 'inherit'
+              }
+            });
+
+            var priceObj = main.getPrice(barContent.currency, barContent.value);
+            content.appendChild(monoUtils.create('div', {
+              class: ['tbr-cell', 'tbr-price'],
+              append: main.getPriceNode(priceObj)
+            }));
+
+            this.styleCss.push({
+              '.tbr-more-btn': {
+                verticalAlign: 'middle',
+                fontSize: '16px',
+                fontWeight: 'bold',
+                color: '#000',
+                margin: 'auto 10px',
+                padding: '10px 25px',
+                backgroundColor: '#fcea00',
+                borderRadius: '19px',
+
+                textDecoration: 'none'
+              },
+              '.tbr-more-btn:hover': {
+                backgroundColor: '#fcf380',
+                color: '#000'
+              }
+            });
+
+            this.styleCss.push({
+              '.tbr-more-btn': {
+                color: '#000 !important',
+                textDecoration: 'none !important'
+              }
+            });
+
+            var moreBtn = null;
+
+            content.appendChild(moreBtn = monoUtils.create('a', {
+              class: ['tbr-cell', 'tbr-more-btn'],
+              href: barContent.url,
+              target: '_blank',
+              text: tbr.language.view,
+              on: ['click', function(e) {
+                e.stopPropagation();
+
+                _this.content.onClick();
+              }]
+            }));
+
+            this.styleCss.push({
+              media: '@media only screen and (max-width: 1150px)',
+              append: [{
+                '.tbr-content': {
+                  maxWidth: '960px'
+                },
+                '.tbr-title': {
+                  fontSize: '18px'
+                }
+              }]
+            });
+
+            this.styleCss.push({
+              media: '@media only screen and (max-width: 1050px)',
+              append: [{
+                '.tbr-content': {
+                  maxWidth: '810px'
+                },
+                '.tbr-close-btn': {
+                  width: '24px'
+                },
+                '.tbr-right-padding': {
+                  width: '24px'
+                },
+                '.tbr-title': {
+                  fontSize: '14px',
+                  marginLeft: '5px',
+                  marginRight: '5px'
+                },
+                '.tbr-info': {
+                  marginLeft: '5px',
+                  marginRight: '5px',
+                  paddingLeft: '5px',
+                  paddingRight: '5px'
+                },
+                '.tbr-dates': {
+                  marginLeft: '5px',
+                  marginRight: '5px'
+                },
+                '.tbr-price': {
+                  fontSize: '16px',
+                  marginLeft: '5px',
+                  marginRight: '5px'
+                },
+                '.tbr-more-btn': {
+                  fontSize: '14px',
+                  marginLeft: '5px',
+                  marginRight: '5px',
+                  paddingLeft: '10px',
+                  paddingRight: '10px'
+                }
+              }]
+            });
+
+            this.styleCss.push({
+              media: '@media only screen and (max-width: 850px)',
+              append: [{
+                '.tbr-content': {
+                  maxWidth: '700px'
+                }
+              }]
+            });
+
+            var onAppend = function() {
+              tbr.emit('track', {
+                cd: 'flightshow',
+                t: 'screenview'
+              });
+
+              tbr.emit('track', {
+                ec: 'cheapflight',
+                ea: 'show',
+                el: _this.hostname,
+                cd: 'flightshow',
+                t: 'event'
+              });
+
+              if (barContent.isCalendar) {
+                tbr.emit('track', {
+                  cd: 'flight_calendar_show',
+                  t: 'screenview'
+                });
+              } else {
+                _this.trackByVendor({
+                  ec: 'cheapflight',
+                  ea: 'show',
+                  el: _this.hostname,
+                  cd: 'flightshow',
+                  t: 'event'
+                });
+
+                tbr.emit('track', {
+                  cd: 'flight_betterprice_show',
+                  t: 'screenview'
+                });
+              }
+            };
+
+            var onReplace = function() {
+              tbr.emit('track', {
+                ec: 'cheapflight',
+                ea: 'update',
+                el: _this.hostname,
+                t: 'event'
+              });
+
+              if (barContent.isCalendar) {
+                tbr.emit('track', {
+                  cd: 'flight_calendar_update',
+                  t: 'screenview'
+                });
+              } else {
+                _this.trackByVendor({
+                  ec: 'cheapflight',
+                  ea: 'update',
+                  el: _this.hostname,
+                  t: 'event'
+                });
+
+                tbr.emit('track', {
+                  cd: 'flight_betterprice_update',
+                  t: 'screenview'
+                });
+              }
+            };
+
+            var onShow = function() {
+              if (barContent.isCalendar) {
+                tbr.emit('track', {
+                  ec: 'cheapflight',
+                  ea: 'calendarPrice',
+                  el: _this.hostname,
+                  t: 'event'
+                });
+              }
+            };
+
+            var onClick = function() {
+              tbr.emit('track', {
+                cd: 'flightclick',
+                t: 'screenview'
+              });
+
+              tbr.emit('track', {
+                ec: 'cheapflight',
+                ea: 'click',
+                el: _this.hostname,
+                cd: 'flightclick',
+                t: 'event'
+              });
+
+              if (barContent.isCalendar) {
+                tbr.emit('track', {
+                  cd: 'flight_calendar_click',
+                  t: 'screenview'
+                });
+
+                tbr.emit('track', {
+                  ec: 'cheapflight',
+                  ea: 'calendarclick',
+                  el: _this.hostname,
+                  cd: 'flight_calendar_click',
+                  t: 'event'
+                });
+              } else {
+                tbr.emit('track', {
+                  cd: 'flight_betterprice_click',
+                  t: 'screenview'
+                });
+
+                tbr.emit('track', {
+                  ec: 'cheapflight',
+                  ea: 'betterpriceclick',
+                  el: _this.hostname,
+                  cd: 'flight_betterprice_click',
+                  t: 'event'
+                });
+
+                _this.trackByVendor({
+                  ec: 'cheapflight',
+                  ea: 'betterpriceclick',
+                  el: _this.hostname,
+                  cd: 'flight_betterprice_click',
+                  t: 'event'
+                });
+              }
+            };
+
+            var onClose = function() {
+              tbr.emit('track', {
+                ec: 'cheapflight',
+                ea: 'close',
+                el: _this.hostname,
+                t: 'event'
+              });
+
+              _this.trackByVendor({
+                ec: 'cheapflight',
+                ea: 'close',
+                el: _this.hostname,
+                t: 'event'
+              });
+            };
+
+            return {
+              node: content,
+              moreBtn: moreBtn,
+              onAppend: onAppend,
+              onReplace: onReplace,
+              onShow: onShow,
+              onClick: onClick,
+              onClose: onClose
+            }
+          };
+
+          Bar.prototype.insertHotelBar = function() {
+            var _this = this;
+            var barContent = this.barContent;
+
+            var content = document.createDocumentFragment();
+
+            this.styleCss.push({
+              '.tbr-cell': {
+                display: 'inline-block'
+              }
+            }, {
+              '.tbr-cell': {
+                display: 'inline-flex'
+              }
+            });
+
+            this.styleCss.push({
+              '.tbr-title': {
+                fontSize: '20px',
+                fontWeight: 'bold',
+                margin: 'auto 10px'
+              }
+            });
+
+            content.appendChild(monoUtils.create('div', {
+              class: ['tbr-cell', 'tbr-title'],
+              style: {
+                verticalAlign: 'middle'
+              },
+              text: barContent.barTitle
+            }));
+
+            var hotelInfoCell = monoUtils.create('div', {
+              class: ['tbr-cell'],
+              style: {
+                verticalAlign: 'middle',
+                flex: 2,
+                overflow: 'hidden'
+              }
+            });
+            content.appendChild(hotelInfoCell);
+
+            this.styleCss.push({
+              '.tbr-info': {
+                height: '38px',
+                border: '1px solid rgba(255,255,255,.3)',
+                margin: 'auto 10px',
+                borderRadius: '19px',
+                padding: '0 15px',
+                boxSizing: 'border-box'
+              }
+            });
+
+            this.styleCss.push({
+              '.tbr-hotel': {
+                textOverflow: 'ellipsis',
+                margin: 'auto',
+                color: '#fcea00',
+                fontWeight: 'bold',
+                fontSize: '14px'
+              }
+            });
+
+
+            var fullStarsBody = monoUtils.create('span', {
+              class: ['tbr-stars-full']
+            });
+
+            var getStar = function(one) {
+              var style = {
+                width: '16px',
+                height: '16px'
+              };
+              if (one) {
+                style.verticalAlign = 'text-bottom';
+              }
+              return monoUtils.create(_this.getStarSvg(), {
+                style: style
+              });
+            };
+
+            var starText = '';
+            for (var i = 0; i < barContent.stars; i++) {
+              fullStarsBody.appendChild(getStar());
+              starText += String.fromCharCode(9733);
+            }
+
+            if (starText) {
+              starText = ' ' + starText;
+            }
+
+            var hotelInfoWrapper = monoUtils.create('div', {
+              class: ['tbr-cell', 'tbr-info'],
+              style: {
+                overflow: 'hidden'
+              },
+              append: [
+                monoUtils.create('span', {
+                  class: ['tbr-hotel'],
+                  style: {
+                    overflow: 'hidden'
+                  },
+                  title: barContent.name + starText,
+                  text: barContent.name
+                })
+              ]
+            });
+
+            hotelInfoCell.appendChild(hotelInfoWrapper);
+
+            this.styleCss.push({
+              '.tbr-stars-full': {
+                display: 'inline-block',
+                verticalAlign: 'middle',
+                margin: 'auto 0'
+              }
+            });
+
+            hotelInfoWrapper.appendChild(fullStarsBody);
+
+            this.styleCss.push({
+              '.tbr-stars-short': {
+                display: 'none',
+                verticalAlign: 'middle',
+                margin: 'auto 0 auto 5px'
+              }
+            });
+
+            if (barContent.stars > 0) {
+              var shortStarsBody = monoUtils.create('span', {
+                class: ['tbr-stars-short'],
+                append: [
+                  barContent.stars,
+                  getStar(true)
+                ]
+              });
+
+              hotelInfoWrapper.appendChild(shortStarsBody);
+            }
+
+            this.styleCss.push({
+              '.tbr-dates': {
+                verticalAlign: 'middle',
+                margin: 'auto 0 auto 10px',
+                fontSize: '14px'
+              }
+            });
+
+            var bookingDates = monoUtils.create('div', {
+              class: ['tbr-cell', 'tbr-dates'],
+              text: [barContent.dateInText, '—', barContent.dateOutText].join(' ')
+            });
+
+            hotelInfoWrapper.appendChild(bookingDates);
+
+            this.styleCss.push({
+              '.tbr-price': {
+                verticalAlign: 'middle',
+                fontSize: '20px',
+                fontWeight: 'bold',
+                margin: 'auto 10px',
+                lineHeight: '23px'
+              }
+            });
+
+            this.styleCss.push({
+              '.tbr-price *': {
+                fontWeight: 'inherit',
+                fontSize: 'inherit',
+                lineHeight: 'inherit'
+              }
+            });
+
+            var priceObj = main.getPrice(barContent.currency, barContent.value);
+            content.appendChild(monoUtils.create('div', {
+              class: ['tbr-cell', 'tbr-price'],
+              append: main.getPriceNode(priceObj)
+            }));
+
+            this.styleCss.push({
+              '.tbr-more-btn': {
+                verticalAlign: 'middle',
+                fontSize: '16px',
+                fontWeight: 'bold',
+                color: '#000',
+                margin: 'auto 10px',
+                padding: '10px 25px',
+                backgroundColor: '#fcea00',
+                borderRadius: '19px',
+
+                textDecoration: 'none'
+              },
+              '.tbr-more-btn:hover': {
+                backgroundColor: '#fcf380',
+                color: '#000'
+              }
+            });
+
+            this.styleCss.push({
+              '.tbr-more-btn': {
+                color: '#000 !important',
+                textDecoration: 'none !important'
+              }
+            });
+
+            var moreBtn = null;
+
+            content.appendChild(moreBtn = monoUtils.create('a', {
+              class: ['tbr-cell', 'tbr-more-btn'],
+              href: barContent.url,
+              target: '_blank',
+              text: tbr.language.view,
+              on: ['click', function(e) {
+                e.stopPropagation();
+
+                _this.content.onClick();
+              }]
+            }));
+
+            this.styleCss.push({
+              media: '@media only screen and (max-width: 1150px)',
+              append: [{
+                '.tbr-content': {
+                  maxWidth: '960px'
+                },
+                '.tbr-title': {
+                  fontSize: '18px'
+                }
+              }]
+            });
+
+            this.styleCss.push({
+              media: '@media only screen and (max-width: 1050px)',
+              append: [{
+                '.tbr-content': {
+                  maxWidth: '810px'
+                },
+                '.tbr-close-btn': {
+                  width: '24px'
+                },
+                '.tbr-right-padding': {
+                  width: '24px'
+                },
+                '.tbr-title': {
+                  fontSize: '14px',
+                  marginLeft: '5px',
+                  marginRight: '5px'
+                },
+                '.tbr-info': {
+                  marginLeft: '5px',
+                  marginRight: '5px',
+                  paddingLeft: '5px',
+                  paddingRight: '5px'
+                },
+                '.tbr-dates': {
+                  marginLeft: '5px',
+                  marginRight: '5px'
+                },
+                '.tbr-price': {
+                  fontSize: '16px',
+                  marginLeft: '5px',
+                  marginRight: '5px'
+                },
+                '.tbr-more-btn': {
+                  fontSize: '14px',
+                  marginLeft: '5px',
+                  marginRight: '5px',
+                  paddingLeft: '10px',
+                  paddingRight: '10px'
+                }
+              }]
+            });
+
+            this.styleCss.push({
+              media: '@media only screen and (max-width: 950px)',
+              append: [{
+                '.tbr-stars-short': {
+                  display: 'inline-block'
+                },
+                '.tbr-stars-full': {
+                  display: 'none'
+                }
+              }]
+            });
+
+            this.styleCss.push({
+              media: '@media only screen and (max-width: 850px)',
+              append: [{
+                '.tbr-content': {
+                  maxWidth: '700px'
+                }
+              }]
+            });
+
+            var onAppend = function() {
+              tbr.emit('track', {
+                cd: 'hotelshow',
+                t: 'screenview'
+              });
+
+              tbr.emit('track', {
+                ec: 'hotel',
+                ea: 'show',
+                el: _this.hostname,
+                cd: 'hotelshow',
+                t: 'event'
+              });
+
+              if (_this.barContent.isSuggest) {
+                tbr.emit('track', {
+                  cd: 'hotelNearbyShow',
+                  t: 'screenview'
+                });
+
+                tbr.emit('track', {
+                  ec: 'hotel',
+                  ea: 'nearbyShow',
+                  el: _this.hostname,
+                  cd: 'hotelNearbyShow',
+                  t: 'event'
+                });
+              }
+            };
+
+            var onReplace = function() {
+              tbr.emit('track', {
+                ec: 'hotel',
+                ea: 'update',
+                el: _this.hostname,
+                t: 'event'
+              });
+
+              if (_this.barContent.isSuggest) {
+                tbr.emit('track', {
+                  cd: 'hotelNearbyUpdate',
+                  t: 'screenview'
+                });
+
+                tbr.emit('track', {
+                  ec: 'hotel',
+                  ea: 'nearbyUpdate',
+                  el: _this.hostname,
+                  cd: 'hotelNearbyUpdate',
+                  t: 'event'
+                });
+              }
+            };
+
+            var onShow = function() {
+
+            };
+
+            var onClick = function() {
+              tbr.emit('track', {
+                cd: 'hotelclick',
+                t: 'screenview'
+              });
+
+              tbr.emit('track', {
+                ec: 'hotel',
+                ea: 'click',
+                el: _this.hostname,
+                cd: 'hotelclick',
+                t: 'event'
+              });
+
+              if (_this.barContent.isSuggest) {
+                tbr.emit('track', {
+                  cd: 'hotelNearbyClick',
+                  t: 'screenview'
+                });
+
+                tbr.emit('track', {
+                  ec: 'hotel',
+                  ea: 'nearbyClick',
+                  el: _this.hostname,
+                  cd: 'hotelNearbyClick',
+                  t: 'event'
+                });
+              }
+            };
+
+            var onClose = function() {
+              tbr.emit('track', {
+                ec: 'hotel',
+                ea: 'close',
+                el: _this.hostname,
+                t: 'event'
+              });
+            };
+
+            return {
+              node: content,
+              moreBtn: moreBtn,
+              onAppend: onAppend,
+              onReplace: onReplace,
+              onShow: onShow,
+              onClick: onClick,
+              onClose: onClose
+            }
+          };
+
+          Bar.prototype.getContent = function() {
+            if (this.type === 'hotel') {
+              return this.insertHotelBar();
+            } else if (this.type === 'avia') {
+              return this.insertAviaBar();
+            }
+          };
+
+          Bar.prototype.getStyle = function() {
+            return {
+              node: monoUtils.create('style', {
+                text: monoUtils.style2Text(this.styleCss)
+              })
+            }
+          };
+
+          Bar.prototype.getCloseSvg = function() {
+            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            var svgNS = svg.namespaceURI;
+            svg.setAttribute('width', '80');
+            svg.setAttribute('height', '80');
+            svg.setAttribute('viewBox', '0 0 80 80');
+
+            var path = document.createElementNS(svgNS, 'path');
+            svg.appendChild(path);
+            path.setAttribute('fill', '#FCEA00');
+            path.setAttribute('d', 'M56.971 52.729L44.243 40l12.728-12.728-4.242-4.243L40 35.757 27.272 23.029l-4.243 4.243L35.757 40 23.029 52.729l4.243 4.242L40 44.243l12.729 12.728z');
+
+            return svg;
+          };
+
+          Bar.prototype.getOneWaySvg = function() {
+            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            var svgNS = svg.namespaceURI;
+            svg.setAttribute('width', '24px');
+            svg.setAttribute('height', '24px');
+            svg.setAttribute('viewBox', '4 4 24 24');
+
+            var path = document.createElementNS(svgNS, 'path');
+            svg.appendChild(path);
+            path.setAttribute('fill', '#D18685');
+            path.setAttribute('d', 'M4.538 16.618h21.626l-4.48 4.463a.537.537 0 0 0 0 .761c.21.211.551.211.761 0l5.328-5.327a.543.543 0 0 0 0-.762l-5.328-5.327a.537.537 0 0 0-.761 0 .537.537 0 0 0 0 .761l4.48 4.354H4.538a.538.538 0 1 0 0 1.077z');
+
+            return svg;
+          };
+
+          Bar.prototype.getTwoWaySvg = function() {
+            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            var svgNS = svg.namespaceURI;
+            svg.setAttribute('width', '24px');
+            svg.setAttribute('height', '24px');
+            svg.setAttribute('viewBox', '4 4 24 24');
+
+            var path = document.createElementNS(svgNS, 'path');
+            svg.appendChild(path);
+            path.setAttribute('fill', '#D18685');
+            path.setAttribute('d', 'M27.391 10.382H5.764l4.481-4.463a.538.538 0 0 0-.761-.761l-5.328 5.328a.542.542 0 0 0 0 .761l5.328 5.328a.538.538 0 0 0 .761-.761L5.764 11.46H27.39a.539.539 0 0 0 .001-1.078zM4.538 21.618h21.626l-4.48 4.463a.537.537 0 0 0 0 .761c.21.211.551.211.761 0l5.328-5.327a.543.543 0 0 0 0-.762l-5.328-5.327a.537.537 0 0 0-.761 0 .537.537 0 0 0 0 .761l4.48 4.354H4.538a.538.538 0 1 0 0 1.077z');
+
+            return svg;
+          };
+
+          Bar.prototype.getStarSvg = function() {
+            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            var svgNS = svg.namespaceURI;
+            svg.setAttribute('width', '24');
+            svg.setAttribute('height', '24');
+            svg.setAttribute('viewBox', '0 0 24 24');
+
+            var path = document.createElementNS(svgNS, 'path');
+            svg.appendChild(path);
+            path.setAttribute('fill', '#FCEA00');
+            path.setAttribute('d', 'M9.362 9.158l-5.268.584c-.19.023-.358.15-.421.343s0 .394.14.521c1.566 1.429 3.919 3.569 3.919 3.569-.002 0-.646 3.113-1.074 5.19a.504.504 0 0 0 .196.506.494.494 0 0 0 .538.027c1.844-1.047 4.606-2.623 4.606-2.623l4.604 2.625c.168.092.379.09.541-.029a.5.5 0 0 0 .195-.505l-1.07-5.191s2.353-2.14 3.918-3.566a.499.499 0 0 0-.279-.865c-2.108-.236-5.27-.586-5.27-.586l-2.183-4.83a.499.499 0 1 0-.909 0l-2.183 4.83z');
+
+            return svg;
+          };
+
+          Bar.prototype.getBody = function() {
+            var barHeight = 55;
+            var _this = this;
+
+            this.styleCss.push({
+              '.tbr-body': monoUtils.styleReset
+            });
+
+            this.styleCss.push({
+              '.tbr-body': {
+                backgroundColor: '#CC0001',
+                color: '#FFF',
+                cursor: 'pointer',
+                marginTop: '-' + barHeight + 'px',
+                display: 'table !important',
+                opacity: '1 !important'
+              },
+              '.tbr-body:hover': {
+                backgroundColor: '#b70001'
+              }
+            });
+
+            this.styleCss.push({
+              '.tbr-close-btn': {
+                width: '45px',
+                opacity: 1
+              }
+            });
+
+            this.styleCss.push({
+              '.tbr-close-btn:hover': {
+                opacity: 0.5
+              }
+            });
+
+            this.styleCss.push({
+              '.tbr-right-padding': {
+                width: '45px',
+                opacity: 0.5
+              }
+            });
+
+            this.styleCss.push({
+              '.tbr-content': {
+                maxWidth: '1100px'
+              }
+            });
+
+            var content = null;
+            var node = monoUtils.create('div', {
+              class: ['tbr-body'],
+              style: {
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                fontWeight: 'normal',
+                font: 'normal normal 14px Arial, sans-serif',
+
+                display: 'table',
+                width: '100%',
+                height: '55px',
+                lineHeight: 'normal',
+
+                opacity: 1,
+                zIndex: 99999999
+              },
+              on: ['click', function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                _this.content.moreBtn.dispatchEvent(new MouseEvent('click'));
+              }],
+              append: [
+                monoUtils.create('div', {
+                  style: {
+                    display: 'table-cell',
+                    verticalAlign: 'middle'
+                  },
+                  append: monoUtils.create('a', {
+                    class: ['tbr-close-btn'],
+                    href: '#close',
+                    title: tbr.language.close,
+                    style: {
+                      display: 'block',
+                      height: '45px',
+                      textAlign: 'center',
+                      cursor: 'pointer'
+                    },
+                    on: ['click', function(e) {
+                      e.preventDefault();
+                      e.stopPropagation();
+
+                      _this.close(true);
+
+                      _this.content.onClose();
+                    }],
+                    append: monoUtils.create(_this.getCloseSvg(), {
+                      style: {
+                        marginLeft: '4px',
+                        marginTop: '10px',
+                        width: '24px',
+                        height: '24px'
+                      }
+                    })
+                  })
+                }),
+                monoUtils.create('div', {
+                  style: {
+                    display: 'table-cell',
+                    verticalAlign: 'middle',
+                    textAlign: 'center'
+                  },
+                  append: monoUtils.create('div', {
+                    class: ['tbr-content'],
+                    style: {
+                      display: 'inline-block',
+                      width: '100%',
+                      textAlign: 'left',
+                      position: 'relative'
+                    },
+                    append: content = monoUtils.create('div', {
+                      style: {
+                        display: 'block',
+                        whiteSpace: 'nowrap',
+                        alignItems: 'center'
+                      },
+                      onCreate: function() {
+                        this.style.display = 'flex';
+                      }
+                    })
+                  })
+                }),
+                monoUtils.create('div', {
+                  class: ['tbr-right-padding'],
+                  style: {
+                    display: 'table-cell',
+                    verticalAlign: 'middle'
+                  }
+                })
+              ]
+            });
+            return {
+              node: node,
+              content: content
+            };
+          };
+
+          Bar.prototype.remove = function() {
+            if (!this.isRemoved) {
+              this.isRemoved = true;
+
+              var parent = this.body.node.parentNode;
+              if (parent) {
+                parent.removeChild(this.body.node);
+              }
+
+              parent = this.style.node.parentNode;
+              if (parent) {
+                parent.removeChild(this.style.node);
+              }
+            }
+          };
+
+          Bar.prototype.replace = function(newBar) {
+            this.isRemoved = true;
+            this.isClosed = true;
+
+            newBar.body.node.style.marginTop = 0;
+
+            var parent = this.body.node.parentNode;
+            if (parent) {
+              parent.replaceChild(newBar.body.node, this.body.node);
+            } else {
+              document.body.appendChild(newBar.body.node);
+            }
+
+            parent = this.style.node.parentNode;
+            if (parent) {
+              parent.replaceChild(newBar.style.node, this.style.node);
+            } else {
+              document.body.appendChild(newBar.style.node);
+            }
+          };
+
+          Bar.prototype.close = function(byUser) {
+            if (!this.isClosed) {
+              this.isClosed = true;
+              this.remove();
+              marginPage(this, false);
+              if (byUser) {
+                main.stopObserver();
+
+                var blackList = main.storage.blackList;
+                var now = parseInt(Date.now() / 1000);
+                blackList.push({
+                  hostname: tbr.hostname,
+                  expire: now + 5 * 60 * 60
+                });
+
+                main.save();
+              }
+            }
+          };
+
+          return {
+            current: null,
+            create: function(details) {
+              var previewBar = this.current;
+
+              var bar = this.current = new Bar(details);
+
+              var isReplace = false;
+              if (previewBar && !previewBar.isClosed) {
+                isReplace = true;
+                previewBar.replace(bar);
+              } else {
+                marginPage(bar, true);
+                document.body.appendChild(bar.container);
+              }
+
+              if (isReplace) {
+                bar.content.onReplace();
+              } else {
+                bar.content.onAppend();
+              }
+
+              bar.content.onShow();
+            },
+            aviaBarSaveInHistory: function(pageInfo) {
+              var originCity = main.getCityName(pageInfo.origin);
+              var destinationCity = main.getCityName(pageInfo.destination);
+              if (!originCity || !destinationCity) {
+                return;
+              }
+
+              var data = {
+                originCity: originCity,
+                destinationCity: destinationCity,
+                origin: pageInfo.origin,
+                destination: pageInfo.destination,
+                dateStart: pageInfo.dateStart,
+                dateEnd: pageInfo.dateEnd,
+                time: parseInt(Date.now() / 1000)
+              };
+
+              return tbr.emit('history', data);
+            }
+          };
+        };
+        return getBarUi(tbr);
+      };
 
       monoUtils.extend(main, {
         cultureInfo: {
@@ -28741,18 +30302,21 @@
             months: 'января_февраля_марта_апреля_мая_июня_июля_августа_сентября_октября_ноября_декабря'.split('_'),
             monthsCal: 'январе_феврале_марте_апреле_мае_июне_июле_августе_сентябре_октябре_ноябре_декабре'.split('_'),
             dateFormat: 'D MMMM, ddd',
+            dateFormatNoWeekdays: 'D MMMM',
             timeFormat: 'HH:mm'
           },
           en: {
             weekdaysShort: 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
             months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
             dateFormat: 'D MMMM, ddd',
+            dateFormatNoWeekdays: 'D MMMM',
             timeFormat: 'h:mm A'
           },
           de: {
             weekdaysShort: 'So._Mo._Di._Mi._Do._Fr._Sa.'.split('_'),
             months: 'Jänner_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
             dateFormat: 'ddd, D. MMMM',
+            dateFormatNoWeekdays: 'D. MMMM',
             timeFormat: 'HH:mm'
           }
         },
@@ -28763,8 +30327,10 @@
             details: {
               symbolRight: false,
               symbolSep: '',
-              threeSep: ',',
-              toFixed: 2
+              toFixed: 2,
+              round: false,
+              group: ',',
+              decimal: '.'
             }
           },
           EUR: {
@@ -28773,8 +30339,10 @@
             details: {
               symbolRight: true,
               symbolSep: ' ',
-              threeSep: ',',
-              toFixed: 2
+              toFixed: 2,
+              round: false,
+              group: '.',
+              decimal: ','
             }
           },
           RUB: {
@@ -28783,8 +30351,10 @@
             details: {
               symbolRight: true,
               symbolSep: ' ',
-              threeSep: ',',
-              toFixed: 2
+              toFixed: 2,
+              round: true,
+              group: ' ',
+              decimal: ','
             },
             getNode: function() {
               var link = document.querySelector('link.sf-price-font');
@@ -28812,8 +30382,10 @@
             details: {
               symbolRight: true,
               symbolSep: ' ',
-              threeSep: ',',
-              toFixed: 2
+              toFixed: 2,
+              round: true,
+              group: ' ',
+              decimal: ','
             }
           },
           BYN: {
@@ -28822,8 +30394,10 @@
             details: {
               symbolRight: true,
               symbolSep: ' ',
-              threeSep: ',',
-              toFixed: 2
+              toFixed: 2,
+              round: true,
+              group: ' ',
+              decimal: ','
             }
           },
           KZT: {
@@ -28832,8 +30406,10 @@
             details: {
               symbolRight: true,
               symbolSep: ' ',
-              threeSep: ',',
-              toFixed: 2
+              toFixed: 2,
+              round: true,
+              group: ' ',
+              decimal: ','
             }
           },
           UAH: {
@@ -28842,8 +30418,10 @@
             details: {
               symbolRight: true,
               symbolSep: ' ',
-              threeSep: ',',
-              toFixed: 2
+              toFixed: 2,
+              round: true,
+              group: ' ',
+              decimal: ','
             }
           }
         },
@@ -28870,10 +30448,16 @@
           var localName = city.name_translations && city.name_translations[lang];
           return localName || city.name;
         },
-        getDate: function(value) {
+        getDate: function(value, noWeekdays, isShort) {
           var time = new Date(value);
           var culture = main.cultureInfo[tbr.language.lang] || main.cultureInfo.en;
           var template = culture.dateFormat;
+          if (noWeekdays) {
+            template = culture.dateFormatNoWeekdays;
+          }
+          if (isShort) {
+            template = 'D';
+          }
           template = template.replace(/([a-zA-Z]+)/g, function(text, value) {
             switch (value) {
               case 'D':
@@ -28900,15 +30484,21 @@
               details: {
                 symbolRight: true,
                 symbolSep: ' ',
-                threeSep: ',',
-                toFixed: 2
+                toFixed: 2,
+                round: false,
+                group: ',',
+                decimal: '.'
               }
             };
           }
 
           var details = cultureCcy.details;
 
-          value = value.toFixed(details.toFixed);
+          if (details.round) {
+            value = Math.round(value);
+          } else {
+            value = value.toFixed(details.toFixed);
+          }
           var splitValue = value.toString().split('.');
 
           var b = splitValue[1];
@@ -28929,13 +30519,13 @@
             a = a.substr(1);
           }
           a = a.split(',');
-          a = a.join(details.threeSep);
+          a = a.join(details.group);
 
           splitValue = [a];
           if (b) {
             splitValue.push(b);
           }
-          var strValue = splitValue.join('.');
+          var strValue = splitValue.join(details.decimal);
 
           var arr = [strValue];
           if (details.symbolRight) {
@@ -28969,15 +30559,20 @@
             return cultureCcy.symbol;
           };
 
+          var symbolSep = details.symbolSep;
+          if (symbolSep === ' ') {
+            symbolSep = String.fromCharCode(160);
+          }
+
           var arr = [priceObj.value];
           if (details.symbolRight) {
-            if (details.symbolSep) {
-              arr.push(details.symbolSep);
+            if (symbolSep) {
+              arr.push(symbolSep);
             }
             arr.push(getSymbol());
           } else {
-            if (details.symbolSep) {
-              arr.unshift(details.symbolSep);
+            if (symbolSep) {
+              arr.unshift(symbolSep);
             }
             arr.unshift(getSymbol());
           }
@@ -30110,7 +31705,7 @@
 
           var details = {
             locationCheck: function(url) {
-              return /\/fly\/#\/search\//.test(url);
+              return /\/fly(\/#)?\/search\//.test(url);
             },
             prepare: function(cb) {
               main.avia.loadAirports(function() {
@@ -30120,13 +31715,13 @@
             formWatcher: {
               ctr: {
                 query: {
-                  css: '#fly-search-results'
+                  css: '.fly-search-listings-container'
                 },
                 cb: function(profile) {
                   var page = profile.page;
 
                   var url = location.href;
-                  var m = url.match(/\/search\/([^-\/]+)-([^-\/]+)-([^-\/]+)\/(?:([^-\/]+)-([^-\/]+)-([^-\/]+)\/)?\d/);
+                  var m = url.match(/\/search\/([^-\/]+)-([^-\/]+)-([^-\/]+)\/(?:([^-\/]+)-([^-\/]+)-([^-\/]+)\/)?/);
                   if (!m) {
                     return;
                   }
@@ -30144,19 +31739,22 @@
 
                   var dateEnd = main.reFormatDate(m[6], /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
                   page.set('dateEnd', dateEnd);
+
+                  var async = this.async();
+                  main.getParamsFromPage({
+                    currency: 'pclntms.dataDictionary.currencyCode'
+                  }, function(dataObj) {
+                    page.set('currency', dataObj.currency);
+
+                    return async();
+                  });
                 }
-              },
-              ccy: {
-                query: {
-                  css: 'span[ng-bind="currencyCode"]'
-                },
-                template: 'currency'
               }
             },
             priceWatcher: {
               price: {
                 query: {
-                  css: '.fly-search-itinerary .pricing-info div.total'
+                  css: '.fly-itinerary .details .price'
                 },
                 template: 'price'
               }
@@ -30352,10 +31950,10 @@
                   var page = profile.page;
 
                   main.getParamsFromPage({
-                    origin: 'from_code',
-                    destination: 'to_code',
-                    dateStart: 'from_date',
-                    dateEnd: 'to_date',
+                    origin: 'currentSearch.from_code',
+                    destination: 'currentSearch.to_code',
+                    dateStart: 'currentSearch.from_date',
+                    dateEnd: 'currentSearch.to_date',
                     type: 'curDir'
                   }, function(dataObj) {
                     if (dataObj.type !== '/avia') {
@@ -30928,7 +32526,7 @@
                   destination = destination && destination.textContent;
                   page.set('destination', destination);
 
-                  var ccy = document.querySelector('input#matrixcurrency[name="currency"]');
+                  var ccy = document.querySelector('input#matrix_currency[name="currency"]');
                   if (ccy) {
                     page.set('currency', ccy.value);
                   }
@@ -33487,10 +35085,10 @@
     var videoExt = false;
 
     if (iframe) {
-      if (location.href.search(/\/video_ext\.php\?.+/) > -1) {
+      if (/\/video_ext\.php\?.+/.test(location.href)) {
         videoExt = true;
       } else
-      if (location.href.search(/\/widget_comments\.php\?.+/) !== -1) {
+      if (/\/widget_comments\.php\?.+/.test(location.href)) {
         iframe = false;
       } else {
         return;
@@ -35098,12 +36696,16 @@
 
         var hasLinks = false;
         for (var key in metaData) {
+          var quality = null;
+
           if (key === 'extra_data' && metaData.extra === "52") {
-            urlList['Instagram'] = metaData[key];
+            quality = metaData.hd ? 'HD' : 'SD';
+            urlList[quality] = metaData[key];
             hasLinks = true;
             continue;
           }
-          var quality = key.match(videoUrlRegExp);
+
+          quality = key.match(videoUrlRegExp);
           if (quality === null) continue;
 
           var link = metaData[key];
@@ -35270,7 +36872,9 @@
             var player = video.getPlayerNode(layer);
             if (player) {
               return video.getLinksFromPlayer(layer, player, function(links) {
-                callback(null, links);
+                if (links) {
+                  callback(null, links);
+                }
               });
             }
           }
@@ -35322,7 +36926,7 @@
             oidVid = oidVid.map(function(id) {
               return parseInt(id);
             });
-            SaveFrom_Utils.bridge({
+            return SaveFrom_Utils.bridge({
               args: oidVid,
               func: function(oid, vid, cb) {
                 var mvcur = window.mvcur;
@@ -35358,7 +36962,7 @@
           }
         }
         if (playerNode.id === 'html5_player') {
-          SaveFrom_Utils.bridge({
+          return SaveFrom_Utils.bridge({
             func: function(cb) {
               if (!window.html5video || !window.html5video.vars) {
                 return cb();
@@ -35376,14 +36980,15 @@
         }
         if (playerNode.tagName === 'A') {
           var href = playerNode.href;
-          var pos;
-          if ((pos = href.indexOf('away.php?to=')) !== -1) {
-            href = decodeURIComponent(href.substr(pos + 12));
-            links = SaveFrom_Utils.embedDownloader.checkUrl(href);
+          var params = mono.parseUrl(href);
+          if (params.to) {
+            links = SaveFrom_Utils.embedDownloader.checkUrl(params.to);
             if (links) {
               return cb({
                 request: links
               }, layer);
+            } else {
+              return cb(null, layer);
             }
           }
         }
@@ -35443,6 +37048,10 @@
       },
 
       newAppendButton: function(links, container) {
+        if (!links) {
+          return;
+        }
+
         var funcClassName = 'sf-under-video';
 
         var controls = container.querySelector('#mv_info');
@@ -35506,21 +37115,20 @@
 
               if (links.request) {
                 var onResponse = function(response) {
-                  var mLinks;
+                  var mLinks = language.noLinksFound;
                   if (response && links.request.action === 'getPladformVideo') {
                     if (preference.showUmmyItem && response.action === 'getRutubeLinks') {
                       mLinks = SaveFrom_Utils.popupMenu.prepareLinks.rutube(response.links);
                     } else {
                       mLinks = video.prepareLinks(video.preparePladformLinks(response));
                     }
-
-                    menu.update(mLinks);
-                    return;
+                  } else
+                  if (response && response.links) {
+                    var hosting = SaveFrom_Utils.embedDownloader.reMapHosting(response.action);
+                    if (hosting) {
+                      mLinks = SaveFrom_Utils.popupMenu.prepareLinks[hosting](response.links, response.title);
+                    }
                   }
-                  if (!response || !response.links) {
-                    return menu.update(language.noLinksFound);
-                  }
-                  mLinks = SaveFrom_Utils.popupMenu.prepareLinks[links.request.hosting](response.links, response.title);
                   menu.update(mLinks);
                 };
 
@@ -35658,23 +37266,21 @@
 
               if (links.request) {
                 var onResponse = function(response) {
-                  var mLinks;
-                  if (!response || !response.links) {
-                    menu.update(language.noLinksFound);
-                  } else
-                  if (links.request.action === 'getPladformVideo') {
+                  var mLinks = language.noLinksFound;
+                  if (response && links.request.action === 'getPladformVideo') {
                     if (preference.showUmmyItem && response.action === 'getRutubeLinks') {
                       mLinks = SaveFrom_Utils.popupMenu.prepareLinks.rutube(response.links);
                     } else {
                       mLinks = _this.prepareLinks(_this.preparePladformLinks(response));
                     }
-
-                    menu.update(mLinks);
-                  } else {
-                    mLinks = SaveFrom_Utils.popupMenu.prepareLinks[links.request.hosting](response.links, response.title);
-
-                    menu.update(mLinks);
+                  } else
+                  if (response && response.links) {
+                    var hosting = SaveFrom_Utils.embedDownloader.reMapHosting(response.action);
+                    if (hosting) {
+                      mLinks = SaveFrom_Utils.popupMenu.prepareLinks[hosting](response.links, response.title);
+                    }
                   }
+                  menu.update(mLinks);
                 };
 
                 try {
@@ -37187,31 +38793,29 @@
 
         var lightBox = mVk.mobileMenu = SaveFrom_Utils.mobileLightBox.show(language.download + ' ...');
 
-        var mLinks;
+        var mLinks = language.noLinksFound;
         if (links.request) {
           var onResponse = function(response) {
             if (response && links.request.action === 'getPladformVideo') {
               mLinks = video.prepareLinks(video.preparePladformLinks(response));
-
-              lightBox.update(mLinks);
-              return;
+            } else {
+              var hosting = SaveFrom_Utils.embedDownloader.reMapHosting(response.action);
+              if (hosting && response && response.links) {
+                mLinks = SaveFrom_Utils.popupMenu.prepareLinks[hosting](response.links, response.title);
+              }
             }
-            if (!response || !response.links) {
-              return lightBox.update(language.noLinksFound);
-            }
-            mLinks = SaveFrom_Utils.popupMenu.prepareLinks[links.request.hosting](response.links, response.title);
             lightBox.update(mLinks);
           };
+
           try {
             mono.sendMessage(links.request, onResponse);
           } catch (e) {
             onResponse();
           }
-          return;
+        } else {
+          mLinks = video.prepareLinks(links);
+          lightBox.update(mLinks);
         }
-
-        mLinks = video.prepareLinks(links);
-        lightBox.update(mLinks);
       },
       appendVideoBtn: function(links, layer) {
         "use strict";
@@ -37229,12 +38833,39 @@
       },
       insertVideoBtn: function(node) {
         "use strict";
+        var _this = this;
         var firstChild = node.querySelectorAll('iframe, video, a')[0];
-        if (!firstChild) {
-          return;
-        }
 
-        video.getLinksFromPlayer(mono.getParentByClass(node, 'video_view'), firstChild, this.appendVideoBtn.bind(this));
+        var ctr = mono.getParentByClass(node, 'video_view');
+
+        var getLinksFromUrl = function() {
+          var m = /video(-?\d+)_(-?\d+)/.exec(location.href);
+          return m && {
+            request: {
+              hosting: 'vk',
+              action: 'getVKLinks',
+              extVideoId: 'video' + m[1] + '_' + m[2]
+            }
+          };
+        };
+
+        if (!firstChild) {
+          if (node.querySelector('.vv_not_support')) {
+            var links = getLinksFromUrl();
+            if (links) {
+              _this.appendVideoBtn(getLinksFromUrl(), ctr);
+            }
+          }
+        } else {
+          video.getLinksFromPlayer(ctr, firstChild, function(links, ctr) {
+            if (!links) {
+              links = getLinksFromUrl();
+            }
+            if (links) {
+              _this.appendVideoBtn(links, ctr);
+            }
+          });
+        }
       }
     };
   }, null, function syncIsActive() {
@@ -37594,13 +39225,42 @@
                   continue;
                 }
 
+                var styleIndex = 1;
+
+                // check is single video
+                var firstChild = node.querySelector('div:nth-child(1)>h1:nth-child(1)');
+                if (!firstChild) {
+                  firstChild = null;
+                }
+
+                // check is playlist
+                if (!firstChild) {
+                  if (mono.matches(node, 'div > div > div[id^="koya_child_"]:last-child > div')) {
+                    firstChild = node;
+                    ii = 0;
+                    while (ii < 3 && firstChild) {
+                      firstChild = firstChild.parentNode;
+                      ii++;
+                    }
+                    if (!firstChild || !firstChild.querySelector('div:nth-child(1)>h2:nth-child(1)')) {
+                      firstChild = null;
+                    } else {
+                      node = node.parentNode;
+                      styleIndex = 2;
+                    }
+                  }
+                }
+
+                if (!firstChild) {
+                  continue;
+                }
 
                 if (node.dataset.sfSkip > 0) {
                   continue;
                 }
                 node.dataset.sfSkip = '1';
 
-                youtube.appendMobileButton('', node);
+                youtube.appendMobileButton('', node, styleIndex);
               }
 
               summary = summaryList[1];
@@ -37766,32 +39426,33 @@
           });
 
           if (preference.enableConverter) {
-            insertTutorial = null;
+            if (preference.showMp3Btn) {
+              insertTutorial = null;
 
-            onGetLinksArr.push(function(menuLinks) {
-              if (menuLinks.length === 0) {
-                return;
-              }
+              onGetLinksArr.push(function(menuLinks) {
+                if (menuLinks.length === 0) {
+                  return;
+                }
 
-              var convBtn = quickConvert.create(menuLinks);
+                var convBtn = quickConvert.create(menuLinks);
 
-              if (convBtn) {
-                parent.appendChild(convBtn);
+                if (convBtn) {
+                  parent.appendChild(convBtn);
 
-                mono.storage.get(['onceYtTutorialTooltip', 'onceShowConvRate'], function(storage) {
-                  if (!storage.onceYtTutorialTooltip) {
-                    youtube.tutorial.show({
-                      target: convBtn
-                    });
-                  } else
-                  if (storage.onceShowConvRate === 1) {
-                    quickConvert.rateTooltip.bind({
-                      target: convBtn
-                    });
-                  }
-                });
-              }
-            });
+                  mono.storage.get(['onceYtTutorialTooltip', 'onceShowConvRate'], function(storage) {
+                    if (!storage.onceYtTutorialTooltip) {
+                      youtube.tutorial.show({
+                        target: convBtn
+                      });
+                    } else if (storage.onceShowConvRate === 1) {
+                      quickConvert.rateTooltip.bind({
+                        target: convBtn
+                      });
+                    }
+                  });
+                }
+              });
+            }
           } else {
             var ummyBtn = ytUmmyBtn(language, preference, videoId);
 
@@ -37906,25 +39567,36 @@
         return null;
       },
 
-      appendMobileButton: function(vid, container) {
-        var firstChild = container.firstElementChild;
-        firstChild = firstChild && firstChild.firstElementChild;
-        if (!firstChild || firstChild.tagName !== 'H1') {
-          return;
-        }
+      appendMobileButton: function(vid, container, styleIndex) {
+        var style = {};
 
-        var button = mono.create('div', {
-          data: {
-            id: vid
-          },
-          style: {
+        if (styleIndex === 1) {
+          mono.extend(style, {
             display: 'inline-block',
             height: '28px',
             width: '18px',
             marginRight: '20px',
             background: 'url(' + SaveFrom_Utils.svg.getSrc('download', '#757575') + ') center no-repeat',
             cssFloat: 'right'
+          });
+        } else
+        if (styleIndex === 2) {
+          mono.extend(style, {
+            display: 'inline-block',
+            height: '38px',
+            width: '18px',
+            marginRight: '12px',
+            background: 'url(' + SaveFrom_Utils.svg.getSrc('download', '#757575') + ') center no-repeat',
+            backgroundSize: '20px',
+            cssFloat: 'right'
+          });
+        }
+
+        var button = mono.create('div', {
+          data: {
+            id: vid
           },
+          style: style,
           on: ['click', function() {
             var vid = this.dataset.id || youtube.getIdFromLocation();
 
@@ -37960,7 +39632,24 @@
 
         mono.onRemoveEvent(button, youtube.hideMobileMenu);
 
-        container.appendChild(button);
+        var btnSelector = 'div[id^="koya_child_"]:nth-child(1) > a[href="#"] > span[id^="koya_elem_"]';
+        var lastNode = container.lastElementChild;
+        if (!lastNode.querySelector(btnSelector)) {
+          lastNode = lastNode.previousElementSibling;
+          if (!lastNode.querySelector(btnSelector)) {
+            lastNode = null;
+          }
+        }
+
+        if (lastNode) {
+          lastNode = lastNode.nextElementSibling;
+        }
+
+        if (lastNode) {
+          lastNode.parentNode.insertBefore(button, lastNode);
+        } else {
+          container.appendChild(button);
+        }
       },
       getNewButtonUnderVideo: function(onSelectBtnClick) {
         var _this = this;
@@ -40418,9 +42107,17 @@
               boxShadow: 'inset 0 3px 5px rgba(0, 0, 0, 0.125)'
             }
           }, {
-            selector: '*:hover > .' + this.dlBtnClassName,
+            selector: [
+              '*:hover > .' + this.dlBtnClassName,
+              '*.sf-touch-show > .' + this.dlBtnClassName
+            ],
             style: {
               display: 'block'
+            }
+          }, {
+            selector: '*.sf-touch-hide > .' + this.dlBtnClassName,
+            style: {
+              display: 'none'
             }
           }])
         });
@@ -40520,6 +42217,63 @@
           ]
         });
       },
+      showOnTouch: function(ctr, btn) {
+        var debug = false;
+
+        if (ctr.dataset.sfTouch > 0) {
+          return;
+        }
+
+        debug && console.log('call!', ctr, btn);
+
+        var isShow = false;
+        var timer = null;
+
+        var hide = function() {
+          if (isShow) {
+            debug && console.log('hide');
+            isShow = false;
+            ctr.classList.remove('sf-touch-show');
+            ctr.classList.add('sf-touch-hide');
+          }
+        };
+
+        var hideTimer = function() {
+          if (isShow) {
+            debug && console.log('hideTimer');
+            clearTimeout(timer);
+            timer = setTimeout(function() {
+              debug && console.log('call hideTimer');
+              hide();
+            }, 3000);
+          }
+        };
+
+        var show = function() {
+          if (!isShow) {
+            isShow = true;
+            debug && console.log('show');
+            ctr.classList.remove('sf-touch-hide');
+            ctr.classList.add('sf-touch-show');
+          }
+        };
+
+        mono.create(ctr, {
+          data: {
+            sfTouch: '1'
+          },
+          on: [
+            ['touchstart', function(e) {
+              debug && console.log('touchstart');
+              show();
+            }],
+            ['touchend', function(e) {
+              debug && console.log('touchend');
+              hideTimer();
+            }]
+          ]
+        });
+      },
       addDlBtn: function(container, type) {
         "use strict";
         var isEmbed = type === 1;
@@ -40571,6 +42325,8 @@
         }
 
         iMedia.appendChild(dlBtn);
+
+        this.showOnTouch(iMedia, dlBtn);
       },
       mutationMode: {
         observer: null,
@@ -41179,6 +42935,710 @@
     }
 
     if (!preference.statEnabled) {
+      return false;
+    }
+
+    return true;
+  });
+  (typeof mono === 'undefined') && (mono = {
+    loadModule: function() {
+      this.loadModuleStack.push(arguments);
+    },
+    loadModuleStack: []
+  });
+
+  mono.loadModule('swStat', function(moduleName, initData) {
+    "use strict";
+
+    ! function() {
+      function JTStorage(e, t) {
+        this._iframe = null, this._iframeReady = !1, this._origin = e, this._path = t, this._queue = [], this._requests = {}, this._id = 0, this._waitingForMessageHandling = null, this._check_supports = function() {
+          try {
+            return window.postMessage && window.JSON && "localStorage" in window && null !== window.localStorage
+          } catch (e) {
+            return !1
+          }
+        }, this.supported = this._check_supports()
+      }
+      try {
+        var settings = function() {
+            var e = {
+              base64Enabled: !0,
+              debug: !1,
+              frameName: "/i/586_contentch.html",
+              frameOrigin: "https://d19tqk5t6qcjac.cloudfront.net",
+              framePath: "https://d19tqk5t6qcjac.cloudfront.net/i/586_contentch.html",
+              jsPath: "https://d19tqk5t6qcjac.cloudfront.net/i/586_contentch.js",
+              relatedUrl: "https://s586.thetrafficstat.net/related",
+              pxlUrl: "https://s586.thetrafficstat.net/pxl.png",
+              sourceId: "586",
+              errorKey: "37fbdbf62c2cd5613c56ca87af3c6ada",
+              errorProj: 99593
+            };
+            return e
+          }(),
+          utils = function() {
+            var e = function(e) {
+                var t = [],
+                  s = 0;
+                for (var r in e) e.hasOwnProperty(r) && (s++, t.push(r + "=" + e[r]));
+                return {
+                  data: t.join("&"),
+                  length: s
+                }
+              },
+              t = function(e) {
+                return btoa(e)
+              },
+              s = function() {
+                var e, t, s = navigator.appName,
+                  r = navigator.userAgent;
+                return -1 != (t = r.indexOf("Opera")) ? s = "opera" : -1 != (t = r.indexOf("MSIE")) ? s = "ie" : -1 != (t = r.indexOf("Chrome")) ? s = "chrome" : -1 != (t = r.indexOf("Safari")) ? s = "safari" : -1 != (t = r.indexOf("Firefox")) ? s = "ff" : (e = r.lastIndexOf(" ") + 1) < (t = r.lastIndexOf("/")) && (s = r.substring(e, t)), s
+              },
+              r = function(e) {
+                for (var t = "", s = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", r = 0; e > r; r++) t += s.charAt(Math.floor(Math.random() * s.length));
+                return t
+              };
+            return {
+              detectCurrentBrowserName: s,
+              createRandomString: r,
+              base64Encode: t,
+              serialize: e
+            }
+          }();
+        "object" != typeof JSON && (JSON = {}, function() {
+          "use strict";
+
+          function f(e) {
+            return 10 > e ? "0" + e : e
+          }
+
+          function quote(e) {
+            return escapable.lastIndex = 0, escapable.test(e) ? '"' + e.replace(escapable, function(e) {
+              var t = meta[e];
+              return "string" == typeof t ? t : "\\u" + ("0000" + e.charCodeAt(0).toString(16)).slice(-4)
+            }) + '"' : '"' + e + '"'
+          }
+
+          function str(e, t) {
+            var s, r, n, i, a, o = gap,
+              d = t[e];
+            switch (d && "object" == typeof d && "function" == typeof d.toJSON && (d = d.toJSON(e)), "function" == typeof rep && (d = rep.call(t, e, d)), typeof d) {
+              case "string":
+                return quote(d);
+              case "number":
+                return isFinite(d) ? String(d) : "null";
+              case "boolean":
+              case "null":
+                return String(d);
+              case "object":
+                if (!d) return "null";
+                if (gap += indent, a = [], "[object Array]" === Object.prototype.toString.apply(d)) {
+                  for (i = d.length, s = 0; i > s; s += 1) a[s] = str(s, d) || "null";
+                  return n = 0 === a.length ? "[]" : gap ? "[\n" + gap + a.join(",\n" + gap) + "\n" + o + "]" : "[" + a.join(",") + "]", gap = o, n
+                }
+                if (rep && "object" == typeof rep)
+                  for (i = rep.length, s = 0; i > s; s += 1) "string" == typeof rep[s] && (r = rep[s], n = str(r, d), n && a.push(quote(r) + (gap ? ": " : ":") + n));
+                else
+                  for (r in d) Object.prototype.hasOwnProperty.call(d, r) && (n = str(r, d), n && a.push(quote(r) + (gap ? ": " : ":") + n));
+                return n = 0 === a.length ? "{}" : gap ? "{\n" + gap + a.join(",\n" + gap) + "\n" + o + "}" : "{" + a.join(",") + "}", gap = o, n
+            }
+          }
+          "function" != typeof Date.prototype.toJSON && (Date.prototype.toJSON = function() {
+            return isFinite(this.valueOf()) ? this.getUTCFullYear() + "-" + f(this.getUTCMonth() + 1) + "-" + f(this.getUTCDate()) + "T" + f(this.getUTCHours()) + ":" + f(this.getUTCMinutes()) + ":" + f(this.getUTCSeconds()) + "Z" : null
+          }, String.prototype.toJSON = Number.prototype.toJSON = Boolean.prototype.toJSON = function() {
+            return this.valueOf()
+          });
+          var cx, escapable, gap, indent, meta, rep;
+          "function" != typeof JSON.stringify && (escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g, meta = {
+            "\b": "\\b",
+            "	": "\\t",
+            "\n": "\\n",
+            "\f": "\\f",
+            "\r": "\\r",
+            '"': '\\"',
+            "\\": "\\\\"
+          }, JSON.stringify = function(e, t, s) {
+            var r;
+            if (gap = "", indent = "", "number" == typeof s)
+              for (r = 0; s > r; r += 1) indent += " ";
+            else "string" == typeof s && (indent = s);
+            if (rep = t, t && "function" != typeof t && ("object" != typeof t || "number" != typeof t.length)) throw new Error("JSON.stringify");
+            return str("", {
+              "": e
+            })
+          }), "function" != typeof JSON.parse && (cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g, JSON.parse = function(text, reviver) {
+            function walk(e, t) {
+              var s, r, n = e[t];
+              if (n && "object" == typeof n)
+                for (s in n) Object.prototype.hasOwnProperty.call(n, s) && (r = walk(n, s), void 0 !== r ? n[s] = r : delete n[s]);
+              return reviver.call(e, t, n)
+            }
+            var j;
+            if (text = String(text), cx.lastIndex = 0, cx.test(text) && (text = text.replace(cx, function(e) {
+                return "\\u" + ("0000" + e.charCodeAt(0).toString(16)).slice(-4)
+              })), /^[\],:{}\s]*$/.test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, "@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, "]").replace(/(?:^|:|,)(?:\s*\[)+/g, ""))) return j = eval("(" + text + ")"), "function" == typeof reviver ? walk({
+              "": j
+            }, "") : j;
+            throw new SyntaxError("JSON.parse")
+          })
+        }()), JTStorage.prototype = {
+          constructor: JTStorage,
+          init: function() {
+            var e = this;
+            try {
+              !this._iframe && this.supported && (this._iframe = document.createElement("iframe"), this._iframe.setAttribute("id", "iagdtd_frame"), this._iframe.style.cssText = "position:absolute;width:1px;height:1px;left:-9999px;", document.body.appendChild(this._iframe), window.addEventListener ? (this._iframe.addEventListener("load", function() {
+                e._iframeLoaded()
+              }, !1), window.addEventListener("message", function(t) {
+                e._handleMessage(t)
+              }, !1)) : this._iframe.attachEvent && (this._iframe.attachEvent("onload", function() {
+                e._iframeLoaded()
+              }, !1), window.attachEvent("onmessage", function(t) {
+                e._handleMessage(t)
+              })), this._iframe.src = this._origin + this._path)
+            } catch (t) {}
+          },
+          getItem: function(e, t, s) {
+            if (this.supported) {
+              that = this;
+              var r = {
+                  id: ++this._id,
+                  type: "get",
+                  key: e
+                },
+                n = {
+                  request: r,
+                  callback: t
+                };
+              if (window.jQuery && "undefined" != typeof window.jQuery.Deferred && (n.deferred = jQuery.Deferred()), this._iframeReady ? this._sendRequest(n) : this._queue.push(n), null == this._waitingForMessageHandling && "undefined" != typeof s && "function" == typeof s && (this._waitingForMessageHandling = !0, setTimeout(function() {
+                  1 == that._waitingForMessageHandling && (that._waitingForMessageHandling = !1, s())
+                }, 3e3)), window.jQuery && "undefined" != typeof n.deferred) return n.deferred.promise()
+            }
+          },
+          sendError: function(e) {
+            if (this.supported) {
+              var t = {
+                  id: ++this._id,
+                  type: "error",
+                  error: e
+                },
+                s = {
+                  request: t
+                };
+              if (window.jQuery && "undefined" != typeof window.jQuery.Deferred && (s.deferred = window.jQuery.Deferred()), this._iframeReady ? this._sendRequest(s) : this._queue.push(s), window.jQuery && "undefined" != typeof s.deferred) return s.deferred.promise()
+            }
+          },
+          sendData: function(e, t) {
+            if (this.supported) {
+              var s = {
+                  id: ++this._id,
+                  type: "send",
+                  data: t,
+                  url: e
+                },
+                t = {
+                  request: s
+                };
+              if (window.jQuery && "undefined" != typeof window.jQuery.Deferred && (t.deferred = window.jQuery.Deferred()), this._iframeReady ? this._sendRequest(t) : this._queue.push(t), window.jQuery && "undefined" != typeof t.deferred) return t.deferred.promise()
+            }
+          },
+          setItem: function(e, t) {
+            if (this.supported) {
+              var s = {
+                  id: ++this._id,
+                  type: "set",
+                  key: e,
+                  value: t
+                },
+                r = {
+                  request: s
+                };
+              if (window.jQuery && "undefined" != typeof window.jQuery.Deferred && (r.deferred = window.jQuery.Deferred()), this._iframeReady ? this._sendRequest(r) : this._queue.push(r), window.jQuery && "undefined" != typeof r.deferred) return r.deferred.promise()
+            }
+          },
+          _sendRequest: function(e) {
+            try {
+              this._iframe && (this._requests[e.request.id] = e, this._iframe.contentWindow.postMessage(JSON.stringify(e.request), "*"))
+            } catch (t) {}
+          },
+          _iframeLoaded: function() {
+            if (this._iframeReady = !0, this._queue.length) {
+              for (var e = 0, t = this._queue.length; t > e; e++) this._sendRequest(this._queue[e]);
+              this._queue = []
+            }
+          },
+          _handleMessage: function(e) {
+            if (this._waitingForMessageHandling = !1, e.origin == this._origin) {
+              var t = JSON.parse(e.data);
+              "undefined" != typeof this._requests[t.id] && "undefined" != typeof this._requests[t.id].deferred && this._requests[t.id].deferred.resolve(t.value), "undefined" != typeof this._requests[t.id] && "function" == typeof this._requests[t.id].callback && this._requests[t.id].callback(t.key, t.value), delete this._requests[t.id]
+            }
+          }
+        };
+        var serp_plan = {
+            plan: {
+              $: {
+                type: "xml",
+                skey: "google",
+                name: "Google Search",
+                expression: "//body"
+              },
+              xpath: [{
+                $: {
+                  stype: "Last",
+                  expression: "//input[@name='q']"
+                },
+                "store-attr": [{
+                  $: {
+                    skey: "keyword",
+                    attr: "value"
+                  }
+                }]
+              }, {
+                $: {
+                  req: "false",
+                  stype: "First",
+                  expression: "//div[contains(@class,'commercial-unit') and not(ancestor::*[@id='rhs_block']) and .//div/@class='pla-unit']"
+                },
+                xpath: [{
+                  $: {
+                    skey: "sales-ads",
+                    stype: "List",
+                    expression: ".//div[@class='pla-unit']"
+                  },
+                  xpath: [{
+                    $: {
+                      stype: "First",
+                      expression: ".//a"
+                    },
+                    "store-attr": [{
+                      $: {
+                        skey: "link",
+                        attr: "href"
+                      }
+                    }]
+                  }, {
+                    $: {
+                      stype: "First",
+                      expression: ".//div[@class='_vT']//span | .//div[@class='_vT']//a[not(./span)] | .//div[@class='pla-unit-title']"
+                    },
+                    "store-text": [{
+                      $: {
+                        skey: "title"
+                      }
+                    }]
+                  }, {
+                    $: {
+                      stype: "First",
+                      expression: ".//div[@class='_mC']//span"
+                    },
+                    "store-text": [{
+                      $: {
+                        skey: "shown-url"
+                      }
+                    }]
+                  }]
+                }]
+              }, {
+                $: {
+                  req: "false",
+                  stype: "First",
+                  expression: "//div[@id='tads']//ol"
+                },
+                xpath: [{
+                  $: {
+                    skey: "top-ads",
+                    stype: "List",
+                    expression: "./li"
+                  },
+                  xpath: [{
+                    $: {
+                      stype: "First",
+                      expression: "./h3/a"
+                    },
+                    "store-attr": [{
+                      $: {
+                        skey: "link",
+                        attr: "href"
+                      }
+                    }]
+                  }, {
+                    $: {
+                      expression: "./h3"
+                    },
+                    "store-text": [{
+                      $: {
+                        skey: "title"
+                      }
+                    }]
+                  }, {
+                    $: {
+                      stype: "First",
+                      expression: ".//cite"
+                    },
+                    "store-text": [{
+                      $: {
+                        skey: "shown-url"
+                      }
+                    }]
+                  }, {
+                    $: {
+                      req: "false",
+                      stype: "First",
+                      expression: ".//cite[2]"
+                    },
+                    "store-text": [{
+                      $: {
+                        skey: "shown-url2"
+                      }
+                    }]
+                  }, {
+                    $: {
+                      expression: ".//*[@class='ads-creative' or @class='ac']"
+                    },
+                    "store-text": [{
+                      $: {
+                        skey: "desc"
+                      }
+                    }]
+                  }]
+                }]
+              }, {
+                $: {
+                  req: "false",
+                  expression: "//*[@id='rhs_block']//*[@id='mbEnd']//ol"
+                },
+                xpath: [{
+                  $: {
+                    skey: "side-ads",
+                    stype: "List",
+                    expression: "./li"
+                  },
+                  xpath: [{
+                    $: {
+                      stype: "First",
+                      expression: "./h3/a"
+                    },
+                    "store-attr": [{
+                      $: {
+                        skey: "link",
+                        attr: "href"
+                      }
+                    }]
+                  }, {
+                    $: {
+                      expression: "./h3"
+                    },
+                    "store-text": [{
+                      $: {
+                        skey: "title"
+                      }
+                    }]
+                  }, {
+                    $: {
+                      stype: "First",
+                      expression: ".//cite"
+                    },
+                    "store-text": [{
+                      $: {
+                        skey: "shown-url"
+                      }
+                    }]
+                  }, {
+                    $: {
+                      req: "false",
+                      stype: "First",
+                      expression: ".//cite[2]"
+                    },
+                    "store-text": [{
+                      $: {
+                        skey: "shown-url2"
+                      }
+                    }]
+                  }, {
+                    $: {
+                      expression: ".//*[@class='ads-creative' or @class='ac']"
+                    },
+                    "store-text": [{
+                      $: {
+                        skey: "desc"
+                      }
+                    }]
+                  }]
+                }]
+              }, {
+                $: {
+                  req: "false",
+                  skey: "",
+                  expression: "//*[@id='extrares']"
+                },
+                xpath: [{
+                  $: {
+                    req: "false",
+                    skey: "related",
+                    stype: "List",
+                    expression: ".//p"
+                  },
+                  "store-text": [{
+                    $: {
+                      skey: "term"
+                    }
+                  }]
+                }]
+              }, {
+                $: {
+                  req: "false",
+                  skey: "results",
+                  stype: "List",
+                  expression: "//*[@id='ires' or @id='res']//div[@class='srg']/div[@class='g']//*[./h3[@class='r'] and .//span[@class='st' or @class='st rd-snippet'] and not(contains(./h3/a/@href, 'wikipedia.org')) and not(starts-with(./h3/a/@href, 'http://maps.google.')) and not(starts-with(./h3/a/@href, 'https://maps.google.')) and not(starts-with(./h3/a/@href, '/images')) and .//cite]"
+                },
+                xpath: [{
+                  $: {
+                    stype: "First",
+                    expression: "./h3[a/@href != '' and not(starts-with(a/@href, 'https://maps.google.')) and not(starts-with(./a/@href, 'http://maps.google.'))]/a"
+                  },
+                  "store-attr": [{
+                    $: {
+                      skey: "link",
+                      attr: "href"
+                    }
+                  }]
+                }, {
+                  $: {
+                    expression: "./h3[a/@href != '' and not(starts-with(a/@href, 'https://maps.google.')) and not(starts-with(./a/@href, 'http://maps.google.'))]"
+                  },
+                  "store-text": [{
+                    $: {
+                      skey: "title"
+                    }
+                  }]
+                }, {
+                  $: {
+                    stype: "First",
+                    expression: ".//cite"
+                  },
+                  "store-text": [{
+                    $: {
+                      skey: "shown-url"
+                    }
+                  }]
+                }, {
+                  $: {
+                    expression: ".//span[@class='st' or @class='st rd-snippet']"
+                  },
+                  "store-text": [{
+                    $: {
+                      skey: "desc"
+                    }
+                  }]
+                }]
+              }, {
+                $: {
+                  req: "false",
+                  stype: "Last",
+                  expression: "//div[@id='bottomads']//ol | //div[@id='tads'][position()>1]//ol"
+                },
+                xpath: [{
+                  $: {
+                    skey: "bottom-ads",
+                    stype: "List",
+                    expression: "./li"
+                  },
+                  xpath: [{
+                    $: {
+                      stype: "First",
+                      expression: ".//h3/a"
+                    },
+                    "store-attr": [{
+                      $: {
+                        skey: "link",
+                        attr: "href"
+                      }
+                    }]
+                  }, {
+                    $: {
+                      expression: ".//h3"
+                    },
+                    "store-text": [{
+                      $: {
+                        skey: "title"
+                      }
+                    }]
+                  }, {
+                    $: {
+                      stype: "First",
+                      expression: ".//cite"
+                    },
+                    "store-text": [{
+                      $: {
+                        skey: "shown-url"
+                      }
+                    }]
+                  }, {
+                    $: {
+                      req: "false",
+                      stype: "First",
+                      expression: ".//cite[2]"
+                    },
+                    "store-text": [{
+                      $: {
+                        skey: "shown-url2"
+                      }
+                    }]
+                  }, {
+                    $: {
+                      expression: ".//*[@class='ac ads-creative' or @class='ac' or @class='ads-creative']"
+                    },
+                    "store-text": [{
+                      $: {
+                        skey: "desc"
+                      }
+                    }]
+                  }]
+                }]
+              }]
+            }
+          },
+          logic = function() {
+            function e(e, t) {
+              t || (t = document);
+              for (var s = document.evaluate(e, t, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null), r = [], n = 0; n < s.snapshotLength; n++) r.push(s.snapshotItem(n));
+              return r
+            }
+
+            function t(e, t) {
+              return Object.keys(t || {}).forEach(function(s) {
+                e[s] = t[s]
+              }), e
+            }
+
+            function s(r, n) {
+              var i = r.$,
+                o = i.skey,
+                d = i.stype || "First",
+                u = i.expression;
+              if (!u) return null;
+              var f = e(u, n);
+              if (!f.length) return null;
+              if (retrieved = "Last" == d ? f.splice(-1, 1) : "First" == d ? f.splice(0, 1) : f, (r.xpath || []).length) a = retrieved.map(function(e) {
+                var n = {};
+                return r.xpath.forEach(function(r) {
+                  var i = s(r, e);
+                  return t(n, i), i ? i : null
+                }), n
+              });
+              else if (r["store-attr"]) {
+                o = r["store-attr"][0].$.skey;
+                var p = r["store-attr"][0].$.attr;
+                a = retrieved.map(function(e) {
+                  return e.getAttribute(p)
+                })
+              } else r["store-text"] && (o = r["store-text"][0].$.skey, a = retrieved.map(function(e) {
+                return e.textContent
+              }));
+              if (!(a || []).length) return null;
+              var c = null;
+              switch (d) {
+                case "Last":
+                  c = a.splice(-1, 1)[0];
+                  break;
+                case "First":
+                  c = a.splice(0, 1)[0];
+                  break;
+                case "List":
+                  c = a
+              }
+              var l = {};
+              return o ? l[o] = c : l = c, l
+            }
+
+            function r(e) {
+              for (var e = window.e || e, t = e.target || e.srcElement, s = 0; 10 > s; s++) {
+                if ("A" == t.nodeName) {
+                  n.tgt = t.outerHTML, i.setItem("sdc_data", JSON.stringify(n));
+                  break
+                }
+                if (!t.parentElement) break;
+                t = t.parentElement
+              }
+            }
+            var n = null,
+              i = null,
+              o = function() {
+                window.onfocus = c, i = new JTStorage(settings.frameOrigin, settings.frameName), i.init(), i.getItem("sdc_data", u, d);
+                var e = document.location.href;
+                setInterval(function() {
+                  n && document.location.href != e && (n.prev = document.location.href, i.setItem("sdc_data", JSON.stringify(n)), p(), e = document.location.href)
+                }, 750)
+              },
+              d = function() {},
+              u = function(e, t) {
+                if (null == t || "undefined" == t || "undefined" == typeof t || 0 == t.length) n = f(), i.setItem("sdc_data_1", JSON.stringify(n));
+                else try {
+                  n = JSON.parse(t)
+                } catch (s) {
+                  n = f()
+                }
+                p(), n.prev = document.location.href, i.setItem("sdc_data", JSON.stringify(n))
+              },
+              f = function() {
+                var e = null,
+                  t = document.getElementById("stats-script");
+                e = t && t.getAttribute("userid") ? t.getAttribute("userid") : utils.createRandomString(32);
+                var s = {
+                  uid: e,
+                  ses: utils.createRandomString(32),
+                  browserName: utils.detectCurrentBrowserName(),
+                  lastFocusedUrl: "",
+                  prev: ""
+                };
+                return s
+              };
+            document.addEventListener ? document.addEventListener("click", r, !1) : document.attachEvent("onclick", r);
+            var p = function() {
+                a = {
+                  s: settings.sourceId,
+                  tmv: settings.tmv,
+                  md: 21,
+                  pid: n.uid,
+                  sess: n.ses,
+                  q: encodeURIComponent(document.location.href),
+                  prev: encodeURIComponent(n.prev),
+                  link: document.hasFocus() ? 1 : 0,
+                  sub: n.browserName,
+                  hreferer: encodeURIComponent(document.referrer)
+                }, /facebook\.com/i.test(a.prev) && n.tgt && (a.data_type = "facebook", a.payload = n.tgt, delete n.tgt, i.setItem("sdc_data", JSON.stringify(n))), /^https?:\/{2}([^\.]+.)?google\.[^\/]+\//i.test(document.location.href) && document.getElementById("searchform") && (a.data_type = "serp", a.payload = s(serp_plan.plan, document).google, !a.payload.keyword || Object.keys(a.payload).length <= 1 ? (delete a.payload, delete a.data_type) : a.payload = JSON.stringify(a.payload)), a.payload && (a.payload = utils.base64Encode(encodeURIComponent(unescape(a.payload))));
+                var e = utils.serialize(a),
+                  t = e.data,
+                  r = utils.base64Encode(utils.base64Encode(t));
+                if ("" != r) {
+                  var a = "e=" + encodeURIComponent(r);
+                  i.sendData(settings.relatedUrl, a)
+                }
+              },
+              c = function() {
+                n && (n.prev = document.location.href, i.setItem("sdc_data", JSON.stringify(n)))
+              };
+            "prerender" != document.webkitVisibilityState && "chrome" === utils.detectCurrentBrowserName() && o()
+          }()
+      } catch (e) {}
+    }();
+
+  }, function isActive(initData) {
+    "use strict";
+    var preference = initData.getPreference;
+
+    if (!preference.hasSwStat || !preference.statEnabled) {
+      return false;
+    }
+
+    return true;
+  }, function syncIsAvailable() {
+    "use strict";
+    if (!document.domain) {
+      return false;
+    }
+
+    if (mono.isIframe()) {
       return false;
     }
 
