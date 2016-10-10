@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name        SaveFrom.net helper
 // @namespace   http://savefrom.net/
-// @version     6.65.2
-// @date        2016-09-12
+// @version     6.75.2
+// @date        2016-10-03
 // @author      Magicbit, Inc
 // @description Youtube Downloader: all in one script to get Vimeo, Facebook, Dailymotion videos for free
 // @homepage    http://savefrom.net/user.php?helper=userjs
@@ -12,10 +12,6 @@
 // @downloadURL https://download.sf-helper.com/chrome/helper.user.js
 // @include     http://*
 // @include     https://*
-// @exclude     *://google.*/*
-// @exclude     *://*.google.*/*
-// @exclude     *://acidtests.org/*
-// @exclude     *://*.acidtests.org/*
 // @run-at      document-end
 // @grant       GM_listValues
 // @grant       GM_setValue
@@ -1618,7 +1614,13 @@
         if (data.cancelable === undefined) {
           data.cancelable = false;
         }
-        var event = new CustomEvent(type, data);
+        var event = null;
+        if (typeof MouseEvent === 'function' &&
+          ['click'].indexOf(type) !== -1) {
+          event = new MouseEvent(type, data);
+        } else {
+          event = new CustomEvent(type, data);
+        }
         el.dispatchEvent(event);
       };
 
@@ -3046,7 +3048,7 @@
             if (err) {
               reject(err);
             } else {
-              resolve(resp, data);
+              resolve(resp);
             }
           };
 
@@ -4196,7 +4198,8 @@
     var requestFromId = function() {
       return mono.requestPromise({
         url: 'http://savefrom.net/tools/get_vid.php'
-      }).then(function(resp, data) {
+      }).then(function(resp) {
+        var data = resp.body;
         var id = -1;
         if (/^\d+$/.test(data)) {
           id = parseInt(data);
@@ -4893,13 +4896,11 @@
         if (mono.isChromeVersion < 31) {
           preferences.downloads = false;
         } else
-        if (!mono.isChromeMobile) {
-          if (
-            (chrome.downloads && chrome.downloads.download) ||
-            (chrome.permissions && chrome.permissions.request)
-          ) {
-            preferences.downloads = true;
-          }
+        if (
+          (chrome.downloads && chrome.downloads.download) ||
+          (chrome.permissions && chrome.permissions.request)
+        ) {
+          preferences.downloads = true;
         }
       }
 
@@ -6134,30 +6135,11 @@
             cd: 'init',
             tid: 'UA-70432435-1'
           });
-
-          var type = isNewUi ? 'new_ui' : 'old_ui';
-          engine.track({
-            t: 'screenview',
-            cd: 'exp_' + type + '_' + 'init',
-            tid: 'UA-70432435-3'
-          });
         }
       });
     };
 
-    var isNewUi = false;
-    var loadExpData = function() {
-      var tbrNewUi = engine.liteStorage.get('tbrNewUi', null);
-      if (tbrNewUi === null) {
-        tbrNewUi = mono.getRandomInt(0, 100) < 50;
-        engine.liteStorage.set('tbrNewUi', tbrNewUi);
-      }
-      isNewUi = tbrNewUi;
-
-      onLoadSettings();
-    };
-
-    engine.loader.when('loadSettings', loadExpData);
+    engine.loader.when('loadSettings', onLoadSettings);
 
     var travelBarInit = function() {
       travelBarInit = null;
@@ -6181,10 +6163,8 @@
       var travelBar = {};
 
       travelBar.appInfo = {
-        id: '89756.sfHelper',
-        skyScannerKey: 'ma886898464874104741079504072756',
-        track: true,
-        newUi: isNewUi
+        id: 'sf.sfHelper',
+        track: true
       };
 
       travelBar.API = {
@@ -6209,19 +6189,14 @@
           details.tid = tid;
           engine.track(details);
         }
+      };
 
-
-        var type = isNewUi ? 'new_ui' : 'old_ui';
-        var expDetails = JSON.parse(JSON.stringify(details));
-        if (expDetails.ec) {
-          expDetails.ec = 'exp_' + type + '_' + expDetails.ec
+      var prepareStorage = function(storage) {
+        if (!storage.aviaBar || typeof storage.aviaBar !== 'object') {
+          storage.aviaBar = {};
         }
-        if (expDetails.cd) {
-          expDetails.cd = 'exp_' + type + '_' + expDetails.cd
-        }
-        expDetails.tid = 'UA-70432435-3';
-        if (!isError) {
-          engine.track(expDetails);
+        if (!Array.isArray(storage.aviaBar.blackList)) {
+          storage.aviaBar.blackList = [];
         }
       };
 
@@ -6231,18 +6206,66 @@
             case "tbrGetInfo":
               response(travelBar.appInfo);
               break;
-            case "tbrGetData":
-              mono.request(msg, function(err, resp, data) {
-                return response(err ? null : data);
+            case "tbrIsAllow":
+              browser.storage.get('aviaBar', function(storage) {
+                prepareStorage(storage);
+
+                var removed = storage.aviaBar.removed;
+                if (removed) {
+                  return response(false);
+                }
+
+                var allow = true;
+
+                var blackList = storage.aviaBar.blackList;
+
+                var item = null;
+                blackList.some(function(_item) {
+                  if (_item.hostname === msg.hostname) {
+                    item = _item;
+                    return true;
+                  }
+                });
+
+                if (item) {
+                  var now = parseInt(Date.now() / 1000);
+                  if (item.expire > now) {
+                    allow = false;
+                  } else {
+                    var pos = blackList.indexOf(item);
+                    blackList.splice(pos, 1);
+
+                    browser.storage.set(storage);
+                  }
+                }
+
+                return response(allow);
               });
               break;
-            case "tbrStorage":
-              if (msg.get) {
-                browser.storage.get(msg.get, response);
-              } else
-              if (msg.set) {
-                browser.storage.set(msg.set, response);
-              }
+            case "tbrCloseBar":
+              browser.storage.get('aviaBar', function(storage) {
+                prepareStorage(storage);
+
+                var blackList = storage.aviaBar.blackList;
+
+                var item = null;
+                blackList.some(function(_item) {
+                  if (_item.hostname === msg.hostname) {
+                    item = _item;
+                    return true;
+                  }
+                });
+
+                if (!item) {
+                  var now = parseInt(Date.now() / 1000);
+                  blackList.push({
+                    hostname: msg.hostname,
+                    expire: now + 5 * 60 * 60
+                  });
+
+                  browser.storage.set(storage);
+                }
+              });
               break;
             case "tbrEvent":
               if (msg.type === 'track') {
@@ -6252,21 +6275,6 @@
           }
         }
       });
-
-      if (isNewUi) {
-        var onGetMeta = function() {
-          var meta = engine.varCache.meta;
-
-          if (isNewUi && meta.tbr && meta.tbr.disableNewUi) {
-            isNewUi = false;
-            travelBar.appInfo.newUi = false;
-            engine.liteStorage.set('tbrNewUi', false);
-          }
-        };
-
-        onGetMeta();
-        engine.loader.when('getMeta', onGetMeta);
-      }
     };
   });
   engine.loader.when('init', function() {
@@ -6391,7 +6399,7 @@
       updateState();
     });
 
-    engine.loader.when('prepare', function() {
+    engine.loader.when('beforePrepare', function() {
       isAvailable();
 
       updateState();
@@ -8667,16 +8675,14 @@
     /**
      * @private
      */
-    lastSts: ["17050", [
-      ["swap", 19],
+    lastSts: ["17060", [
+      ["swap", 35],
       ["reverse", null],
-      ["splice", 1],
+      ["splice", 3],
       ["reverse", null],
-      ["splice", 1],
-      ["swap", 7],
-      ["reverse", null],
-      ["swap", 38],
-      ["splice", 3]
+      ["swap", 55],
+      ["splice", 3],
+      ["swap", 2]
     ]],
     /**
      * @type {Object}
@@ -11094,7 +11100,8 @@
                 SaveFrom_Utils.downloadOnClick(e);
               }]
             }), 'click', {
-              cancelable: true
+              cancelable: true,
+              altKey: true
             });
           }
 
@@ -17866,7 +17873,7 @@
                   if (isInsert) {
                     _this.wrapVideoGetLinks(node);
                   } else {
-                    mono.one(node, 'mouseover', _this.wrapVideoFeedOnLinkHover);
+                    mono.one(node, 'mouseenter', _this.wrapVideoFeedOnLinkHover);
                   }
                 }
               }
@@ -17884,7 +17891,7 @@
                 node.dataset.sfSkip = '1';
 
                 var container = SaveFrom_Utils.getParentByClass(node, 'stage');
-                mono.one(container, 'mouseover', _this.wrapPhotoOnHover);
+                mono.one(container, 'mouseenter', _this.wrapPhotoOnHover);
               }
 
               summary = summaryList[3];
@@ -19341,7 +19348,7 @@
                   }
                   node.dataset.sfSkip = '1';
 
-                  mono.one(node, 'mouseover', _this.wrapOnPhotoOver);
+                  mono.one(node, 'mouseenter', _this.wrapOnPhotoOver);
                 }
               }
 
@@ -19375,7 +19382,7 @@
                   return;
                 }
 
-                mono.one(node, 'mouseover', _this.wrapVideoFeedOnImgOver);
+                mono.one(node, 'mouseenter', _this.wrapVideoFeedOnImgOver);
               }
 
               for (i = 5; i < 8; i++) {
@@ -19386,7 +19393,7 @@
                   }
                   node.dataset.sfSkip = '1';
 
-                  mono.one(node, 'mouseover', _this.wrapVideoFeedOnImgOver);
+                  mono.one(node, 'mouseenter', _this.wrapVideoFeedOnImgOver);
                 }
               }
 
@@ -20435,8 +20442,9 @@
         }
 
         var poster = metadata.movie.poster;
-        if (poster) {
-          var ytId = poster.match(/ytimg\.com\/vi\/([^\/]+)\//);
+        if (typeof poster === 'string') {
+          var redirectUrl = mono.parseUrl(poster).url || poster;
+          var ytId = redirectUrl.match(/ytimg\.com\/vi\/([^\/]+)\//);
           ytId = ytId && ytId[1];
           if (ytId) {
             return {
@@ -20472,6 +20480,7 @@
               }
             }
             break;
+          case 'LIVE_TV_APP':
           case 'LIVE_TV_ODKL':
           case 'UPLOADED_ODKL':
           case 'UPLOADED':
@@ -21566,7 +21575,7 @@
                 context = {};
                 context.type = 0;
                 node.dataset.sfContext = JSON.stringify(context);
-                mono.one(node, 'mouseover', mailru.mutationMode.wrapAudioOnMouseOver);
+                mono.one(node, 'mouseenter', mailru.mutationMode.wrapAudioOnMouseOver);
               }
 
               summary = summaryList[1];
@@ -21574,7 +21583,7 @@
                 context = {};
                 context.type = 1;
                 node.dataset.sfContext = JSON.stringify(context);
-                mono.one(node, 'mouseover', mailru.mutationMode.wrapAudioOnMouseOver);
+                mono.one(node, 'mouseenter', mailru.mutationMode.wrapAudioOnMouseOver);
               }
 
               var videoInfo, parent, info;
@@ -21642,7 +21651,7 @@
                   node.dataset.sfSkip = '1';
 
                   parent = mono.getParentByClass(node, 'sp-video__item-page-new__video-content');
-                  info = parent && parent.querySelector('.sp-video__item-page-new__info__additional');
+                  info = parent && parent.querySelector('.sp-video__item-page-new__actions');
                   videoInfo = parent && video.getVideoContentVideoId(parent);
                   if (!info || !videoInfo) {
                     continue;
@@ -22278,20 +22287,14 @@
           return;
         }
 
-        var style = {};
-        style.marginLeft = '15px';
-        if (styleIndex === 2) {
-          style.marginLeft = '8px';
-        }
-
+        var link = null;
         var btn = mono.create('span', {
           class: video.className,
           append: [
-            mono.create('a', {
+            link = mono.create('a', {
               data: {
                 index: btnIndex
               },
-              text: language.download,
               href: '#',
               on: ['click', function(e) {
                 e.preventDefault();
@@ -22309,21 +22312,34 @@
                     el: 'video'
                   });
                 }
-              }],
-              style: style
+              }]
             })
           ]
         });
 
         if (styleIndex === 1) {
+          link.style.marginLeft = '15px';
+          link.textContent = language.download;
+        } else
+        if (styleIndex === 2) {
+          mono.create(link, {
+            style: {
+              fontSize: 0,
+              lineHeight: 0,
+              padding: '6px',
+              boxShadow: 'inset 0 0 0 1px #ccc',
+              borderRadius: '3px',
+              display: 'inline-block'
+            }
+          });
+          link.appendChild(SaveFrom_Utils.svg.getSvg('download', '#666', 18, 18));
+        }
+
+        if (styleIndex === 2) {
+          container.appendChild(btn);
+        } else
+        if (styleIndex === 1) {
           var child = container.lastChild;
-          container.insertBefore(btn, child);
-          child = null;
-        } else {
-          var child = container.lastChild;
-          if (child.previousElementSibling) {
-            child = child.previousElementSibling;
-          }
           container.insertBefore(btn, child);
           child = null;
         }
@@ -25645,8109 +25661,101 @@
 
   mono.loadModule('aviaBar', function(moduleName, initData) {
     "use strict";
-    var language = initData.getLanguage;
 
     (function() {
       "use strict";
-      var appInfo = {};
-      var tbr = {};
-
-      var main = tbr.main = {};
-
-      tbr.emit = function(type) {
-        if (appInfo[type]) {
-          var args = [].slice.call(arguments);
-          args.shift();
-          browser.sendMessage({
-            action: 'tbrEvent',
-            type: type,
-            data: args
-          });
-        }
-      };
-
-      tbr.error = function() {
-        if (!appInfo.debug) return;
-        var args = [].slice.call(arguments);
-        args.unshift('tbr');
-        console.error.apply(console, args);
-      };
-
-      tbr.log = function() {
-        if (!appInfo.debug) return;
-        var args = [].slice.call(arguments);
-        args.unshift('tbr');
-        console.trace.apply(console, args);
-      };
-
-      tbr.hostname = location.hostname;
       var browser = {
-        storage: {
-          get: function(data, cb) {
-            return mono.storage.get(data, cb);
-          },
-          set: function(data, cb) {
-            return mono.storage.set(data, cb);
-          }
-        },
         sendMessage: function(msg, cb) {
           return mono.sendMessage(msg, cb);
-        },
-        getUILanguage: function() {
-          return language.lang;
         }
       };
-      var monoUtils = mono;
-      var components = SaveFrom_Utils;
 
-      tbr.getData = function(details, cb) {
-        details.action = 'tbrGetData';
-        return browser.sendMessage(details, cb);
-      };
-      var getProfileName = function() {
-        var hasTravelBar = function() {
-          if (document.body.parentNode.dataset.travelBar) {
-            return false;
+      var initMessaging = function() {
+        var origin = location.origin || location.protocol + "//" + location.hostname;
+        var api = {
+          sendMessage: function(message) {
+            window.postMessage(message, origin);
+          },
+          onMessage: function(cb) {
+            window.addEventListener('message', function(e) {
+              if (e.origin === origin) {
+                cb(e.data);
+              }
+            }, true);
           }
-          document.body.parentNode.dataset.travelBar = '1';
-          return true;
         };
 
-        return hasTravelBar() && mono.global.aviaBarProfile;
-      };
-      tbr.profileName = getProfileName();
+        var bridgeMsgTools = {
+          idPrefix: Math.floor(Math.random() * 1000),
+          listenerArr: [],
+          mkResponse: function(cbId) {
+            var _this = this;
+            var fn = cbId && function(msg) {
+              var message = {
+                tbr: true,
+                idPrefix: _this.idPrefix,
+                data: msg,
+                responseId: cbId
+              };
+              return api.sendMessage(message);
+            };
+            return function(msg) {
+              if (fn) {
+                fn(msg);
+                fn = null;
+              }
+            };
+          },
+          listener: function(message) {
+            var _this = bridgeMsgTools;
+            if (message && message.tbr && message.idPrefix !== _this.idPrefix && !message.responseId) {
+              var respFn = _this.mkResponse(message.callbackId);
+              _this.listenerArr.forEach(function(fn) {
+                return fn(message.data, respFn);
+              });
+            }
+          },
+          onMessage: function(cb) {
+            this.listenerArr.push(cb);
+            if (this.listenerArr.length === 1) {
+              api.onMessage(this.listener);
+            }
+          }
+        };
 
-      if (!tbr.profileName) {
-        return;
+        bridgeMsgTools.onMessage(function(msg, response) {
+          if (msg && msg.action) {
+            browser.sendMessage(msg, response);
+          }
+        });
+      };
+
+      var canInject = function() {
+        if (document.body.parentNode.dataset.travelBar) {
+          return false;
+        }
+
+        if (document.defaultView.self !== document.defaultView.top) {
+          return false;
+        }
+
+        return true;
+      };
+
+      var insertScript = function() {
+        var script = document.createElement('script');
+        script.src = 'https://travelbar.tools/static/travelBar.lite.min.js#tbr=true';
+
+        var _script = document.querySelector('script');
+        if (_script) {
+          initMessaging();
+          _script.parentNode.insertBefore(script, _script);
+        }
+      };
+
+      if (canInject()) {
+        insertScript();
       }
-
-      if (components.mutationWatcher.isAvailable()) {
-        setTimeout(function() {
-          return main.run();
-        }, 0);
-      }
-      var getLanguage = function() {
-        var langCode = (function() {
-          var langCode = '';
-
-          if (browser.getUILanguage) {
-            langCode = browser.getUILanguage();
-          }
-
-          if (!langCode && typeof navigator === 'object') {
-            langCode = navigator.language;
-          }
-
-          if (!langCode || typeof langCode !== 'string') {
-            langCode = 'en';
-          }
-
-          return langCode.toLowerCase().substr(0, 2);
-        })();
-
-        var lang = {
-          ru: {
-            lang: 'ru',
-            foundOneWay: 'Найден билет дешевле',
-            foundTwoWay: 'Билеты дешевле',
-            view: 'Посмотреть',
-            origin: 'Туда:',
-            destination: 'Обратно:',
-            close: 'Закрыть',
-
-            foundHotel: 'Найдена лучшая цена',
-            aroundHotel: 'Рядом есть отель лучше',
-            checkIn: 'Дата заезда:',
-            checkOut: 'Дата отъезда:',
-
-            inMonth: 'в %month%',
-            calLabel: 'Выгодное предложение!'
-          },
-          en: {
-            lang: 'en',
-            foundOneWay: 'Found a better price',
-            foundTwoWay: 'Better price',
-            view: 'Learn more',
-            origin: 'Depart:',
-            destination: 'Return:',
-            close: 'Close',
-
-            foundHotel: 'Found a better price',
-            aroundHotel: 'Found a better hotel around',
-            checkIn: 'Check-in:',
-            checkOut: 'Check-out:',
-
-            inMonth: 'in %month%',
-            calLabel: 'Get a better deal!'
-          }
-        };
-
-        if (langCode === 'uk') {
-          langCode = 'ru';
-        }
-
-        return lang[langCode] || lang.en;
-      };
-      tbr.language = getLanguage();
-
-      monoUtils.extend(main, {
-        storage: null,
-        cache: {},
-        profileList: null,
-        errorMap: {
-          LOW_PRICE_IS_NOT_FOUND: 10,
-          REQUEST_ABORTED: 11,
-          AIRPORTS_PARSE_ERROR: 20,
-          AIRPORTS_BAD_RESPONSE: 21,
-          CITIES_PARSE_ERROR: 30,
-          CITIES_BAD_RESPONSE: 31,
-          CCY_PARSE_ERROR: 40,
-          CCY_EMPTY_RESPONSE: 41,
-          CCY_NOT_SUPPORT: 42,
-          AVIA_R1_PARSE_ERROR: 50,
-          AVIA_R1_EMPTY_RESPONSE: 51,
-          AVIA_R1_FAIL: 52,
-          AVIA_R1_EMPTY_DATA: 53,
-          AVIA_R3_PARSE_ERROR: 60,
-          AVIA_R3_EMPTY_RESPONSE: 61,
-          HOTEL_EMPTY_RESPONSE: 70,
-          HOTEL_PARSE_ERROR: 72,
-          AVIA_R4_PARSE_ERROR: 80,
-          AVIA_R4_EMPTY_RESPONSE: 81,
-          AVIA_R4_EMPTY_DATA: 82,
-          AVIA_CAL_PARSE_ERROR: 90,
-          AVIA_CAL_EMPTY_RESPONSE: 91,
-          AVIA_CAL_EMPTY_DATA: 92,
-          AVIA_CAL_DATE_PRICE_EMPTY: 93,
-          AVIA_CAL_MONTH_PRICE_EMPTY: 94,
-          AVIA_R5_PARSE_ERROR: 101,
-          AVIA_R5_EMPTY_RESPONSE: 102,
-          AVIA_R5_EMPTY_DATA: 103,
-          SC_KEY_EMPTY: 104
-        },
-        /**
-         * @param {string} hostname
-         * @returns {boolean}
-         */
-        isAllow: function(hostname) {
-          var blackList = main.storage.blackList;
-
-          var blackListItem = null;
-          blackList.some(function(item) {
-            if (item.hostname === hostname) {
-              blackListItem = item;
-              return true;
-            }
-          });
-
-          if (!blackListItem) {
-            return true;
-          }
-
-          var now = parseInt(Date.now() / 1000);
-          if (blackListItem.expire > now) {
-            return false;
-          }
-
-          var pos = blackList.indexOf(blackListItem);
-          blackList.splice(pos, 1);
-
-          main.save();
-
-          return true;
-        },
-        /**
-         * @param {function} cb
-         */
-        load: function(cb) {
-          var _this = this;
-          return browser.sendMessage({
-            action: 'tbrGetInfo'
-          }, function(tbrInfo) {
-            if (tbrInfo && typeof tbrInfo === 'object') {
-              appInfo = tbrInfo;
-            }
-
-            return browser.storage.get('aviaBar', function(storage) {
-              main.storage = storage.aviaBar || {};
-
-              if (!Array.isArray(main.storage.blackList)) {
-                main.storage.blackList = [];
-              }
-
-              return cb();
-            });
-          });
-        },
-        run: function() {
-          var _this = this;
-          return this.load(function() {
-            if (!appInfo.id) {
-              return;
-            }
-
-            if (main.storage.removed) {
-              return;
-            }
-
-            if (!_this.isAllow(tbr.hostname)) {
-              return;
-            }
-
-            if (appInfo.newUi) {
-              main.bar = testB();
-            } else {
-              main.bar = testA();
-            }
-
-            var template = _this.profileList[tbr.profileName];
-            if (!template) {
-              tbr.error('Template is not found!', tbr.profileName);
-              return;
-            }
-
-            var profileDetails = template.call(_this);
-
-            return _this.initProfile(profileDetails);
-          });
-        },
-        /**
-         * @param {function} [cb]
-         */
-        save: function(cb) {
-          return browser.storage.set({
-            aviaBar: main.storage
-          }, cb);
-        }
-      });
-      var getAvia = function(tbr) {
-        var main = tbr.main;
-
-        return {
-          /**
-           * @typedef {Object} AviaInfo
-           * @property {string} origin
-           * @property {string} destination
-           * @property {string} dateStart
-           * @property {string} dateEnd
-           * @property {string} currency
-           * @property {number} price
-           *
-           * @property {boolean} barRequestData
-           */
-          /**
-           * @param {AviaInfo} pageInfo
-           */
-          onGetData: function(pageInfo) {
-            var _this = this;
-
-            tbr.log('Info', pageInfo);
-
-            if (pageInfo.barRequestData) {
-              return;
-            }
-            pageInfo.barRequestData = true;
-
-            var currentBar = main.bar.current;
-            if (currentBar) {
-              main.clearInfoObj(pageInfo);
-            }
-
-            var onAbort = function(event) {
-              var eventName = 'discard';
-              if (event === 'betterPrice') {
-                eventName = event;
-              }
-              tbr.emit('track', {
-                ec: 'cheapflight',
-                ea: eventName,
-                el: tbr.hostname,
-                t: 'event'
-              });
-
-              var index = main.errorMap[event];
-              if (index) {
-                var label = [index, pageInfo.origin, pageInfo.destination, pageInfo.price, pageInfo.currency, pageInfo.dateStart, pageInfo.dateEnd || ''].join(';');
-                tbr.emit('track', {
-                  ec: 'cheapflightError',
-                  ea: tbr.hostname,
-                  el: label,
-                  t: 'event'
-                });
-              }
-            };
-
-            tbr.emit('track', {
-              ec: 'cheapflight',
-              ea: 'requestData',
-              el: tbr.hostname,
-              cd: 'flightrequestdata',
-              t: 'event'
-            });
-
-            tbr.emit('track', {
-              cd: 'flightrequestdata',
-              t: 'screenview'
-            });
-
-            main.bar.isAborted = false;
-            this.requestData(pageInfo, function(err, data) {
-              if (main.bar.isAborted) {
-                currentBar && currentBar.close();
-                tbr.log('Aborted!');
-                onAbort('REQUEST_ABORTED');
-                return;
-              }
-
-              if (err) {
-                currentBar && currentBar.close();
-                onAbort(err);
-                return;
-              }
-
-              var lowerPrice = null;
-              var needConverting = !main.currency.isSupportedCcy(pageInfo.currency);
-              data.prices.data.forEach(function(item) {
-                var value = null;
-                if (needConverting) {
-                  value = item.converted_value = main.convertCcy(item.value, pageInfo.currency);
-                } else {
-                  value = item.value;
-                }
-
-                if (!value) {
-                  return;
-                }
-
-                if (lowerPrice === null || lowerPrice > value) {
-                  lowerPrice = value;
-                }
-              });
-
-              if (lowerPrice === null) {
-                tbr.error('Low price is not found!', pageInfo.price);
-                currentBar && currentBar.close();
-                onAbort('LOW_PRICE_IS_NOT_FOUND');
-                return;
-              }
-
-              tbr.emit('track', {
-                ec: 'cheapflight',
-                ea: 'responseData',
-                el: tbr.hostname,
-                cd: 'flightresponsedata',
-                t: 'event'
-              });
-
-              tbr.emit('track', {
-                cd: 'flightresponsedata',
-                t: 'screenview'
-              });
-
-              main.bar.aviaBarSaveInHistory(pageInfo);
-
-              if (lowerPrice > pageInfo.price) {
-                tbr.log('Has lower price!', lowerPrice, pageInfo.price);
-                if (!appInfo.debug) {
-                  currentBar && currentBar.close();
-                  onAbort('betterPrice');
-                  return;
-                }
-              }
-
-              var details = {};
-              details.type = 'avia';
-              details.prices = data.prices;
-              details.pageInfo = pageInfo;
-
-              main.bar.create(details);
-            });
-          },
-          requestAirports: function(cb) {
-            tbr.getData({
-              url: 'http://api.travelpayouts.com/data/airports.json'
-            }, function(responseText) {
-              var response = null;
-              try {
-                response = JSON.parse(responseText);
-              } catch (e) {
-                tbr.error('Parse error!', responseText);
-                return cb('AIRPORTS_PARSE_ERROR');
-              }
-
-              if (!Array.isArray(response)) {
-                tbr.error('Response is not array!', responseText);
-                return cb('AIRPORTS_BAD_RESPONSE');
-              }
-
-              response = response.filter(function(item) {
-                return item.code && item.city_code;
-              });
-
-              cb(null, response);
-            });
-          },
-          loadAirports: function(cb) {
-            if (main.cache.airportMap) {
-              return cb();
-            }
-
-            this.requestAirports(function(err, airportList) {
-              if (err) {
-                return cb(err);
-              }
-
-              var airportMap = main.cache.airportMap = {};
-              airportList.forEach(function(item) {
-                airportMap[item.code] = item;
-              });
-
-              return cb();
-            });
-          },
-          requestCities: function(cb) {
-            tbr.getData({
-              url: 'http://api.travelpayouts.com/data/cities.json'
-            }, function(responseText) {
-              var response = null;
-              try {
-                response = JSON.parse(responseText);
-              } catch (e) {
-                tbr.error('Parse error!', responseText);
-                return cb('CITIES_PARSE_ERROR');
-              }
-
-              if (!Array.isArray(response)) {
-                tbr.error('Response is not array!', responseText);
-                return cb('CITIES_BAD_RESPONSE');
-              }
-
-              response = response.filter(function(item) {
-                return item.code && item.name;
-              });
-
-              cb(null, response);
-            });
-          },
-          requestPrices: function(pageInfo, origCb) {
-            var _this = this;
-            var trackError = function(event) {
-              var index = main.errorMap[event];
-              if (index) {
-                var label = [index, pageInfo.origin, pageInfo.destination, pageInfo.price, pageInfo.currency, pageInfo.dateStart, pageInfo.dateEnd || ''].join(';');
-                tbr.emit('track', {
-                  ec: 'cheapflightError',
-                  ea: tbr.hostname,
-                  el: label,
-                  t: 'event'
-                });
-              }
-            };
-
-            var cbTryCal = function(err, data) {
-              if (!err) {
-                return origCb(err, data);
-              }
-
-              setTimeout(function() {
-                trackError(err);
-              }, 0);
-
-              if (pageInfo.dateEnd) {
-                return _this.requestCalPrices(pageInfo, origCb);
-              }
-
-              return _this.requestMonthPrices(pageInfo, function(err, data) {
-                if (!err) {
-                  return origCb(err, data);
-                }
-
-                _this.requestCalPrices(pageInfo, origCb);
-
-                trackError(err);
-              });
-            };
-
-            var cbTrySkyscanner = function(err, data) {
-              if (!err) {
-                return origCb(err, data);
-              }
-
-              setTimeout(function() {
-                trackError(err);
-              }, 0);
-
-              return _this.requestSkyscannerPrice(pageInfo, cbTryCal);
-            };
-
-            if (!pageInfo.dateEnd) {
-              return _this.requestPrices3(pageInfo, cbTrySkyscanner);
-            }
-
-            return _this.requestPrices1(pageInfo, cbTrySkyscanner);
-          },
-          requestMonthPrices: function(pageInfo, cb) {
-            main.currency.setSupportedCcy('RUB');
-
-            var data = {
-              origin_iata: pageInfo.origin,
-              destination_iata: pageInfo.destination,
-              direct_date: pageInfo.dateStart,
-              affiliate: true,
-              adults: 1
-            };
-
-            tbr.getData({
-              url: 'http://min-prices-go.aviasales.ru/month_minimal_price.json?' + monoUtils.param(data)
-            }, function(responseText) {
-              var data = null;
-              try {
-                data = JSON.parse(responseText);
-              } catch (e) {
-                tbr.error('Parse error!', responseText);
-                return cb('AVIA_R4_PARSE_ERROR');
-              }
-
-              if (!data) {
-                tbr.error('Response is empty!', responseText);
-                return cb('AVIA_R4_EMPTY_RESPONSE');
-              }
-
-              if (!data.direct && !data.not_direct) {
-                tbr.error('Eempty data!', data);
-                return cb('AVIA_R4_EMPTY_DATA');
-              }
-
-              var value = data.direct || data.not_direct;
-              if (data.direct && data.not_direct && data.direct > data.not_direct) {
-                value = data.not_direct;
-              }
-
-              data = {
-                origin: pageInfo.origin,
-                destination: pageInfo.destination,
-                value: value,
-                depart_date: pageInfo.dateStart,
-                return_date: pageInfo.dateEnd,
-                monthPrice: true
-              };
-
-              var response = {
-                data: [data]
-              };
-
-              return cb(null, response);
-            });
-          },
-          requestCalPrices: function(pageInfo, cb) {
-            main.currency.setSupportedCcy('RUB');
-
-            var requestData = {
-              origin: pageInfo.origin,
-              destination: pageInfo.destination,
-              depart_date: pageInfo.dateStart,
-              one_way: !pageInfo.dateEnd
-            };
-
-            var getEndDate = function() {
-              var startTime = (new Date(pageInfo.dateStart)).getTime();
-
-              var endDate = startTime + 30 * 24 * 60 * 60 * 1000;
-
-              var now = new Date(endDate);
-              var year = now.getUTCFullYear();
-              var month = now.getUTCMonth() + 1;
-              if (month < 10) {
-                month = '0' + month;
-              }
-              var date = now.getUTCDate();
-              if (date < 10) {
-                date = '0' + date;
-              }
-
-              return [year, month, date].join('-');
-            };
-
-            var getMonthPrice = function(priceList, cb) {
-              var startDate = pageInfo.dateStart;
-              var endDate = getEndDate();
-
-              priceList = priceList.filter(function(item) {
-                if (!item.value || !item.depart_date) {
-                  return false;
-                }
-
-                if (pageInfo.dateEnd) {
-                  return item.depart_date >= startDate && item.return_date < endDate;
-                } else {
-                  return item.depart_date >= startDate && item.depart_date < endDate;
-                }
-              });
-
-              if (priceList.length === 0) {
-                tbr.error('Cal month price is not found!');
-                cb('AVIA_CAL_MONTH_PRICE_EMPTY');
-                return;
-              }
-
-              var value = Math.round(priceList.reduce(function(previousValue, item) {
-                return previousValue + item.value;
-              }, 0) / priceList.length);
-
-              var obj = {
-                origin: pageInfo.origin,
-                destination: pageInfo.destination,
-                value: value,
-                depart_date: pageInfo.dateStart,
-                monthPrice: true
-              };
-
-              if (pageInfo.dateEnd) {
-                obj.return_date = pageInfo.dateEnd;
-              }
-
-              return cb(null, {
-                data: [obj]
-              });
-            };
-
-            var getPrices = function(priceList, cb) {
-              priceList = priceList.filter(function(item) {
-                if (!item.value || !item.depart_date || !item.origin || !item.destination) {
-                  return false;
-                }
-
-                if (pageInfo.dateEnd) {
-                  return item.depart_date === pageInfo.dateStart && item.return_date === pageInfo.dateEnd;
-                } else {
-                  return item.depart_date === pageInfo.dateStart;
-                }
-              });
-
-              if (priceList.length === 0) {
-                tbr.error('Cal date price is not found!');
-                cb('AVIA_CAL_DATE_PRICE_EMPTY');
-                return;
-              }
-
-              var list = priceList.map(function(item) {
-                var obj = {
-                  destination: item.destination,
-                  origin: item.origin,
-                  value: item.value,
-                  depart_date: item.depart_date
-                };
-
-                if (pageInfo.dateEnd) {
-                  obj.return_date = item.return_date
-                }
-
-                return obj;
-              });
-
-              return cb(null, {
-                data: list
-              });
-            };
-
-            tbr.getData({
-              url: 'http://min-prices.aviasales.ru/calendar_preload?' + monoUtils.param(requestData)
-            }, function(responseText) {
-              var response = null;
-              try {
-                response = JSON.parse(responseText);
-              } catch (e) {
-                tbr.error('Parse error!', responseText);
-                return cb('AVIA_CAL_PARSE_ERROR');
-              }
-
-              if (!response) {
-                tbr.error('Response is empty!', responseText);
-                return cb('AVIA_CAL_EMPTY_RESPONSE');
-              }
-
-              var currentDepartDatePrices = response.current_depart_date_prices || [];
-              if (currentDepartDatePrices.length === 0) {
-                currentDepartDatePrices = null;
-              }
-
-              var priceList = currentDepartDatePrices || response.best_prices || [];
-              if (priceList.length === 0) {
-                tbr.error('Cal data is empty!', response);
-                return cb('AVIA_CAL_EMPTY_DATA');
-              }
-
-              return getPrices(currentDepartDatePrices || [], function(err, data) {
-                if (!err) {
-                  return cb(err, data);
-                }
-
-                return getMonthPrice(priceList, function(err, data) {
-                  return cb(err, data);
-                });
-              });
-            });
-          },
-          requestPrices1: function(pageInfo, cb) {
-            main.currency.setSupportedCcy(['USD', 'EUR', 'RUB']);
-
-            var data = {
-              origin: pageInfo.origin,
-              destination: pageInfo.destination,
-              currency: pageInfo.currency,
-              depart_date: pageInfo.dateStart
-            };
-
-            if (pageInfo.dateEnd) {
-              data.return_date = pageInfo.dateEnd;
-            }
-
-            if (!main.currency.isSupportedCcy(pageInfo.currency)) {
-              data.currency = main.currency.defaultCcy;
-            }
-
-            data.token = 'd936b4f899d2e26969269dd587f90a67';
-
-            tbr.getData({
-              url: 'http://api.travelpayouts.com/v1/prices/cheap?' + monoUtils.param(data)
-            }, function(responseText) {
-              var response = null;
-              try {
-                response = JSON.parse(responseText);
-              } catch (e) {
-                tbr.error('Parse error!', responseText);
-                return cb('AVIA_R1_PARSE_ERROR');
-              }
-
-              if (!response) {
-                tbr.error('Response is empty!', response);
-                cb('AVIA_R1_EMPTY_RESPONSE');
-                return;
-              }
-
-              if (!response.success || !response.data) {
-                tbr.error('API is not success!', response);
-                cb('AVIA_R1_FAIL');
-                return;
-              }
-
-              var _list = [];
-              for (var cityCode in response.data) {
-                var list = response.data[cityCode];
-                for (var index in list) {
-                  var item = list[index];
-                  if (!item.price || !item.departure_at) {
-                    continue;
-                  }
-
-                  var _item = {};
-                  _item.destination = cityCode;
-                  _item.origin = pageInfo.origin;
-                  _item.value = item.price;
-                  _item.depart_date = item.departure_at;
-                  if (pageInfo.dateEnd) {
-                    _item.return_date = item.return_at;
-                  }
-                  _list.push(_item);
-                }
-              }
-
-              if (_list.length === 0) {
-                tbr.error('API data is empty!', response);
-                cb('AVIA_R1_EMPTY_DATA');
-                return;
-              }
-
-              response.data = _list;
-
-              cb(null, response);
-            });
-          },
-          requestPrices3: function(pageInfo, cb) {
-            main.currency.setSupportedCcy('RUB');
-
-            var data = {
-              origin: pageInfo.origin,
-              destination: pageInfo.destination,
-              depart_date: pageInfo.dateStart
-            };
-
-            if (pageInfo.dateEnd) {
-              data.return_date = pageInfo.dateEnd;
-            }
-
-            tbr.getData({
-              url: 'http://min-prices.aviasales.ru/day_price?' + monoUtils.param(data)
-            }, function(responseText) {
-              var data = null;
-              try {
-                data = JSON.parse(responseText);
-              } catch (e) {
-                tbr.error('Parse error!', responseText);
-                return cb('AVIA_R3_PARSE_ERROR');
-              }
-
-              if (!data || !data.destination || !data.origin || !data.value || !data.depart_date) {
-                tbr.error('Response is empty!', responseText);
-                return cb('AVIA_R3_EMPTY_RESPONSE');
-              }
-
-              var response = {
-                data: [data]
-              };
-
-              cb(null, response);
-            });
-          },
-          skyscannerMarkets: {
-            ru: 'ru',
-            en: 'us'
-          },
-          requestSkyscannerPrice: function(pageInfo, cb) {
-            if (!appInfo.skyScannerKey) {
-              return cb('SC_KEY_EMPTY');
-            }
-
-            main.currency.setSupportedCcy(['USD', 'EUR', 'RUB', 'UAH', 'BYR', 'KZT']);
-
-            var ccy = pageInfo.currency;
-            if (!main.currency.isSupportedCcy(pageInfo.currency)) {
-              ccy = main.currency.defaultCcy;
-            }
-
-            var apiKey = appInfo.skyScannerKey;
-
-            var data = {
-              apiKey: apiKey
-            };
-
-            var url = 'http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/{market}/{currency}/{locale}/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}?';
-            var market = 'us';
-            var markets = this.skyscannerMarkets;
-            if (markets[tbr.language.lang]) {
-              market = markets[tbr.language.lang];
-            }
-
-            url = url.replace('{market}', market);
-            url = url.replace('{currency}', ccy);
-            url = url.replace('{locale}', tbr.language.lang);
-            url = url.replace('{originPlace}', pageInfo.origin);
-            url = url.replace('{destinationPlace}', pageInfo.destination);
-            url = url.replace('{outboundPartialDate}', pageInfo.dateStart);
-            url = url.replace('{inboundPartialDate}', pageInfo.dateEnd || '');
-
-            var getReferralUrl = function(originPlace, destinationPlace) {
-              var originPlaceId = originPlace.CityId || originPlace.IataCode;
-              var destinationPlaceId = destinationPlace.CityId || destinationPlace.IataCode;
-              var url = 'http://partners.api.skyscanner.net/apiservices/referral/v1.0/{market}/{currency}/{locale}/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}';
-              url = url.replace('{market}', market);
-              url = url.replace('{currency}', ccy);
-              url = url.replace('{locale}', tbr.language.lang);
-              url = url.replace('{originPlace}', originPlaceId);
-              url = url.replace('{destinationPlace}', destinationPlaceId);
-              url = url.replace('{outboundPartialDate}', pageInfo.dateStart);
-              url = url.replace('{inboundPartialDate}', pageInfo.dateEnd || '');
-              url += '?' + monoUtils.param({
-                apiKey: apiKey
-              });
-              return url;
-            };
-
-            /**
-             * @typedef {Object} SkyscannerPlaceApi
-             * @property {string} CityId
-             * @property {string} CityName
-             * @property {string} CountryName
-             * @property {string} IataCode
-             * @property {string} Name
-             * @property {number} PlaceId
-             * @property {string} SkyscannerCode
-             * @property {string} Type
-             */
-            /**
-             * @typedef {Object} SkyscannerQuotesBoundLegApi
-             * @property {[number]} CarrierIds
-             * @property {string} DepartureDate
-             * @property {number} DestinationId
-             * @property {number} OriginId
-             */
-            /**
-             * @typedef {Object} SkyscannerQuotesApi
-             * @property {SkyscannerQuotesBoundLegApi} OutboundLeg
-             * @property {SkyscannerQuotesBoundLegApi} [InboundLeg]
-             * @property {boolean} Direct
-             * @property {string} QuoteDateTime
-             * @property {number} QuoteId
-             * @property {number} MinPrice
-             */
-            /**
-             * @param {Object} response
-             * @param {[SkyscannerPlaceApi]} response.Places
-             * @param {[SkyscannerQuotesApi]} response.Quotes
-             * @param {function} cb
-             */
-            var normalization = function(response, cb) {
-              var data = [];
-
-              var getPlaceCode = function(id) {
-                var place = null;
-                response.Places.some(function(item) {
-                  if (item.PlaceId === id) {
-                    place = item;
-                    return true;
-                  }
-                });
-                return place;
-              };
-
-              response.Quotes.forEach(function(item) {
-                if (!item.OutboundLeg) {
-                  tbr.error('OutboundLeg is not found!');
-                  return;
-                }
-
-                if (pageInfo.dateEnd && !item.InboundLeg) {
-                  return;
-                }
-
-                var destinationPlace = getPlaceCode(item.OutboundLeg.DestinationId);
-                var originPlace = getPlaceCode(item.OutboundLeg.OriginId);
-
-                var obj = {
-                  destination: destinationPlace.IataCode,
-                  origin: originPlace.IataCode,
-                  value: item.MinPrice,
-                  depart_date: item.OutboundLeg.DepartureDate,
-                  vendor: 'skyscanner',
-                  url: getReferralUrl(originPlace, destinationPlace)
-                };
-
-                if (item.InboundLeg) {
-                  obj.return_date = item.InboundLeg.DepartureDate;
-                }
-
-                if (!obj.destination || !obj.origin) {
-                  tbr.error('Place code error!', obj, item);
-                  return;
-                }
-
-                data.push(obj);
-              });
-
-              if (data.length === 0) {
-                tbr.error('API data is empty!', response);
-                return cb('AVIA_R5_EMPTY_DATA');
-              } else {
-                return cb(null, {
-                  data: data
-                });
-              }
-            };
-
-            return tbr.getData({
-              url: url + monoUtils.param(data),
-              headers: {
-                'X-Forwarded-For': 'application/json'
-              }
-            }, function(responseText) {
-              if (/<Quotes\s+\/>/.test(responseText)) {
-                tbr.error('Response is empty XML!', responseText);
-                return cb('AVIA_R5_EMPTY_DATA');
-              }
-
-              var data = null;
-              try {
-                data = JSON.parse(responseText);
-              } catch (e) {
-                tbr.error('Parse error!', responseText);
-                return cb('AVIA_R5_PARSE_ERROR');
-              }
-
-              if (!data || !Array.isArray(data.Quotes) || !Array.isArray(data.Places)) {
-                tbr.error('Response is empty!', responseText);
-                return cb('AVIA_R5_EMPTY_RESPONSE');
-              }
-
-              return normalization(data, cb);
-            });
-          },
-          /**
-           * @typedef {Object} AviaApiPrice
-           * @property {string} origin
-           * @property {string} destination
-           * @property {number} value
-           * @property {string} depart_date
-           * @property {string} [return_date]
-           * @property {boolean} [monthPrice]
-           */
-          /**
-           * @typedef {Object} AviaApi
-           * @property {Object} prices
-           * @property {AviaApiPrice[]} prices.data
-           */
-          /**
-           * @callback AviaRequestCallback
-           * @param {Error} err
-           * @param {AviaApi} [data]
-           */
-          /**
-           * @param {AviaInfo} pageInfo
-           * @param {AviaRequestCallback} cb
-           */
-          requestData: function(pageInfo, cb) {
-            var _this = this;
-            var data = {};
-
-            var async = new monoUtils.AsyncList(function(err) {
-              if (err) {
-                return cb(err);
-              }
-
-              return cb(null, data);
-            });
-
-            async.wait();
-
-            this.requestPrices(pageInfo, function(err, prices) {
-              if (err) {
-                return async.ready(err);
-              }
-
-              data.prices = prices;
-
-              if (!main.cache.cityMap) {
-                async.wait();
-                _this.requestCities(function(err, cityList) {
-                  if (err) {
-                    return async.ready(err);
-                  }
-
-                  var cityMap = main.cache.cityMap = {};
-                  cityList.forEach(function(item) {
-                    cityMap[item.code] = item;
-                  });
-                  async.ready();
-                });
-              }
-
-              if (!main.currency.isSupportedCcy(pageInfo.currency)) {
-                async.wait();
-
-                var ccySupport = function() {
-                  var ccyList = main.cache.ccyList;
-                  if (ccyList[pageInfo.currency.toLowerCase()] === undefined) {
-                    tbr.error('Currency is not support!', pageInfo.currency);
-                    async.ready('CCY_NOT_SUPPORT');
-                    return;
-                  }
-
-                  async.ready();
-                };
-
-                if (main.cache.ccyList) {
-                  setTimeout(function() {
-                    return ccySupport();
-                  }, 0);
-                } else {
-                  async.wait();
-
-                  main.currency.requestCcy(function(err, ccyList) {
-                    if (err) {
-                      async.ready(err);
-                      return;
-                    }
-
-                    main.cache.ccyList = ccyList;
-                    async.ready();
-
-                    return ccySupport();
-                  });
-                }
-              }
-
-              async.wait();
-              _this.loadAirports(function(err) {
-                if (err) {
-                  return async.ready(err);
-                }
-
-                async.ready();
-              });
-
-              async.ready();
-            });
-          },
-          page: {
-            getPrice: function(params, priceParams) {
-              var price = null;
-              if (priceParams.price) {
-                price = priceParams.price;
-              } else if (priceParams.minPriceOut && priceParams.minPriceIn) {
-                price = priceParams.minPriceOut + priceParams.minPriceIn;
-              } else if (priceParams.minPriceOut) {
-                price = priceParams.minPriceOut;
-              } else if (priceParams.minPriceIn) {
-                price = priceParams.minPriceIn;
-              }
-
-              return price;
-            },
-            getData: function(params, priceParams) {
-              var checkKeys = ['origin', 'destination', 'dateStart', 'currency', 'price'];
-
-              var data = {
-                origin: params.origin,
-                destination: params.destination,
-                dateStart: params.dateStart,
-                dateEnd: params.dateEnd,
-                currency: params.currency,
-                price: this.getPrice(params, priceParams)
-              };
-
-              var r = checkKeys.every(function(key) {
-                return !!data[key];
-              });
-
-              if (!r) {
-                return null;
-              }
-
-              return data;
-            },
-            getPriceId: function(params) {
-              var idKeys = ['origin', 'destination', 'dateStart', 'dateEnd', 'currency'];
-              var id = [];
-
-              var r = idKeys.every(function(key) {
-                var value = params[key];
-                id.push(value);
-                if (key === 'dateEnd') {
-                  return true;
-                }
-                return !!value;
-              });
-
-              if (!r) {
-                return null;
-              }
-
-              return id.join(';');
-            }
-          }
-        };
-      };
-      main.avia = getAvia(tbr);
-      var getHotel = function(tbr) {
-        var main = tbr.main;
-
-        return {
-          convertPrice: function(prices, currency) {
-            prices.forEach(function(item) {
-              item.converted_value = main.convertCcy(item.value, currency);
-            });
-          },
-          getLowPrice: function(prices, isSuggest) {
-            isSuggest = !!isSuggest;
-            var value = null;
-            prices.filter(function(item) {
-              return isSuggest === !!item.isSuggest;
-            }).forEach(function(item) {
-              var _value = item.converted_value || item.value;
-              if (value === null || _value < value) {
-                value = _value;
-              }
-            });
-            return value;
-          },
-          /**
-           * @typedef {Object} HotelInfo
-           * @property {string[]} query
-           * @property {string} dateIn
-           * @property {string} dateOut
-           * @property {string} currency
-           * @property {number} adults
-           * @property {number} price
-           *
-           * @property {boolean} barRequestData
-           */
-          /**
-           * @param {HotelInfo} pageInfo
-           */
-          onGetData: function(pageInfo) {
-            var _this = this;
-
-            tbr.log('Info', pageInfo);
-
-            if (pageInfo.barRequestData) {
-              return;
-            }
-            pageInfo.barRequestData = true;
-
-            var currentBar = main.bar.current;
-            if (currentBar) {
-              main.clearInfoObj(pageInfo);
-            }
-
-            var onAbort = function(event) {
-              var eventName = 'discard';
-              if (event === 'betterPrice') {
-                eventName = event;
-              }
-              tbr.emit('track', {
-                ec: 'hotel',
-                ea: eventName,
-                el: tbr.hostname,
-                t: 'event'
-              });
-
-              var index = main.errorMap[event];
-              if (index) {
-                var query = pageInfo.query[0];
-                var label = [index, tbr.language.lang, pageInfo.dateIn, pageInfo.dateOut, pageInfo.adults, pageInfo.price, pageInfo.currency, query].join(';');
-                tbr.emit('track', {
-                  ec: 'hotelError',
-                  ea: tbr.hostname,
-                  el: label,
-                  t: 'event'
-                });
-              }
-            };
-
-            tbr.emit('track', {
-              ec: 'hotel',
-              ea: 'requestData',
-              el: tbr.hostname,
-              cd: 'hotelrequestdata',
-              t: 'event'
-            });
-
-            tbr.emit('track', {
-              cd: 'hotelrequestdata',
-              t: 'screenview'
-            });
-
-            main.bar.isAborted = false;
-            this.requestHotelData(pageInfo, function(err, data) {
-              if (main.bar.isAborted) {
-                currentBar && currentBar.close();
-                tbr.log('Aborted!');
-                onAbort('REQUEST_ABORTED');
-                return;
-              }
-
-              if (err) {
-                currentBar && currentBar.close();
-                onAbort(err);
-                return;
-              }
-
-              if (!main.currency.isSupportedCcy(pageInfo.currency)) {
-                _this.convertPrice(data.prices.data, pageInfo.currency);
-              }
-
-              tbr.emit('track', {
-                ec: 'hotel',
-                ea: 'responseData',
-                el: tbr.hostname,
-                cd: 'hotelresponsedata',
-                t: 'event'
-              });
-
-              tbr.emit('track', {
-                cd: 'hotelresponsedata',
-                t: 'screenview'
-              });
-
-
-              var lowTargetPrice = _this.getLowPrice(data.prices.data);
-              var isLowTargetPrice = lowTargetPrice && lowTargetPrice < pageInfo.price;
-
-              var isLowSuggestPrice = false;
-              if (!isLowTargetPrice) {
-                var lowSuggestPrice = _this.getLowPrice(data.prices.data, true);
-                isLowSuggestPrice = lowSuggestPrice && lowSuggestPrice < pageInfo.price;
-                if (!isLowSuggestPrice) {
-                  var maxSuggestPrice = pageInfo.price + (20 / 100 * pageInfo.price);
-                  isLowSuggestPrice = lowSuggestPrice && lowSuggestPrice < maxSuggestPrice;
-                }
-              }
-
-              if (!isLowTargetPrice && !isLowSuggestPrice) {
-                tbr.log('Has low price!', lowTargetPrice, pageInfo.price);
-                if (appInfo.debug) {
-                  if (!lowTargetPrice) {
-                    isLowSuggestPrice = true;
-                  }
-                } else {
-                  currentBar && currentBar.close();
-                  onAbort('betterPrice');
-                  return;
-                }
-              }
-
-              var details = {};
-              details.type = 'hotel';
-              details.showSuggestPrice = isLowSuggestPrice;
-              details.prices = data.prices;
-              details.pageInfo = pageInfo;
-
-              main.bar.create(details);
-            });
-          },
-          requestHotelPrices: function(pageInfo, cb) {
-            var _this = this;
-            var index = 0;
-
-            var suggests = [];
-
-            var _cb = function(err, response) {
-              if (!err && response.hasTarget) {
-                cb(err, response);
-              } else {
-                index++;
-
-                var hasQuery = pageInfo.query[index];
-
-                if (!err) {
-                  suggests.push.apply(suggests, response.data);
-                  if (hasQuery) {
-                    err = true;
-                  }
-                }
-
-                if (err && hasQuery) {
-                  _this.requestHotelQueryPrices(pageInfo, index, _cb);
-                } else {
-                  cb(err, {
-                    data: suggests
-                  });
-                }
-              }
-            };
-
-            return this.requestHotelQueryPrices(pageInfo, index, _cb);
-          },
-          requestHotelQueryPrices: function(pageInfo, index, cb) {
-            main.currency.setSupportedCcy('RUB');
-
-            var data = {
-              hotel_name: pageInfo.query[index],
-              locale: tbr.language.lang,
-              checkIn: pageInfo.dateIn,
-              checkOut: pageInfo.dateOut,
-              adults: pageInfo.adults
-            };
-
-            data.marker = appInfo.id;
-            data.host = 'h2.savefrom.net';
-
-            return tbr.getData({
-              url: 'https://yasen.hotellook.com/tp/v2/check_hotel_price_by_name.json?' + monoUtils.param(data)
-            }, function(responseText) {
-              var data = null;
-              try {
-                /**
-                 * @typedef {Object} HotelApiItem
-                 * @property {string} name
-                 * @property {string} deeplink
-                 * @property {string} type
-                 * @property {number} price
-                 * @property {number} stars
-                 * @property {number} rating
-                 *
-                 * @property {boolean} isSuggest
-                 * @property {number} value
-                 * @property {number} [converted_value]
-                 */
-                /**
-                 * @type {Object}
-                 * @property {HotelApiItem} [target]
-                 * @property {[HotelApiItem]} suggests
-                 */
-                data = JSON.parse(responseText);
-              } catch (e) {
-                tbr.error('Parse error!', responseText);
-                return cb('HOTEL_PARSE_ERROR');
-              }
-
-              if (!data) {
-                tbr.error('Response is empty!', responseText);
-                return cb('HOTEL_EMPTY_RESPONSE');
-              }
-
-              /**
-               * @type {[HotelApiItem]}
-               */
-              var prices = [];
-
-              var hasTarget = false;
-
-              if (data.target) {
-                hasTarget = true;
-                prices.push(data.target);
-              }
-
-              data.suggests && data.suggests.forEach(function(suggest) {
-                suggest.isSuggest = true;
-                prices.push(suggest);
-              });
-
-              if (!prices.length) {
-                tbr.error('Response is empty!', responseText);
-                return cb('HOTEL_EMPTY_RESPONSE');
-              }
-
-              prices.forEach(function(item) {
-                item.value = item.price;
-              });
-
-              return cb(null, {
-                hasTarget: hasTarget,
-                data: prices
-              });
-            });
-          },
-          /**
-           * @typedef {Object} HotelApi
-           * @property {[HotelApiItem]} prices
-           */
-          /**
-           * @callback HotelRequestCallback
-           * @param {Error} err
-           * @param {HotelApi} [data]
-           */
-          /**
-           * @param {HotelInfo} pageInfo
-           * @param {HotelRequestCallback} cb
-           */
-          requestHotelData: function(pageInfo, cb) {
-            var data = {};
-            var async = new monoUtils.AsyncList(function(err) {
-              if (err) {
-                return cb(err);
-              }
-
-              return cb(null, data);
-            });
-
-            async.wait();
-            return this.requestHotelPrices(pageInfo, function(err, prices) {
-              if (err) {
-                return async.ready(err);
-              }
-
-              data.prices = prices;
-
-              if (!main.currency.isSupportedCcy(pageInfo.currency)) {
-                async.wait();
-                var ccySupport = function() {
-                  var ccyList = main.cache.ccyList;
-                  if (ccyList[pageInfo.currency.toLowerCase()] === undefined) {
-                    tbr.error('Currency is not support!', pageInfo.currency);
-                    async.ready('CCY_NOT_SUPPORT');
-                    return;
-                  }
-
-                  async.ready();
-                };
-
-                if (main.cache.ccyList) {
-                  setTimeout(function() {
-                    ccySupport();
-                  }, 0);
-                } else {
-                  async.wait();
-                  main.currency.requestCcy(function(err, ccyList) {
-                    if (err) {
-                      async.ready(err);
-                      return;
-                    }
-
-                    main.cache.ccyList = ccyList;
-                    async.ready();
-
-                    ccySupport();
-                  });
-                }
-              }
-
-              async.ready();
-            });
-          },
-          page: {
-            getPrice: function(params, priceParams) {
-              var price = null;
-              if (priceParams.price) {
-                price = priceParams.price;
-              } else if (priceParams.oneDayPrice && params.dayCount) {
-                price = priceParams.oneDayPrice * params.dayCount;
-              } else if (priceParams.oneDayPrice && params.dateIn && params.dateOut) {
-                var dateIn = new Date(params.dateIn);
-                var dateOut = new Date(params.dateOut);
-                var dayCount = Math.round((dateOut.getTime() - dateIn.getTime()) / 24 / 60 / 60 / 1000);
-                price = priceParams.oneDayPrice * dayCount;
-              }
-
-              return price;
-            },
-            getData: function(params, priceParams) {
-              var checkKeys = ['query', 'dateIn', 'dateOut', 'currency', 'adults', 'price'];
-
-              var data = {
-                query: params.query,
-                dateIn: params.dateIn,
-                dateOut: params.dateOut,
-                currency: params.currency,
-                adults: params.adults,
-                price: this.getPrice(params, priceParams)
-              };
-
-              var r = checkKeys.every(function(key) {
-                return !!data[key];
-              });
-
-              if (!r) {
-                return null;
-              }
-
-              return data;
-            },
-            getPriceId: function(params) {
-              var idKeys = ['dateIn', 'dateOut', 'currency', 'adults'];
-              var id = [];
-
-              var r = idKeys.every(function(key) {
-                var value = params[key];
-                id.push(value);
-                return !!value;
-              });
-
-              if (!r) {
-                return null;
-              }
-
-              return id.join(';');
-            }
-          }
-        };
-      };
-      main.hotel = getHotel(tbr);
-
-      monoUtils.extend(main, {
-        currency: {
-          defaultCcy: 'RUB',
-          supportedCcy: ['USD', 'EUR', 'RUB'],
-          setSupportedCcy: function(ccy) {
-            if (!Array.isArray(ccy)) {
-              ccy = [ccy];
-            }
-            this.supportedCcy = ccy;
-          },
-          isSupportedCcy: function(value) {
-            return this.supportedCcy.indexOf(value) !== -1;
-          },
-          requestCcy: function(cb) {
-            tbr.getData({
-              url: 'http://engine.aviasales.ru/currencies/all_currencies_rates'
-            }, function(responseText) {
-              var response = null;
-              try {
-                response = JSON.parse(responseText);
-              } catch (e) {
-                tbr.error('Parse error!', responseText);
-                return cb('CCY_PARSE_ERROR');
-              }
-
-              if (!response) {
-                tbr.error('Response is empty!', responseText);
-                return cb('CCY_EMPTY_RESPONSE');
-              }
-
-              cb(null, response);
-            });
-          }
-        }
-      });
-
-      var testA = function() {
-        var getBarUi = function(tbr) {
-          var main = tbr.main;
-
-          return {
-            getCloseBtn: function() {
-              var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-              var svgNS = svg.namespaceURI;
-              svg.setAttribute('width', '19.799');
-              svg.setAttribute('height', '19.799');
-              svg.setAttribute('viewBox', '0 0 19.7989899 19.7989899');
-
-              var color = '#888161';
-              var opacity = '.5';
-
-              var path = document.createElementNS(svgNS, 'path');
-              svg.appendChild(path);
-              path.setAttribute('d', 'M8.092 9.9L5.146 6.952C4.544 6.35 4.45 5.45 4.95 4.95c.5-.5 1.4-.406 2.003.196L9.9 8.092l2.946-2.946c.61-.61 1.504-.695 2.003-.196.498.5.412 1.394-.197 2.003L11.707 9.9l2.946 2.946c.602.602.695 1.504.196 2.003-.5.498-1.402.405-2.004-.197L9.9 11.707l-2.947 2.946c-.61.61-1.504.695-2.003.196-.5-.5-.413-1.395.196-2.004L8.092 9.9z');
-              path.setAttribute('fill', color);
-              path.setAttribute('opacity', opacity);
-              path.setAttribute('fill-rule', 'evenodd');
-
-              return svg;
-            },
-            getTwoWayLines: function() {
-              var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-              var svgNS = svg.namespaceURI;
-              svg.setAttribute('width', '41px');
-              svg.setAttribute('height', '24px');
-              svg.setAttribute('viewBox', '0 0 41 24');
-
-              var color = '#565656';
-
-              var g = document.createElementNS(svgNS, 'g');
-              svg.appendChild(g);
-              g.setAttribute('stroke-linecap', 'square');
-              g.setAttribute('stroke', color);
-              g.setAttribute('stroke-width', '2');
-              g.setAttribute('fill', 'none');
-              g.setAttribute('fill-rule', 'evenodd');
-
-              var path = document.createElementNS(svgNS, 'path');
-              g.appendChild(path);
-              path.setAttribute('d', 'M40.33 18H2.24M6 13L.724 18.1 6 23.2');
-
-              path = document.createElementNS(svgNS, 'path');
-              g.appendChild(path);
-              path.setAttribute('d', 'M.67 5h38.09M35 0l5.276 5.1L35 10.2');
-
-              return svg;
-            },
-            getOneWayLine: function() {
-              var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-              var svgNS = svg.namespaceURI;
-              svg.setAttribute('width', '105px');
-              svg.setAttribute('height', '11px');
-              svg.setAttribute('viewBox', '0 0 105 11');
-
-              var color = '#565656';
-
-              var g = document.createElementNS(svgNS, 'g');
-              svg.appendChild(g);
-              g.setAttribute('stroke-linecap', 'square');
-              g.setAttribute('stroke', color);
-              g.setAttribute('stroke-width', '2');
-              g.setAttribute('fill', 'none');
-              g.setAttribute('fill-rule', 'evenodd');
-
-              var path = document.createElementNS(svgNS, 'path');
-              g.appendChild(path);
-              path.setAttribute('d', 'M.823 5H102.76M99 0l5.276 5.1L99 10.2');
-
-              return svg;
-            },
-            getHotelBarItem: function(details) {
-              var isSuggest = !!details.showSuggestPrice;
-              var mainItem = null;
-              details.prices.data.filter(function(item) {
-                return isSuggest === !!item.isSuggest;
-              }).forEach(function(item) {
-                if (mainItem === null || mainItem.value > item.value) {
-                  mainItem = item;
-                }
-              });
-              return mainItem;
-            },
-            prepareHotelItem: function(pageInfo, item) {
-              var obj = {
-                name: item.name,
-                value: item.converted_value || item.value,
-                dateIn: pageInfo.dateIn,
-                dateOut: pageInfo.dateOut,
-                currency: pageInfo.currency,
-                link: item.deeplink,
-                isSuggest: !!item.isSuggest
-              };
-              return obj;
-            },
-            prepareAviaItem: function(pageInfo, item) {
-              var obj = {
-                origin: item.origin,
-                destination: item.destination,
-                value: item.converted_value || item.value,
-                dateStart: item.depart_date,
-                dateEnd: item.return_date,
-                currency: pageInfo.currency,
-                monthPrice: !!item.monthPrice,
-                vendor: item.vendor || 'aviasales',
-                url: item.url
-              };
-
-              return obj;
-            },
-            marginPage: function(details, barHeight) {
-              var html = document.body.parentNode;
-              main.pageStyle = main.pageStyle || {};
-
-              if (barHeight) {
-                var bar = details.barEl;
-                main.pageStyle.marginTop = html.style.marginTop;
-                main.pageStyle.transition = html.style.transition;
-
-                html.style.transition = 'margin-top 0.2s';
-                bar.style.transition = 'margin-top 0.2s';
-
-                setTimeout(function() {
-                  html.style.marginTop = barHeight + 'px';
-                  html.style.setProperty && html.style.setProperty('margin-top', barHeight + 'px', 'important');
-                  bar.style.marginTop = 0;
-                }, 0);
-
-                setTimeout(function() {
-                  html.style.transition = main.pageStyle.transition;
-                  bar.style.transition = '';
-                }, 250);
-
-                var onShow = main.currentProfile.onShow;
-                onShow && onShow(barHeight);
-              } else {
-                html.style.marginTop = main.pageStyle.marginTop;
-
-                var onHide = main.currentProfile.onHide;
-                onHide && onHide();
-              }
-            },
-            onReplace: function(oldDetails, details) {
-              window.removeEventListener('resize', oldDetails.onResize);
-
-              if (details.barEl) {
-                details.barEl.style.marginTop = 0;
-              }
-
-              ['barEl', 'styleEl'].forEach(function(item) {
-                var node = oldDetails[item];
-                var newNode = details[item];
-                var parent;
-                if (node && (parent = node.parentNode)) {
-                  parent.replaceChild(newNode, node);
-                }
-              });
-            },
-            onClose: function(details, byUser) {
-              ['barEl', 'styleEl'].forEach(function(item) {
-                var node = details[item];
-                var parent;
-                if (node && (parent = node.parentNode)) {
-                  parent.removeChild(node);
-                }
-              });
-              window.removeEventListener('resize', details.onResize);
-
-              main.bar.marginPage(details);
-
-              if (byUser) {
-                main.stopObserver();
-
-                var blackList = main.storage.blackList;
-                var now = parseInt(Date.now() / 1000);
-                blackList.push({
-                  hostname: tbr.hostname,
-                  expire: now + 5 * 60 * 60
-                });
-
-                main.save();
-              }
-            },
-            getStyle: function(details) {
-              var barColor = '#fcefb4';
-              var defaultColor = '#333333';
-              var labelColor = '#005f86';
-              var priceColor = '#4b9f00';
-              var viewBgColor = '#4b9f00';
-              var viewOverBgColor = '#1F9600';
-              var closeBtnOverOpacity = '1';
-
-              return monoUtils.create('style', {
-                text: monoUtils.style2Text([{
-                  selector: '#' + details.rndId,
-                  style: monoUtils.extendPos({}, monoUtils.styleReset, {
-                    font: 'normal normal 14px Arial, sans-serif',
-                    backgroundColor: barColor,
-                    width: '100%',
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    marginTop: (-details.barHeight) + 'px',
-                    boxShadow: '0 0 1px rgba(0, 0, 0, 0.5)',
-                    fontWeight: 'normal',
-                    display: 'block',
-                    color: defaultColor
-                  }),
-                  append: {
-                    '.sf-cell': {
-                      display: 'table-cell',
-                      verticalAlign: 'middle',
-                      height: details.barHeight + 'px'
-                    },
-                    '.sf-center': {
-                      textAlign: 'center'
-                    },
-                    '.sf-right': {
-                      textAlign: 'right'
-                    },
-                    '.sf-close-btn': {
-                      display: 'inline-block',
-                      textDecoration: 'none',
-                      width: '22px',
-                      height: '22px'
-                    },
-                    '.sf-close-btn:hover path': {
-                      opacity: closeBtnOverOpacity
-                    },
-                    '.sf-nowrap': {
-                      whiteSpace: 'nowrap'
-                    },
-                    '.sf-label': {
-                      color: labelColor
-                    },
-                    '.sf-point': {
-                      fontSize: '18px'
-                    },
-                    '.sf-place': {
-                      fontSize: 'inherit'
-                    },
-                    '.sf-price': {
-                      color: priceColor,
-                      fontSize: '26px',
-                      fontWeight: 'bold'
-                    },
-                    '.sf-view-btn': {
-                      fontSize: '14px',
-                      backgroundColor: viewBgColor,
-                      padding: '7px 18px',
-                      color: '#fff',
-                      display: 'inline-block',
-                      borderRadius: '4px',
-                      height: '32px',
-                      boxSizing: 'border-box',
-                      textDecoration: 'none',
-                      whiteSpace: 'nowrap'
-                    },
-                    '.sf-view-btn:hover': {
-                      backgroundColor: viewOverBgColor
-                    }
-                  }
-                }])
-              });
-            },
-            getFontSizeSandbox: function() {
-              var sandbox = monoUtils.create('div', {
-                style: monoUtils.extendPos({}, monoUtils.styleReset, {
-                  font: 'normal normal 12px Arial, sans-serif',
-                  position: 'absolute',
-                  opacity: 0,
-                  top: 0,
-                  left: 0
-                })
-              });
-
-              document.body.appendChild(sandbox);
-
-              return {
-                getNodeSize: function(node, cb) {
-                  sandbox.appendChild(node);
-                  return setTimeout(function() {
-                    var clientWidth = window.getComputedStyle(node, null).getPropertyValue("width");
-                    clientWidth = Math.ceil(parseFloat(clientWidth));
-                    return cb(clientWidth);
-                  }, 0);
-                },
-                remove: function() {
-                  sandbox.parentNode.removeChild(sandbox);
-                }
-              }
-            },
-            calcBlockSize: function(blocks, cb) {
-              var _this = this;
-              var defaultStyle = {
-                display: 'inline-block',
-                whiteSpace: 'nowrap'
-              };
-
-              var sandbox = null;
-
-              var ready = 0;
-              var wait = 0;
-
-              var onReady = function() {
-                ready++;
-                if (wait !== ready) {
-                  return;
-                }
-                sandbox && sandbox.remove();
-
-                Object.keys(blocks).forEach(function(key) {
-                  var block = blocks[key];
-
-                  var width = null;
-                  if (!block.fontSizeWidth) {
-                    width = block.width;
-                  } else {
-                    block.widthList = [];
-                    var maxWidth = 999999;
-                    var keys = Object.keys(block.fontSizeWidth);
-                    keys.reverse().forEach(function(fontSize) {
-                      var minWidth = (block.fontSizeWidth[fontSize] || block.width.default) + (block.width.plus || 0);
-                      var obj = {
-                        fontSize: parseFloat(fontSize),
-                        minWidth: minWidth,
-                        maxWidth: maxWidth
-                      };
-                      maxWidth = minWidth;
-                      block.widthList.push(obj);
-                    });
-                    delete block.fontSizeWidth;
-                    width = block.widthList[0].minWidth;
-                    block.widthList.slice(-1)[0].minWidth = 0;
-                    if (block.widthList.length === 1) {
-                      block.width = width;
-                      delete block.widthList;
-                    }
-                  }
-
-                  block.node.style.width = width + 'px';
-                });
-
-                return cb();
-              };
-
-              wait++;
-              Object.keys(blocks).forEach(function(key) {
-                var block = blocks[key];
-                if (!block.width || !block.width.strings) {
-                  return;
-                }
-
-                if (!sandbox) {
-                  sandbox = _this.getFontSizeSandbox();
-                }
-
-                if (!Array.isArray(block.width.fontSize)) {
-                  block.width.fontSize = [block.width.fontSize];
-                }
-
-                block.fontSizeWidth = {};
-                block.width.strings.forEach(function(text) {
-                  block.width.fontSize.forEach(function(fontSize) {
-                    wait++;
-                    return sandbox.getNodeSize(monoUtils.create('span', {
-                      text: text,
-                      style: monoUtils.extend({}, defaultStyle, {
-                        fontSize: fontSize + 'px'
-                      }, block.width.fontStyle)
-                    }), function(size) {
-                      var cSize = block.fontSizeWidth[fontSize];
-                      if (cSize === undefined || cSize < size) {
-                        block.fontSizeWidth[fontSize] = size;
-                      }
-                      return onReady();
-                    });
-                  });
-                });
-              });
-
-              onReady();
-            },
-            /**
-             *
-             * @param {{origin: String, destination: String, currency: String, price: Number, dateStart: String, dateEnd: String}} pageInfo
-             */
-            aviaBarSaveInHistory: function(pageInfo) {
-              var originCity = main.getCityName(pageInfo.origin);
-              var destinationCity = main.getCityName(pageInfo.destination);
-              if (!originCity || !destinationCity) {
-                return;
-              }
-
-              var data = {
-                originCity: originCity,
-                destinationCity: destinationCity,
-                origin: pageInfo.origin,
-                destination: pageInfo.destination,
-                dateStart: pageInfo.dateStart,
-                dateEnd: pageInfo.dateEnd,
-                time: parseInt(Date.now() / 1000)
-              };
-
-              return tbr.emit('history', data);
-            },
-            aviaBarCreate: function(details, oldBar) {
-              var prices = details.prices;
-              var pageInfo = details.pageInfo;
-
-              var mainItemIndex = main.getAviaBarItemIndex(prices.data);
-              if (mainItemIndex === -1) {
-                tbr.error('Bar item is not found!', details);
-                return;
-              }
-
-              var isOneWay = !pageInfo.dateEnd;
-
-              var mainItem = main.bar.prepareAviaItem(pageInfo, prices.data[mainItemIndex]);
-              var isCalendar = !!mainItem.monthPrice;
-
-              var trackByVendor = function(data) {
-                var map = {
-                  aviasales: 'as',
-                  skyscanner: 'sc'
-                };
-
-                var prefix = map[mainItem.vendor];
-                if (prefix) {
-                  data.ec += '-' + prefix;
-                  return tbr.emit('track', data);
-                } else {
-                  return tbr.error('Prefix is not found!', mainItem.vendor);
-                }
-              };
-
-              var barUrl = null;
-              if (mainItem.url) {
-                barUrl = mainItem.url;
-              } else {
-                barUrl = 'http://hydra.aviasales.ru/searches/new' + '?' + monoUtils.param({
-                  origin_iata: pageInfo.origin,
-                  destination_iata: pageInfo.destination,
-                  adults: 1,
-                  children: 0,
-                  infants: 0,
-                  trip_class: 0,
-                  depart_date: pageInfo.dateStart,
-                  return_date: pageInfo.dateEnd,
-                  marker: appInfo.id,
-                  with_request: true
-                });
-              }
-
-              var priceObj = main.getPrice(mainItem.currency, mainItem.value);
-
-              var strings = {
-                price: priceObj.string,
-                pointA: main.getCityName(mainItem.origin),
-                pointB: main.getCityName(mainItem.destination),
-                view: tbr.language.view
-              };
-
-              if (!strings.pointA || !strings.pointB) {
-                tbr.error('City name is not defined!', mainItem);
-                return;
-              }
-
-              var blocks = {};
-
-              blocks.closeBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell', 'sf-center'],
-                  style: {
-                    cursor: 'default'
-                  }
-                }),
-                closeBtn: monoUtils.create('a', {
-                  class: 'sf-close-btn',
-                  href: '#close',
-                  title: tbr.language.close,
-                  append: [
-                    main.bar.getCloseBtn()
-                  ],
-                  on: ['click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    details.close(1);
-
-                    tbr.emit('track', {
-                      ec: 'cheapflight',
-                      ea: 'close',
-                      el: tbr.hostname,
-                      t: 'event'
-                    });
-
-                    trackByVendor({
-                      ec: 'cheapflight',
-                      ea: 'close',
-                      el: tbr.hostname,
-                      t: 'event'
-                    });
-                  }]
-                }),
-                width: 36,
-                leftFixed: 1
-              };
-              blocks.closeBlock.node.appendChild(blocks.closeBlock.closeBtn);
-
-              blocks.leftResizeBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell']
-                }),
-                width: 0
-              };
-
-              if (isCalendar) {
-                strings.calLabel = tbr.language.calLabel;
-
-                blocks.calLabel = {
-                  node: monoUtils.create('div', {
-                    class: ['sf-cell', 'sf-label'],
-                    text: strings.calLabel
-                  }),
-                  width: {
-                    strings: [
-                      strings.calLabel
-                    ],
-                    fontSize: 14,
-                    default: 200
-                  },
-                  leftFixed: 1
-                };
-              } else if (isOneWay) {
-                strings.foundOneWay = tbr.language.foundOneWay + ':';
-                strings.dateStart = main.getDate(mainItem.dateStart);
-
-                blocks.dateBlock = {
-                  node: monoUtils.create('div', {
-                    class: ['sf-cell'],
-                    append: [
-                      monoUtils.create('div', {
-                        class: ['sf-label'],
-                        text: strings.foundOneWay
-                      }),
-                      monoUtils.create('div', {
-                        class: ['sf-date'],
-                        text: strings.dateStart
-                      })
-                    ]
-                  }),
-                  width: {
-                    strings: [
-                      strings.foundOneWay,
-                      strings.dateStart
-                    ],
-                    fontSize: 14,
-                    default: 200
-                  },
-                  leftFixed: 1
-                };
-              } else {
-                strings.foundTwoWay = tbr.language.foundTwoWay + ':';
-
-                blocks.dateFoundBlock = {
-                  node: monoUtils.create('div', {
-                    class: ['sf-cell', 'sf-label', 'sf-right'],
-                    text: strings.foundTwoWay
-                  }),
-                  width: {
-                    strings: [
-                      strings.foundTwoWay
-                    ],
-                    fontSize: 14,
-                    default: 120
-                  },
-                  leftFixed: 1
-                };
-
-                strings.origin = tbr.language.origin + String.fromCharCode(160);
-                strings.destination = tbr.language.destination + String.fromCharCode(160);
-
-                blocks.dateLabesBlock = {
-                  node: monoUtils.create('div', {
-                    class: ['sf-cell'],
-                    append: [
-                      monoUtils.create('div', {
-                        class: ['sf-right'],
-                        text: strings.origin
-                      }),
-                      monoUtils.create('div', {
-                        class: ['sf-right'],
-                        text: strings.destination
-                      })
-                    ]
-                  }),
-                  width: {
-                    strings: [
-                      strings.origin,
-                      strings.destination
-                    ],
-                    fontSize: 14,
-                    plus: 10,
-                    default: 80
-                  },
-                  leftFixed: 1
-                };
-
-                strings.dateStart = main.getDate(mainItem.dateStart);
-                strings.dateEnd = main.getDate(mainItem.dateEnd);
-
-                blocks.dateBlock = {
-                  node: monoUtils.create('div', {
-                    class: ['sf-cell'],
-                    append: [
-                      monoUtils.create('div', {
-                        class: ['sf-nowrap'],
-                        text: strings.dateStart
-                      }),
-                      monoUtils.create('div', {
-                        class: ['sf-nowrap'],
-                        text: strings.dateEnd
-                      })
-                    ]
-                  }),
-                  width: {
-                    strings: [
-                      strings.dateStart,
-                      strings.dateEnd
-                    ],
-                    fontSize: 14,
-                    default: 100
-                  },
-                  leftFixed: 1
-                };
-              }
-
-              if (isCalendar) {
-                strings.calMonth = main.getCalMonth(mainItem.dateStart);
-                strings.calMonth = tbr.language.inMonth.replace('%month%', strings.calMonth);
-
-                var inlineArrow = null;
-                var plusWidth = 0;
-                if (isOneWay) {
-                  inlineArrow = main.bar.getOneWayLine();
-                  plusWidth = 140;
-                } else {
-                  inlineArrow = main.bar.getTwoWayLines();
-                  plusWidth = 75;
-                }
-                inlineArrow.style.display = 'block';
-
-                blocks.calendarCanterBlock = {
-                  node: monoUtils.create('div', {
-                    class: ['sf-cell', 'sf-center', 'sf-point'],
-                    append: [
-                      monoUtils.create('div', {
-                        class: ['sf-place'],
-                        append: [
-                          strings.pointA,
-                          ' ',
-                          monoUtils.create('div', {
-                            style: {
-                              display: 'inline-block',
-                              verticalAlign: 'middle'
-                            },
-                            append: inlineArrow
-                          }),
-                          ' ',
-                          strings.pointB,
-                          ' ',
-                          strings.calMonth
-                        ]
-                      })
-                    ]
-                  }),
-                  width: {
-                    strings: [
-                      strings.pointA + ' ' + strings.pointB + ' ' + strings.calMonth
-                    ],
-                    fontSize: [26, 22, 18],
-                    plus: plusWidth
-                  }
-                };
-              } else {
-                blocks.pointABlock = {
-                  node: monoUtils.create('div', {
-                    class: ['sf-cell', 'sf-right', 'sf-point'],
-                    append: [
-                      monoUtils.create('div', {
-                        class: ['sf-place', 'sf-right'],
-                        text: strings.pointA
-                      })
-                    ]
-                  }),
-                  width: {
-                    strings: [
-                      strings.pointA
-                    ],
-                    fontSize: [26, 22, 18]
-                  }
-                };
-
-                if (isOneWay) {
-                  blocks.arrowBlock = {
-                    node: monoUtils.create('div', {
-                      class: ['sf-cell', 'sf-center'],
-                      append: [
-                        main.bar.getOneWayLine()
-                      ]
-                    }),
-                    width: 140
-                  };
-                } else {
-                  blocks.arrowBlock = {
-                    node: monoUtils.create('div', {
-                      class: ['sf-cell', 'sf-center'],
-                      append: [
-                        main.bar.getTwoWayLines()
-                      ]
-                    }),
-                    width: 75
-                  };
-                }
-
-                blocks.pointBBlock = {
-                  node: monoUtils.create('div', {
-                    class: ['sf-cell', 'sf-point'],
-                    append: [
-                      monoUtils.create('div', {
-                        class: ['sf-place'],
-                        text: strings.pointB
-                      })
-                    ]
-                  }),
-                  width: {
-                    strings: [
-                      strings.pointB
-                    ],
-                    fontSize: [26, 22, 18]
-                  }
-                };
-              }
-
-              blocks.priceBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell', 'sf-price', 'sf-center', 'sf-nowrap'],
-                  append: main.getPriceNode(priceObj)
-                }),
-                width: {
-                  strings: [
-                    strings.price
-                  ],
-                  fontSize: 26,
-                  fontStyle: {
-                    fontWeight: 'bold'
-                  },
-                  default: 120
-                },
-                rightFixed: 1
-              };
-
-              var viewLink = null;
-              blocks.viewBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell', 'sf-center'],
-                  append: [
-                    viewLink = monoUtils.create('a', {
-                      class: 'sf-view-btn',
-                      href: barUrl,
-                      target: '_blank',
-                      text: strings.view,
-                      on: ['click', function(e) {
-                        e.stopPropagation();
-
-                        tbr.emit('track', {
-                          cd: 'flightclick',
-                          t: 'screenview'
-                        });
-
-                        tbr.emit('track', {
-                          ec: 'cheapflight',
-                          ea: 'click',
-                          el: tbr.hostname,
-                          cd: 'flightclick',
-                          t: 'event'
-                        });
-
-                        if (!isCalendar) {
-                          tbr.emit('track', {
-                            cd: 'flight_betterprice_click',
-                            t: 'screenview'
-                          });
-
-                          tbr.emit('track', {
-                            ec: 'cheapflight',
-                            ea: 'betterpriceclick',
-                            el: tbr.hostname,
-                            cd: 'flight_betterprice_click',
-                            t: 'event'
-                          });
-
-                          trackByVendor({
-                            ec: 'cheapflight',
-                            ea: 'betterpriceclick',
-                            el: tbr.hostname,
-                            cd: 'flight_betterprice_click',
-                            t: 'event'
-                          });
-                        } else {
-                          tbr.emit('track', {
-                            cd: 'flight_calendar_click',
-                            t: 'screenview'
-                          });
-
-                          tbr.emit('track', {
-                            ec: 'cheapflight',
-                            ea: 'calendarclick',
-                            el: tbr.hostname,
-                            cd: 'flight_calendar_click',
-                            t: 'event'
-                          });
-                        }
-                      }]
-                    })
-                  ]
-                }),
-                width: 130,
-                rightFixed: 1
-              };
-
-              blocks.rightResizeBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell']
-                }),
-                width: 0
-              };
-
-              var leftFixedBlocks = [];
-              var rightFixedBlocks = [];
-
-              var rndId = 's' + Math.random().toString(36).substring(7);
-              var bar = details.barEl = monoUtils.create('div', {
-                id: rndId,
-                style: {
-                  top: '-1px !important',
-                  display: 'table !important',
-                  opacity: '1 !important',
-                  zIndex: 99999999,
-                  cursor: 'pointer'
-                },
-                append: (function() {
-                  var blockList = [];
-                  for (var key in blocks) {
-                    var block = blocks[key];
-                    if (block.leftFixed) {
-                      leftFixedBlocks.push(key);
-                    }
-                    if (block.rightFixed) {
-                      rightFixedBlocks.push(key);
-                    }
-                    blockList.push(block.node);
-                  }
-                  return blockList;
-                })(),
-                on: ['click', function(e) {
-                  e.stopPropagation();
-                  e.preventDefault();
-
-                  viewLink.dispatchEvent(new CustomEvent('click'));
-                }]
-              });
-
-              var currentFontSizeObj = {};
-              if (isCalendar) {
-                details.onBlocksResize = function(width, leftBlocksSize, rightBlockSize) {
-                  var type = 'calendarCanterBlock';
-                  var blockWidth = parseInt(width - leftBlocksSize - rightBlockSize);
-
-                  var needResize = false;
-                  (function() {
-                    var currentFontSize = currentFontSizeObj[type];
-                    if (currentFontSize) {
-                      if (blockWidth >= currentFontSize.minWidth && blockWidth < currentFontSize.maxWidth) {
-                        return;
-                      }
-                    }
-
-                    needResize = true;
-
-                    var found = blocks[type].widthList.some(function(item) {
-                      if (blockWidth >= item.minWidth && blockWidth < item.maxWidth) {
-                        currentFontSizeObj[type] = item;
-                        return true;
-                      }
-                    });
-
-                    if (!found) {
-                      currentFontSizeObj[type] = blocks[type].widthList.slice(-1)[0];
-                    }
-                  })();
-
-                  if (needResize) {
-                    var fontSize = currentFontSizeObj[type].fontSize;
-                    blocks[type].node.style.fontSize = fontSize + 'px';
-                  }
-
-                  blocks[type].node.style.width = blockWidth + 'px';
-                };
-              } else {
-                details.onBlocksResize = function(width, leftBlocksSize, rightBlockSize) {
-                  var arrowBlockWidth = width / 2 - blocks.arrowBlock.width / 2;
-
-                  var blockWidthObj = {
-                    pointABlock: parseInt(arrowBlockWidth - leftBlocksSize),
-                    pointBBlock: parseInt(arrowBlockWidth - rightBlockSize)
-                  };
-
-                  var needResize = false;
-                  ['pointABlock', 'pointBBlock'].forEach(function(type) {
-                    var blockWidth = blockWidthObj[type];
-
-                    var currentFontSize = currentFontSizeObj[type];
-                    if (currentFontSize) {
-                      if (blockWidth >= currentFontSize.minWidth && blockWidth < currentFontSize.maxWidth) {
-                        return;
-                      }
-                    }
-
-                    needResize = true;
-
-                    var found = blocks[type].widthList.some(function(item) {
-                      if (blockWidth >= item.minWidth && blockWidth < item.maxWidth) {
-                        currentFontSizeObj[type] = item;
-                        return true;
-                      }
-                    });
-
-                    if (!found) {
-                      currentFontSizeObj[type] = blocks[type].widthList.slice(-1)[0];
-                    }
-                  });
-
-                  if (needResize) {
-                    var fontSize = Math.min(currentFontSizeObj.pointABlock.fontSize, currentFontSizeObj.pointBBlock.fontSize);
-                    blocks.pointABlock.node.style.fontSize = fontSize + 'px';
-                    blocks.pointBBlock.node.style.fontSize = fontSize + 'px';
-                  }
-
-                  blocks.pointABlock.node.style.width = blockWidthObj.pointABlock + 'px';
-                  blocks.pointBBlock.node.style.width = blockWidthObj.pointBBlock + 'px';
-                };
-              }
-
-              var barHeight = 46;
-              return main.bar.calcBlockSize(blocks, function() {
-                var style = details.styleEl = main.bar.getStyle({
-                  rndId: rndId,
-                  barHeight: barHeight
-                });
-
-                var leftBlocksSize = 0;
-                leftFixedBlocks.forEach(function(key) {
-                  leftBlocksSize += blocks[key].width;
-                });
-
-                var rightBlockSize = 0;
-                rightFixedBlocks.forEach(function(key) {
-                  rightBlockSize += blocks[key].width;
-                });
-
-                var lastBarWidth = 0;
-                var currentWidthFix = 0;
-                var barMaxWidth = 1200;
-
-                var updateBarWidth = function() {
-                  var width = document.documentElement.clientWidth;
-
-                  var sizeFix = width - barMaxWidth;
-                  if (sizeFix > 0) {
-                    width = barMaxWidth;
-
-                    var fixWidth = Math.floor(sizeFix / 2);
-                    if (fixWidth !== currentWidthFix) {
-                      currentWidthFix = fixWidth;
-                      blocks.leftResizeBlock.node.style.width = fixWidth + 'px';
-                      blocks.rightResizeBlock.node.style.width = fixWidth + 'px';
-                    }
-                  } else if (currentWidthFix !== 0) {
-                    currentWidthFix = 0;
-                    blocks.leftResizeBlock.node.style.width = 0;
-                    blocks.rightResizeBlock.node.style.width = 0;
-                  }
-
-                  if (lastBarWidth === width) {
-                    return;
-                  }
-                  lastBarWidth = width;
-
-                  return details.onBlocksResize(width, leftBlocksSize, rightBlockSize);
-                };
-
-                details.onResize = updateBarWidth;
-                window.addEventListener('resize', details.onResize);
-
-                if (oldBar) {
-                  oldBar.replace(details);
-                  updateBarWidth();
-
-                  tbr.emit('track', {
-                    ec: 'cheapflight',
-                    ea: 'update',
-                    el: tbr.hostname,
-                    t: 'event'
-                  });
-
-                  if (!isCalendar) {
-                    trackByVendor({
-                      ec: 'cheapflight',
-                      ea: 'update',
-                      el: tbr.hostname,
-                      t: 'event'
-                    });
-
-                    tbr.emit('track', {
-                      cd: 'flight_betterprice_update',
-                      t: 'screenview'
-                    });
-                  } else {
-                    tbr.emit('track', {
-                      cd: 'flight_calendar_update',
-                      t: 'screenview'
-                    });
-                  }
-                } else {
-                  main.bar.rndClassName(bar, style);
-                  var ctr = monoUtils.create(document.createDocumentFragment(), {
-                    append: [bar, style]
-                  });
-
-                  document.body.appendChild(ctr);
-
-                  setTimeout(function() {
-                    updateBarWidth();
-                    main.bar.marginPage(details, barHeight);
-                  }, 0);
-
-                  tbr.emit('track', {
-                    cd: 'flightshow',
-                    t: 'screenview'
-                  });
-
-                  tbr.emit('track', {
-                    ec: 'cheapflight',
-                    ea: 'show',
-                    el: tbr.hostname,
-                    cd: 'flightshow',
-                    t: 'event'
-                  });
-
-                  if (!isCalendar) {
-                    trackByVendor({
-                      ec: 'cheapflight',
-                      ea: 'show',
-                      el: tbr.hostname,
-                      cd: 'flightshow',
-                      t: 'event'
-                    });
-
-                    tbr.emit('track', {
-                      cd: 'flight_betterprice_show',
-                      t: 'screenview'
-                    });
-                  } else {
-                    tbr.emit('track', {
-                      cd: 'flight_calendar_show',
-                      t: 'screenview'
-                    });
-                  }
-                }
-
-                if (isCalendar) {
-                  tbr.emit('track', {
-                    ec: 'cheapflight',
-                    ea: 'calendarPrice',
-                    el: tbr.hostname,
-                    t: 'event'
-                  });
-                }
-              });
-            },
-            hotelBarCreate: function(details, oldBar) {
-              var pageInfo = details.pageInfo;
-
-              var mainItem = main.bar.prepareHotelItem(pageInfo, main.bar.getHotelBarItem(details));
-              var isSuggest = !!mainItem.isSuggest;
-
-              var priceObj = main.getPrice(mainItem.currency, mainItem.value);
-
-              var strings = {
-                foundHotel: tbr.language.foundHotel + ':' + String.fromCharCode(160),
-                aroundHotel: tbr.language.aroundHotel + ':' + String.fromCharCode(160),
-                name: mainItem.name,
-                checkIn: tbr.language.checkIn + String.fromCharCode(160),
-                checkOut: tbr.language.checkOut + String.fromCharCode(160),
-                dateIn: main.getDate(mainItem.dateIn),
-                dateOut: main.getDate(mainItem.dateOut),
-                price: priceObj.string
-              };
-
-              var blocks = {};
-              blocks.closeBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell', 'sf-center'],
-                  style: {
-                    cursor: 'default'
-                  }
-                }),
-                closeBtn: monoUtils.create('a', {
-                  class: 'sf-close-btn',
-                  href: '#close',
-                  title: tbr.language.close,
-                  append: [
-                    main.bar.getCloseBtn()
-                  ],
-                  on: ['click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    details.close(1);
-
-                    tbr.emit('track', {
-                      ec: 'hotel',
-                      ea: 'close',
-                      el: tbr.hostname,
-                      t: 'event'
-                    });
-                  }]
-                }),
-                width: 36,
-                leftFixed: 1
-              };
-              blocks.closeBlock.node.appendChild(blocks.closeBlock.closeBtn);
-
-              blocks.leftResizeBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell']
-                }),
-                width: 0
-              };
-
-              if (isSuggest) {
-                blocks.dateFoundBlock = {
-                  node: monoUtils.create('div', {
-                    class: ['sf-cell', 'sf-label', 'sf-right'],
-                    text: strings.aroundHotel
-                  }),
-                  width: {
-                    strings: [
-                      strings.aroundHotel
-                    ],
-                    fontSize: 14,
-                    default: 190
-                  },
-                  leftFixed: 1
-                };
-              } else {
-                blocks.dateFoundBlock = {
-                  node: monoUtils.create('div', {
-                    class: ['sf-cell', 'sf-label', 'sf-right'],
-                    text: strings.foundHotel
-                  }),
-                  width: {
-                    strings: [
-                      strings.foundHotel
-                    ],
-                    fontSize: 14,
-                    default: 160
-                  },
-                  leftFixed: 1
-                };
-              }
-
-              blocks.pointABlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell', 'sf-point'],
-                  append: [
-                    monoUtils.create('div', {
-                      class: ['sf-place'],
-                      text: strings.name
-                    })
-                  ]
-                }),
-                width: {
-                  strings: [
-                    strings.name
-                  ],
-                  fontSize: [26, 22, 18]
-                }
-              };
-
-              blocks.dateLabesBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell'],
-                  append: [
-                    monoUtils.create('div', {
-                      class: ['sf-right'],
-                      text: strings.checkIn
-                    }),
-                    monoUtils.create('div', {
-                      class: ['sf-right'],
-                      text: strings.checkOut
-                    })
-                  ]
-                }),
-                width: {
-                  strings: [
-                    strings.checkIn,
-                    strings.checkOut
-                  ],
-                  fontSize: 14,
-                  default: 95
-                },
-                rightFixed: 1
-              };
-
-              blocks.dateBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell'],
-                  append: [
-                    monoUtils.create('div', {
-                      class: ['sf-nowrap'],
-                      text: strings.dateIn
-                    }),
-                    monoUtils.create('div', {
-                      class: ['sf-nowrap'],
-                      text: strings.dateOut
-                    })
-                  ]
-                }),
-                width: {
-                  strings: [
-                    strings.dateIn,
-                    strings.dateOut
-                  ],
-                  fontSize: 14,
-                  default: 100
-                },
-                rightFixed: 1
-              };
-
-              blocks.priceBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell', 'sf-price', 'sf-center', 'sf-nowrap'],
-                  append: main.getPriceNode(priceObj)
-                }),
-                width: {
-                  strings: [
-                    strings.price
-                  ],
-                  fontSize: 26,
-                  fontStyle: {
-                    fontWeight: 'bold'
-                  },
-                  plus: 30,
-                  default: 120
-                },
-                rightFixed: 1
-              };
-
-              var viewLink = null;
-              blocks.viewBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell', 'sf-center'],
-                  append: [
-                    viewLink = monoUtils.create('a', {
-                      class: 'sf-view-btn',
-                      href: mainItem.link,
-                      target: '_blank',
-                      text: tbr.language.view,
-                      on: ['click', function(e) {
-                        e.stopPropagation();
-
-                        tbr.emit('track', {
-                          cd: 'hotelclick',
-                          t: 'screenview'
-                        });
-
-                        tbr.emit('track', {
-                          ec: 'hotel',
-                          ea: 'click',
-                          el: tbr.hostname,
-                          cd: 'hotelclick',
-                          t: 'event'
-                        });
-
-                        if (isSuggest) {
-                          tbr.emit('track', {
-                            cd: 'hotelNearbyClick',
-                            t: 'screenview'
-                          });
-
-                          tbr.emit('track', {
-                            ec: 'hotel',
-                            ea: 'nearbyClick',
-                            el: tbr.hostname,
-                            cd: 'hotelNearbyClick',
-                            t: 'event'
-                          });
-                        }
-                      }]
-                    })
-                  ]
-                }),
-                width: 130,
-                rightFixed: 1
-              };
-
-              blocks.rightResizeBlock = {
-                node: monoUtils.create('div', {
-                  class: ['sf-cell']
-                }),
-                width: 0
-              };
-
-              var leftFixedBlocks = [];
-              var rightFixedBlocks = [];
-
-              var rndId = 's' + Math.random().toString(36).substring(7);
-              var bar = details.barEl = monoUtils.create('div', {
-                id: rndId,
-                style: {
-                  top: '-1px !important',
-                  display: 'table !important',
-                  opacity: '1 !important',
-                  zIndex: 99999999,
-                  cursor: 'pointer'
-                },
-                append: (function() {
-                  var blockList = [];
-                  for (var key in blocks) {
-                    var block = blocks[key];
-                    if (block.leftFixed) {
-                      leftFixedBlocks.push(key);
-                    }
-                    if (block.rightFixed) {
-                      rightFixedBlocks.push(key);
-                    }
-                    blockList.push(block.node);
-                  }
-                  return blockList;
-                })(),
-                on: ['click', function(e) {
-                  e.stopPropagation();
-                  e.preventDefault();
-
-                  viewLink.dispatchEvent(new CustomEvent('click'));
-                }]
-              });
-
-              var currentFontSizeObj = {};
-              details.onBlocksResize = function(width, leftBlocksSize, rightBlockSize) {
-                var type = 'pointABlock';
-                var blockWidth = parseInt(width - leftBlocksSize - rightBlockSize);
-
-                var needResize = false;
-                (function() {
-                  var currentFontSize = currentFontSizeObj[type];
-                  if (currentFontSize) {
-                    if (blockWidth >= currentFontSize.minWidth && blockWidth < currentFontSize.maxWidth) {
-                      return;
-                    }
-                  }
-
-                  needResize = true;
-
-                  var found = blocks[type].widthList.some(function(item) {
-                    if (blockWidth >= item.minWidth && blockWidth < item.maxWidth) {
-                      currentFontSizeObj[type] = item;
-                      return true;
-                    }
-                  });
-
-                  if (!found) {
-                    currentFontSizeObj[type] = blocks[type].widthList.slice(-1)[0];
-                  }
-                })();
-
-                if (needResize) {
-                  var fontSize = currentFontSizeObj[type].fontSize;
-                  blocks[type].node.style.fontSize = fontSize + 'px';
-                }
-
-                blocks[type].node.style.width = blockWidth + 'px';
-              };
-
-              var barHeight = 46;
-              main.bar.calcBlockSize(blocks, function() {
-                var style = details.styleEl = main.bar.getStyle({
-                  rndId: rndId,
-                  barHeight: barHeight
-                });
-
-                var leftBlocksSize = 0;
-                leftFixedBlocks.forEach(function(key) {
-                  leftBlocksSize += blocks[key].width;
-                });
-
-                var rightBlockSize = 0;
-                rightFixedBlocks.forEach(function(key) {
-                  rightBlockSize += blocks[key].width;
-                });
-
-                var lastBarWidth = 0;
-                var currentWidthFix = 0;
-                var barMaxWidth = 1200;
-
-                var updateBarWidth = function() {
-                  var width = document.documentElement.clientWidth;
-
-                  var sizeFix = width - barMaxWidth;
-                  if (sizeFix > 0) {
-                    width = barMaxWidth;
-
-                    var fixWidth = Math.floor(sizeFix / 2);
-                    if (fixWidth !== currentWidthFix) {
-                      currentWidthFix = fixWidth;
-                      blocks.leftResizeBlock.node.style.width = fixWidth + 'px';
-                      blocks.rightResizeBlock.node.style.width = fixWidth + 'px';
-                    }
-                  } else if (currentWidthFix !== 0) {
-                    currentWidthFix = 0;
-                    blocks.leftResizeBlock.node.style.width = 0;
-                    blocks.rightResizeBlock.node.style.width = 0;
-                  }
-
-                  if (lastBarWidth === width) {
-                    return;
-                  }
-                  lastBarWidth = width;
-
-                  return details.onBlocksResize(width, leftBlocksSize, rightBlockSize);
-                };
-
-                details.onResize = updateBarWidth;
-                window.addEventListener('resize', details.onResize);
-
-                if (oldBar) {
-                  oldBar.replace(details);
-                  updateBarWidth();
-
-                  tbr.emit('track', {
-                    ec: 'hotel',
-                    ea: 'update',
-                    el: tbr.hostname,
-                    t: 'event'
-                  });
-
-                  if (isSuggest) {
-                    tbr.emit('track', {
-                      cd: 'hotelNearbyUpdate',
-                      t: 'screenview'
-                    });
-
-                    tbr.emit('track', {
-                      ec: 'hotel',
-                      ea: 'nearbyUpdate',
-                      el: tbr.hostname,
-                      cd: 'hotelNearbyUpdate',
-                      t: 'event'
-                    });
-                  }
-                } else {
-                  main.bar.rndClassName(bar, style);
-                  var ctr = monoUtils.create(document.createDocumentFragment(), {
-                    append: [bar, style]
-                  });
-
-                  document.body.appendChild(ctr);
-
-                  setTimeout(function() {
-                    updateBarWidth();
-                    main.bar.marginPage(details, barHeight);
-                  }, 0);
-
-                  tbr.emit('track', {
-                    cd: 'hotelshow',
-                    t: 'screenview'
-                  });
-
-                  tbr.emit('track', {
-                    ec: 'hotel',
-                    ea: 'show',
-                    el: tbr.hostname,
-                    cd: 'hotelshow',
-                    t: 'event'
-                  });
-
-                  if (isSuggest) {
-                    tbr.emit('track', {
-                      cd: 'hotelNearbyShow',
-                      t: 'screenview'
-                    });
-
-                    tbr.emit('track', {
-                      ec: 'hotel',
-                      ea: 'nearbyShow',
-                      el: tbr.hostname,
-                      cd: 'hotelNearbyShow',
-                      t: 'event'
-                    });
-                  }
-                }
-              });
-            },
-            create: function(details) {
-              var oldBar = main.bar.current;
-              if (oldBar && oldBar.isClosed) {
-                oldBar = null;
-              }
-
-              main.bar.current = details;
-
-              details.isClosed = false;
-              details.close = function(byUser) {
-                if (details.isClosed) {
-                  return;
-                }
-                details.isClosed = true;
-
-                main.bar.onClose(details, byUser);
-              };
-
-              details.replace = function(newDetails) {
-                main.bar.onReplace(details, newDetails);
-              };
-
-              if (details.type === 'hotel') {
-                main.bar.hotelBarCreate(details, oldBar);
-              } else {
-                main.bar.aviaBarCreate(details, oldBar);
-              }
-            },
-            rndClassName: function(bar, style) {
-              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-              var dDbl = {};
-
-              var getRnd = function() {
-                var limit = 10;
-                var rnd = 't';
-                do {
-                  limit--;
-                  for (var i = 0; i < 21; i++) {
-                    rnd += possible.charAt(Math.floor(Math.random() * possible.length));
-                  }
-                } while (dDbl[rnd] && limit > 0);
-
-                dDbl[rnd] = 1;
-
-                return rnd;
-              };
-
-              var classMap = {};
-              var slice = [].slice;
-              slice.call(bar.querySelectorAll('[class]')).forEach(function(node) {
-                slice.call(node.classList).forEach(function(className) {
-                  if (!classMap[className]) {
-                    classMap[className] = getRnd();
-                  }
-                  node.classList.remove(className);
-                  var rnd = classMap[className];
-                  node.classList.add(rnd);
-                });
-              });
-
-              var styleText = style.textContent;
-              Object.keys(classMap).forEach(function(origClassName) {
-                var newClassName = classMap[origClassName];
-                styleText = styleText.replace(new RegExp(origClassName, 'gi'), newClassName);
-              });
-              style.textContent = styleText;
-            }
-          }
-        };
-        return getBarUi(tbr);
-      };
-
-      var testB = function() {
-        var getBarUi = function(tbr) {
-          "use strict";
-
-          var main = tbr.main;
-
-          var origPageStyle = {};
-          var marginPage = function(barObj, show) {
-            var barHeight = 55;
-            var barNode = barObj.body.node;
-            var htmlNode = document.body.parentNode;
-            if (show) {
-              origPageStyle.marginTop = htmlNode.style.marginTop;
-              origPageStyle.transition = htmlNode.style.transition;
-
-              htmlNode.style.transition = 'margin-top 0.2s';
-              barNode.style.transition = 'margin-top 0.2s';
-
-              setTimeout(function() {
-                htmlNode.style.marginTop = barHeight + 'px';
-                barNode.style.marginTop = 0;
-
-                if (htmlNode.style.setProperty) {
-                  htmlNode.style.setProperty('margin-top', barHeight + 'px', 'important');
-                }
-
-                setTimeout(function() {
-                  htmlNode.style.transition = origPageStyle.transition;
-                  barNode.style.transition = '';
-                }, 250);
-              }, 0);
-
-              var onShow = main.currentProfile.onShow;
-              onShow && onShow(barHeight);
-            } else {
-              htmlNode.style.marginTop = origPageStyle.marginTop;
-
-              var onHide = main.currentProfile.onHide;
-              onHide && onHide();
-            }
-          };
-
-          var rndClassName = function(barNode, styleNode) {
-            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var dDbl = {};
-
-            var getRnd = function() {
-              var limit = 10;
-              var rnd = 't';
-              do {
-                limit--;
-                for (var i = 0; i < 21; i++) {
-                  rnd += possible.charAt(Math.floor(Math.random() * possible.length));
-                }
-              } while (dDbl[rnd] && limit > 0);
-
-              dDbl[rnd] = 1;
-
-              return rnd;
-            };
-
-            var classMap = {};
-            var slice = [].slice;
-            slice.call(barNode.querySelectorAll('[class]')).forEach(function(node) {
-              slice.call(node.classList).forEach(function(className) {
-                if (!classMap[className]) {
-                  classMap[className] = getRnd();
-                }
-                node.classList.remove(className);
-                var rnd = classMap[className];
-                node.classList.add(rnd);
-              });
-            });
-
-            var styleText = styleNode.textContent;
-            Object.keys(classMap).forEach(function(origClassName) {
-              var newClassName = classMap[origClassName];
-              styleText = styleText.replace(new RegExp(origClassName, 'gi'), newClassName);
-            });
-            styleNode.textContent = styleText;
-          };
-
-          var Bar = function(details) {
-            this.hostname = tbr.hostname;
-            this.type = details.type;
-            this.details = details;
-            this.isClosed = false;
-            this.isRemoved = false;
-            this.container = document.createDocumentFragment();
-
-            this.styleCss = [];
-
-            this.barContent = this.getBarContent();
-
-            this.body = this.getBody();
-
-            this.content = this.getContent();
-
-            this.body.content.appendChild(this.content.node);
-
-            this.style = this.getStyle();
-
-            this.container.appendChild(this.body.node);
-            this.container.appendChild(this.style.node);
-
-            rndClassName(this.container, this.style.node);
-          };
-
-          Bar.prototype.trackByVendor = function(data) {
-            var map = {
-              aviasales: 'as',
-              skyscanner: 'sc'
-            };
-
-            var vendor = this.barContent.vendor;
-            var prefix = map[vendor];
-            if (prefix) {
-              data.ec += '-' + prefix;
-              return tbr.emit('track', data);
-            } else {
-              return tbr.error('Prefix is not found!', vendor);
-            }
-          };
-
-          Bar.prototype.getAviaBarContent = function() {
-            var pageInfo = this.details.pageInfo;
-            var prices = this.details.prices;
-
-            var getAviaBarItemIndex = function(priceList) {
-              var minDate = null;
-              var minItem = null;
-
-              priceList.forEach(function(item) {
-                var m = /(\d{4}.\d{2}.\d{2})/.exec(item.depart_date);
-                if (!m) {
-                  return;
-                }
-
-                var date = m[1];
-
-                if (minDate === null || minDate > date) {
-                  minDate = date;
-                  minItem = null;
-                }
-
-                if (date === minDate) {
-                  if (minItem === null || item.value < minItem.value) {
-                    minItem = item;
-                  }
-                }
-              });
-
-              var index = priceList.indexOf(minItem);
-
-              tbr.log('Bar item', index, minItem);
-              tbr.log('Result prices', priceList);
-
-              return index;
-            };
-
-            var barItem = prices.data[getAviaBarItemIndex(prices.data)];
-            if (!barItem) {
-              tbr.error('Bar item is not found!', this.details);
-              return null;
-            }
-
-            var isCalendar = !!barItem.monthPrice;
-            var isOneWay = !pageInfo.dateEnd;
-
-            var barUrl = barItem.url;
-            if (!barUrl) {
-              barUrl = 'http://hydra.aviasales.ru/searches/new' + '?' + monoUtils.param({
-                origin_iata: pageInfo.origin,
-                destination_iata: pageInfo.destination,
-                adults: 1,
-                children: 0,
-                infants: 0,
-                trip_class: 0,
-                depart_date: pageInfo.dateStart,
-                return_date: pageInfo.dateEnd,
-                marker: appInfo.id,
-                with_request: true
-              });
-            }
-
-            var content = {
-              value: barItem.converted_value || barItem.value,
-              currency: pageInfo.currency,
-
-              origin: barItem.origin,
-              destination: barItem.destination,
-
-              dateStart: barItem.depart_date,
-              dateEnd: barItem.return_date,
-
-              monthPrice: !!barItem.monthPrice,
-              vendor: barItem.vendor || 'aviasales',
-              url: barUrl,
-              isCalendar: isCalendar,
-              isOneWay: isOneWay
-            };
-
-            if (isCalendar) {
-              content.barTitle = tbr.language.calLabel;
-              content.dateStartText = tbr.language.inMonth.replace('%month%', main.getCalMonth(content.dateStart));
-            } else if (isOneWay) {
-              content.barTitle = tbr.language.foundOneWay;
-              content.dateStartText = main.getDate(content.dateStart, true);
-            } else {
-              content.barTitle = tbr.language.foundTwoWay;
-              content.dateStartText = main.getDate(content.dateStart, true);
-              content.dateEndText = main.getDate(content.dateEnd, true);
-            }
-
-            content.originName = main.getCityName(content.origin);
-            content.destinationName = main.getCityName(content.destination);
-
-            return content;
-          };
-
-          Bar.prototype.getHotelBarContent = function() {
-            var details = this.details;
-            var pageInfo = details.pageInfo;
-            var prices = details.prices;
-
-            var getHotelBarItem = function(prices) {
-              var mainItem = null;
-              var isSuggest = !!details.showSuggestPrice;
-
-              prices.data.filter(function(item) {
-                return isSuggest === !!item.isSuggest;
-              }).forEach(function(item) {
-                if (mainItem === null || mainItem.value > item.value) {
-                  mainItem = item;
-                }
-              });
-
-              return mainItem;
-            };
-
-            var barItem = getHotelBarItem(prices);
-            if (!barItem) {
-              tbr.error('Bar item is not found!', details);
-              return null;
-            }
-
-            var isSuggest = !!barItem.isSuggest;
-
-            var content = {
-              name: barItem.name,
-              stars: barItem.stars,
-
-              value: barItem.converted_value || barItem.value,
-              currency: pageInfo.currency,
-
-              dateIn: pageInfo.dateIn,
-              dateOut: pageInfo.dateOut,
-
-              url: barItem.deeplink,
-              isSuggest: isSuggest
-            };
-
-            if (typeof content.stars !== 'number' || content.stars < 0 || content.stars > 5) {
-              content.stars = 0;
-            }
-
-            if (isSuggest) {
-              content.barTitle = tbr.language.aroundHotel;
-            } else {
-              content.barTitle = tbr.language.foundHotel;
-            }
-
-            content.dateInText = main.getDate(content.dateIn, true, true);
-            content.dateOutText = main.getDate(content.dateOut, true);
-
-            return content;
-          };
-
-          Bar.prototype.getBarContent = function() {
-            if (this.type === 'avia') {
-              return this.getAviaBarContent();
-            } else if (this.type === 'hotel') {
-              return this.getHotelBarContent();
-            }
-          };
-
-          Bar.prototype.insertAviaBar = function() {
-            var _this = this;
-            var barContent = this.barContent;
-
-            var content = document.createDocumentFragment();
-
-            this.styleCss.push({
-              '.tbr-cell': {
-                display: 'inline-block'
-              }
-            }, {
-              '.tbr-cell': {
-                display: 'inline-flex'
-              }
-            });
-
-            this.styleCss.push({
-              '.tbr-title': {
-                fontSize: '20px',
-                fontWeight: 'bold',
-                margin: 'auto 10px'
-              }
-            });
-
-            content.appendChild(monoUtils.create('div', {
-              class: ['tbr-cell', 'tbr-title'],
-              style: {
-                verticalAlign: 'middle'
-              },
-              text: barContent.barTitle
-            }));
-
-            var flightInfoCell = monoUtils.create('div', {
-              class: ['tbr-cell'],
-              style: {
-                verticalAlign: 'middle',
-                flex: 2,
-                overflow: 'hidden'
-              }
-            });
-
-            content.appendChild(flightInfoCell);
-
-            this.styleCss.push({
-              '.tbr-info': {
-                height: '38px',
-                border: '1px solid rgba(255,255,255,.3)',
-                margin: 'auto 10px',
-                borderRadius: '19px',
-                padding: '0 15px'
-              }
-            });
-
-            var flightInfoWrapper = monoUtils.create('div', {
-              class: ['tbr-cell', 'tbr-info'],
-              style: {
-                overflow: 'hidden'
-              }
-            });
-
-            flightInfoCell.appendChild(flightInfoWrapper);
-
-            this.styleCss.push({
-              '.tbr-point': {
-                display: 'inline-block',
-                verticalAlign: 'middle',
-                margin: 'auto 0',
-                textOverflow: 'ellipsis',
-                color: '#fcea00',
-                fontWeight: 'bold',
-                fontSize: '14px'
-              }
-            });
-
-            var getPoint = function(name) {
-              return monoUtils.create('div', {
-                class: ['tbr-point'],
-                style: {
-                  overflow: 'hidden'
-                },
-                title: name,
-                text: name
-              });
-            };
-
-            var flightWrapper = monoUtils.create('div', {
-              class: ['tbr-cell'],
-              style: {
-                verticalAlign: 'middle',
-                overflow: 'hidden',
-                margin: 'auto 0'
-              }
-            });
-
-            flightInfoWrapper.appendChild(flightWrapper);
-
-            flightWrapper.appendChild(getPoint(barContent.originName));
-
-            this.styleCss.push({
-              '.tbr-way-icon': {
-                display: 'inline-block',
-                verticalAlign: 'middle',
-                margin: 'auto 6px'
-              }
-            });
-
-            if (barContent.isOneWay) {
-              flightWrapper.appendChild(monoUtils.create('div', {
-                class: ['tbr-way-icon'],
-                append: this.getOneWaySvg()
-              }));
-            } else {
-              flightWrapper.appendChild(monoUtils.create('div', {
-                class: ['tbr-way-icon'],
-                append: this.getTwoWaySvg()
-              }));
-            }
-
-            flightWrapper.appendChild(getPoint(barContent.destinationName));
-
-            this.styleCss.push({
-              '.tbr-dates': {
-                verticalAlign: 'middle',
-                margin: 'auto 0 auto 10px',
-                fontSize: '14px'
-              }
-            });
-
-            var flightDates = monoUtils.create('div', {
-              class: ['tbr-cell', 'tbr-dates']
-            });
-
-            flightInfoWrapper.appendChild(flightDates);
-
-            var flightDatesText = [barContent.dateStartText];
-            if (!barContent.isOneWay && !barContent.isCalendar) {
-              flightDatesText.push(' — ');
-              flightDatesText.push(barContent.dateEndText);
-            }
-            flightDates.appendChild(document.createTextNode(flightDatesText.join(' ')));
-
-            this.styleCss.push({
-              '.tbr-price': {
-                verticalAlign: 'middle',
-                fontSize: '20px',
-                fontWeight: 'bold',
-                margin: 'auto 10px',
-                lineHeight: '23px'
-              }
-            });
-
-            this.styleCss.push({
-              '.tbr-price *': {
-                fontWeight: 'inherit',
-                fontSize: 'inherit',
-                lineHeight: 'inherit'
-              }
-            });
-
-            var priceObj = main.getPrice(barContent.currency, barContent.value);
-            content.appendChild(monoUtils.create('div', {
-              class: ['tbr-cell', 'tbr-price'],
-              append: main.getPriceNode(priceObj)
-            }));
-
-            this.styleCss.push({
-              '.tbr-more-btn': {
-                verticalAlign: 'middle',
-                fontSize: '16px',
-                fontWeight: 'bold',
-                color: '#000',
-                margin: 'auto 10px',
-                padding: '10px 25px',
-                backgroundColor: '#fcea00',
-                borderRadius: '19px',
-
-                textDecoration: 'none'
-              },
-              '.tbr-more-btn:hover': {
-                backgroundColor: '#fcf380',
-                color: '#000'
-              }
-            });
-
-            this.styleCss.push({
-              '.tbr-more-btn': {
-                color: '#000 !important',
-                textDecoration: 'none !important'
-              }
-            });
-
-            var moreBtn = null;
-
-            content.appendChild(moreBtn = monoUtils.create('a', {
-              class: ['tbr-cell', 'tbr-more-btn'],
-              href: barContent.url,
-              target: '_blank',
-              text: tbr.language.view,
-              on: ['click', function(e) {
-                e.stopPropagation();
-
-                _this.content.onClick();
-              }]
-            }));
-
-            this.styleCss.push({
-              media: '@media only screen and (max-width: 1150px)',
-              append: [{
-                '.tbr-content': {
-                  maxWidth: '960px'
-                },
-                '.tbr-title': {
-                  fontSize: '18px'
-                }
-              }]
-            });
-
-            this.styleCss.push({
-              media: '@media only screen and (max-width: 1050px)',
-              append: [{
-                '.tbr-content': {
-                  maxWidth: '810px'
-                },
-                '.tbr-close-btn': {
-                  width: '24px'
-                },
-                '.tbr-right-padding': {
-                  width: '24px'
-                },
-                '.tbr-title': {
-                  fontSize: '14px',
-                  marginLeft: '5px',
-                  marginRight: '5px'
-                },
-                '.tbr-info': {
-                  marginLeft: '5px',
-                  marginRight: '5px',
-                  paddingLeft: '5px',
-                  paddingRight: '5px'
-                },
-                '.tbr-dates': {
-                  marginLeft: '5px',
-                  marginRight: '5px'
-                },
-                '.tbr-price': {
-                  fontSize: '16px',
-                  marginLeft: '5px',
-                  marginRight: '5px'
-                },
-                '.tbr-more-btn': {
-                  fontSize: '14px',
-                  marginLeft: '5px',
-                  marginRight: '5px',
-                  paddingLeft: '10px',
-                  paddingRight: '10px'
-                }
-              }]
-            });
-
-            this.styleCss.push({
-              media: '@media only screen and (max-width: 850px)',
-              append: [{
-                '.tbr-content': {
-                  maxWidth: '700px'
-                }
-              }]
-            });
-
-            var onAppend = function() {
-              tbr.emit('track', {
-                cd: 'flightshow',
-                t: 'screenview'
-              });
-
-              tbr.emit('track', {
-                ec: 'cheapflight',
-                ea: 'show',
-                el: _this.hostname,
-                cd: 'flightshow',
-                t: 'event'
-              });
-
-              if (barContent.isCalendar) {
-                tbr.emit('track', {
-                  cd: 'flight_calendar_show',
-                  t: 'screenview'
-                });
-              } else {
-                _this.trackByVendor({
-                  ec: 'cheapflight',
-                  ea: 'show',
-                  el: _this.hostname,
-                  cd: 'flightshow',
-                  t: 'event'
-                });
-
-                tbr.emit('track', {
-                  cd: 'flight_betterprice_show',
-                  t: 'screenview'
-                });
-              }
-            };
-
-            var onReplace = function() {
-              tbr.emit('track', {
-                ec: 'cheapflight',
-                ea: 'update',
-                el: _this.hostname,
-                t: 'event'
-              });
-
-              if (barContent.isCalendar) {
-                tbr.emit('track', {
-                  cd: 'flight_calendar_update',
-                  t: 'screenview'
-                });
-              } else {
-                _this.trackByVendor({
-                  ec: 'cheapflight',
-                  ea: 'update',
-                  el: _this.hostname,
-                  t: 'event'
-                });
-
-                tbr.emit('track', {
-                  cd: 'flight_betterprice_update',
-                  t: 'screenview'
-                });
-              }
-            };
-
-            var onShow = function() {
-              if (barContent.isCalendar) {
-                tbr.emit('track', {
-                  ec: 'cheapflight',
-                  ea: 'calendarPrice',
-                  el: _this.hostname,
-                  t: 'event'
-                });
-              }
-            };
-
-            var onClick = function() {
-              tbr.emit('track', {
-                cd: 'flightclick',
-                t: 'screenview'
-              });
-
-              tbr.emit('track', {
-                ec: 'cheapflight',
-                ea: 'click',
-                el: _this.hostname,
-                cd: 'flightclick',
-                t: 'event'
-              });
-
-              if (barContent.isCalendar) {
-                tbr.emit('track', {
-                  cd: 'flight_calendar_click',
-                  t: 'screenview'
-                });
-
-                tbr.emit('track', {
-                  ec: 'cheapflight',
-                  ea: 'calendarclick',
-                  el: _this.hostname,
-                  cd: 'flight_calendar_click',
-                  t: 'event'
-                });
-              } else {
-                tbr.emit('track', {
-                  cd: 'flight_betterprice_click',
-                  t: 'screenview'
-                });
-
-                tbr.emit('track', {
-                  ec: 'cheapflight',
-                  ea: 'betterpriceclick',
-                  el: _this.hostname,
-                  cd: 'flight_betterprice_click',
-                  t: 'event'
-                });
-
-                _this.trackByVendor({
-                  ec: 'cheapflight',
-                  ea: 'betterpriceclick',
-                  el: _this.hostname,
-                  cd: 'flight_betterprice_click',
-                  t: 'event'
-                });
-              }
-            };
-
-            var onClose = function() {
-              tbr.emit('track', {
-                ec: 'cheapflight',
-                ea: 'close',
-                el: _this.hostname,
-                t: 'event'
-              });
-
-              _this.trackByVendor({
-                ec: 'cheapflight',
-                ea: 'close',
-                el: _this.hostname,
-                t: 'event'
-              });
-            };
-
-            return {
-              node: content,
-              moreBtn: moreBtn,
-              onAppend: onAppend,
-              onReplace: onReplace,
-              onShow: onShow,
-              onClick: onClick,
-              onClose: onClose
-            }
-          };
-
-          Bar.prototype.insertHotelBar = function() {
-            var _this = this;
-            var barContent = this.barContent;
-
-            var content = document.createDocumentFragment();
-
-            this.styleCss.push({
-              '.tbr-cell': {
-                display: 'inline-block'
-              }
-            }, {
-              '.tbr-cell': {
-                display: 'inline-flex'
-              }
-            });
-
-            this.styleCss.push({
-              '.tbr-title': {
-                fontSize: '20px',
-                fontWeight: 'bold',
-                margin: 'auto 10px'
-              }
-            });
-
-            content.appendChild(monoUtils.create('div', {
-              class: ['tbr-cell', 'tbr-title'],
-              style: {
-                verticalAlign: 'middle'
-              },
-              text: barContent.barTitle
-            }));
-
-            var hotelInfoCell = monoUtils.create('div', {
-              class: ['tbr-cell'],
-              style: {
-                verticalAlign: 'middle',
-                flex: 2,
-                overflow: 'hidden'
-              }
-            });
-            content.appendChild(hotelInfoCell);
-
-            this.styleCss.push({
-              '.tbr-info': {
-                height: '38px',
-                border: '1px solid rgba(255,255,255,.3)',
-                margin: 'auto 10px',
-                borderRadius: '19px',
-                padding: '0 15px',
-                boxSizing: 'border-box'
-              }
-            });
-
-            this.styleCss.push({
-              '.tbr-hotel': {
-                textOverflow: 'ellipsis',
-                margin: 'auto',
-                color: '#fcea00',
-                fontWeight: 'bold',
-                fontSize: '14px'
-              }
-            });
-
-
-            var fullStarsBody = monoUtils.create('span', {
-              class: ['tbr-stars-full']
-            });
-
-            var getStar = function(one) {
-              var style = {
-                width: '16px',
-                height: '16px'
-              };
-              if (one) {
-                style.verticalAlign = 'text-bottom';
-              }
-              return monoUtils.create(_this.getStarSvg(), {
-                style: style
-              });
-            };
-
-            var starText = '';
-            for (var i = 0; i < barContent.stars; i++) {
-              fullStarsBody.appendChild(getStar());
-              starText += String.fromCharCode(9733);
-            }
-
-            if (starText) {
-              starText = ' ' + starText;
-            }
-
-            var hotelInfoWrapper = monoUtils.create('div', {
-              class: ['tbr-cell', 'tbr-info'],
-              style: {
-                overflow: 'hidden'
-              },
-              append: [
-                monoUtils.create('span', {
-                  class: ['tbr-hotel'],
-                  style: {
-                    overflow: 'hidden'
-                  },
-                  title: barContent.name + starText,
-                  text: barContent.name
-                })
-              ]
-            });
-
-            hotelInfoCell.appendChild(hotelInfoWrapper);
-
-            this.styleCss.push({
-              '.tbr-stars-full': {
-                display: 'inline-block',
-                verticalAlign: 'middle',
-                margin: 'auto 0'
-              }
-            });
-
-            hotelInfoWrapper.appendChild(fullStarsBody);
-
-            this.styleCss.push({
-              '.tbr-stars-short': {
-                display: 'none',
-                verticalAlign: 'middle',
-                margin: 'auto 0 auto 5px'
-              }
-            });
-
-            if (barContent.stars > 0) {
-              var shortStarsBody = monoUtils.create('span', {
-                class: ['tbr-stars-short'],
-                append: [
-                  barContent.stars,
-                  getStar(true)
-                ]
-              });
-
-              hotelInfoWrapper.appendChild(shortStarsBody);
-            }
-
-            this.styleCss.push({
-              '.tbr-dates': {
-                verticalAlign: 'middle',
-                margin: 'auto 0 auto 10px',
-                fontSize: '14px'
-              }
-            });
-
-            var bookingDates = monoUtils.create('div', {
-              class: ['tbr-cell', 'tbr-dates'],
-              text: [barContent.dateInText, '—', barContent.dateOutText].join(' ')
-            });
-
-            hotelInfoWrapper.appendChild(bookingDates);
-
-            this.styleCss.push({
-              '.tbr-price': {
-                verticalAlign: 'middle',
-                fontSize: '20px',
-                fontWeight: 'bold',
-                margin: 'auto 10px',
-                lineHeight: '23px'
-              }
-            });
-
-            this.styleCss.push({
-              '.tbr-price *': {
-                fontWeight: 'inherit',
-                fontSize: 'inherit',
-                lineHeight: 'inherit'
-              }
-            });
-
-            var priceObj = main.getPrice(barContent.currency, barContent.value);
-            content.appendChild(monoUtils.create('div', {
-              class: ['tbr-cell', 'tbr-price'],
-              append: main.getPriceNode(priceObj)
-            }));
-
-            this.styleCss.push({
-              '.tbr-more-btn': {
-                verticalAlign: 'middle',
-                fontSize: '16px',
-                fontWeight: 'bold',
-                color: '#000',
-                margin: 'auto 10px',
-                padding: '10px 25px',
-                backgroundColor: '#fcea00',
-                borderRadius: '19px',
-
-                textDecoration: 'none'
-              },
-              '.tbr-more-btn:hover': {
-                backgroundColor: '#fcf380',
-                color: '#000'
-              }
-            });
-
-            this.styleCss.push({
-              '.tbr-more-btn': {
-                color: '#000 !important',
-                textDecoration: 'none !important'
-              }
-            });
-
-            var moreBtn = null;
-
-            content.appendChild(moreBtn = monoUtils.create('a', {
-              class: ['tbr-cell', 'tbr-more-btn'],
-              href: barContent.url,
-              target: '_blank',
-              text: tbr.language.view,
-              on: ['click', function(e) {
-                e.stopPropagation();
-
-                _this.content.onClick();
-              }]
-            }));
-
-            this.styleCss.push({
-              media: '@media only screen and (max-width: 1150px)',
-              append: [{
-                '.tbr-content': {
-                  maxWidth: '960px'
-                },
-                '.tbr-title': {
-                  fontSize: '18px'
-                }
-              }]
-            });
-
-            this.styleCss.push({
-              media: '@media only screen and (max-width: 1050px)',
-              append: [{
-                '.tbr-content': {
-                  maxWidth: '810px'
-                },
-                '.tbr-close-btn': {
-                  width: '24px'
-                },
-                '.tbr-right-padding': {
-                  width: '24px'
-                },
-                '.tbr-title': {
-                  fontSize: '14px',
-                  marginLeft: '5px',
-                  marginRight: '5px'
-                },
-                '.tbr-info': {
-                  marginLeft: '5px',
-                  marginRight: '5px',
-                  paddingLeft: '5px',
-                  paddingRight: '5px'
-                },
-                '.tbr-dates': {
-                  marginLeft: '5px',
-                  marginRight: '5px'
-                },
-                '.tbr-price': {
-                  fontSize: '16px',
-                  marginLeft: '5px',
-                  marginRight: '5px'
-                },
-                '.tbr-more-btn': {
-                  fontSize: '14px',
-                  marginLeft: '5px',
-                  marginRight: '5px',
-                  paddingLeft: '10px',
-                  paddingRight: '10px'
-                }
-              }]
-            });
-
-            this.styleCss.push({
-              media: '@media only screen and (max-width: 950px)',
-              append: [{
-                '.tbr-stars-short': {
-                  display: 'inline-block'
-                },
-                '.tbr-stars-full': {
-                  display: 'none'
-                }
-              }]
-            });
-
-            this.styleCss.push({
-              media: '@media only screen and (max-width: 850px)',
-              append: [{
-                '.tbr-content': {
-                  maxWidth: '700px'
-                }
-              }]
-            });
-
-            var onAppend = function() {
-              tbr.emit('track', {
-                cd: 'hotelshow',
-                t: 'screenview'
-              });
-
-              tbr.emit('track', {
-                ec: 'hotel',
-                ea: 'show',
-                el: _this.hostname,
-                cd: 'hotelshow',
-                t: 'event'
-              });
-
-              if (_this.barContent.isSuggest) {
-                tbr.emit('track', {
-                  cd: 'hotelNearbyShow',
-                  t: 'screenview'
-                });
-
-                tbr.emit('track', {
-                  ec: 'hotel',
-                  ea: 'nearbyShow',
-                  el: _this.hostname,
-                  cd: 'hotelNearbyShow',
-                  t: 'event'
-                });
-              }
-            };
-
-            var onReplace = function() {
-              tbr.emit('track', {
-                ec: 'hotel',
-                ea: 'update',
-                el: _this.hostname,
-                t: 'event'
-              });
-
-              if (_this.barContent.isSuggest) {
-                tbr.emit('track', {
-                  cd: 'hotelNearbyUpdate',
-                  t: 'screenview'
-                });
-
-                tbr.emit('track', {
-                  ec: 'hotel',
-                  ea: 'nearbyUpdate',
-                  el: _this.hostname,
-                  cd: 'hotelNearbyUpdate',
-                  t: 'event'
-                });
-              }
-            };
-
-            var onShow = function() {
-
-            };
-
-            var onClick = function() {
-              tbr.emit('track', {
-                cd: 'hotelclick',
-                t: 'screenview'
-              });
-
-              tbr.emit('track', {
-                ec: 'hotel',
-                ea: 'click',
-                el: _this.hostname,
-                cd: 'hotelclick',
-                t: 'event'
-              });
-
-              if (_this.barContent.isSuggest) {
-                tbr.emit('track', {
-                  cd: 'hotelNearbyClick',
-                  t: 'screenview'
-                });
-
-                tbr.emit('track', {
-                  ec: 'hotel',
-                  ea: 'nearbyClick',
-                  el: _this.hostname,
-                  cd: 'hotelNearbyClick',
-                  t: 'event'
-                });
-              }
-            };
-
-            var onClose = function() {
-              tbr.emit('track', {
-                ec: 'hotel',
-                ea: 'close',
-                el: _this.hostname,
-                t: 'event'
-              });
-            };
-
-            return {
-              node: content,
-              moreBtn: moreBtn,
-              onAppend: onAppend,
-              onReplace: onReplace,
-              onShow: onShow,
-              onClick: onClick,
-              onClose: onClose
-            }
-          };
-
-          Bar.prototype.getContent = function() {
-            if (this.type === 'hotel') {
-              return this.insertHotelBar();
-            } else if (this.type === 'avia') {
-              return this.insertAviaBar();
-            }
-          };
-
-          Bar.prototype.getStyle = function() {
-            return {
-              node: monoUtils.create('style', {
-                text: monoUtils.style2Text(this.styleCss)
-              })
-            }
-          };
-
-          Bar.prototype.getCloseSvg = function() {
-            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            var svgNS = svg.namespaceURI;
-            svg.setAttribute('width', '80');
-            svg.setAttribute('height', '80');
-            svg.setAttribute('viewBox', '0 0 80 80');
-
-            var path = document.createElementNS(svgNS, 'path');
-            svg.appendChild(path);
-            path.setAttribute('fill', '#FCEA00');
-            path.setAttribute('d', 'M56.971 52.729L44.243 40l12.728-12.728-4.242-4.243L40 35.757 27.272 23.029l-4.243 4.243L35.757 40 23.029 52.729l4.243 4.242L40 44.243l12.729 12.728z');
-
-            return svg;
-          };
-
-          Bar.prototype.getOneWaySvg = function() {
-            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            var svgNS = svg.namespaceURI;
-            svg.setAttribute('width', '24px');
-            svg.setAttribute('height', '24px');
-            svg.setAttribute('viewBox', '4 4 24 24');
-
-            var path = document.createElementNS(svgNS, 'path');
-            svg.appendChild(path);
-            path.setAttribute('fill', '#D18685');
-            path.setAttribute('d', 'M4.538 16.618h21.626l-4.48 4.463a.537.537 0 0 0 0 .761c.21.211.551.211.761 0l5.328-5.327a.543.543 0 0 0 0-.762l-5.328-5.327a.537.537 0 0 0-.761 0 .537.537 0 0 0 0 .761l4.48 4.354H4.538a.538.538 0 1 0 0 1.077z');
-
-            return svg;
-          };
-
-          Bar.prototype.getTwoWaySvg = function() {
-            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            var svgNS = svg.namespaceURI;
-            svg.setAttribute('width', '24px');
-            svg.setAttribute('height', '24px');
-            svg.setAttribute('viewBox', '4 4 24 24');
-
-            var path = document.createElementNS(svgNS, 'path');
-            svg.appendChild(path);
-            path.setAttribute('fill', '#D18685');
-            path.setAttribute('d', 'M27.391 10.382H5.764l4.481-4.463a.538.538 0 0 0-.761-.761l-5.328 5.328a.542.542 0 0 0 0 .761l5.328 5.328a.538.538 0 0 0 .761-.761L5.764 11.46H27.39a.539.539 0 0 0 .001-1.078zM4.538 21.618h21.626l-4.48 4.463a.537.537 0 0 0 0 .761c.21.211.551.211.761 0l5.328-5.327a.543.543 0 0 0 0-.762l-5.328-5.327a.537.537 0 0 0-.761 0 .537.537 0 0 0 0 .761l4.48 4.354H4.538a.538.538 0 1 0 0 1.077z');
-
-            return svg;
-          };
-
-          Bar.prototype.getStarSvg = function() {
-            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            var svgNS = svg.namespaceURI;
-            svg.setAttribute('width', '24');
-            svg.setAttribute('height', '24');
-            svg.setAttribute('viewBox', '0 0 24 24');
-
-            var path = document.createElementNS(svgNS, 'path');
-            svg.appendChild(path);
-            path.setAttribute('fill', '#FCEA00');
-            path.setAttribute('d', 'M9.362 9.158l-5.268.584c-.19.023-.358.15-.421.343s0 .394.14.521c1.566 1.429 3.919 3.569 3.919 3.569-.002 0-.646 3.113-1.074 5.19a.504.504 0 0 0 .196.506.494.494 0 0 0 .538.027c1.844-1.047 4.606-2.623 4.606-2.623l4.604 2.625c.168.092.379.09.541-.029a.5.5 0 0 0 .195-.505l-1.07-5.191s2.353-2.14 3.918-3.566a.499.499 0 0 0-.279-.865c-2.108-.236-5.27-.586-5.27-.586l-2.183-4.83a.499.499 0 1 0-.909 0l-2.183 4.83z');
-
-            return svg;
-          };
-
-          Bar.prototype.getBody = function() {
-            var barHeight = 55;
-            var _this = this;
-
-            this.styleCss.push({
-              '.tbr-body': monoUtils.styleReset
-            });
-
-            this.styleCss.push({
-              '.tbr-body': {
-                backgroundColor: '#CC0001',
-                color: '#FFF',
-                cursor: 'pointer',
-                marginTop: '-' + barHeight + 'px',
-                display: 'table !important',
-                opacity: '1 !important'
-              },
-              '.tbr-body:hover': {
-                backgroundColor: '#b70001'
-              }
-            });
-
-            this.styleCss.push({
-              '.tbr-close-btn': {
-                width: '45px',
-                opacity: 1
-              }
-            });
-
-            this.styleCss.push({
-              '.tbr-close-btn:hover': {
-                opacity: 0.5
-              }
-            });
-
-            this.styleCss.push({
-              '.tbr-right-padding': {
-                width: '45px',
-                opacity: 0.5
-              }
-            });
-
-            this.styleCss.push({
-              '.tbr-content': {
-                maxWidth: '1100px'
-              }
-            });
-
-            var content = null;
-            var node = monoUtils.create('div', {
-              class: ['tbr-body'],
-              style: {
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                fontWeight: 'normal',
-                font: 'normal normal 14px Arial, sans-serif',
-
-                display: 'table',
-                width: '100%',
-                height: '55px',
-                lineHeight: 'normal',
-
-                opacity: 1,
-                zIndex: 99999999
-              },
-              on: ['click', function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-                _this.content.moreBtn.dispatchEvent(new MouseEvent('click'));
-              }],
-              append: [
-                monoUtils.create('div', {
-                  style: {
-                    display: 'table-cell',
-                    verticalAlign: 'middle'
-                  },
-                  append: monoUtils.create('a', {
-                    class: ['tbr-close-btn'],
-                    href: '#close',
-                    title: tbr.language.close,
-                    style: {
-                      display: 'block',
-                      height: '45px',
-                      textAlign: 'center',
-                      cursor: 'pointer'
-                    },
-                    on: ['click', function(e) {
-                      e.preventDefault();
-                      e.stopPropagation();
-
-                      _this.close(true);
-
-                      _this.content.onClose();
-                    }],
-                    append: monoUtils.create(_this.getCloseSvg(), {
-                      style: {
-                        marginLeft: '4px',
-                        marginTop: '10px',
-                        width: '24px',
-                        height: '24px'
-                      }
-                    })
-                  })
-                }),
-                monoUtils.create('div', {
-                  style: {
-                    display: 'table-cell',
-                    verticalAlign: 'middle',
-                    textAlign: 'center'
-                  },
-                  append: monoUtils.create('div', {
-                    class: ['tbr-content'],
-                    style: {
-                      display: 'inline-block',
-                      width: '100%',
-                      textAlign: 'left',
-                      position: 'relative'
-                    },
-                    append: content = monoUtils.create('div', {
-                      style: {
-                        display: 'block',
-                        whiteSpace: 'nowrap',
-                        alignItems: 'center'
-                      },
-                      onCreate: function() {
-                        this.style.display = 'flex';
-                      }
-                    })
-                  })
-                }),
-                monoUtils.create('div', {
-                  class: ['tbr-right-padding'],
-                  style: {
-                    display: 'table-cell',
-                    verticalAlign: 'middle'
-                  }
-                })
-              ]
-            });
-            return {
-              node: node,
-              content: content
-            };
-          };
-
-          Bar.prototype.remove = function() {
-            if (!this.isRemoved) {
-              this.isRemoved = true;
-
-              var parent = this.body.node.parentNode;
-              if (parent) {
-                parent.removeChild(this.body.node);
-              }
-
-              parent = this.style.node.parentNode;
-              if (parent) {
-                parent.removeChild(this.style.node);
-              }
-            }
-          };
-
-          Bar.prototype.replace = function(newBar) {
-            this.isRemoved = true;
-            this.isClosed = true;
-
-            newBar.body.node.style.marginTop = 0;
-
-            var parent = this.body.node.parentNode;
-            if (parent) {
-              parent.replaceChild(newBar.body.node, this.body.node);
-            } else {
-              document.body.appendChild(newBar.body.node);
-            }
-
-            parent = this.style.node.parentNode;
-            if (parent) {
-              parent.replaceChild(newBar.style.node, this.style.node);
-            } else {
-              document.body.appendChild(newBar.style.node);
-            }
-          };
-
-          Bar.prototype.close = function(byUser) {
-            if (!this.isClosed) {
-              this.isClosed = true;
-              this.remove();
-              marginPage(this, false);
-              if (byUser) {
-                main.stopObserver();
-
-                var blackList = main.storage.blackList;
-                var now = parseInt(Date.now() / 1000);
-                blackList.push({
-                  hostname: tbr.hostname,
-                  expire: now + 5 * 60 * 60
-                });
-
-                main.save();
-              }
-            }
-          };
-
-          return {
-            current: null,
-            create: function(details) {
-              var previewBar = this.current;
-
-              var bar = this.current = new Bar(details);
-
-              var isReplace = false;
-              if (previewBar && !previewBar.isClosed) {
-                isReplace = true;
-                previewBar.replace(bar);
-              } else {
-                marginPage(bar, true);
-                document.body.appendChild(bar.container);
-              }
-
-              if (isReplace) {
-                bar.content.onReplace();
-              } else {
-                bar.content.onAppend();
-              }
-
-              bar.content.onShow();
-            },
-            aviaBarSaveInHistory: function(pageInfo) {
-              var originCity = main.getCityName(pageInfo.origin);
-              var destinationCity = main.getCityName(pageInfo.destination);
-              if (!originCity || !destinationCity) {
-                return;
-              }
-
-              var data = {
-                originCity: originCity,
-                destinationCity: destinationCity,
-                origin: pageInfo.origin,
-                destination: pageInfo.destination,
-                dateStart: pageInfo.dateStart,
-                dateEnd: pageInfo.dateEnd,
-                time: parseInt(Date.now() / 1000)
-              };
-
-              return tbr.emit('history', data);
-            }
-          };
-        };
-        return getBarUi(tbr);
-      };
-
-      monoUtils.extend(main, {
-        cultureInfo: {
-          ru: {
-            weekdaysShort: 'Вс_Пн_Вт_Ср_Чт_Пт_Сб'.split('_'),
-            months: 'января_февраля_марта_апреля_мая_июня_июля_августа_сентября_октября_ноября_декабря'.split('_'),
-            monthsCal: 'январе_феврале_марте_апреле_мае_июне_июле_августе_сентябре_октябре_ноябре_декабре'.split('_'),
-            dateFormat: 'D MMMM, ddd',
-            dateFormatNoWeekdays: 'D MMMM',
-            timeFormat: 'HH:mm'
-          },
-          en: {
-            weekdaysShort: 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
-            months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
-            dateFormat: 'D MMMM, ddd',
-            dateFormatNoWeekdays: 'D MMMM',
-            timeFormat: 'h:mm A'
-          },
-          de: {
-            weekdaysShort: 'So._Mo._Di._Mi._Do._Fr._Sa.'.split('_'),
-            months: 'Jänner_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
-            dateFormat: 'ddd, D. MMMM',
-            dateFormatNoWeekdays: 'D. MMMM',
-            timeFormat: 'HH:mm'
-          }
-        },
-        ccyFormats: {
-          USD: {
-            symbol: "$",
-            standard: "¤#,##0.00",
-            details: {
-              symbolRight: false,
-              symbolSep: '',
-              toFixed: 2,
-              round: false,
-              group: ',',
-              decimal: '.'
-            }
-          },
-          EUR: {
-            symbol: "€",
-            standard: "#,##0.00 ¤",
-            details: {
-              symbolRight: true,
-              symbolSep: ' ',
-              toFixed: 2,
-              round: false,
-              group: '.',
-              decimal: ','
-            }
-          },
-          RUB: {
-            symbol: "₽",
-            standard: "#,##0.00 ¤",
-            details: {
-              symbolRight: true,
-              symbolSep: ' ',
-              toFixed: 2,
-              round: true,
-              group: ' ',
-              decimal: ','
-            },
-            getNode: function() {
-              var link = document.querySelector('link.sf-price-font');
-              if (!link) {
-                link = monoUtils.create('link', {
-                  class: 'sf-price-font',
-                  href: 'https://fonts.googleapis.com/css?family=PT+Sans:bold',
-                  rel: 'stylesheet',
-                  type: 'text/css'
-                });
-                document.head.appendChild(link);
-              }
-
-              return monoUtils.create('span', {
-                text: this.symbol,
-                style: {
-                  fontFamily: '"PT Sans", Arial, serif'
-                }
-              });
-            }
-          },
-          BYR: {
-            symbol: "р.",
-            standard: "#,##0.00 ¤",
-            details: {
-              symbolRight: true,
-              symbolSep: ' ',
-              toFixed: 2,
-              round: true,
-              group: ' ',
-              decimal: ','
-            }
-          },
-          BYN: {
-            symbol: "р.",
-            standard: "#,##0.00 ¤",
-            details: {
-              symbolRight: true,
-              symbolSep: ' ',
-              toFixed: 2,
-              round: true,
-              group: ' ',
-              decimal: ','
-            }
-          },
-          KZT: {
-            symbol: "T", //"₸",
-            standard: "#,##0.00 ¤",
-            details: {
-              symbolRight: true,
-              symbolSep: ' ',
-              toFixed: 2,
-              round: true,
-              group: ' ',
-              decimal: ','
-            }
-          },
-          UAH: {
-            symbol: "₴",
-            standard: "#,##0.00 ¤",
-            details: {
-              symbolRight: true,
-              symbolSep: ' ',
-              toFixed: 2,
-              round: true,
-              group: ' ',
-              decimal: ','
-            }
-          }
-        },
-        convertCcy: function(price, toCcy) {
-          toCcy = toCcy.toLowerCase();
-          var ccyList = main.cache.ccyList;
-          var value = ccyList[toCcy];
-          return price / value;
-        },
-        getCityName: function(cityCode) {
-          var lang = tbr.language.lang;
-          var city = main.cache.cityMap[cityCode];
-          if (!city) {
-            var airport = main.cache.airportMap[cityCode];
-            if (airport) {
-              cityCode = airport.city_code;
-              city = main.cache.cityMap[cityCode];
-            }
-          }
-          if (!city) {
-            return null;
-          }
-
-          var localName = city.name_translations && city.name_translations[lang];
-          return localName || city.name;
-        },
-        getDate: function(value, noWeekdays, isShort) {
-          var time = new Date(value);
-          var culture = main.cultureInfo[tbr.language.lang] || main.cultureInfo.en;
-          var template = culture.dateFormat;
-          if (noWeekdays) {
-            template = culture.dateFormatNoWeekdays;
-          }
-          if (isShort) {
-            template = 'D';
-          }
-          template = template.replace(/([a-zA-Z]+)/g, function(text, value) {
-            switch (value) {
-              case 'D':
-                return time.getUTCDate();
-              case 'MMMM':
-                return culture.months[time.getUTCMonth()];
-              case 'ddd':
-                return culture.weekdaysShort[time.getUTCDay()];
-            }
-          });
-          return template;
-        },
-        getCalMonth: function(value) {
-          var time = new Date(value);
-          var culture = main.cultureInfo[tbr.language.lang] || main.cultureInfo.en;
-          return (culture.monthsCal || culture.months)[time.getUTCMonth()];
-        },
-        getPrice: function(ccy, value) {
-          var cultureCcy = main.ccyFormats[ccy];
-
-          if (!cultureCcy) {
-            cultureCcy = {
-              symbol: ccy,
-              details: {
-                symbolRight: true,
-                symbolSep: ' ',
-                toFixed: 2,
-                round: false,
-                group: ',',
-                decimal: '.'
-              }
-            };
-          }
-
-          var details = cultureCcy.details;
-
-          if (details.round) {
-            value = Math.round(value);
-          } else {
-            value = value.toFixed(details.toFixed);
-          }
-          var splitValue = value.toString().split('.');
-
-          var b = splitValue[1];
-          var fixedValue = '';
-          for (var i = 0; i < details.toFixed; i++) {
-            fixedValue += '0';
-          }
-          if (b === fixedValue) {
-            b = '';
-          }
-
-          var a = splitValue[0];
-
-          a = a.split('').reverse().join('');
-          a = a.replace(/(\d{3})/g, '$1,');
-          a = a.split('').reverse().join('');
-          if (a[0] === ',') {
-            a = a.substr(1);
-          }
-          a = a.split(',');
-          a = a.join(details.group);
-
-          splitValue = [a];
-          if (b) {
-            splitValue.push(b);
-          }
-          var strValue = splitValue.join(details.decimal);
-
-          var arr = [strValue];
-          if (details.symbolRight) {
-            if (details.symbolSep) {
-              arr.push(details.symbolSep);
-            }
-            arr.push(cultureCcy.symbol);
-          } else {
-            if (details.symbolSep) {
-              arr.unshift(details.symbolSep);
-            }
-            arr.unshift(cultureCcy.symbol);
-          }
-          var strValueSymbol = arr.join('');
-
-          return {
-            string: strValueSymbol,
-            value: strValue,
-            cultureCcy: cultureCcy
-          };
-        },
-        getPriceNode: function(priceObj) {
-          var cultureCcy = priceObj.cultureCcy;
-          var details = cultureCcy.details;
-
-          var getSymbol = function() {
-            if (cultureCcy.getNode) {
-              return cultureCcy.getNode();
-            }
-
-            return cultureCcy.symbol;
-          };
-
-          var symbolSep = details.symbolSep;
-          if (symbolSep === ' ') {
-            symbolSep = String.fromCharCode(160);
-          }
-
-          var arr = [priceObj.value];
-          if (details.symbolRight) {
-            if (symbolSep) {
-              arr.push(symbolSep);
-            }
-            arr.push(getSymbol());
-          } else {
-            if (symbolSep) {
-              arr.unshift(symbolSep);
-            }
-            arr.unshift(getSymbol());
-          }
-
-          return monoUtils.create(document.createDocumentFragment(), {
-            append: arr
-          });
-        },
-        getAviaBarItemIndex: function(priceList) {
-          var minDate = null;
-          var minItem = null;
-
-          priceList.forEach(function(item) {
-            var m = item.depart_date.match(/(\d{4}.\d{2}.\d{2})/);
-            m = m && m[1];
-            if (!m) {
-              return;
-            }
-            var date = (new Date(m)).getTime();
-
-            if (minDate === null || minDate > date) {
-              minDate = date;
-              minItem = null;
-            }
-
-            if (date !== minDate) {
-              return;
-            }
-
-            if (minItem === null || item.value < minItem.value) {
-              minItem = item;
-            }
-          });
-
-          var index = priceList.indexOf(minItem);
-
-          tbr.log('Bar item', index, minItem);
-          tbr.log('Result prices', priceList);
-
-          return index;
-        }
-      });
-
-      monoUtils.extend(main, {
-        profile: null,
-        /**
-         * @param profile
-         * @constructor
-         */
-        Page: function(profile) {
-          var _this = this;
-          var type = null;
-          var params = {};
-          var priceObj = {};
-
-          var getPriceObj = function(priceId) {
-            var obj = priceObj[priceId];
-            if (!obj) {
-              priceObj[priceId] = obj = {};
-            }
-            return obj;
-          };
-
-          var removePrice = function() {
-            for (var key in priceObj) {
-              delete priceObj[key];
-            }
-          };
-
-          var isEq = function(a, b) {
-            if (Array.isArray(a) && b) {
-              return JSON.stringify(a) === JSON.stringify(b);
-            }
-
-            return a === b;
-          };
-
-          var onFormChange = function() {
-            if (!type) {
-              return;
-            }
-
-            var priceId = main[type].page.getPriceId(params);
-
-            var info = main.getInfoObj();
-            delete info.barRequestData;
-
-            removePrice();
-            if (!priceId) {
-              profile.matchPrice = false;
-            } else {
-              profile.matchPrice = true;
-            }
-          };
-
-          var onPriceChange = monoUtils.debounce(function(priceParams) {
-            var data = main[type].page.getData(params, priceParams);
-
-            data && _this.setData(type, data);
-          }, 50);
-
-
-          this.setType = function(theType) {
-            // tbr.log('Page setType', theType);
-
-            type = theType;
-          };
-
-          this.set = function(key, value) {
-            value = main.validate(key, value);
-
-            var cValue = params[key];
-            if (!isEq(value, cValue)) {
-              params[key] = value;
-
-              tbr.log('Page set', key, value);
-
-              onFormChange();
-            }
-          };
-
-          this.setPrice = function(key, value) {
-            value = main.validate(key, value);
-
-            if (!value) {
-              return tbr.error('setPrice error, value is not valid', key, value);
-            }
-
-            if (!type) {
-              return tbr.error('setPrice error, type is not found!', params);
-            }
-
-            var priceId = main[type].page.getPriceId(params);
-            var data = getPriceObj(priceId);
-            var cValue = data[key];
-            if (value && cValue !== value) {
-              if (!cValue || cValue > value) {
-                data[key] = value;
-
-                tbr.log('Page setPrice', key, value);
-
-                onPriceChange(data);
-              }
-            }
-          };
-
-          this.clear = function() {
-            tbr.log('Page clear');
-
-            this.matchPrice = false;
-            type = null;
-            for (var key in params) {
-              params[key] = null;
-            }
-          };
-        },
-        watchTemplateObj: {
-          price: function(profile, summary, item) {
-            var page = profile.page;
-            if (!item.key) {
-              item.key = 'price';
-            }
-
-            for (var n = 0, node; node = summary.added[n]; n++) {
-              var price = main.preparePrice(node);
-              page.setPrice(item.key, price);
-            }
-          },
-          currency: function(profile, summary, item) {
-            var page = profile.page;
-            if (!item.key) {
-              item.key = 'currency';
-            }
-
-            for (var n = 0, node; node = summary.added[n]; n++) {
-              var text = node.textContent;
-              var ccy = text && text.replace(/[\s\t]/g, '');
-              if (item.currencyMap && item.currencyMap[ccy]) {
-                ccy = item.currencyMap[ccy];
-              }
-              page.set(item.key, ccy);
-            }
-          }
-        },
-        /**
-         * @param profile
-         * @param watchObj
-         * @constructor
-         */
-        Watcher: function(profile, watchObj) {
-          var observer = null;
-
-          var watch = function(profile, watchObj) {
-            var queries = [];
-            var keys = [];
-
-            Object.keys(watchObj).forEach(function(key) {
-              var query = watchObj[key].query;
-              if (!Array.isArray(query)) {
-                query = [query];
-              }
-              return query.forEach(function(query) {
-                keys.push(key);
-                queries.push(query);
-              });
-            });
-
-            return components.mutationWatcher.run({
-              callback: function(summaryList) {
-                for (var i = 0, summary; summary = summaryList[i]; i++) {
-                  if (summary.added.length === 0 && summary.removed.length === 0) {
-                    continue;
-                  }
-
-                  var item = watchObj[keys[i]];
-
-                  profile.summaryStack.push([item, summary]);
-                }
-              },
-              queries: queries
-            });
-          };
-
-          this.stop = function() {
-            observer && observer.stop();
-            observer = null;
-          };
-
-          this.start = function() {
-            observer && observer.stop();
-            observer = watch(profile, watchObj);
-          };
-
-          this.destroy = this.stop;
-        },
-        /**
-         * @param profile
-         * @constructor
-         */
-        SummaryStack: function(profile) {
-          var stack = [];
-
-          var templateObj = main.watchTemplateObj;
-
-          var fnAsync = function(fn) {
-            var args = [].slice.call(arguments);
-            args.shift();
-
-            return function(cb) {
-              var isAsync = false;
-              var self = {
-                async: function() {
-                  isAsync = true;
-                  return function() {
-                    return cb();
-                  }
-                }
-              };
-
-              fn.apply(self, args);
-
-              if (!isAsync) {
-                cb();
-              }
-            }
-          };
-
-          var next = function() {
-            var stackItem = stack[0];
-            if (!stackItem) {
-              return;
-            }
-
-            var ready = function() {
-              var pos = stack.indexOf(stackItem);
-              if (pos !== -1) {
-                stack.splice(pos, 1);
-              }
-
-              return next();
-            };
-
-            var item = stackItem[0];
-            if (item.isPrice && !profile.matchPrice) {
-              return ready();
-            }
-
-            var summary = stackItem[1];
-
-            if (item.template) {
-              ready = function(cb) {
-                var template = templateObj[item.template];
-                template && template(profile, summary, item);
-
-                return cb();
-              }.bind(null, ready);
-            }
-
-            if (item.cb) {
-              ready = function(cb) {
-                return fnAsync(item.cb, profile, summary)(function() {
-                  return cb();
-                });
-              }.bind(null, ready);
-            }
-
-            return ready();
-          };
-
-          var checkStack = function() {
-            var len = stack.length;
-
-            if (len > 30) {
-              stack.shift();
-            }
-
-            if (len !== 1) {
-              return;
-            }
-
-            return next();
-          };
-
-          this.push = function(data) {
-            stack.push(data);
-
-            return checkStack();
-          };
-        },
-        /**
-         *
-         * @param details
-         * @constructor
-         */
-        Profile: function(details) {
-          var profile = this;
-
-          var key = null;
-          var watchObj = {};
-          for (key in details.formWatcher) {
-            watchObj[key] = details.formWatcher[key];
-          }
-          for (key in details.priceWatcher) {
-            watchObj[key] = details.priceWatcher[key];
-            watchObj[key].isPrice = true;
-          }
-
-          this.matchPrice = false;
-          this.summaryStack = new main.SummaryStack(profile);
-          this.watcher = new main.Watcher(profile, watchObj);
-
-          this.page = new main.Page(profile);
-          this.page.setData = function(type, params) {
-            params.type = type;
-
-            var info = main.getInfoObj();
-            for (var key in params) {
-              info[key] = params[key];
-            }
-
-            main.onGetPageInfo(params);
-          };
-
-          var onProfileReady = function() {
-            profile.watcher.start();
-          };
-
-          if (details.prepare) {
-            details.prepare(function() {
-              onProfileReady && onProfileReady();
-            });
-          } else {
-            onProfileReady();
-          }
-
-          this.destroy = function() {
-            onProfileReady = null;
-            this.watcher && this.watcher.destroy();
-          }
-        },
-        initProfile: function(details) {
-          if (details.locationCheck && !details.locationCheck(location.href)) {
-            tbr.error('Invalid location!', location.href);
-            return;
-          }
-
-          this.currentProfile = details;
-
-          if (this.profile) {
-            this.profile.destroy();
-          }
-
-          this.profile = new this.Profile(details);
-        },
-        /**
-         * @param {number} delay
-         * @param {number} limit
-         * @param {function} fn
-         * @param {function} [cb]
-         */
-        waitResponse: function(delay, limit, fn, cb) {
-          var waitResponse = this.waitResponse;
-          return (function timer(retry) {
-            tbr.log('waitResponse retry', retry);
-
-            if (waitResponse.timer) {
-              clearTimeout(waitResponse.timer);
-            }
-
-            if (retry < 0) {
-              tbr.error('waitResponse response is empty!');
-              cb && cb();
-              return;
-            }
-
-            return fn(function(err) {
-              if (!err) {
-                tbr.log('waitResponse get response!');
-                cb && cb();
-                return;
-              }
-
-              waitResponse.timer = setTimeout(function() {
-                waitResponse.timer = null;
-
-                return timer(--retry);
-              }, delay);
-            });
-          })(limit);
-        }
-      });
-
-      monoUtils.extend(main, {
-        currentProfile: null,
-        infoList: {},
-        closeCurrentBar: function() {
-          var currentBar = main.bar.current;
-          main.bar.isAborted = true;
-          if (!currentBar || currentBar.isClosed) {
-            return;
-          }
-          currentBar.close();
-        },
-        stopObserver: function() {
-          this.profile && this.profile.destroy();
-        },
-        clearInfoObj: function(pageInfo) {
-          for (var url in main.infoList) {
-            if (main.infoList[url] !== pageInfo) {
-              delete main.infoList[url];
-            }
-          }
-        },
-        getInfoObj: function() {
-          var url = document.URL;
-          var info = main.infoList[url];
-          if (!info) {
-            info = main.infoList[url] = {};
-          }
-          return info;
-        },
-        onGetPageInfo: function() {
-          var pageInfo = this.getInfoObj();
-
-          var obj = this[pageInfo.type];
-          if (!obj) {
-            return tbr.error('Type is not found!', pageInfo);
-          }
-
-          return obj.onGetData(pageInfo);
-        },
-        getParamsFromPage: function(varList, cb) {
-          var isObjMode = false;
-          if (typeof varList === 'object' && !Array.isArray(varList)) {
-            isObjMode = Object.keys(varList);
-            varList = isObjMode.map(function(key) {
-              return varList[key];
-            });
-          }
-          components.bridge({
-            args: [varList],
-            func: function(varList, cb) {
-              var rList = [];
-              varList.forEach(function(item) {
-                var vars = item.split('.');
-                var obj = window[vars.shift()];
-                obj && vars.some(function(variable) {
-                  if (typeof obj[variable] !== 'undefined') {
-                    obj = obj[variable];
-                  } else {
-                    obj = null;
-                    return true;
-                  }
-                });
-                rList.push(obj);
-              });
-              cb(rList);
-            },
-            cb: function(_data) {
-              var data = _data;
-              if (isObjMode) {
-                data = {};
-                _data.forEach(function(item, index) {
-                  data[isObjMode[index]] = item;
-                });
-              }
-              return cb(data);
-            }
-          });
-        },
-        validatorMap: {
-          origin: 'validateIataCode',
-          destination: 'validateIataCode',
-
-          dateStart: 'validateDate',
-          dateEnd: 'validateDate',
-          dateIn: 'validateDate',
-          dateOut: 'validateDate',
-
-          currency: 'validateCcy',
-          adults: 'validateAdults',
-
-          price: 'validatePrice',
-          oneDayPrice: 'validatePrice',
-          minPriceIn: 'validatePrice',
-          minPriceOut: 'validatePrice',
-          minPriceBoth: 'validatePrice',
-
-          query: 'validateQuery',
-          dayCount: 'validateNumber'
-        },
-        validate: function(key, value) {
-          var validateFnName = this.validatorMap[key];
-
-          if (validateFnName) {
-            value = this[validateFnName](value);
-          } else {
-            tbr.error('validator is not found!', key, value);
-          }
-
-          return value;
-        },
-        validateIataCode: function(value) {
-          if (/^[A-Z]{3}$/.test(value)) {
-            return value.toUpperCase();
-          }
-          tbr.error('City validation error!', value);
-          return null;
-        },
-        validateDate: function(value) {
-          // yyyy-mm-dd
-          if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-            return value;
-          }
-          // yyyy-mm
-          if (/^\d{4}-\d{2}$/.test(value)) {
-            return value;
-          }
-          tbr.error('Date validation error!', value);
-          return null;
-        },
-        validateCcy: function(value) {
-          if (/^[A-Z]{3}$/.test(value)) {
-            return value;
-          }
-          tbr.error('Currency validation error!', value);
-          return null;
-        },
-        validateNumber: function(value) {
-          var int = parseInt(value);
-          if (isNaN(int)) {
-            tbr.error('Number validation error!', value);
-            return null;
-          }
-          return int;
-        },
-        validateAdults: function(value) {
-          var int = this.validateNumber(value);
-          if (!int || int < 1) {
-            tbr.error('Adults validation error!', value);
-            return null;
-          }
-          return int;
-        },
-        validateQuery: function(value) {
-          if (Array.isArray(value) && value.length) {
-            return value;
-          }
-          tbr.error('Query validation error!', value);
-          return null;
-        },
-        validatePrice: function(value) {
-          if (!/^\d+(\.\d+)?$/.test(value)) {
-            tbr.error('Price validation error!', value);
-            return null;
-          }
-
-          return value;
-        },
-        preparePrice: function(node) {
-          var value = node.textContent;
-          if (!value) {
-            tbr.log('Price is empty!', value);
-            return null;
-          }
-
-          value = value.replace(',', '.');
-          value = value.replace(/[^\d\.]/g, '');
-          value = value.replace(/\.(\d{3,})/, "$1");
-          var m = value.match(/(\d+)(\.\d+)?/);
-          if (!m) {
-            tbr.log('Price is empty 2!', value);
-            return null;
-          }
-          value = m[1];
-          if (m[2]) {
-            value += m[2];
-          }
-          value = parseFloat(value);
-          if (isNaN(value)) {
-            tbr.log('Price is NaN!', value);
-            return null;
-          }
-          return value;
-        },
-        reFormatDate: function(value, re, template) {
-          if (re.test(value)) {
-            if (typeof value === 'number') {
-              value = value.toString();
-            }
-            var m = value.match(re);
-            if (!m) {
-              return null;
-            }
-            return template.replace(/\$(\d)/g, function(text, index) {
-              return m[index];
-            });
-          }
-          return null;
-        }
-      });
-      var getProfileList = function(tbr) {
-        var main = tbr.main;
-
-        var profileList = {};
-
-        profileList['*://*.skyscanner.*/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/transport\/flights\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '#content-main',
-                  is: 'added'
-                },
-                cb: function(profile, summary) {
-                  var async = this.async();
-                  var page = profile.page;
-
-                  return main.getParamsFromPage({
-                    origin: 'Skyscanner.ComponentContext.originIataCode',
-                    destination: 'Skyscanner.ComponentContext.destinationIataCode',
-                    dateStart: 'Skyscanner.ComponentContext.outboundDate',
-                    dateEnd: 'Skyscanner.ComponentContext.inboundDate',
-                    currency: 'Skyscanner.ComponentContext.currency'
-                  }, function(dataObj) {
-                    page.setType('avia');
-
-                    page.set('origin', dataObj.origin);
-                    page.set('destination', dataObj.destination);
-                    page.set('dateStart', dataObj.dateStart);
-                    page.set('dateEnd', dataObj.dateEnd);
-                    page.set('currency', dataObj.currency);
-
-                    async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.card.result .mainquote-price',
-                  is: 'added'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-
-        profileList['*://*.momondo.*/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/flightsearch\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: [{
-                  css: '#flight-list',
-                  is: 'added'
-                }, {
-                  css: '.results',
-                  is: 'removed'
-                }],
-                cb: function(profile, summary) {
-                  var page = profile.page;
-
-                  page.setType('avia');
-
-                  var url = location.href;
-
-                  var queryString = url.match(/#(.+)/) || url.match(/\?(.+)/);
-                  queryString = queryString && queryString[1];
-                  if (!queryString) {
-                    page.clear();
-                    return;
-                  }
-
-                  var params = monoUtils.parseUrl(queryString, {
-                    params: 1
-                  });
-
-                  page.set('origin', params['SO0']);
-                  page.set('destination', params['SD0']);
-
-                  var dateStart = main.reFormatDate(params['SDP0'], /(\d{2})-(\d{2})-(\d{4})/, "$3-$2-$1");
-                  page.set('dateStart', dateStart);
-
-                  var dateEnd = main.reFormatDate(params['SDP1'], /(\d{2})-(\d{2})-(\d{4})/, "$3-$2-$1");
-                  page.set('dateEnd', dateEnd);
-                }
-              },
-              ccy: {
-                query: {
-                  css: '.ticketinfo .price .unit',
-                  is: 'added'
-                },
-                template: 'currency'
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.ticketinfo .price .value',
-                  is: 'added'
-                },
-                template: 'price'
-              }
-            },
-            onShow: function(barHeight) {
-              var header = document.querySelector('#mui-header');
-              if (!header) {
-                return;
-              }
-              header.style.marginTop = barHeight + 'px';
-            },
-            onHide: function() {
-              var header = document.querySelector('#mui-header');
-              if (!header) {
-                return;
-              }
-              header.style.marginTop = 0;
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.ozon.travel/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/flight\/search\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '.content'
-                },
-                cb: function(profile) {
-                  var async = this.async();
-                  var page = profile.page;
-
-                  return main.getParamsFromPage({
-                    origin: 'a.data.SearchParams.CodeFrom1',
-                    destination: 'a.data.SearchParams.CodeTo1',
-                    dateStart: 'a.data.SearchParams.Date1',
-                    dateEnd: 'a.data.SearchParams.Date2',
-                    Date3: 'a.data.SearchParams.Date3',
-                    CodeFrom2: 'a.data.SearchParams.CodeFrom2',
-                    CodeTo2: 'a.data.SearchParams.CodeTo2'
-                  }, function(dataObj) {
-                    if (dataObj.Date3) {
-                      tbr.error('More two params.');
-                      page.clear();
-                      async();
-                      return;
-                    }
-
-                    if (dataObj.CodeFrom2 && (dataObj.origin !== dataObj.CodeTo2 || dataObj.destination !== dataObj.CodeFrom2)) {
-                      tbr.error('More one way!', dataObj);
-                      page.clear();
-                      async();
-                      return;
-                    }
-
-                    page.setType('avia');
-
-                    page.set('origin', dataObj.origin);
-                    page.set('destination', dataObj.destination);
-                    page.set('dateStart', dataObj.dateStart);
-                    page.set('dateEnd', dataObj.dateEnd);
-
-                    async();
-                  });
-                }
-              },
-              ccy: {
-                query: {
-                  css: '.tariffs .price',
-                  is: 'added'
-                },
-                cb: function(profile, summary) {
-                  var page = profile.page;
-
-                  var ccy = document.querySelector('.currency-form .currency-filter input[name="Currency"]');
-                  ccy = ccy && ccy.value;
-                  if (ccy) {
-                    ccy = ccy.replace(/[\s\t]/g, '');
-                    page.set('currency', ccy);
-                  }
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.tariffs .price',
-                  is: 'added'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.onetwotrip.com/*'] = function() {
-          var details = {
-            formWatcher: {
-              ctr: {
-                query: [{
-                  css: '#layout_results'
-                }, {
-                  css: '.loader'
-                }],
-                cb: function(profile) {
-                  var async = this.async();
-                  var page = profile.page;
-
-                  return main.getParamsFromPage({
-                    origin: 'xcnt_transport_from',
-                    destination: 'xcnt_transport_to',
-                    dateStart: 'xcnt_transport_depart_date',
-                    dateEnd: 'xcnt_transport_return_date',
-                    currency: 'tw.currency',
-                    type: 'xcnt_transport_type'
-                  }, function(dataObj) {
-                    if (dataObj.type !== 'air') {
-                      page.clear();
-                      async();
-                      return;
-                    }
-
-                    page.setType('avia');
-
-                    page.set('origin', dataObj.origin);
-                    page.set('destination', dataObj.destination);
-
-                    page.set('currency', dataObj.currency);
-
-                    var dateStart = main.reFormatDate(dataObj.dateStart, /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
-                    page.set('dateStart', dateStart);
-
-                    var dateEnd = main.reFormatDate(dataObj.dateEnd, /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
-                    page.set('dateEnd', dateEnd);
-
-                    async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.price_button .money-formatted'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.kayak.*/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/flights\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '#resbody'
-                },
-                cb: function(profile) {
-                  var async = this.async();
-                  var page = profile.page;
-
-                  return main.getParamsFromPage({
-                    origin: 'R9.globals.analytics.pixelContext.originCode',
-                    destination: 'R9.globals.analytics.pixelContext.destinationCode',
-                    dateStart: 'R9.globals.analytics.pixelContext.departureDate',
-                    dateEnd: 'R9.globals.analytics.pixelContext.returnDate',
-                    currency: 'R9.globals.analytics.pixelContext.site_currency',
-                    tripType: 'R9.globals.analytics.pixelContext.roundTrip'
-                  }, function(dataObj) {
-                    page.setType('avia');
-
-                    page.set('origin', dataObj.origin);
-                    page.set('destination', dataObj.destination);
-                    page.set('currency', dataObj.currency);
-
-                    var dateStart = main.reFormatDate(dataObj.dateStart, /(\d{4})-(\d{2})-(\d{2})/, "$1-$2-$3");
-                    page.set('dateStart', dateStart);
-
-                    var dateEnd = null;
-                    if (dataObj.tripType) {
-                      dateEnd = main.reFormatDate(dataObj.dateEnd, /(\d{4})-(\d{2})-(\d{2})/, "$1-$2-$3");
-                    }
-                    page.set('dateEnd', dateEnd);
-
-                    async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.flightresult .results_price'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.travelocity.com/*'] = profileList['*://*.orbitz.com/*'] = profileList['*://*.expedia.com/*'] = function() {
-          var getAvia = function() {
-            return {
-              locationCheck: function(url) {
-                return /\/Flights-Search/.test(url);
-              },
-              formWatcher: {
-                ctr: {
-                  query: {
-                    css: '#flightModuleList'
-                  },
-                  cb: function(profile) {
-                    var async = this.async();
-                    var page = profile.page;
-
-                    return main.getParamsFromPage({
-                      origin: 'IntentMediaProperties.flight_origin',
-                      destination: 'IntentMediaProperties.flight_destination',
-                      dateStart: 'IntentMediaProperties.travel_date_start',
-                      dateEnd: 'IntentMediaProperties.travel_date_end',
-                      currency: 'IntentMediaProperties.site_currency',
-                      type: 'IntentMediaProperties.product_category',
-                      tripType: 'IntentMediaProperties.trip_type'
-                    }, function(dataObj) {
-                      if (dataObj.type !== 'flights') {
-                        page.clear();
-                        async();
-                        return;
-                      }
-
-                      page.setType('avia');
-
-                      page.set('origin', dataObj.origin);
-                      page.set('destination', dataObj.destination);
-                      page.set('currency', dataObj.currency);
-
-                      var dateStart = main.reFormatDate(dataObj.dateStart, /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
-                      page.set('dateStart', dateStart);
-
-                      var dateEnd = null;
-                      if (dataObj.tripType === 'ROUND_TRIP') {
-                        dateEnd = main.reFormatDate(dataObj.dateEnd, /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
-                      }
-                      page.set('dateEnd', dateEnd);
-
-                      async();
-                    });
-                  }
-                }
-              },
-              priceWatcher: {
-                price: {
-                  query: {
-                    css: '#flightModuleList .offer-price .visuallyhidden'
-                  },
-                  template: 'price'
-                }
-              }
-            };
-          };
-
-          var getHotel = function() {
-            var requestBaseData = function(profile, cb) {
-              var page = profile.page;
-
-              return main.getParamsFromPage({
-                city: 'IntentMediaProperties.hotel_city_name',
-                name: 'IntentMediaProperties.hotel_supplier',
-                adults: 'IntentMediaProperties.adults',
-                rooms: 'IntentMediaProperties.hotel_rooms',
-                dateIn: 'IntentMediaProperties.travel_date_start',
-                dateOut: 'IntentMediaProperties.travel_date_end',
-                currency: 'IntentMediaProperties.site_currency',
-                pageId: 'IntentMediaProperties.page_id'
-              }, function(dataObj) {
-                if (dataObj.pageId === null) {
-                  cb && cb(1);
-                  return;
-                }
-
-                if (dataObj.pageId !== 'hotel.details' || dataObj.rooms > 1 || !dataObj.name) {
-                  page.clear();
-                  cb && cb(0);
-                  return;
-                }
-
-                page.setType('hotel');
-
-                var query = [dataObj.name];
-                if (dataObj.city) {
-                  query.unshift(dataObj.name + ' ' + dataObj.city);
-                }
-                page.set('query', query);
-
-                page.set('adults', dataObj.adults);
-                page.set('currency', dataObj.currency);
-
-                var dateIn = main.reFormatDate(dataObj.dateIn, /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
-                page.set('dateIn', dateIn);
-
-                var dateOut = main.reFormatDate(dataObj.dateOut, /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
-                page.set('dateOut', dateOut);
-
-                cb && cb(0);
-              });
-            };
-
-            return {
-              locationCheck: function(url) {
-                return /Hotel-Information/.test(url);
-              },
-              formWatcher: {
-                ctr: {
-                  query: [{
-                    css: '.hotelInformation'
-                  }],
-                  cb: function(profile) {
-                    var async = this.async();
-                    return main.waitResponse(250, 20, function(cb) {
-                      return requestBaseData(profile, cb);
-                    }, function() {
-                      return async();
-                    });
-                  }
-                }
-              },
-              priceWatcher: {
-                price: {
-                  query: {
-                    css: '#rooms-and-rates .room-price-info-wrapper .room-price'
-                  },
-                  template: 'price',
-                  key: 'oneDayPrice'
-                }
-              }
-            }
-          };
-
-
-          var details = null;
-
-          if (/Hotel-Information/.test(location.href)) {
-            details = getHotel();
-          } else {
-            details = getAvia();
-          }
-
-          return details;
-        };
-
-        profileList['*://*.priceline.com/*'] = function() {
-          var getCityCode = function(airportCode) {
-            var cityCode = airportCode;
-            if (main.cache.airportMap) {
-              var airportInfo = main.cache.airportMap[airportCode];
-              if (airportInfo && airportInfo.city_code) {
-                cityCode = airportInfo.city_code;
-              } else {
-                tbr.error('cityCode is not found!', airportCode);
-              }
-            }
-            return cityCode;
-          };
-
-          var details = {
-            locationCheck: function(url) {
-              return /\/fly(\/#)?\/search\//.test(url);
-            },
-            prepare: function(cb) {
-              main.avia.loadAirports(function() {
-                return cb();
-              });
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '.fly-search-listings-container'
-                },
-                cb: function(profile) {
-                  var page = profile.page;
-
-                  var url = location.href;
-                  var m = url.match(/\/search\/([^-\/]+)-([^-\/]+)-([^-\/]+)\/(?:([^-\/]+)-([^-\/]+)-([^-\/]+)\/)?/);
-                  if (!m) {
-                    return;
-                  }
-
-                  page.setType('avia');
-
-                  var origin = m[1].split(':')[0];
-                  page.set('origin', getCityCode(origin));
-
-                  var destination = m[2].split(':')[0];
-                  page.set('destination', getCityCode(destination));
-
-                  var dateStart = main.reFormatDate(m[3], /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
-                  page.set('dateStart', dateStart);
-
-                  var dateEnd = main.reFormatDate(m[6], /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
-                  page.set('dateEnd', dateEnd);
-
-                  var async = this.async();
-                  main.getParamsFromPage({
-                    currency: 'pclntms.dataDictionary.currencyCode'
-                  }, function(dataObj) {
-                    page.set('currency', dataObj.currency);
-
-                    return async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.fly-itinerary .details .price'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.aeroflot.ru/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/webqtrip.html/.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '.flight-list'
-                },
-                cb: function(profile) {
-                  var page = profile.page;
-
-                  var dataArr = null;
-
-                  var html = document.body.innerHTML;
-                  var dataRe = /"itineraryAirportPairs":(\[[^\]]+])/;
-                  monoUtils.getPageScript(html, dataRe).some(function(script) {
-                    var m = script.match(dataRe);
-                    m = m && m[1];
-                    if (!m) {
-                      return;
-                    }
-
-                    return monoUtils.findJson(m).some(function(arr) {
-                      if (!Array.isArray(arr)) {
-                        return;
-                      }
-                      if (arr.length > 2) {
-                        tbr.error('More two way!');
-                        return;
-                      }
-                      dataArr = arr;
-                      return true;
-                    });
-                  });
-
-                  if (!dataArr) {
-                    tbr.error('Data is not found!');
-                    return;
-                  }
-
-                  var originData = dataArr[0];
-
-                  if (!originData) {
-                    tbr.error('Origin data is not found!', dataArr);
-                    return;
-                  }
-
-                  page.setType('avia');
-
-                  page.set('origin', originData.departureCode);
-                  page.set('destination', originData.arrivalCode);
-
-                  var dateStart = main.reFormatDate(originData.date, /(\d{4})\/(\d{2})\/(\d{2})/, "$1-$2-$3");
-                  page.set('dateStart', dateStart);
-
-                  var dateEnd = null;
-                  var destData = dataArr[1];
-                  if (destData) {
-                    dateEnd = main.reFormatDate(destData.date, /(\d{4})\/(\d{2})\/(\d{2})/, "$1-$2-$3");
-                  }
-                  page.set('dateEnd', dateEnd);
-
-                  var ccy = /"currency":"([^"]{3})"/.exec(html);
-                  ccy = ccy && ccy[1];
-                  if (ccy) {
-                    page.set('currency', ccy);
-                  }
-                }
-              }
-            },
-            priceWatcher: {
-              minPriceOut: {
-                query: {
-                  css: '#outbounds .flight-list .prices-all .prices-amount'
-                },
-                template: 'price',
-                key: 'minPriceOut'
-              },
-              minPriceIn: {
-                query: {
-                  css: '#inbounds .flight-list .prices-all .prices-amount'
-                },
-                template: 'price',
-                key: 'minPriceIn'
-              },
-              priceBoth: {
-                query: {
-                  css: '#both .flight-list .prices-all .prices-amount'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.anywayanyday.com/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/avia\/offers\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '.offers-tickets-container'
-                },
-                cb: function(profile) {
-                  var page = profile.page;
-
-                  var url = location.href;
-                  var m = url.match(/\/avia\/offers\/(\d{2})(\d{2})(\w{3})(\w{3})(?:(\d{2})(\d{2})(\w{3})(\w{3}))?/);
-                  if (!m) {
-                    return;
-                  }
-                  m.shift();
-
-                  page.setType('avia');
-
-                  var isOneWay = !m[4];
-
-                  if (!isOneWay && (m[2] !== m[7] || m[3] !== m[6])) {
-                    tbr.error('More one way in URL!', m);
-                    return;
-                  }
-
-                  var now = new Date();
-
-                  var getFormatDate = function(month, date) {
-                    var cYear = now.getUTCFullYear();
-                    var cDate = now.getUTCDate();
-                    var cMonth = now.getUTCMonth() + 1;
-                    var intMonth = parseInt(month);
-                    var intDate = parseInt(date);
-                    if (cMonth > intMonth || (cMonth === intMonth && intDate < cDate)) {
-                      cYear += 1;
-                    }
-                    return main.validateDate([cYear, month, date].join('-'));
-                  };
-
-                  page.set('origin', m[2]);
-                  page.set('destination', m[3]);
-
-                  var dateStart = getFormatDate(m[1], m[0]);
-                  page.set('dateStart', dateStart);
-
-                  var dateEnd = !isOneWay && getFormatDate(m[5], m[4]);
-                  page.set('dateEnd', dateEnd);
-                }
-              },
-              ccy: {
-                query: {
-                  css: '.header-sidebar-DropdownCurrency .b-menu-item-button-text'
-                },
-                template: 'currency'
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.offers-tickets-container .fareTickets .b-price'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.svyaznoy.travel/*'] = function() {
-          var details = {
-            formWatcher: {
-              ctr: {
-                query: [{
-                  css: '#results'
-                }, {
-                  css: '.best-results-price'
-                }],
-                cb: function(profile) {
-                  var async = this.async();
-                  var page = profile.page;
-
-                  main.getParamsFromPage({
-                    origin: 'currentSearch.from_code',
-                    destination: 'currentSearch.to_code',
-                    dateStart: 'currentSearch.from_date',
-                    dateEnd: 'currentSearch.to_date',
-                    type: 'curDir'
-                  }, function(dataObj) {
-                    if (dataObj.type !== '/avia') {
-                      page.clear();
-                      async();
-                      return;
-                    }
-
-                    page.setType('avia');
-
-                    page.set('origin', dataObj.origin);
-                    page.set('destination', dataObj.destination);
-
-                    var dateStart = main.reFormatDate(dataObj.dateStart, /(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1");
-                    page.set('dateStart', dateStart);
-
-                    var dateEnd = main.reFormatDate(dataObj.dateEnd, /(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1");
-                    page.set('dateEnd', dateEnd);
-
-                    if (document.querySelector('.sum_rub')) {
-                      page.set('currency', 'RUB');
-                    }
-
-                    async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.box-results-best .best-results-price'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://avia.tickets.ru/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/search\/results/.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '.result_block'
-                },
-                cb: function(profile) {
-                  var async = this.async();
-                  var page = profile.page;
-
-                  return main.getParamsFromPage({
-                    origin: 'avia_form_search_params.from_code',
-                    destination: 'avia_form_search_params.to_code',
-                    dateStart: 'avia_form_search_params.departure_date',
-                    dateEnd: 'avia_form_search_params.departure_date1',
-                    fromCode1: 'avia_form_search_params.from_code1',
-                    toCode1: 'avia_form_search_params.to_code1',
-                    type: 'cur_domain_name'
-                  }, function(dataObj) {
-                    if (dataObj.type !== 'avia') {
-                      tbr.error('Is not avia page!');
-                      page.clear();
-                      async();
-                      return;
-                    }
-
-                    page.setType('avia');
-
-                    if (dataObj.dateEnd && (dataObj.origin !== dataObj.toCode1 || dataObj.destination !== dataObj.fromCode1)) {
-                      tbr.error('More one way', dataObj);
-                      async();
-                      return;
-                    }
-
-                    page.set('origin', dataObj.origin);
-                    page.set('destination', dataObj.destination);
-
-                    var dateStart = main.reFormatDate(dataObj.dateStart, /(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1");
-                    page.set('dateStart', dateStart);
-
-                    var dateEnd = main.reFormatDate(dataObj.dateEnd, /(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1");
-                    page.set('dateEnd', dateEnd);
-
-                    async();
-                  });
-                }
-              },
-              ccy: {
-                query: {
-                  css: '.currency-change-block .nav-currency .iradio_minimal.checked + label'
-                },
-                template: 'currency',
-                currencyMap: {
-                  RUR: 'RUB'
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '#offers_table .item-block .price-block strong span:not(.hidden)'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.s7.ru/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/selectExactDateSearchFlights\.action/.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: [{
-                  css: '#expandSearchForm'
-                }],
-                cb: function(profile) {
-                  var page = profile.page;
-
-                  var origin = document.querySelector('#expandSearchForm input#departureLocationIataCode');
-                  origin = origin && origin.value;
-
-                  var destination = document.querySelector('#expandSearchForm input#arrivalLocationIataCode');
-                  destination = destination && destination.value;
-
-                  var dateStart = document.querySelector('#expandSearchForm input#departureDates');
-                  dateStart = dateStart && dateStart.value;
-                  if (dateStart) {
-                    dateStart = main.reFormatDate(dateStart, /(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1");
-                  }
-
-                  var dateEnd = document.querySelector('#expandSearchForm input[name="model.arrivalDate"]');
-                  dateEnd = dateEnd && dateEnd.value;
-                  if (dateEnd) {
-                    dateEnd = main.reFormatDate(dateEnd, /(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1");
-                  }
-
-                  var currency = document.querySelector('#expandSearchForm input[name="model.currencyType"]');
-                  currency = currency && currency.value;
-
-                  page.setType('avia');
-                  page.set('origin', origin);
-                  page.set('destination', destination);
-                  page.set('dateStart', dateStart);
-                  page.set('dateEnd', dateEnd);
-                  page.set('currency', currency);
-                }
-              }
-            },
-            priceWatcher: {
-              priceOut: {
-                query: {
-                  css: '#ibe_exact_outbound_flight_table .select-flights span[data-qa="amount"]'
-                },
-                template: 'price',
-                key: 'minPriceOut'
-              },
-              travelWithPriceOut: {
-                query: {
-                  css: '#exact_outbound_flight_table .select-tariff span[data-qa="amount"]'
-                },
-                template: 'price',
-                key: 'minPriceOut'
-              },
-              priceIn: {
-                query: {
-                  css: '#ibe_exact_inbound_flight_table .select-flights span[data-qa="amount"]'
-                },
-                template: 'price',
-                key: 'minPriceIn'
-              },
-              travelWithPriceIn: {
-                query: {
-                  css: '#exact_inbound_flight_table .select-tariff span[data-qa="amount"]'
-                },
-                template: 'price',
-                key: 'minPriceIn'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.kupibilet.ru/*'] = function() {
-          var details = {
-            formWatcher: {
-              ctr: {
-                query: [{
-                  css: '.results-list-wrap'
-                }, {
-                  css: '.preloader'
-                }],
-                cb: function(profile) {
-                  var page = profile.page;
-
-                  var url = location.href;
-                  var m = url.match(/\/search\/(?:\w\d{3})(\d{2})(\w{3})(\w{3})(\w{3})(?:(\d{2})(\w{3})(\w{3})?)?/);
-
-                  if (!m) {
-                    return;
-                  }
-                  m.shift();
-
-                  if (m[6]) {
-                    tbr.error('More two way!', m);
-                    return;
-                  }
-
-                  var isOneWay = !m[4];
-
-                  var now = new Date();
-
-                  var monthMap = {
-                    'JAN': '01',
-                    'FEB': '02',
-                    'MAR': '03',
-                    'APR': '04',
-                    'MAY': '05',
-                    'JUN': '06',
-                    'JUL': '07',
-                    'AUG': '08',
-                    'SEP': '09',
-                    'OCT': 10,
-                    'NOV': 11,
-                    'DEC': 12
-                  };
-
-                  var getFormatDate = function(month, date) {
-                    month = monthMap[month];
-
-                    if (!month) {
-                      return null;
-                    }
-
-                    var cYear = now.getUTCFullYear();
-                    var cDate = now.getUTCDate();
-                    var cMonth = now.getUTCMonth() + 1;
-                    var intMonth = parseInt(month);
-                    var intDate = parseInt(date);
-                    if (cMonth > intMonth || (cMonth === intMonth && intDate < cDate)) {
-                      cYear += 1;
-                    }
-                    return main.validateDate([cYear, month, date].join('-'));
-                  };
-
-                  page.setType('avia');
-
-                  page.set('origin', m[2]);
-                  page.set('destination', m[3]);
-
-                  var dateStart = getFormatDate(m[1], m[0]);
-                  page.set('dateStart', dateStart);
-
-                  var dateEnd = !isOneWay && getFormatDate(m[5], m[4]);
-                  page.set('dateEnd', dateEnd);
-
-                  if (document.querySelector('.fa-rub')) {
-                    page.set('currency', 'RUB');
-                  }
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: 'li.results-total div.results-total-sum > span > span',
-                  is: 'added'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.trip.ru/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/flights\/searches\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '#results-container'
-                },
-                cb: function(profile) {
-                  var page = profile.page;
-
-                  var paramsEl = [].slice.call(document.querySelectorAll('#flights_view_type_tabs a'));
-                  var url = null;
-                  var re = /e_travel_flights_search/;
-                  paramsEl.some(function(node) {
-                    var hasParams = re.test(node.href);
-                    if (hasParams) {
-                      url = node.href;
-                      return true;
-                    }
-                  });
-
-                  if (!url) {
-                    tbr.error('Search url is not found!');
-                    return;
-                  }
-
-                  var params = monoUtils.parseUrl(url);
-
-                  page.setType('avia');
-
-                  var origin = params['e_travel_flights_search[from]'];
-                  page.set('origin', origin);
-
-                  var destination = params['e_travel_flights_search[to]'];
-                  page.set('destination', destination);
-
-                  var dateStart = params['e_travel_flights_search[departure]'];
-                  page.set('dateStart', dateStart);
-
-                  var dateEnd = params['e_travel_flights_search[return]'];
-                  page.set('dateEnd', dateEnd);
-
-                  var ccy = document.querySelector('#localization_selector_currency');
-                  if (ccy && ccy.value) {
-                    page.set('currency', ccy.value);
-                  }
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.flights-product-details .price span > a'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.sindbad.ru/*'] = function() {
-          var details = {
-            formWatcher: {
-              ctr: {
-                query: [{
-                  css: '.trips'
-                }, {
-                  css: '.wait_loop'
-                }],
-                cb: function(profile) {
-                  var async = this.async();
-                  var page = profile.page;
-
-                  return main.getParamsFromPage({
-                    origin: 'App.searchModel.attributes.request.src',
-                    destination: 'App.searchModel.attributes.request.dst',
-                    dateStart: 'App.searchModel.attributes.request.date_out',
-                    dateEnd: 'App.searchModel.attributes.request.date_in'
-                  }, function(dataObj) {
-                    page.setType('avia');
-
-                    page.set('origin', dataObj.origin);
-                    page.set('destination', dataObj.destination);
-                    page.set('dateStart', dataObj.dateStart);
-                    page.set('dateEnd', dataObj.dateEnd);
-
-                    if (document.querySelector('.ruble')) {
-                      page.set('currency', 'RUB');
-                    }
-
-                    async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.trips .trip-worth .trip-worth__price',
-                  is: 'added'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.aviakassa.ru/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/results\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: [{
-                  css: '#resultList'
-                }],
-                cb: function(profile) {
-                  var async = this.async();
-                  var page = profile.page;
-
-                  var formSwitch = document.querySelector('input[name="search[switch]"]');
-                  formSwitch = formSwitch && formSwitch.value;
-
-                  main.getParamsFromPage({
-                    origin: 'APRT_DATA.searchTickets.codeFrom',
-                    destination: 'APRT_DATA.searchTickets.codeDest',
-                    dateStart: 'APRT_DATA.searchTickets.dateFrom',
-                    dateEnd: 'APRT_DATA.searchTickets.dateTill',
-                    type: 'APRT_DATA.searchTickets.type'
-                  }, function(dataObj) {
-                    if (dataObj.type !== 'avia') {
-                      page.clear();
-                      async();
-                      return;
-                    }
-
-                    page.setType('avia');
-
-                    if (formSwitch === 'mult') {
-                      async();
-                      return;
-                    }
-
-                    if (dataObj.dateStart === dataObj.dateEnd) {
-                      if (formSwitch === 'ow') {
-                        dataObj.dateEnd = null;
-                      }
-                    }
-
-                    page.set('origin', dataObj.origin);
-                    page.set('destination', dataObj.destination);
-
-                    var dateStart = main.reFormatDate(dataObj.dateStart, /(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1");
-                    page.set('dateStart', dateStart);
-
-                    var dateEnd = main.reFormatDate(dataObj.dateEnd, /(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1");
-                    page.set('dateEnd', dateEnd);
-
-                    async();
-                  });
-                }
-              },
-              ccy: {
-                query: {
-                  css: '.price'
-                },
-                cb: function(profile) {
-                  var page = profile.page;
-
-                  var ccy = document.querySelector('.price');
-                  if (ccy) {
-                    if (/руб\./.test(ccy.textContent)) {
-                      page.set('currency', 'RUB');
-                    }
-                  }
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '#resultList .flight-result .price'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.biletix.ru/*'] = function() {
-          var details = {
-            formWatcher: {
-              ctr: {
-                query: [{
-                  css: '.flights'
-                }, {
-                  css: '.progress-ajax-border'
-                }],
-                cb: function(profile) {
-                  var async = this.async();
-                  var page = profile.page;
-
-                  main.getParamsFromPage({
-                    origin: 'xcnt_transport_from',
-                    destination: 'xcnt_transport_to',
-                    dateStart: 'xcnt_transport_depart_date',
-                    dateEnd: 'xcnt_transport_return_date',
-                    type: 'APRT_DATA.searchTickets.type'
-                  }, function(dataObj) {
-                    if (dataObj.type !== 'avia') {
-                      page.clear();
-                      async();
-                      return;
-                    }
-
-                    page.setType('avia');
-
-                    page.set('origin', dataObj.origin);
-                    page.set('destination', dataObj.destination);
-
-                    var dateStart = main.reFormatDate(dataObj.dateStart, /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
-                    page.set('dateStart', dateStart);
-
-                    var dateEnd = main.reFormatDate(dataObj.dateEnd, /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
-                    page.set('dateEnd', dateEnd);
-
-                    var ccy = document.querySelector('#currency_form .selected input[name="currency"]');
-                    ccy = ccy && ccy.value;
-                    if (ccy) {
-                      if (ccy === 'RUR') {
-                        ccy = 'RUB';
-                      }
-                      page.set('currency', ccy);
-                    }
-
-                    async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.offers .offer .price .caption'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.utair.ru/*'] = function() {
-          var details = {
-            formWatcher: {
-              ctr: {
-                query: [{
-                  css: '.directions_wrapper'
-                }, {
-                  css: '.progress-text'
-                }],
-                cb: function(profile) {
-                  var async = this.async();
-                  var page = profile.page;
-
-                  page.setType('avia');
-
-                  var origin = document.querySelector('.location.departure .code');
-                  origin = origin && origin.textContent;
-                  page.set('origin', origin);
-
-                  var destination = document.querySelector('.location.arrival .code');
-                  destination = destination && destination.textContent;
-                  page.set('destination', destination);
-
-                  var ccy = document.querySelector('input#matrix_currency[name="currency"]');
-                  if (ccy) {
-                    page.set('currency', ccy.value);
-                  }
-
-                  return main.getParamsFromPage({
-                    dateStart: 'cfg_split_fares.selected_date_to',
-                    dateEnd: 'cfg_split_fares.selected_date_back'
-                  }, function(dataObj) {
-                    var dateStart = main.reFormatDate(dataObj.dateStart, /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
-                    page.set('dateStart', dateStart);
-
-                    var dateEnd = main.reFormatDate(dataObj.dateEnd, /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
-                    page.set('dateEnd', dateEnd);
-
-                    async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              priceOut: {
-                query: {
-                  css: '.direction.direction-to .price'
-                },
-                template: 'price',
-                key: 'minPriceOut'
-              },
-              priceIn: {
-                query: {
-                  css: '.direction.direction-back .price'
-                },
-                template: 'price',
-                key: 'minPriceIn'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.booking.*/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/hotel\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '#hotelTmpl'
-                },
-                cb: function(profile) {
-                  var page = profile.page;
-
-                  var hotelName = document.querySelector('#hp_hotel_name');
-                  hotelName = hotelName && hotelName.textContent.trim();
-                  if (!hotelName) {
-                    return;
-                  }
-
-                  var async = this.async();
-                  return main.getParamsFromPage({
-                    city: 'utag_data.city_name',
-                    country: 'utag_data.country_name',
-                    dateIn: 'utag_data.date_in',
-                    dateOut: 'utag_data.date_out',
-                    currency: 'utag_data.currency',
-                    adults: 'utag_data.adults'
-                  }, function(dataObj) {
-                    page.setType('hotel');
-
-                    var query = [hotelName];
-                    if (dataObj.city && dataObj.country) {
-                      query.unshift(hotelName + ' ' + dataObj.city + ' ' + dataObj.country);
-                    } else if (dataObj.city) {
-                      query.unshift(hotelName + ' ' + dataObj.city);
-                    } else if (dataObj.country) {
-                      query.unshift(hotelName + ' ' + dataObj.country);
-                    }
-
-                    page.set('query', query);
-
-                    page.set('dateIn', dataObj.dateIn);
-                    page.set('dateOut', dataObj.dateOut);
-                    page.set('currency', dataObj.currency);
-                    page.set('adults', dataObj.adults);
-
-                    async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.booking_summary .roomPrice strong'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.agoda.*/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/hotel\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '#hotel-header'
-                },
-                cb: function(profile) {
-                  var page = profile.page;
-
-                  var hotelName = document.querySelector('#hotelname');
-                  hotelName && (hotelName = hotelName.textContent.trim());
-
-                  var rooms = document.querySelector('div.occupancy-num.rooms');
-                  rooms && (rooms = parseInt(rooms.textContent));
-
-                  if (!hotelName || rooms != 1) {
-                    return;
-                  }
-
-                  page.setType('hotel');
-
-                  var dateIn = document.querySelector('input.checkin-input');
-                  dateIn && (dateIn = dateIn.getAttribute('data-date'));
-                  page.set('dateIn', dateIn);
-
-                  var dateOut = document.querySelector('input.checkout-input');
-                  dateOut && (dateOut = dateOut.getAttribute('data-date'));
-                  page.set('dateOut', dateOut);
-
-                  var adults = document.querySelector('div.occupancy-num.adults');
-                  adults && (adults = parseInt(adults.textContent));
-                  page.set('adults', adults);
-
-                  var async = this.async();
-                  return main.getParamsFromPage({
-                    city: 'rtag_cityname'
-                  }, function(dataObj) {
-
-                    var enName = hotelName.match(/\((.+)\)$/);
-                    enName = enName && enName[1];
-                    if (enName) {
-                      hotelName = hotelName.replace('(' + enName + ')', '');
-                    }
-
-
-                    var query = [hotelName];
-                    if (enName) {
-                      query.push(enName);
-                    }
-                    if (dataObj.city) {
-                      if (enName) {
-                        query.unshift(enName + ' ' + dataObj.city);
-                      }
-                      query.unshift(hotelName + ' ' + dataObj.city);
-                    }
-
-                    page.set('query', query);
-                    async();
-                  });
-                }
-              },
-              ccy: {
-                query: {
-                  css: [
-                    '#room-grid-table .price span.room-grouping-room-price',
-                    '#room-grid-table .price-panel .sellprice'
-                  ]
-                },
-                cb: function(profile) {
-                  var page = profile.page;
-
-                  var ccy = document.getElementById('currency');
-                  ccy && (ccy = ccy.textContent);
-
-                  page.set('currency', ccy);
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: [
-                    '#room-grid-table .price span.room-grouping-room-price',
-                    '#room-grid-table .price-panel .sellprice'
-                  ]
-                },
-                template: 'price',
-                key: 'oneDayPrice'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.hotels.com/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/hotel\/|\/ho\d+\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '#property-details'
-                },
-                cb: function(profile) {
-                  var async = this.async();
-                  var page = profile.page;
-
-                  var name = document.querySelector('.vcard h1[itemprop="name"]');
-                  name = name && name.textContent.trim();
-
-                  main.getParamsFromPage({
-                    dateIn: 'commonDataBlock.search.checkinDate',
-                    dateOut: 'commonDataBlock.search.checkoutDate',
-                    name: 'commonDataBlock.property.hotelName',
-                    country: 'commonDataBlock.property.country',
-                    city: 'commonDataBlock.property.city',
-                    currency: 'commonDataBlock.property.featuredPrice.currency',
-                    rooms: 'commonDataBlock.search.numRooms',
-                    searchRooms: 'commonDataBlock.search.rooms'
-                  }, function(dataObj) {
-                    if (dataObj.rooms != 1 || !Array.isArray(dataObj.searchRooms) || dataObj.searchRooms.length !== 1 || !dataObj.searchRooms[0]) {
-                      async();
-                      return;
-                    }
-
-                    page.setType('hotel');
-
-                    var query = [];
-                    [dataObj.name, name].forEach(function(name, index) {
-                      if (!name) {
-                        return;
-                      }
-
-                      query.push(name);
-
-                      var place = [dataObj.city, dataObj.country].filter(function(place) {
-                        return !!place;
-                      });
-                      place = place.join(' ');
-
-                      query.splice(index, 0, [name, place].join(' '));
-                    });
-
-                    page.set('query', query);
-
-                    page.set('dateIn', dataObj.dateIn);
-                    page.set('dateOut', dataObj.dateOut);
-                    page.set('currency', dataObj.currency);
-
-                    var adults = dataObj.searchRooms[0].numAdults;
-                    page.set('adults', adults);
-
-                    async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '#rooms-and-rates .current-price'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.ostrovok.ru/*'] = function() {
-          var details = {
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: [
-                    '.rate-pricevalue',
-                    '.hotel-metaroom-rate-pricevalue'
-                  ]
-                },
-                cb: function(profile, summary) {
-                  var page = profile.page;
-
-                  var isRoom = /\/rooms\//.test(location.href);
-                  var isHotel = /\/hotel\//.test(location.href);
-
-                  if (!isRoom && !isHotel) {
-                    page.clear();
-                    return;
-                  }
-
-                  var async = this.async();
-                  main.getParamsFromPage({
-                    dateIn: 'qubit_event.page_checkin_date',
-                    dateOut: 'qubit_event.page_checkout_date',
-                    city: 'qubit_event.page_city',
-                    country: 'qubit_event.page_country',
-                    adults: 'qubit_event.page_adults',
-                    currency: 'qubit_event.product_currency'
-                  }, function(dataObj) {
-                    page.setType('hotel');
-
-                    var name = document.querySelector('h1.hotel-header-title');
-                    name = name && name.textContent;
-
-                    var query = [name];
-                    if (dataObj.city && dataObj.country) {
-                      query.unshift(name + ' ' + dataObj.city + ' ' + dataObj.country);
-                    } else if (dataObj.city) {
-                      query.unshift(name + ' ' + dataObj.city);
-                    } else if (dataObj.country) {
-                      query.unshift(name + ' ' + dataObj.country);
-                    }
-                    page.set('query', query);
-
-                    page.set('adults', dataObj.adults);
-                    page.set('currency', dataObj.currency);
-
-                    var dateIn = main.reFormatDate(dataObj.dateIn, /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
-                    page.set('dateIn', dateIn);
-
-                    var dateOut = main.reFormatDate(dataObj.dateOut, /(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
-                    page.set('dateOut', dateOut);
-
-                    async();
-                  });
-                }
-              },
-              changePage: {
-                query: {
-                  css: 'h1.hotel-header-title',
-                  is: 'removed'
-                },
-                cb: function(profile) {
-                  var page = profile.page;
-
-                  tbr.log('page change!');
-
-                  main.closeCurrentBar();
-                  page.clear();
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: [
-                    '.rate-pricevalue',
-                    '.hotel-metaroom-rate-pricevalue'
-                  ]
-                },
-                cb: function(profile, summary) {
-                  var page = profile.page;
-
-                  var childNode = null;
-                  var i = 0;
-                  var price = null;
-                  for (var n = 0, node; node = summary.added[n]; n++) {
-                    i = 0;
-                    while (childNode = node.childNodes[i]) {
-                      i++;
-                      if (childNode.nodeType === 3) {
-                        var textContent = childNode.textContent.trim();
-                        if (!textContent) {
-                          continue;
-                        }
-                        price = main.preparePrice(childNode);
-                        page.setPrice('price', price);
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.travel.ru/*'] = function() {
-          var getData = function(profile) {
-            var page = profile.page;
-
-            var ccy = document.querySelector('.switcher-city button');
-            ccy = ccy && ccy.textContent;
-            ccy = ccy && ccy.match(/([A-Z]{3})/);
-            ccy = ccy && ccy[1];
-
-            var name = document.querySelector('h1.b-hotel_title');
-            name = name && name.textContent;
-            name = name && name.trim();
-
-            if (!ccy || !name) {
-              return;
-            }
-
-            var url = location.href;
-            var params = monoUtils.parseUrl(url);
-
-            page.setType('hotel');
-
-            var dateIn = main.reFormatDate(params.in, /(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1");
-            page.set('dateIn', dateIn);
-
-            var dateOut = main.reFormatDate(params.out, /(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1");
-            page.set('dateOut', dateOut);
-
-            var query = [name];
-            var hotelName = document.querySelector('.breadcrumb > li.active > span[title]');
-            hotelName = hotelName && hotelName.title;
-            if (hotelName) {
-              query.push(hotelName);
-            }
-            page.set('query', query);
-
-            page.set('adults', params.occ);
-            page.set('currency', ccy);
-          };
-
-          var details = {
-            locationCheck: function(url) {
-              return /\/hotel\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '.b-av .b-av-rate_price_rub'
-                },
-                cb: function(profile) {
-                  getData(profile);
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.b-av .b-av-rate_price_rub'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.oktogo.ru/*'] = function() {
-          var getData = function(profile, cb) {
-            var page = profile.page;
-
-            return main.getParamsFromPage({
-              name: 'APRT_DATA.currentProduct.name',
-              dateIn: 'APRT_DATA.searchTickets.dateFrom',
-              dateOut: 'APRT_DATA.searchTickets.dateTill',
-              adults: 'APRT_DATA.searchTickets.count',
-              currency: 'currency',
-              type: 'APRT_DATA.searchTickets.type',
-              country: 'APRT_DATA.searchTickets.country',
-              city: 'APRT_DATA.searchTickets.dest'
-            }, function(dataObj) {
-              if (dataObj.type !== 'hotel' || !dataObj.name) {
-                return cb(1);
-              }
-
-              page.setType('hotel');
-
-              if (dataObj.name) {
-                dataObj.name = dataObj.name.trim();
-              }
-
-              var query = [dataObj.name];
-              if (dataObj.city && dataObj.country) {
-                query.unshift(dataObj.name + ' ' + dataObj.city + ' ' + dataObj.country);
-              } else if (dataObj.city) {
-                query.unshift(dataObj.name + ' ' + dataObj.city);
-              } else if (dataObj.country) {
-                query.unshift(dataObj.name + ' ' + dataObj.country);
-              }
-              page.set('query', query);
-
-              page.set('currency', dataObj.currency);
-
-              var params = monoUtils.parseUrl(location.href);
-              if (params.in && params.out) {
-                var dateIn = main.reFormatDate(params.in, /(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1");
-                page.set('dateIn', dateIn);
-
-                var dateOut = main.reFormatDate(params.out, /(\d{2})\.(\d{2})\.(\d{4})/, "$3-$2-$1");
-                page.set('dateOut', dateOut);
-              } else {
-                page.set('dateIn', dataObj.dateIn);
-                page.set('dateOut', dataObj.dateOut);
-              }
-
-              if (params.occ) {
-                page.set('adults', params.occ);
-              } else {
-                page.set('adults', dataObj.adults);
-              }
-
-              cb();
-            });
-          };
-
-          var details = {
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '.priceContainer *[data-price="period-price"] span.rub'
-                },
-                cb: function(profile) {
-                  var async = this.async();
-                  main.waitResponse(500, 20, function(cb) {
-                    return getData(profile, cb);
-                  }, function() {
-                    return async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.priceContainer *[data-price="period-price"] span.rub'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.roomguru.ru/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/Hotel\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '#ratesSearchResultsHolder'
-                },
-                cb: function(profile) {
-                  var page = profile.page;
-
-                  var name = document.querySelector('h1.hc_htl_intro_name');
-                  name = name && name.textContent.trim();
-                  if (!name) {
-                    return;
-                  }
-
-                  var params = monoUtils.parseUrl(location.href);
-                  var adults = params.adults_1;
-
-                  var place = params.destination;
-                  place = place && place.match(/place:(.+)/);
-                  place = place && place[1].trim();
-
-                  var query = [name];
-                  if (place) {
-                    query.unshift(name + ' ' + place);
-                  }
-
-                  var async = this.async();
-
-                  main.getParamsFromPage({
-                    fields: 'HC.Common.fields',
-                    gCurrencyCode: 'gCurrencyCode'
-                  }, function(dataObj) {
-                    var fields = dataObj.fields;
-                    var ccy = dataObj.gCurrencyCode;
-
-                    if (!fields || !ccy) {
-                      async();
-                      return;
-                    }
-
-                    page.setType('hotel');
-
-                    page.set('query', query);
-                    page.set('adults', adults);
-
-                    page.set('dateIn', fields.checkin);
-                    page.set('dateOut', fields.checkout);
-
-                    page.set('currency', ccy);
-
-                    async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '#hc_htl_pm_rates_content .hc_tbl_col2 #TotalLink'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.tripadvisor.ru/*'] = function() {
-          var getData = function(profile, async) {
-            var page = profile.page;
-
-            var queryName = document.querySelector('h1.header');
-            queryName = queryName && queryName.textContent.trim();
-
-            var name = null;
-            var altName = null;
-            var nameNode = document.querySelector('h1.heading_name');
-            if (nameNode) {
-              nameNode = nameNode.cloneNode(true);
-              var altHead = nameNode.querySelector('.altHead');
-              if (altHead) {
-                altName = altHead.textContent.trim();
-                altHead.parentNode.removeChild(altHead);
-              }
-              name = nameNode.textContent.trim();
-            }
-
-
-            var tree = document.querySelector('.impressionTrackingTree');
-            tree = tree && tree.innerHTML;
-
-            if (!tree) {
-              async();
-              return;
-            }
-
-            var ccy = tree.match(/\\PC:([A-Z]{3})\\/);
-            ccy = ccy && ccy[1];
-
-            var dateIn = tree.match(/\\CI:(\d{4}-\d{2}-\d{2})\\/);
-            dateIn = dateIn && dateIn[1];
-
-            var dateOut = tree.match(/\\CO:(\d{4}-\d{2}-\d{2})\\/);
-            dateOut = dateOut && dateOut[1];
-
-            if (!name || !ccy || !dateIn || !dateOut) {
-              async();
-              return;
-            }
-
-            components.bridge({
-              func: function(cb) {
-                var obj = {
-                  adultsCount: ta.retrieve('multiDP.adultsCount')
-                };
-
-                cb(obj);
-              },
-              cb: function(dataObj) {
-                if (!dataObj || !dataObj.adultsCount) {
-                  async();
-                  return;
-                }
-
-                page.setType('hotel');
-
-                page.set('dateIn', dateIn);
-                page.set('dateOut', dateOut);
-                page.set('currency', ccy);
-
-                var query = [name];
-                if (altName) {
-                  query.push(altName);
-                }
-                if (queryName) {
-                  query.unshift(queryName);
-                }
-                page.set('query', query);
-
-                page.set('adults', dataObj.adultsCount);
-
-                async();
-              }
-            });
-          };
-
-          var details = {
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '.viewDealChevrons .price'
-                },
-                cb: function(profile) {
-                  var async = this.async();
-                  getData(profile, async);
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.viewDealChevrons .price'
-                },
-                template: 'price',
-                key: 'oneDayPrice'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.hilton.com/*'] = profileList['*://*.hilton.ru/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/reservation\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '#roomViewRegularView'
-                },
-                cb: function(profile) {
-                  var page = profile.page;
-
-                  var name = document.querySelector('h2.hotelNameNoLink');
-                  name = name && name.textContent.trim();
-
-                  var roomsAdults = document.querySelector('.sumOccupancy');
-                  roomsAdults = roomsAdults && roomsAdults.textContent.trim();
-
-                  var ccy = document.querySelector('select#changeCurrency');
-                  ccy = ccy && ccy.value;
-
-                  if (!name || !roomsAdults || !ccy) {
-                    return;
-                  }
-
-                  var async = this.async();
-                  main.getParamsFromPage({
-                    dateInfo: 'digitalData.page.attributes.propertySearchDateInfo'
-                  }, function(dataObj) {
-                    if (!dataObj.dateInfo) {
-                      async();
-                      return;
-                    }
-
-                    page.setType('hotel');
-
-                    var query = [name];
-                    page.set('query', query);
-
-                    roomsAdults = roomsAdults.match(/(\d+)/g);
-                    if (roomsAdults[0] != '1') {
-                      async();
-                      return;
-                    }
-                    page.set('adults', roomsAdults[1]);
-
-                    page.set('currency', ccy);
-
-                    var searchDetails = dataObj.dateInfo.split(':');
-
-                    var dateIn = searchDetails[1];
-                    dateIn = main.reFormatDate(dateIn, /(\d{2})(\d{2})(\d{4})/, "$3-$1-$2");
-                    page.set('dateIn', dateIn);
-
-                    var dateOut = searchDetails[2];
-                    dateOut = main.reFormatDate(dateOut, /(\d{2})(\d{2})(\d{4})/, "$3-$1-$2");
-                    page.set('dateOut', dateOut);
-
-                    async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.price .priceamount'
-                },
-                cb: function(profile, summary) {
-                  var arr = [];
-                  for (var n = 0, node; node = summary.added[n]; n++) {
-                    node = node.cloneNode(true);
-                    var del = node.querySelector('del');
-                    if (del) {
-                      del.parentNode.removeChild(del);
-                    }
-                    arr.push(node);
-                  }
-                  summary.added = arr;
-                },
-                template: 'price',
-                key: 'oneDayPrice'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.marriott.com/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/reservation\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '.results-container'
-                },
-                cb: function(profile) {
-                  var async = this.async();
-                  var page = profile.page;
-
-                  main.getParamsFromPage({
-                    dataLayer: 'dataLayer'
-                  }, function(dataObj) {
-                    if (!dataObj.dataLayer) {
-                      async();
-                      return;
-                    }
-
-                    if (dataObj.dataLayer.numRooms > 1) {
-                      async();
-                      return;
-                    }
-
-                    page.setType('hotel');
-
-                    var name = dataObj.dataLayer.prop_name;
-
-                    var query = [name];
-                    if (dataObj.dataLayer.prop_address_city) {
-                      query.unshift(name + ' ' + dataObj.dataLayer.prop_address_city);
-                    }
-                    page.set('query', query);
-
-                    var adults = dataObj.dataLayer.numGuestsPerRoom;
-                    page.set('adults', adults);
-
-                    var currency = null;
-
-                    if (!currency) {
-                      currency = document.querySelector('.m-pricing-block span.t-nightly');
-                      currency = currency && currency.textContent;
-                      currency = currency && currency.match(/([A-Z]{3})\//);
-                      currency = currency && currency[1];
-                    }
-
-                    if (!currency) {
-                      currency = document.head.innerHTML.match(/tm_currency_type\s*:\s*"(\w{3})"/);
-                      currency = currency && currency[1];
-                    }
-
-                    if (!currency) {
-                      currency = dataObj.dataLayer.prop_currency_type;
-                    }
-                    page.set('currency', currency);
-
-                    var dateIn = dataObj.dataLayer.chckInDat;
-                    dateIn = main.reFormatDate(dateIn, /(\d{2})\/(\d{2})\/(\d{4})/, "$3-$1-$2");
-                    page.set('dateIn', dateIn);
-
-                    var dateOut = dataObj.dataLayer.chckOutDate;
-                    dateOut = main.reFormatDate(dateOut, /(\d{2})\/(\d{2})\/(\d{4})/, "$3-$1-$2");
-                    page.set('dateOut', dateOut);
-
-                    page.set('dayCount', dataObj.dataLayer.nmbNights);
-
-                    async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.results-container .t-price'
-                },
-                template: 'price',
-                key: 'oneDayPrice'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.hostelworld.com/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/hosteldetails/.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '.resultcolumn'
-                },
-                cb: function(profile) {
-                  "use strict";
-                  var page = profile.page;
-
-                  var async = this.async();
-                  return main.getParamsFromPage({
-                    dataLayer: 'dataLayer',
-                    currency: '$.currency.code'
-                  }, function(dataObj) {
-                    if (!Array.isArray(dataObj.dataLayer)) {
-                      return async();
-                    }
-
-                    var query = [];
-                    var name = null;
-
-                    dataObj.dataLayer.forEach(function(obj) {
-                      if (!obj || obj.gtmApplicationEnv !== 'production') {
-                        return;
-                      }
-
-                      name = obj.gtmPropertyName;
-
-                      var city = document.querySelector('input[name="city"]');
-                      city = city && city.value;
-
-                      var country = document.querySelector('input[name="country"]');
-                      country = country && country.value;
-
-                      if (city && country) {
-                        query.push([name, city, country].join(' '));
-                      } else if (city) {
-                        query.push([name, city].join(' '));
-                      } else if (country) {
-                        query.push([name, country].join(' '));
-                      }
-
-                      query.push(name);
-
-                      page.set('dateIn', obj.gtmArrivalDate);
-                      page.set('dateOut', obj.gtmDepartureDate);
-                      page.set('adults', obj.gtmTotalGuestCount);
-                      page.set('dayCount', obj.gtmTotalGuestCount);
-                    });
-
-                    page.setType('hotel');
-
-                    page.set('query', query);
-
-                    page.set('currency', dataObj.currency);
-
-                    async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.rooms tr > td > .averageprice.currency'
-                },
-                template: 'price',
-                key: 'oneDayPrice'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.tiket.com/*'] = function() {
-          var getOutDate = function(dateIn, days) {
-            var now = new Date(dateIn);
-            var time = now.getTime();
-            time += days * 24 * 60 * 60 * 1000;
-            now = new Date(time);
-
-            var year = now.getUTCFullYear();
-            var month = now.getUTCMonth() + 1;
-            if (month < 10) {
-              month = '0' + month;
-            }
-            var date = now.getUTCDate();
-            if (date < 10) {
-              date = '0' + date;
-            }
-            return main.validateDate([year, month, date].join('-'));
-          };
-
-          var details = {
-            locationCheck: function(url) {
-              return /\/hotel\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '.pilih-kamar'
-                },
-                cb: function(profile) {
-                  "use strict";
-                  var page = profile.page;
-                  page.setType('hotel');
-
-                  var params = monoUtils.parseUrl(location.href);
-
-                  if (params.room != 1) {
-                    return;
-                  }
-
-                  var name = document.querySelector('.head h1');
-                  name = name && name.textContent.trim();
-
-                  var query = [name];
-
-                  var address = document.querySelector('.head span[itemprop="address"]');
-                  address = address && address.textContent.trim();
-
-                  if (address) {
-                    query.unshift(name + ' ' + address);
-                  }
-
-                  var place = document.title.match(/\(([^\)]+)\)/);
-                  place = place && place[1].trim();
-                  if (place) {
-                    query.unshift(name + ' ' + place)
-                  }
-
-                  page.set('query', query);
-                  page.set('dateIn', params.startdate);
-
-                  page.set('dateOut', getOutDate(params.startdate, params.night));
-                  page.set('adults', params.adult);
-
-                  var ccy = document.querySelector('.money > a');
-                  ccy = ccy && ccy.textContent.trim();
-                  page.set('currency', ccy);
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.pilih-kamar .price > .currency'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.hotelsclick.com/*'] = function() {
-          var roomTypeAdultMap = {
-            DBC: 3,
-            DBL: 2,
-            EXTRA: 1,
-            JRS: 2,
-            QUD: 4,
-            SGL: 1,
-            STR: 2,
-            TRC: 4,
-            TRP: 3,
-            TSU: 1,
-            TWC: 3,
-            TWN: 2
-          };
-
-          var details = {
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '.roomBooking'
-                },
-                cb: function(profile) {
-                  "use strict";
-                  var page = profile.page;
-
-                  var params = monoUtils.parseUrl(location.href);
-                  var roomType = null;
-                  Object.keys(roomTypeAdultMap).some(function(type) {
-                    if (params[type.toLowerCase()]) {
-                      roomType = type;
-                      return true;
-                    }
-                  });
-
-                  var dateIn = params.from;
-                  var dateOut = params.to;
-
-                  var async = this.async();
-                  return main.getParamsFromPage({
-                    type: 'booking_rewrite',
-                    rooms: 'current_room',
-                    dateIn: 'global_fromdate',
-                    dateOut: 'global_todate',
-                    dayCount: 'global_nights',
-                    roomType: 'nCode',
-                    currency: 'currency'
-                  }, function(dataObj) {
-                    if (dataObj.type !== 'hotels') {
-                      return async();
-                    }
-
-                    var adults = roomTypeAdultMap[dataObj.roomType || roomType];
-                    if (!adults || dataObj.rooms != 1) {
-                      return async();
-                    }
-
-                    page.setType('hotel');
-
-                    var query = [];
-
-                    var name = document.querySelector('h1.hotel');
-                    name = name && name.textContent.trim();
-
-                    query.push(name);
-
-                    var hotelInfo = [].slice.call(document.querySelectorAll('.hotel_info strong')).slice(-1)[0];
-                    hotelInfo = hotelInfo && hotelInfo.textContent.trim();
-                    hotelInfo && query.unshift(name + ' ' + hotelInfo);
-
-                    page.set('query', query);
-
-                    page.set('dateIn', dataObj.dateIn || dateIn);
-                    page.set('dateOut', dataObj.dateOut || dateOut);
-                    page.set('adults', adults);
-                    page.set('dayCount', dataObj.dayCount);
-                    page.set('currency', dataObj.currency);
-
-                    async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '.roomBooking .agreement-row div.total'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        profileList['*://*.hotelscombined.com/*'] = function() {
-          var details = {
-            locationCheck: function(url) {
-              return /\/Hotel\//.test(url);
-            },
-            formWatcher: {
-              ctr: {
-                query: {
-                  css: '#hc_htl_pm_rates_content'
-                },
-                cb: function(profile) {
-                  "use strict";
-                  var page = profile.page;
-                  page.setType('hotel');
-
-                  var params = monoUtils.parseUrl(location.href);
-
-                  if (params.Rooms != 1) {
-                    return;
-                  }
-
-                  var name = document.querySelector('h1.hc_htl_intro_name');
-                  name = name && name.textContent.trim();
-
-                  var query = [name];
-
-                  var place = document.head.innerHTML.match(/HC\.Affiliate\.setCurrentPlaceName\('([^']+)'\)/);
-                  place = place && place[1];
-                  place && query.unshift(name + ' ' + place);
-
-                  page.set('query', query);
-                  page.set('dateIn', params.checkin);
-
-                  page.set('dateOut', params.checkout);
-                  page.set('adults', params.adults_1);
-
-                  var async = this.async();
-                  return main.getParamsFromPage({
-                    currency: 'HC.gCurrencyCode'
-                  }, function(dataObj) {
-
-                    page.set('currency', dataObj.currency || params.currencyCode);
-
-                    return async();
-                  });
-                }
-              }
-            },
-            priceWatcher: {
-              price: {
-                query: {
-                  css: '#hc_htl_pm_rates_content #TotalLink'
-                },
-                template: 'price'
-              }
-            }
-          };
-
-          return details;
-        };
-
-        return profileList;
-      };
-      main.profileList = getProfileList(tbr);
     })();
   }, function isAvailable(initData) {
     "use strict";
@@ -34901,7 +26909,7 @@
                 }
                 node.dataset.sfSkip = '1';
 
-                mono.one(node, 'mouseover', vimeo.mutationMode.wrapOnImgOver);
+                mono.one(node, 'mouseenter', vimeo.mutationMode.wrapOnImgOver);
               }
 
               summary = summaryList[4];
@@ -34913,7 +26921,7 @@
 
                 var parent = mono.getParentByClass(node, 'clip_thumbnail');
 
-                mono.one(parent, 'mouseover', vimeo.mutationMode.wrapOnImgOver);
+                mono.one(parent, 'mouseenter', vimeo.mutationMode.wrapOnImgOver);
               }
 
               summary = summaryList[5];
@@ -34925,7 +26933,7 @@
 
                 var parent = mono.getParentByClass(node, 'iris_video-vital');
 
-                mono.one(parent, 'mouseover', vimeo.mutationMode.wrapOnImgOver);
+                mono.one(parent, 'mouseenter', vimeo.mutationMode.wrapOnImgOver);
               }
 
               summary = summaryList[6];
@@ -34991,7 +26999,7 @@
                 }
                 node.dataset.sfSkip = '1';
 
-                mono.one(node, 'mouseover', vimeo.mutationMode.wrapOnImgOver2);
+                mono.one(node, 'mouseenter', vimeo.mutationMode.wrapOnImgOver2);
               }
 
               summary = summaryList[9];
@@ -35080,6 +27088,7 @@
     var preference = initData.getPreference;
     var moduleState = preference.moduleVkontakte ? 1 : 0;
     var allowDownloadMode = mono.isSafari || mono.isChrome || mono.isFF || (mono.isGM && mono.isTM);
+    var Promise = mono.Promise;
 
     var iframe = mono.isIframe();
     var videoExt = false;
@@ -35216,7 +27225,37 @@
           }
           videoFeed.onLinkHover.apply(this, arguments);
         },
+        onVideoInsert: function(node) {
+          var layer = SaveFrom_Utils.getParentById(node, 'mv_box');
+          var player = video.getPlayerNode(layer);
+
+          if (player) {
+            video.getLinksFromPlayer(layer, player, video.newAppendButton.bind(video));
+          }
+        },
+        onVideoChange: function(node) {
+          var _this = this;
+          if (!/video_box_wrap-?\d+_-?\d+/.test(node.id)) {
+            _this.onVideoInsert(node);
+          } else
+          if (!node.sfWatch) {
+            node.sfWatch = true;
+            var sfArrtMutationWatcher = SaveFrom_Utils.mutationAttrWatcher.run({
+              attr: 'id',
+              target: node,
+              callback: function() {
+                _this.onVideoInsert(node);
+              }
+            });
+            mono.onRemoveEvent(node, function() {
+              sfArrtMutationWatcher.stop();
+              node.sfWatch = false;
+              node.dataset.sfSkip = 0;
+            });
+          }
+        },
         enable: function() {
+          var _this = this;
           if (this.observer) {
             return this.observer.start();
           }
@@ -35232,7 +27271,7 @@
                 }
                 node.dataset.sfSkip = '1';
 
-                mono.one(node, 'mouseover', vk.mutationMode.wrapVideoFeedOnMouseOver);
+                mono.one(node, 'mouseenter', vk.mutationMode.wrapVideoFeedOnMouseOver);
               }
 
               summary = summaryList[1];
@@ -35242,12 +27281,7 @@
                 }
                 node.dataset.sfSkip = '1';
 
-                var layer = SaveFrom_Utils.getParentById(node, 'mv_box');
-                var player = video.getPlayerNode(layer);
-
-                if (player) {
-                  video.getLinksFromPlayer(layer, player, video.newAppendButton.bind(video));
-                }
+                _this.onVideoChange(node);
               }
 
               summary = summaryList[2];
@@ -35278,7 +27312,7 @@
                   }
                   node.dataset.sfSkip = '1';
 
-                  mono.one(node, 'mouseover', vk.mutationMode.wrapNewAudioOnMouseOver);
+                  mono.one(node, 'mouseenter', vk.mutationMode.wrapNewAudioOnMouseOver);
                 }
               }
 
@@ -35314,7 +27348,7 @@
                 css: '.top_audio_player .top_audio_player_title',
                 is: 'added'
               }, {
-                css: '.audio_page_player .audio_page_player_title',
+                css: '.audio_page_player .audio_page_player_title_performer',
                 is: 'added'
               },
 
@@ -35426,264 +27460,179 @@
       className: downloadLinkClassName,
       cache: {},
 
-      /**
-       * @param {Array} idList
-       * @param {Function} cb
-       * @returns {{abort: Function}}
-       */
-      getNewTrackListByIds: function(idList, cb, retry) {
-        if (retry === undefined) {
-          retry = 5;
-        }
-
+      lastValidRequest: null,
+      waitUntilUnblock: function(details) {
         var _this = this;
         var limit = 10;
+        var interval = 15 * 1000;
 
-        if (idList.length > limit) {
-          return (function() {
-            idList = idList.slice(0);
-            var _trackList = {};
-
-            var async = new mono.AsyncList(function() {
-              return cb(null, _trackList);
-            });
-
-            async.wait();
-
-            var next = function() {
-              var list = idList.splice(0, limit);
-              async.wait();
-              setTimeout(function() {
-                _this.getNewTrackListByIds(list, function(err, trackList) {
-                  idList.length && next();
-
-                  if (err) {
-                    return async.ready();
-                  }
-
-                  for (var fullId in trackList) {
-                    _trackList[fullId] = trackList[fullId];
-                  }
-
-                  return async.ready();
-                });
-              }, 250);
-            };
-            next();
-            next();
-
-            async.ready();
-          })();
+        if (!_this.lastValidRequest) {
+          return Promise.reject(new Error('Last valid request is empty!'));
         }
 
+        var getData = function() {
+          return new Promise(function(resolve) {
+            setTimeout(resolve, interval);
+          }).then(function() {
+            if (details.abort) {
+              throw new Error('Abort');
+            }
+
+            return mono.requestPromise(_this.lastValidRequest).then(function(response) {
+              limit--;
+              var list = parseVkResponse(response.body)[5];
+              if (!list) {
+                if (limit > 0) {
+                  return getData();
+                } else {
+                  throw new Error('Can\'t request data');
+                }
+              }
+            });
+          });
+        };
+        return getData().then(function() {
+          return new Promise(function(resolve) {
+            setTimeout(resolve, 250);
+          });
+        });
+      },
+
+      _getNewTrackListByIds: function(ids, details) {
+        var _this = this;
+        details = details || {};
+        var limit = 10;
+        var count = 0;
+        var trackObj = {};
         var cache = _this.cache;
 
-        var ids = [];
-        var trackList = {};
-        idList.forEach(function(fullId) {
-          var track = cache[fullId];
-          if (track) {
-            trackList[fullId] = track;
+        var idsClone = ids.filter(function(id) {
+          if (cache[id]) {
+            trackObj[id] = cache[id];
+            count++;
+            return false;
           } else {
-            ids.push(fullId);
+            return true;
           }
         });
 
-        if (!ids.length) {
-          return cb(null, trackList);
+        var partIds = [];
+        while (idsClone.length) {
+          partIds.push(idsClone.splice(0, limit));
         }
+        var maxCount = ids.length;
 
-        return mono.request({
-          type: 'POST',
-          data: mono.param({
-            act: 'reload_audio',
-            al: 1,
-            ids: ids.join(',')
-          }),
-          url: '/al_audio.php',
-          localXHR: true
-        }, function(err, resp, data) {
-          if (err) {
-            return cb(err);
-          }
+        var promise = Promise.resolve();
 
-          if (!data) {
-            return cb("Data is empty!");
-          }
-
-          try {
-            var resp = parseVkResponse(data);
-
-            var playlistArr = resp[5];
-
-            /*if (!playlistArr && retry > 0) {
-              return setTimeout(function () {
-                return _this.getNewTrackListByIds(idList, cb, --retry);
-              }, 250);
-            }*/
-
-            playlistArr && playlistArr.forEach(function(track) {
-              var fullId = track[1] + '_' + track[0];
-              trackList[fullId] = track;
-              cache[fullId] = track;
-            });
-
-            Object.keys(cache).slice(1000).forEach(function(fullId) {
-              delete cache[fullId];
-            });
-
-            if (!Object.keys(trackList).length) {
-              throw "Track list is empty!";
+        partIds.forEach(function(ids) {
+          var requestIds = function() {
+            if (details.abort) {
+              throw new Error('Abort');
             }
 
-            return cb(null, trackList);
-          } catch (e) {
-            return cb(e);
-          }
-        });
-      },
+            var requestDetails;
+            return mono.requestPromise(requestDetails = {
+              type: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-Requested-With': 'XMLHttpRequest'
+              },
+              data: mono.param({
+                act: 'reload_audio',
+                al: 1,
+                ids: ids.join(',')
+              }),
+              url: '/al_audio.php',
+              localXHR: true
+            }).then(function(response) {
+              var list = parseVkResponse(response.body)[5];
+              if (!list) {
+                throw new Error('Track list is not found!');
+              } else {
+                _this.lastValidRequest = requestDetails;
 
-      getLinksFromJson: function(albumData, list, onSuccess, onError) {
-        if (!list['all']) {
-          return onError();
-        }
-        var trackList = [];
-        var linkList = {};
-        for (var i = 0, item; item = list['all'][i]; i++) {
-          if (albumData.aId !== undefined && item[8] !== albumData.aId) {
-            continue;
-          }
-          var aId = item[0] + '_' + item[1];
-          if (linkList[aId] !== undefined) {
-            continue;
-          }
-          var url = item[2];
-          var title = mono.fileName.decodeSpecialChars(mono.decodeUnicodeEscapeSequence(item[5] + ' - ' + item[6]));
+                list.forEach(function(track) {
+                  var id = track[1] + '_' + track[0];
+                  cache[id] = track;
+                  trackObj[id] = track;
+                  count++;
+                });
 
-          trackList.push({
-            url: url,
-            title: title,
-            filename: mono.fileName.modify(title + '.mp3')
+                if (details.onProgress) {
+                  details.onProgress(count, maxCount);
+                }
+              }
+
+              return new Promise(function(resolve) {
+                setTimeout(resolve, 250);
+              });
+            });
+          };
+
+          promise = promise.then(function() {
+            return requestIds().catch(function(e) {
+              if (e.message !== 'Track list is not found!') {
+                throw e;
+              }
+
+              if (!details.withoutUnblock) {
+                return _this.waitUntilUnblock(details).then(requestIds);
+              }
+            }).catch(function(e) {
+              if (e.message !== 'Abort') {
+                mono.debug('requestIds error!', e);
+              }
+            });
           });
-          linkList[aId] = url;
-        }
+        });
 
-        if (trackList.length === 0) {
-          return onError();
-        }
-        onSuccess(linkList, trackList);
+        promise = promise.then(function() {
+          Object.keys(cache).slice(1000).forEach(function(id) {
+            delete cache[id];
+          });
+
+          var idsArr = [];
+          ids.forEach(function(id) {
+            var track = trackObj[id];
+            track && idsArr.push(track);
+          });
+          return idsArr;
+        });
+
+        return promise;
       },
 
-      getAudioLinksViaAPI: function(albumData, onSuccess, onError, reSend) {
-        var _this = this;
-        var params = {
-          act: 'load_audios_silent',
-          al: 1
-        };
-        if (albumData.gid !== undefined) {
-          params.gid = albumData.gid;
-        }
-        if (albumData.id !== undefined) {
-          params.id = albumData.id;
-        }
-        if (albumData.please_dont_ddos === undefined) {
-          albumData.please_dont_ddos = 2;
-        }
-        params.please_dont_ddos = albumData.please_dont_ddos;
-        var post = mono.param(params);
-        if (reSend === undefined) {
-          reSend = 0;
+      _getAlbumId: function(url) {
+        if (/[?&]section=/.test(url) || /[?&]q=/.test(url)) {
+          return null;
         }
 
-        var onXhrError = function() {
-          if (reSend > 2) {
-            return onError();
-          }
-          setTimeout(function() {
-            _this.getAudioLinksViaAPI(albumData, onSuccess, onError, ++reSend);
-          }, 250);
+        var albumData = {
+          page: 'al_audio.php',
+          act: 'reload_audio'
         };
 
-        return mono.request({
-          type: 'POST',
-          url: '/' + albumData.page,
-          data: post,
-          timeout: 60 * 1000,
-          localXHR: true
-        }, function(err, resp, data) {
-          if (err) {
-            return onXhrError();
-          }
-
-          if (!data) {
-            return onError();
-          }
-
-          try {
-            var str = parseVkResponse(data)[5];
-            if (!str || str[0] !== '{') {
-              throw "Data is empty!";
-            }
-
-            var regexp1 = /"/g;
-            str = str.replace(/'/g, '"').replace(/<([^>]*)>/g, function(str, arg1) {
-              var r = arg1.replace(regexp1, '\'');
-              return '<' + r + '>';
-            });
-
-            var list = JSON.parse(str);
-          } catch (e) {
-            return onError();
-          }
-
-          return _this.getLinksFromJson(albumData, list, onSuccess, onError);
-        });
-      },
-
-      getLinksFromAlbum: function(albumData, cb) {
-        this.getAudioLinksViaAPI(albumData, cb, function onError() {
-          cb();
-        });
-      },
-
-      getAlbumId: function(url) {
-        var albumData = undefined;
-        var m1 = url.match(/audios(\d+)/);
-        if (m1 !== null) {
-          albumData = {
-            page: 'audio',
-            id: m1[1],
-            gid: 0
-          };
-        }
-        var m1 = url.match(/audios-(\d+)/);
-        if (m1 !== null) {
-          albumData = {
-            page: 'audio',
-            id: 0,
-            gid: m1[1]
-          };
-        }
-        var allowArgs = false;
-        var aId = url.match(/album_id=(\d+)/);
-        if (aId) {
-          albumData.aId = aId[1];
-          allowArgs = true;
-        }
-        if (allowArgs === false) {
-          var friendId = url.match(/friend=(\d+)/);
-          if (friendId) {
-            delete albumData.gid;
-            albumData.id = friendId[1];
-            albumData.please_dont_ddos = 3;
-            allowArgs = true;
-          }
+        var m = /audios(-?\d+)/.exec(url);
+        if (m) {
+          albumData.owner_id = m[1];
+          albumData.album_id = -2;
         }
 
-        if (allowArgs === false && url.indexOf('?') !== -1) {
-          return;
+        var ownerId = /[?&]friend=(-?\d+)/.exec(url);
+        if (ownerId) {
+          albumData.owner_id = ownerId[1];
         }
-        return albumData;
+
+        var albumId = /[?&]album_id=(-?\d+)/.exec(url);
+        if (albumId) {
+          albumData.album_id = albumId[1];
+        }
+
+        if (!albumData.owner_id) {
+          return null;
+        } else {
+          return albumData;
+        }
       },
 
       getNewNodeTrackInfo: function(node, cb) {
@@ -35705,192 +27654,219 @@
         }
       },
 
-      getNewAudioLinks: function(container, cb, skipAlbumIdCheck, noReply) {
+      _getAlbumTrackViaApi: function(albumData, details) {
         var _this = this;
+        if (!albumData.page) {
+          mono.debug('Page is not exists!', albumData);
+          throw new Error('Page is not exists!');
+        }
+        var postData = {
+          act: 'load_silent',
+          al: 1,
+          band: false
+        };
+        ['album_id', 'owner_id'].forEach(function(key) {
+          if (albumData[key] !== undefined) {
+            postData[key] = albumData[key];
+          }
+        });
+
+        var requestList = function() {
+          if (details.abort) {
+            return Promise.reject(new Error('Abort'));
+          }
+
+          return mono.requestPromise({
+            type: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'X-Requested-With': 'XMLHttpRequest'
+            },
+            url: '/' + albumData.page,
+            data: postData,
+            timeout: 60 * 1000,
+            localXHR: true
+          }).then(function(response) {
+            var album = parseVkResponse(response.body)[5];
+            if (!album) {
+              throw new Error('Album data is empty!');
+            }
+
+            return new Promise(function(resolve) {
+              setTimeout(resolve, 250);
+            }).then(function() {
+              return album;
+            });
+          });
+        };
+
+        return requestList().then(function(album) {
+          var limit = 20;
+          var getOffset = function(offset) {
+            if (!offset || limit < 0) {
+              return album;
+            }
+
+            limit--;
+            postData.offset = offset;
+            return requestList().then(function(offsetAlbum) {
+              album.list.push.apply(album.list, offsetAlbum.list);
+              return getOffset(offsetAlbum.nextOffset);
+            }, function(e) {
+              if (e.message !== 'Abort') {
+                mono.debug('getOffset error!', e);
+              }
+              return album;
+            });
+          };
+          return getOffset(album.nextOffset);
+        });
+      },
+
+      _getAllTrackViaDom: function(container, details) {
+        var _this = this;
+        details = details || {};
+
+        var list = [];
+
+        [].slice.call(container.querySelectorAll('.audio_row')).forEach(function(node) {
+          if (details.fromPage && _this.elIsHidden(node)) {
+            return;
+          }
+
+          if (!details.grabReply && photo.isReply(node)) {
+            return;
+          }
+
+          var track = null;
+          try {
+            track = JSON.parse(node.dataset.audio);
+          } catch (e) {}
+
+          if (track) {
+            list.push(track);
+          }
+        });
+
+        return {
+          list: list
+        };
+      },
+
+      _getNewAudioLinks: function(container, details) {
+        var _this = this;
+
+        details = details || {};
         container = container || document;
         var fromPage = container === document;
 
-        if (!skipAlbumIdCheck && fromPage) {
-          var albumInfo = this.getAlbumId(location.href);
-          if (albumInfo) {
-            return this.getLinksFromAlbum(albumInfo, function(linkList, trackList) {
-              if (!linkList) {
-                return _this.getNewAudioLinks(container, cb, 1);
-              } else {
-                return cb(linkList, trackList);
-              }
-            });
-          }
-        }
+        var popup = photo.getPopup('', 'audio', function onClose() {
+          details.abort = true;
+        });
 
-        var fullIdList = [];
+        popup.onPrepare(language.download + ' ...');
 
-        var async = new mono.AsyncList(function() {
-          var abort = null;
-          var popup = photo.getPopup('', 'audio', function onClose() {
-            abort = true;
-          });
-          popup.onPrepare(language.download + ' ...');
-
-          var _trackList = {};
-
-          var async = new mono.AsyncList(function() {
-            if (abort) {
-              return;
+        var findAudioAlbumLinks = function() {
+          return Promise.resolve().then(function() {
+            var albumData = _this._getAlbumId(location.href);
+            if (!albumData) {
+              throw new Error('Album is not found');
             }
 
+            return _this._getAlbumTrackViaApi(albumData, details);
+          });
+        };
+
+        var findAudioAllLinks = function() {
+          return Promise.resolve().then(function() {
+            return _this._getAllTrackViaDom(container, {
+              fromPage: fromPage,
+              grabReply: false
+            })
+          });
+        };
+
+        details.onProgress = function(count, max) {
+          popup.onProgress(count, max);
+        };
+
+        var getTrackListUrl = function(album) {
+          var ids = [];
+
+          var title = '';
+          if (typeof album.title === 'string') {
+            title = mono.fileName.modify(album.title);
+          }
+
+          album.list.forEach(function(track) {
+            var id = track[1] + '_' + track[0];
+            if (ids.indexOf(id) === -1) {
+              ids.push(id);
+            }
+          });
+
+          return _this._getNewTrackListByIds(ids, details).then(function(list) {
             var linkList = {};
             var trackList = [];
 
-            fullIdList.forEach(function(fullId) {
-              var track = _trackList[fullId];
-              var info = track && _this.getNewTrackInfo(track);
-              if (!info || !info.url) {
-                return;
+            list.forEach(function(track) {
+              var info = _this.getNewTrackInfo(track);
+              if (info && info.url) {
+                var filename = _this.getNewAudioFilename(info);
+                var fullTitle = _this.getNewAudioFullTitle(info);
+                linkList[info.fullId] = info.url;
+                trackList.push({
+                  url: info.url,
+                  title: fullTitle,
+                  filename: filename
+                });
               }
-
-              var filename = _this.getNewAudioFilename(info);
-              var fullTitle = _this.getNewAudioFullTitle(info);
-
-              linkList[info.fullId] = info.url;
-
-              trackList.push({
-                url: info.url,
-                title: fullTitle,
-                filename: filename
-              });
             });
 
-            popup.onReady();
-
-            return cb(linkList, trackList);
+            return {
+              linkList: linkList,
+              trackList: trackList,
+              title: title
+            };
           });
+        };
 
-          async.wait();
+        var promise = Promise.resolve();
+        if (fromPage) {
+          promise = promise.then(findAudioAlbumLinks).catch(function(e) {
+            if (e.message !== 'Album is not found') {
+              mono.debug('findAlbumLinks error!', e);
+            }
+            throw e;
+          }).catch(function() {
+            return findAudioAllLinks();
+          });
+        } else {
+          promise = promise.then(findAudioAllLinks);
+        }
 
-          var idsList = fullIdList.slice(0);
-          var max = fullIdList.length;
-          var count = 0;
-          var next = function() {
-            var list = idsList.splice(0, 20);
-            popup.onProgress(count, max);
-            async.wait();
-            setTimeout(function() {
-              _this.getNewTrackListByIds(list, function(err, trackList) {
-                idsList.length && !abort && next();
+        promise = promise.then(function(album) {
+          var list = album.list;
 
-                if (err) {
-                  return async.ready();
-                }
+          if (!list.length) {
+            throw new Error('Audio is not found');
+          }
 
-                for (var fullId in trackList) {
-                  count++;
-                  _trackList[fullId] = trackList[fullId];
-                }
-
-                return async.ready();
-              });
-            }, 250);
-          };
-          next();
-
-          return async.ready();
+          popup.onProgress(0, list.length);
+          return album;
         });
 
-        async.wait();
+        promise = promise.then(getTrackListUrl);
 
-        [].slice.call(container.querySelectorAll('.audio_row')).forEach(function(node) {
-          if (fromPage && _this.elIsHidden(node)) {
-            return;
-          }
-
-          if (noReply && photo.isReply(node)) {
-            return;
-          }
-
-          async.wait();
-          return _this.getNewNodeTrackInfo(node, function(err, info) {
-            if (err || !info.fullId) {
-              return async.ready();
-            }
-
-            if (fullIdList.indexOf(info.fullId) === -1) {
-              fullIdList.push(info.fullId);
-            }
-
-            return async.ready();
-          });
+        promise = promise.then(function(result) {
+          popup.onReady();
+          return result;
+        }, function(e) {
+          popup.onReady();
+          throw e;
         });
 
-        return async.ready();
-      },
-
-      getTitle: function(container, id) {
-        if (!id || !container) {
-          return '';
-        }
-
-        var name = '';
-
-        var performer = container.querySelector('#performer' + id);
-        if (performer === null) {
-          performer = container.querySelector('#performerWall' + id);
-        }
-        if (performer === null) {
-          performer = container.querySelector('.info b');
-        }
-
-        var title = container.querySelector('#title' + id);
-        if (title === null) {
-          title = container.querySelector('#titleWall' + id);
-        }
-        if (title === null) {
-          title = container.querySelector('span.title');
-        }
-
-        if (performer !== null && performer.textContent) {
-          name += performer.textContent.trim();
-        }
-
-        if (title !== null && title.textContent) {
-          if (name) {
-            name += ' - ';
-          }
-
-          name += title.textContent.trim();
-        }
-
-        if (name) {
-          return name.replace(/\<a\s+[^\>]+\>/ig, '').replace(/\<\/a\>/ig, '');
-        }
-
-        return '';
-      },
-
-      secondsFromDuration: function(value) {
-        var m = value.match(/^(?:\s*(\d+)\s*\:)?\s*(\d+)\s*\:\s*(\d+)/);
-        if (m && m.length > 3) {
-          if (!m[1]) {
-            m[1] = 0;
-          }
-
-          return parseInt(m[1]) * 3600 + parseInt(m[2]) * 60 + parseInt(m[3]);
-        }
-
-        return 0;
-      },
-
-      secondsFromDurationNode: function(node) {
-        if (!node) {
-          return 0;
-        }
-
-        var text = node.textContent;
-        if (!text) {
-          return 0;
-        }
-
-        return this.secondsFromDuration(text);
+        return promise;
       },
 
       tooltip: {
@@ -36001,19 +27977,22 @@
         durationContainer.appendChild(el);
       },
 
-      onDlBtnOver: function(e) {
-        var tooltip = audio.tooltip;
-        if (e.type !== 'mouseenter') {
-          tooltip.hide();
-          return;
-        }
+      onDlBtnLeave: function() {
+        var _this = audio;
+        var currentTooltip = _this.tooltip;
+        currentTooltip.hide();
+      },
+
+      onDlBtnOver: function() {
+        var _this = audio;
+        var currentTooltip = _this.tooltip;
 
         var node = this;
         var fullId = node.dataset.fullId;
 
         var topOffset = -6;
-        if (this.dataset.bitrateOffsetTop) {
-          topOffset = parseInt(this.dataset.bitrateOffsetTop);
+        if (node.dataset.bitrateOffsetTop) {
+          topOffset = parseInt(node.dataset.bitrateOffsetTop);
         }
 
         var options = {
@@ -36026,7 +28005,7 @@
           }
         };
 
-        var ttp = tooltip.show(node, options);
+        var ttp = currentTooltip.show(node, options);
         ttp.dataset.fullId = fullId;
 
         var setTtpLabel = function() {
@@ -36038,10 +28017,10 @@
             text = language.getFileSizeFailTitle;
           } else
           if (bitrate) {
-            audio.insertNewBitrate(bitrate, node.parentNode);
-            text = ' (' + size + ' ~ ' + bitrate + ')';
+            _this.insertNewBitrate(bitrate, node.parentNode);
+            text = size + ' ~ ' + bitrate;
           } else {
-            text = ' (' + size + ')';
+            text = size;
           }
 
           ttp.style.padding = '2px 5px 3px';
@@ -36049,77 +28028,81 @@
         };
 
         if (node.dataset.size) {
-          return setTtpLabel();
-        }
+          setTtpLabel();
+        } else {
+          ttp.style.padding = '2px 2px 0 2px';
+          ttp.textContent = '';
+          ttp.appendChild(mono.create('img', {
+            src: '/images/upload.gif',
+            height: 8,
+            width: 32,
+            style: {
+              marginTop: '2px',
+              marginBottom: '1px'
+            }
+          }));
 
-        ttp.style.padding = '2px 2px 0 2px';
-        ttp.textContent = '';
-        ttp.appendChild(mono.create('img', {
-          src: '/images/upload.gif',
-          height: 8,
-          width: 32,
-          style: {
-            marginTop: '2px',
-            marginBottom: '1px'
-          }
-        }));
+          if (!node.dataset.preloadOver) {
+            node.dataset.preloadOver = 1;
 
-        var requireBitrate = function() {
-          audio.preloadNewTrackUrl(node, function(err) {
-            if (err) {
-              if (ttp.dataset.fullId === fullId) {
-                setTtpLabel();
-                tooltip.updatePos(node, options);
-              }
-            } else {
-              audio.onOverInsertBitrate(node, node.parentNode, function() {
+            _this._preloadNewTrackUrl(node).then(function(url) {
+              node.dataset.preloadOver = 2;
+              node.href = url;
+
+              return _this._onOverInsertBitrate(node).then(function() {
                 if (ttp.dataset.fullId === fullId) {
                   setTtpLabel();
-                  tooltip.updatePos(node, options);
+                  currentTooltip.updatePos(node, options);
                 }
               });
-            }
-          });
-        };
+            }).catch(function(e) {
+              node.dataset.preloadOver = '';
 
-        requireBitrate();
-      },
-
-      isNewPreloadState: function(url) {
-        return /#sf-preload$/.test(url);
-      },
-
-      preloadNewTrackUrl: function(node, cb) {
-        var _this = this;
-        var href = node.href;
-
-        if (node.dataset.sfLoading === '1') {
-          return;
-        }
-
-        if (!this.isNewPreloadState(href)) {
-          return cb();
-        }
-
-        node.dataset.sfLoading = '1';
-
-        var fullId = node.dataset.fullId;
-        return this.getNewTrackListByIds([fullId], function(err, trackList) {
-          node.removeAttribute(mono.dataAttr2Selector('sfLoading'));
-
-          if (err) {
-            return cb(err);
-          }
-
-          var track = trackList[fullId];
-          var info = track && _this.getNewTrackInfo(track);
-          if (!info || !info.url) {
-            return cb("Track is not found!");
+              if (ttp.dataset.fullId === fullId) {
+                setTtpLabel();
+                currentTooltip.updatePos(node, options);
+              }
+            });
           } else {
-            node.href = info.url;
-            return cb();
+            setTtpLabel();
           }
-        });
+        }
+      },
+
+      preloadIdPromiseMap: {},
+
+      _preloadNewTrackUrl: function(node) {
+        var _this = this;
+        var idPromiseMap = _this.preloadIdPromiseMap;
+        var fullId = node.dataset.fullId;
+        var promise = idPromiseMap[fullId];
+        if (!promise) {
+          promise = idPromiseMap[fullId] = _this._getNewTrackListByIds([fullId], {
+            withoutUnblock: true
+          }).then(function(list) {
+            delete idPromiseMap[fullId];
+
+            var track = null;
+            list.some(function(_track) {
+              var id = _track[1] + '_' + _track[0];
+              if (id === fullId) {
+                track = _track;
+                return true;
+              }
+            });
+
+            var info = track && _this.getNewTrackInfo(track);
+            if (!info || !info.url) {
+              throw new Error('Track is not found');
+            }
+
+            return info.url;
+          }, function(e) {
+            delete idPromiseMap[fullId];
+            throw e;
+          });
+        }
+        return promise;
       },
 
       onNewDlBtnClick: function(e) {
@@ -36160,52 +28143,43 @@
         }
       },
 
-      onNewPreloadTrackReady: function(node, err) {
-        if (err) {
-          return;
-        }
-
-        if (node.dataset.sfTtl === '1') {
-          node.dataset.sfTtl = '0';
-
-          audio.onOverInsertBitrate(node, node.parentNode);
-        }
-
-        if (node.dataset.sfDl === '1') {
-          node.dataset.sfDl = '0';
-
-          mono.trigger(node, 'click', {
-            cancelable: true
-          });
-        }
-
-        node.removeAttribute(mono.dataAttr2Selector('sfDl'));
-        node.removeAttribute(mono.dataAttr2Selector('sfTtl'));
-      },
-
-      onNewDlBtnClickWrapper: function(event) {
-        event.stopPropagation();
+      _onNewDlBtnClickWrapper: function(e) {
+        var _this = audio;
         var node = this;
+        e.stopPropagation();
 
-        if (!audio.isNewPreloadState(node.href)) {
-          return audio.onNewDlBtnClick.call(node, event);
+        if (node.dataset.preloadOver > 1 || node.dataset.preloadBitrate > 1) {
+          node.dataset.preloadDl = 2;
         }
 
-        event.preventDefault();
-        event.stopPropagation();
+        if (!node.dataset.preloadDl) {
+          e.preventDefault();
 
-        if (node.dataset.sfDl === '1') {
-          return;
+          node.dataset.preloadDl = 1;
+
+          _this._preloadNewTrackUrl(node).then(function(url) {
+            node.dataset.preloadDl = 2;
+            node.href = url;
+
+            audio.onNewDlBtnClick.call(node, e);
+          }, function() {
+            node.dataset.preloadDl = '';
+          });
+        } else
+        if (node.dataset.preloadDl > 1) {
+          // loading complete
+          audio.onNewDlBtnClick.call(node, e);
+        } else {
+          // loading
+          e.preventDefault();
         }
-        node.dataset.sfDl = '1';
-
-        return audio.preloadNewTrackUrl(this, audio.onNewPreloadTrackReady.bind(audio, node));
       },
 
       getNewDlBtn: function(info, filename) {
         var args = {
           href: info.url || '#sf-preload',
           class: [audio.className, 'sf-audio-btn'],
+          download: mono.fileName.modify(filename) || '',
           data: {
             duration: info.duration || '',
             fullId: info.fullId
@@ -36217,14 +28191,13 @@
           },
           on: [
             ['mouseenter', this.onDlBtnOver],
-            ['mouseleave', this.onDlBtnOver]
+            ['mouseleave', this.onDlBtnLeave],
+            ['click', this._onNewDlBtnClickWrapper],
+            ['mousedown', function(e) {
+              e.stopPropagation();
+            }]
           ]
         };
-
-        if (filename) {
-          args.download = mono.fileName.modify(filename);
-          args.on.push(['click', this.onNewDlBtnClickWrapper]);
-        }
 
         if (mono.isGM || mono.isOpera || mono.isSafari) {
           args.title = language.downloadTitle;
@@ -36233,41 +28206,45 @@
         return mono.create('a', args);
       },
 
-      onOverInsertBitrate: function(node, actions, cb) {
-        if (!cb && audio.isNewPreloadState(node.href)) {
-          node.dataset.sfTtl = '1';
-          return audio.preloadNewTrackUrl(node, audio.onNewPreloadTrackReady.bind(audio, node));
-        }
+      preloadSizePromiseMap: {},
 
-        var onResponse = function(response) {
-          if (!response || !response.fileSize) {
-            node.href = '#sf-preload';
-            delete audio.cache[node.dataset.fullId];
-            cb && cb(response);
-            return;
-          }
-
-          var size = SaveFrom_Utils.sizeHuman(response.fileSize, 2);
-          var bitrate = '';
-          if (node.dataset.duration) {
-            bitrate = Math.floor((response.fileSize / node.dataset.duration) / 125) + ' ' + language.kbps;
-          }
-
-          node.dataset.bitrate = bitrate;
-          node.dataset.size = size;
-
-          audio.insertNewBitrate(bitrate, actions);
-
-          cb && cb(response);
-        };
-        try {
-          mono.sendMessage({
+      _onOverInsertBitrate: function(node) {
+        var _this = this;
+        var sizePromiseMap = _this.preloadSizePromiseMap;
+        var fullId = node.dataset.fullId;
+        var promise = sizePromiseMap[fullId];
+        if (!promise) {
+          promise = sizePromiseMap[fullId] = mono.sendMessagePromise({
             action: 'getFileSize',
             url: node.href
-          }, onResponse);
-        } catch (e) {
-          onResponse(null);
+          }).then(function(response) {
+            delete sizePromiseMap[fullId];
+
+            if (!response) {
+              throw new Error('Response is empty');
+            }
+
+            if (!response.fileSize) {
+              delete _this.cache[fullId];
+              throw new Error('File size is empty');
+            }
+
+            var size = SaveFrom_Utils.sizeHuman(response.fileSize, 2);
+            var bitrate = '';
+            if (node.dataset.duration) {
+              bitrate = Math.floor((response.fileSize / node.dataset.duration) / 125) + ' ' + language.kbps;
+            }
+
+            node.dataset.bitrate = bitrate;
+            node.dataset.size = size;
+
+            audio.insertNewBitrate(bitrate, node.parentNode);
+          }, function(e) {
+            delete sizePromiseMap[fullId];
+            throw e;
+          });
         }
+        return promise;
       },
 
       getNewAudioFullTitle: function(info) {
@@ -36326,7 +28303,7 @@
         var attrObserver = null;
 
         mono.onRemoveEvent(dlBtn, function() {
-          mono.one(container, 'mouseover', vk.mutationMode.wrapNewAudioOnMouseOver);
+          mono.one(container, 'mouseenter', vk.mutationMode.wrapNewAudioOnMouseOver);
           attrObserver && attrObserver.stop();
         });
 
@@ -36345,13 +28322,14 @@
         }
 
         if (type === 1) {
-          dlBtn.dataset.bitrateOffsetTop = -2;
+          dlBtn.dataset.bitrateOffsetTop = 1;
         }
 
         container.insertBefore(dlBtn, container.firstChild);
       },
 
       handleNewAudioRow: function(container, btnContainer, info) {
+        var _this = this;
         var filename = this.getNewAudioFilename(info);
         var dlBtn = this.getNewDlBtn(info, filename);
 
@@ -36372,7 +28350,18 @@
         }
 
         if (preference.vkShowBitrate === 1) {
-          this.onOverInsertBitrate(dlBtn, btnContainer);
+          if (!dlBtn.dataset.preloadBitrate) {
+            dlBtn.dataset.preloadBitrate = 1;
+
+            _this._preloadNewTrackUrl(dlBtn).then(function(url) {
+              dlBtn.dataset.preloadBitrate = 2;
+              dlBtn.href = url;
+
+              return _this._onOverInsertBitrate(dlBtn);
+            }).catch(function(e) {
+
+            });
+          }
         }
       },
 
@@ -36380,18 +28369,16 @@
         var _this = this;
 
         var btnContainer = container.querySelector('.audio_acts');
-        if (!btnContainer) {
-          return;
+        if (btnContainer) {
+          _this.getNewNodeTrackInfo(container, function(err, info) {
+            if (!err) {
+              _this.handleNewAudioRow(container, btnContainer, info);
+            }
+          });
         }
-
-        return this.getNewNodeTrackInfo(container, function(err, info) {
-          if (err) {
-            return;
-          }
-
-          _this.handleNewAudioRow(container, btnContainer, info);
-        });
       },
+
+      urlExtraRe: /[&?]extra=[^&]+$/,
 
       getNewTrackInfo: function(track) {
         if (!track) {
@@ -36399,15 +28386,19 @@
         }
 
         var info = {};
-        info.url = track[2];
+
+        if (typeof track[2] === 'string') {
+          info.url = track[2].replace(this.urlExtraRe, '');
+        }
+
         info.title = track[3];
         if (info.title) {
-          info.title = rmEmTags(info.title);
+          info.title = mono.fileName.decodeSpecialChars(rmEmTags(info.title));
         }
 
         info.performer = track[4];
         if (info.performer) {
-          info.performer = rmEmTags(info.performer);
+          info.performer = mono.fileName.decodeSpecialChars(rmEmTags(info.performer));
         }
 
         info.duration = parseInt(track[5]);
@@ -36458,20 +28449,18 @@
             }
 
             var info = track && _this.getNewTrackInfo(track);
-            if (!info) {
-              return;
-            }
+            if (info) {
+              var onGetInfo = function(info) {
+                _this.handleNewCurrentAudioRow(container, info, type);
+              };
 
-            var onGetInfo = function(info) {
-              _this.handleNewCurrentAudioRow(container, info, type);
-            };
-
-            if (!info.url) {
-              if (info.fullId) {
+              if (!info.url) {
+                if (info.fullId) {
+                  onGetInfo(info);
+                }
+              } else {
                 onGetInfo(info);
               }
-            } else {
-              onGetInfo(info);
             }
           },
           timeout: 300
@@ -36489,14 +28478,14 @@
         if (row.classList.contains('top_audio_player_title')) {
           currentTrackType = 1;
         }
-        if (row.classList.contains('audio_page_player_title')) {
+        if (row.classList.contains('audio_page_player_title_performer')) {
           currentTrackType = 2;
         }
 
         if (currentTrackType) {
-          _this.addNewDlCurrentTrackBtn.call(_this, row, currentTrackType);
+          _this.addNewDlCurrentTrackBtn(row, currentTrackType);
         } else {
-          _this.addNewDlTrackBtn.call(_this, row);
+          _this.addNewDlTrackBtn(row);
         }
       },
 
@@ -36542,41 +28531,15 @@
         return (el.offsetParent === null)
       },
 
-      getTitleForLinkList: function(linkList) {
-        var list = [];
-        if (!linkList) {
-          return list;
-        }
-        for (var i in linkList) {
-          var id = i;
-          var row = document.getElementById('audio' + id);
-          if (row === null) {
-            continue;
-          }
-          var title = audio.getTitle(row, id);
-
-          var duration = 0;
-          var d = row.querySelector('div.duration');
-          if (d !== null) {
-            duration = audio.secondsFromDurationNode(d);
-          }
-
-          var filename = mono.fileName.modify(title ? title + '.mp3' : '');
-
-          list.push({
-            url: linkList[i],
-            filename: filename,
-            title: title,
-            duration: duration
-          });
-        }
-        return list;
-      },
-
       downloadMP3Files: function() {
         var container = photo.getLayer() || document;
-        audio.getNewAudioLinks(container, function(linkList, trackList) {
-          var list = trackList || audio.getTitleForLinkList(linkList);
+
+        audio._getNewAudioLinks(container).then(function(result) {
+          var linkList = result.linkList;
+          var trackList = result.trackList;
+          var title = result.title || getFolderName();
+
+          var list = trackList;
 
           if (list.length === 0) {
             return alert(language.vkMp3LinksNotFound);
@@ -36584,20 +28547,28 @@
           // mp3
           SaveFrom_Utils.downloadList.showBeforeDownloadPopup(list, {
             type: 'audio',
-            folderName: getFolderName()
+            folderName: title
           });
-        }, null, 1);
+        }, function(e) {
+          if (e.message !== 'Abort') {
+            mono.debug('_getNewAudioLinks error!', e);
+            alert(language.vkMp3LinksNotFound);
+          }
+        });
       },
 
       showListOfAudioFiles: function(showPlaylist) {
         var container = photo.getLayer() || document;
-        audio.getNewAudioLinks(container, function(linkList, trackList) {
-          var list;
+        audio._getNewAudioLinks(container).then(function(result) {
+          var linkList = result.linkList;
+          var trackList = result.trackList;
+          var title = result.title || getFolderName();
+          var list = null;
           if (showPlaylist) {
-            list = trackList || audio.getTitleForLinkList(linkList);
+            list = trackList;
 
             if (list.length !== 0) {
-              return SaveFrom_Utils.playlist.popupPlaylist(list, getFolderName(), true);
+              return SaveFrom_Utils.playlist.popupPlaylist(list, title, true);
             }
           } else {
             list = [];
@@ -36613,7 +28584,12 @@
           }
 
           alert(language.vkMp3LinksNotFound);
-        }, null, 1);
+        }, function(e) {
+          if (e.message !== 'Abort') {
+            mono.debug('_getNewAudioLinks error!', e);
+            alert(language.vkMp3LinksNotFound);
+          }
+        });
       }
     };
 
@@ -37104,8 +29080,7 @@
               }
 
               var menu = vk.contextMenu = SaveFrom_Utils.popupMenu.quickInsert(this, language.download + '...', 'sf-single-video-menu', {
-                parent: container,
-                offsetTop: isInTopControls ? 10 : 10
+                parent: container
               });
 
               if (links.isUmmy) {
@@ -37655,8 +29630,6 @@
 
     var photo = {
       photoCache: {},
-      albumCache: {},
-      offsetStep: 10,
       getAlbumId: function(url) {
         if (/(\?|&|#)act=edit/i.test(url)) {
           return;
@@ -37706,134 +29679,6 @@
 
         return aid;
       },
-      getLinksFromJson: function(list, withTitle, onSuccess) {
-        var links = {};
-        var title = withTitle ? undefined : null;
-        for (var n = 0, item; item = list[n]; n++) {
-          if (!item.id) {
-            continue;
-          }
-          if (title === undefined && item.album) {
-            title = mono.fileName.decodeSpecialChars(mono.decodeUnicodeEscapeSequence(item.album.replace(/<[^>]+>/g, '')));
-          }
-          var photoInfo = this.getMaxPhotoSize(item);
-          if (photoInfo) {
-            links[item.id] = this.photoCache[item.id] = photoInfo.url;
-          }
-        }
-        onSuccess(links, title);
-      },
-      getLinksViaAPI: function(post, withTitle, onSuccess, onError, reSend) {
-        if (reSend === undefined) {
-          reSend = 0;
-        }
-        var _this = this;
-        var url = '/al_photos.php';
-        var onXhrError = function() {
-          if (reSend > 2) {
-            return onError();
-          }
-          setTimeout(function() {
-            _this.getLinksViaAPI(post, withTitle, onSuccess, onError, ++reSend);
-          }, 250);
-        };
-
-        mono.request({
-          type: 'POST',
-          url: url,
-          data: post,
-          localXHR: true,
-          timeout: 60 * 1000
-        }, function(err, resp, data) {
-          if (err) {
-            return onXhrError();
-          }
-
-          if (!data) {
-            return onError();
-          }
-
-          var arr = parseVkResponse(data);
-
-          var count = arr[6];
-          var list = arr[8];
-
-          return _this.getLinksFromJson(list, withTitle, onSuccess.bind(_this, count));
-        });
-      },
-      getAlbumLinks: function(id, onProgress, cb) {
-        var withTitle = true;
-        var _this = this;
-        var title = undefined;
-        var url = location.href;
-        if (url.indexOf('albums') !== -1 || url.indexOf('tags') !== -1 || url.indexOf('photos') !== -1) {
-          title = null;
-          withTitle = false;
-        }
-        var post = 'act=show&al=1&list=' + id + '&offset={offset}';
-        var offset = 0;
-        var linkList = {};
-        var summ = 0;
-        var inProgress = 0;
-        var count = 0;
-        var abort = false;
-        var nextStep = function() {
-          if (abort) {
-            return;
-          }
-          inProgress++;
-          _this.getLinksViaAPI(post.replace('{offset}', offset), withTitle, function onSuccess(fullCount, links, aTitle) {
-            if (title === undefined && aTitle) {
-              title = aTitle;
-              withTitle = false;
-            }
-            if (count < fullCount) {
-              count = fullCount;
-            }
-            var newLinks = 0;
-            for (var item in links) {
-              if (linkList[item] !== undefined) {
-                continue;
-              }
-              linkList[item] = links[item];
-              newLinks++;
-              summ++;
-            }
-            onProgress(summ, count);
-            inProgress--;
-            if (newLinks === 0) {
-              if (inProgress === 0) {
-                if (count === fullCount) {
-                  _this.albumCache[id] = {
-                    links: linkList,
-                    title: title
-                  };
-                }
-                if (!title) {
-                  title = getFolderName();
-                }
-                cb(linkList, title);
-              }
-              return;
-            }
-            nextStep();
-          }, function onError() {
-            inProgress--;
-
-            if (inProgress === 0) {
-              return cb(linkList, title);
-            }
-          });
-          offset += _this.offsetStep;
-        };
-        nextStep();
-        nextStep();
-        return {
-          abort: function() {
-            abort = true;
-          }
-        }
-      },
       getModuleName: function(cb) {
         var dataArg = 'sfModule';
         var script = mono.create('script', {
@@ -37849,85 +29694,6 @@
           cb(document.body.dataset[dataArg]);
         }, 0);
       },
-      getFullSizeSrc: function(list, count, onProgress, cb) {
-        var _this = this;
-        var abort = false;
-        this.getModuleName(function(curModule) {
-          var post = 'act=show&al=1&list={list}&module=' + curModule + '&photo={id}';
-          var index = 0;
-          var inProgress = 0;
-          var linkList = {};
-          var summ = 0;
-
-          var keyList = (function() {
-            var keyList = [];
-            for (var key in list) {
-              keyList.push(key);
-            }
-            return keyList;
-          })();
-
-          var nextStep = function() {
-            if (abort) {
-              return;
-            }
-
-            var photoId = keyList[index];
-            var listItem = list[photoId];
-            if (listItem === undefined) {
-              if (inProgress === 0) {
-                cb(linkList);
-              }
-              return;
-            }
-
-            inProgress++;
-
-            if (_this.photoCache[photoId] !== undefined) {
-              linkList[photoId] = _this.photoCache[photoId];
-              summ++;
-              onProgress(summ, count);
-              index++;
-              nextStep();
-              inProgress--;
-              return;
-            }
-
-            index++;
-
-            var _post = post.replace('{list}', listItem.list).replace('{id}', photoId);
-            _this.getLinksViaAPI(_post, false, function onSuccess(_count, links) {
-              var link = links[photoId];
-              if (!link) {
-                link = listItem.src;
-              }
-
-              linkList[photoId] = link;
-
-              summ++;
-              onProgress(summ, count);
-
-              inProgress--;
-              nextStep();
-            }, function onError() {
-              linkList[photoId] = listItem.src;
-
-              summ++;
-              onProgress(summ, count);
-
-              inProgress--;
-              nextStep();
-            });
-          };
-          nextStep();
-          nextStep();
-        });
-        return {
-          abort: function() {
-            abort = true;
-          }
-        }
-      },
       isReply: function(el) {
         return mono.matches(el, '.replies ' + el.tagName) || mono.matches(el, '.wl_replies ' + el.tagName);
       },
@@ -37940,63 +29706,6 @@
         }
 
         return document.getElementById('post' + postId) || document.getElementById('wpt' + postId);
-      },
-      findLinks: function(container, onProgress, cb, force) {
-        var _this = this;
-        var links = container.querySelectorAll('a[onclick]');
-        var linkList = {};
-        var count = 0;
-        for (var i = 0, el; el = links[i]; i++) {
-          var onclick = el.getAttribute('onclick');
-          if (onclick.search(/showPhoto\s*\(/i) === -1) {
-            continue;
-          }
-          if (photo.isReply(el)) {
-            continue;
-          }
-          var photoId = '',
-            listId = '';
-          var params = onclick.match(/showPhoto\s*\(\s*[\"']([-\d_]+)[\"']\s*,\s*[\"']([\w\-]+)[\"']/i);
-          if (params && params.length > 2) {
-            photoId = params[1];
-            listId = params[2];
-          }
-          if (photoId && listId) {
-            var json = onclick.match(/\{[\"']?temp[\"']?\s*:\s*(\{.+?\})/i);
-            if (json) {
-              json = json[1].replace(/(\{|,)\s*(\w+)\s*:/ig, '$1"$2":');
-              var src = undefined;
-              try {
-                json = JSON.parse(json);
-
-                var photoInfo = _this.getMaxPhotoSize(json);
-                if (photoInfo) {
-                  src = photoInfo.url;
-                }
-              } catch (err) {}
-
-              if (src && linkList[photoId] === undefined) {
-                linkList[photoId] = {
-                  src: src,
-                  list: listId
-                };
-                count++;
-              }
-            }
-          }
-        }
-        if (count === 0 && container !== document && force === undefined) {
-          var postContainer = this.getWallPostContent();
-          if (!postContainer) {
-            return cb(undefined);
-          }
-          return this.findLinks(postContainer, onProgress, cb, 1);
-        }
-        if (count === 0) {
-          return cb(undefined);
-        }
-        onProgress(0, count);
-        return this.getFullSizeSrc(linkList, count, onProgress, cb);
       },
 
       /**
@@ -38093,31 +29802,349 @@
         }
         return layer;
       },
-      getLinks: function(container, id) {
+      _getAlbumLinks: function(id, details) {
         var _this = this;
-        var process = undefined;
-        var popup = this.getPopup(getFolderName(), 'photo', function onClose() {
-          process && process.abort();
-        });
-        var _cb = function(linkList, title) {
-          if (!linkList) {
-            linkList = {};
+        var cache = _this.photoCache;
+        var title = '';
+        if (/albums|tags|photos/.test(location.href)) {
+          title = getFolderName();
+        }
+
+        var dblId = {};
+        var albumPhotoList = [];
+        var pagePhotoCount = 0;
+        var albumPhotoCount = 0;
+        var pageCount = 0;
+        var pageIndex = 0;
+
+        var requestPage = function(offset) {
+          if (details.abort) {
+            return Promise.reject(new Error('Abort'));
           }
+
+          var postData = {
+            act: 'show',
+            al: 1,
+            list: id
+          };
+          if (offset) {
+            postData.offset = offset;
+          }
+          return mono.requestPromise({
+            type: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'X-Requested-With': 'XMLHttpRequest'
+            },
+            url: '/al_photos.php',
+            data: postData,
+            localXHR: true,
+            timeout: 60 * 1000
+          }).then(function(response) {
+            var data = parseVkResponse(response.body);
+
+            var count = data[6];
+            var photos = data[8];
+
+            if (!pagePhotoCount) {
+              pagePhotoCount = photos.length;
+            }
+
+            albumPhotoCount = count;
+
+            if (!pageCount) {
+              pageCount = Math.ceil(count / pagePhotoCount);
+            }
+
+            var pageList = [];
+            var pageTitle = '';
+
+            photos.forEach(function(item) {
+              if (!dblId[item.id]) {
+                dblId[item.id] = 1;
+                var photoInfo = _this.getMaxPhotoSize(item);
+                if (photoInfo) {
+                  if (!pageTitle && item.album) {
+                    pageTitle = mono.fileName.decodeSpecialChars(mono.decodeUnicodeEscapeSequence(item.album.replace(/<[^>]+>/g, '')));
+                  }
+                  photoInfo.id = item.id;
+                  cache[item.id] = photoInfo;
+                  pageList.push(photoInfo);
+                }
+              }
+            });
+
+            return new Promise(function(resolve) {
+              setTimeout(resolve, 250);
+            }).then(function() {
+              return {
+                title: pageTitle,
+                list: pageList
+              };
+            });
+          });
+        };
+        var getPage = function() {
+          var offset = pageIndex * pagePhotoCount;
+          return requestPage(offset).then(function(result) {
+            pageCount--;
+            pageIndex++;
+
+            albumPhotoList.push.apply(albumPhotoList, result.list);
+
+            if (details.onProgress) {
+              details.onProgress(albumPhotoList.length, albumPhotoCount);
+            }
+
+            if (!title) {
+              title = result.title;
+            }
+            if (pageCount > 0) {
+              return getPage();
+            }
+          });
+        };
+        return getPage().then(function() {
+          Object.keys(cache).slice(1000).forEach(function(id) {
+            delete cache[id];
+          });
+
+          if (!albumPhotoList.length) {
+            throw new Error('Album is empty');
+          }
+
+          if (!title) {
+            title = getFolderName();
+          }
+
+          return {
+            title: title,
+            list: albumPhotoList
+          }
+        }, function(e) {
+          if (e.message !== 'Abort') {
+            mono.debug('Get photo page error!', e);
+          }
+          throw e;
+        });
+      },
+      _getPhotoLinks: function(photoId, listId, details) {
+        var _this = this;
+        var requestPhoto = function(curModule) {
+          if (details.abort) {
+            return Promise.reject(new Error('Abort'));
+          }
+
+          var postData = {
+            act: 'show',
+            al: 1,
+            list: listId,
+            module: curModule,
+            photo: photoId
+          };
+          return mono.requestPromise({
+            type: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'X-Requested-With': 'XMLHttpRequest'
+            },
+            url: '/al_photos.php',
+            data: postData,
+            localXHR: true,
+            timeout: 60 * 1000
+          }).then(function(response) {
+            var data = parseVkResponse(response.body);
+
+            var photos = data[8];
+            var photoInfo = null;
+
+            photos.some(function(item) {
+              if (item.id === photoId) {
+                photoInfo = _this.getMaxPhotoSize(item);
+                return true;
+              }
+            });
+
+            if (!photoInfo) {
+              throw new Error('Photo is is not found!');
+            }
+
+            return new Promise(function(resolve) {
+              setTimeout(resolve, 250);
+            }).then(function() {
+              return photoInfo;
+            });
+          });
+        };
+
+        return _this._getModuleName().then(function(curModule) {
+          return requestPhoto(curModule);
+        }).catch(function(e) {
+          if (e.message !== 'Abort') {
+            mono.debug('Get photo error!', e);
+          }
+          throw e;
+        });
+      },
+      _getModuleName: function() {
+        var dataArg = 'sfModule';
+        return new Promise(function(resolve, reject) {
+          var script = mono.create('script', {
+            text: '(' + function(dataArg) {
+              if (window.cur && window.cur.module && typeof(window.cur.module) === 'string') {
+                document.body.dataset[dataArg] = window.cur.module;
+              }
+            }.toString() + ')(' + JSON.stringify(dataArg) + ');'
+          });
+          document.body.appendChild(script);
+          setTimeout(function() {
+            script.parentNode.removeChild(script);
+            resolve(document.body.dataset[dataArg]);
+          }, 0);
+        });
+      },
+      _getAlbumLinksViaDom: function(container, details) {
+        var _this = this;
+        var cache = _this.photoCache;
+
+        if (details.abort) {
+          return Promise.reject(new Error('Abort'));
+        }
+
+        var paramsRe = /showPhoto\s*\(\s*["']([-\d_]+)["']\s*,\s*["']([\w\-]+)["']/i;
+        var jsonRe = /\{["']?temp["']?\s*:\s*(\{.+?\})/i;
+        var jsonReplaceRe = /(\{|,)\s*(\w+)\s*:/ig;
+        var dDbl = {};
+        var list = [];
+        var getFullSizeSrc = function(_list) {
+          var promise = Promise.resolve();
+          var list = [];
+
+          var cloneList = _list.filter(function(item) {
+            var photo = cache[item.id];
+            if (photo) {
+              list.push(photo);
+              return false;
+            } else {
+              return true;
+            }
+          });
+
+          if (details.onProgress) {
+            details.onProgress(list.length, _list.length);
+          }
+
+          cloneList.forEach(function(_photoInfo) {
+            promise = promise.then(function() {
+              return _this._getPhotoLinks(_photoInfo.id, _photoInfo.listId, details).then(function(photoInfo) {
+                cache[_photoInfo.id] = photoInfo;
+                list.push(photoInfo);
+
+                if (details.onProgress) {
+                  details.onProgress(list.length, _list.length);
+                }
+              }, function(e) {
+                if (e.message === 'Abort') {
+                  throw e;
+                }
+
+                if (_photoInfo.url) {
+                  list.push(_photoInfo);
+                  if (details.onProgress) {
+                    details.onProgress(list.length, _list.length);
+                  }
+                  mono.debug('Photo link from dom', e);
+                }
+              });
+            });
+          });
+          promise = promise.then(function() {
+            Object.keys(cache).slice(1000).forEach(function(id) {
+              delete cache[id];
+            });
+
+            if (!list.length) {
+              throw new Error('Photos is not found');
+            }
+
+            return {
+              list: list
+            };
+          });
+          return promise;
+        };
+        var getPhotoIdFromLink = function(node) {
+          if (photo.isReply(node) || audio.elIsHidden(node)) {
+            return;
+          }
+          var onClick = node.getAttribute('onclick');
+          var params = paramsRe.exec(onClick);
+          if (params) {
+            var photoId = params[1];
+            if (!dDbl[photoId]) {
+              dDbl[photoId] = 1;
+              var listId = params[2];
+              var photoInfo = null;
+
+              var json = jsonRe.exec(onClick);
+              if (json) {
+                json = json[1].replace(jsonReplaceRe, '$1"$2":');
+                var obj = null;
+                try {
+                  obj = JSON.parse(json);
+                } catch (err) {}
+
+                photoInfo = obj && _this.getMaxPhotoSize(obj);
+              }
+
+              if (!photoInfo) {
+                photoInfo = {};
+              }
+
+              photoInfo.id = photoId;
+              photoInfo.listId = listId;
+
+              list.push(photoInfo);
+            }
+          }
+        };
+        [].slice.call(container.querySelectorAll('a[onclick]')).forEach(getPhotoIdFromLink);
+        if (list.length === 0 && container !== document) {
+          var postContainer = _this.getWallPostContent();
+          if (postContainer) {
+            [].slice.call(postContainer.querySelectorAll('a[onclick]')).forEach(getPhotoIdFromLink);
+          }
+        }
+        return getFullSizeSrc(list);
+      },
+      _getLinks: function(container, id) {
+        var _this = this;
+        var promise = Promise.resolve();
+        var details = {};
+
+        var popup = _this.getPopup(getFolderName(), 'photo', function onClose() {
+          details.abort = true;
+        });
+
+        details.onProgress = function(count, max) {
+          popup.onProgress(count, max);
+        };
+
+        popup.onPrepare(language.download + ' ...');
+
+        var listToLinks = function(list) {
           var links = [];
-          for (var item in linkList) {
-            var filename = SaveFrom_Utils.getMatchFirst(linkList[item], /\/([\w\-]+\.[a-z0-9]{3,4})(?:\?|$)/i);
+          list.forEach(function(item) {
+            var url = item.url;
+            var filename = _this.getFilenameFromUrl(url);
             if (!filename) {
-              continue;
+              filename = 'unknown.jpg';
             }
             links.push({
               filename: filename,
-              url: linkList[item]
+              url: url
             });
-          }
-          if (links.length === 0) {
-            popup.onError(language.noLinksFound);
-            return;
-          }
+          });
 
           var zeroCount = String(links.length).length;
           links.forEach(function(item, index) {
@@ -38128,37 +30155,71 @@
             item.filename = number + '-' + item.filename;
           });
 
+          return links;
+        };
+
+        var findPhotoAlbumLinks = function() {
+          return _this._getAlbumLinks(id, details);
+        };
+
+        var findPhotoAllLinks = function() {
+          container = container || document;
+          if (container === document) {
+            var layer = _this.getLayer();
+            if (layer) {
+              container = layer;
+            }
+          }
+          return _this._getAlbumLinksViaDom(container, details);
+        };
+
+        if (id) {
+          promise = promise.then(findPhotoAlbumLinks).catch(function(e) {
+            if (e.message !== 'Album is empty' && e.message !== 'Abort') {
+              mono.debug('findAlbumLinks error', e);
+            }
+            throw e;
+          }).catch(function() {
+            return findPhotoAllLinks();
+          });
+        } else {
+          promise = promise.then(findPhotoAllLinks);
+        }
+
+        promise = promise.then(function(result) {
+          var title = result.title;
+          var list = result.list;
+
+          var links = listToLinks(list);
+
           popup.onReady();
 
-          title = title || getFolderName();
+          if (!title) {
+            title = getFolderName();
+          }
+
           if (!allowDownloadMode) {
-            return _this.showListOfLinks(title, links, true);
+            _this.showListOfLinks(title, links, true);
+          } else {
+            SaveFrom_Utils.downloadList.showBeforeDownloadPopup(links, {
+              count: links.length,
+              folderName: title,
+              type: 'photo',
+              onShowList: function() {
+                // show list on links
+                _this.showListOfLinks(title, links, true);
+              }
+            });
           }
-          SaveFrom_Utils.downloadList.showBeforeDownloadPopup(links, {
-            count: links.length,
-            folderName: title,
-            type: 'photo',
-            onShowList: function() {
-              // show list on links
-              _this.showListOfLinks(title, links, true);
-            }
-          });
-        };
-        popup.onPrepare(language.download + ' ...');
-        if (id) {
-          if (this.albumCache[id] !== undefined) {
-            _cb(this.albumCache[id].links, this.albumCache[id].title || getFolderName());
-            return;
+        }, function(e) {
+          if (e.message !== 'Abort') {
+            mono.debug('_getLinks error', e);
           }
-          process = this.getAlbumLinks(id, popup.onProgress, _cb);
-          return;
-        }
 
-        if (!container || container === document) {
-          container = this.getLayer();
-        }
+          popup.onError(language.noLinksFound);
+        });
 
-        process = this.findLinks(container || document, popup.onProgress, _cb);
+        return promise;
       },
       rmPhotoAlbumDlBtn: function() {
         var dlAlbumBtn = document.querySelectorAll(['.sf-dl-ablum-btn-divide', '.sf-dl-ablum-btn']);
@@ -38186,7 +30247,7 @@
             e.preventDefault();
 
             var id = photo.getAlbumId(location.href);
-            _this.getLinks.call(_this, container, id);
+            _this._getLinks(container, id);
 
             if ([1].indexOf(preference.cohortIndex) !== -1) {
               mono.sendMessage({
@@ -38232,7 +30293,10 @@
         return container;
       },
       getFilenameFromUrl: function(url) {
-        return SaveFrom_Utils.getMatchFirst(url, /\/([\w\-]+\.[a-z0-9]{3,4})(?:\?|$)/i);
+        var fnRe = /\/([\w\-]+\.[a-z0-9]{3,4})(?:\?|$)/i;
+        var fn = fnRe.exec(url);
+        fn = fn && fn[1] || '';
+        return fn;
       },
       rmCurrentPhotoBtn: function(insertContainer) {
         var exBtn = undefined;
@@ -38480,15 +30544,16 @@
         insertContainer.appendChild(btn);
       },
       downloadPhoto: function() {
-        var container = this.getContainer();
-        var id = this.getAlbumId(location.href);
+        var _this = this;
+        var container = _this.getContainer();
+        var id = _this.getAlbumId(location.href);
         if (!id) {
-          var link = document.querySelector('#pv_album_name a');
+          var link = document.querySelector('.pv_album_name a');
           if (link && !audio.elIsHidden(link)) {
-            id = this.getAlbumId(link.href);
+            id = _this.getAlbumId(link.href);
           }
         }
-        this.getLinks(container, id);
+        _this._getLinks(container, id);
 
         if ([1].indexOf(preference.cohortIndex) !== -1) {
           mono.sendMessage({
@@ -38501,26 +30566,53 @@
         }
       },
       showListOfPhotos: function(title, links) {
-        title = title.replace(/[<>]+/g, '_');
-        var html = '<!DOCTYPE html><html><head><meta charset="utf-8"><style type="text/css">' +
-          'a,img{display:block;margin-bottom:5px;}' +
-          '</style></head><body>' + title +
-          '<p style="width:640px">' +
-          language.vkListOfPhotosInstruction +
-          '</p><br><br>';
+        var html = '<!DOCTYPE html><html>' + mono.create('html', {
+          append: [
+            mono.create('head', {
+              append: [
+                mono.create('meta', {
+                  charset: 'utf-8'
+                }),
+                mono.create('style', {
+                  text: 'a,img{display:block;margin-bottom:5px;}p{width: 640px}'
+                })
+              ]
+            }),
+            mono.create('body', {
+              append: [
+                title,
+                mono.create('p', {
+                  text: language.vkListOfPhotosInstruction
+                }),
+                mono.create('br'),
+                mono.create('br'),
+                (function() {
+                  var nodeList = document.createDocumentFragment();
+                  links.forEach(function(item) {
+                    var src = item.url;
+                    var fileName = item.filename || '';
 
-        for (var i = 0, item; item = links[i]; i++) {
-          var src = item.url;
-          var fileName = item.filename;
-          if (fileName) {
-            html += '<a href="' + src + '" download="' + fileName + '">' +
-              '<img src="' + src + '" alt="photo"></a>';
-          } else {
-            html += '<img src="' + src + '" alt="photo">';
-          }
-        }
+                    var img = mono.create('img', {
+                      src: src,
+                      alt: 'photo'
+                    });
 
-        html += '</body></html>';
+                    if (fileName) {
+                      img = mono.create('a', {
+                        href: src,
+                        download: fileName,
+                        append: img
+                      });
+                    }
+
+                    nodeList.appendChild(img);
+                  });
+                  return nodeList;
+                })()
+              ]
+            })
+          ]
+        }).innerHTML + '</html>';
 
         var url = 'data:text/html;charset=utf-8;base64,' + encodeURIComponent(btoa(SaveFrom_Utils.utf8Encode(html)));
 
@@ -38740,26 +30832,31 @@
 
         SaveFrom_Utils.downloadOnClick(e);
       },
-      getAudioDlBtnNode: function(url) {
+      getAudioDlBtnNode: function(title, url) {
         "use strict";
         return mono.create('a', {
           class: [downloadLinkClassName, 'sf-audio'],
           href: url,
+          download: mono.fileName.modify(title),
           target: '_blank',
           on: ['click', this.onAudioBtnClick]
         });
       },
       insertAudioBtn: function(node) {
         "use strict";
+        var title = node.querySelector('.ai_label');
+        title = title && title.textContent || '';
+        if (title) {
+          title += '.mp3';
+        }
+
         var url = node.querySelector('input');
         url = url && url.value;
         if (!url) {
           return;
         }
-        var pos = url.indexOf('?');
-        if (pos !== -1) {
-          url = url.substr(0, pos);
-        }
+
+        url = url.replace(audio.urlExtraRe, '');
 
         var aiDur = node.querySelector('.ai_dur');
 
@@ -38769,7 +30866,7 @@
 
         var parent = aiDur.parentNode;
 
-        var btn = this.getAudioDlBtnNode(url);
+        var btn = this.getAudioDlBtnNode(title, url);
 
         var exBtn = parent.querySelector('.' + downloadLinkClassName);
         if (exBtn) {
@@ -39079,7 +31176,7 @@
               var btnNode = youtube.videoFeed.getBtnNode(id, 2);
               mono.onRemoveEvent(btnNode, function() {
                 if (!this.parentNode) {
-                  mono.one(node, 'mouseover', _this.wrapNewVideoFeedOnThumbnailHover);
+                  mono.one(node, 'mouseenter', _this.wrapNewVideoFeedOnThumbnailHover);
                 }
               });
               node.appendChild(btnNode);
@@ -39127,7 +31224,7 @@
                       context.id = id;
                       context.styleIndex = 1;
                       el.dataset.sfContext = JSON.stringify(context);
-                      mono.one(el, 'mouseover', _this.wrapVideoFeedOnImgHover);
+                      mono.one(el, 'mouseenter', _this.wrapVideoFeedOnImgHover);
                     }
                   }
                 }
@@ -39140,7 +31237,7 @@
                     }
                     node.dataset.sfSkip = '1';
 
-                    mono.one(node.parentNode, 'mouseover', _this.wrapNewVideoFeedOnThumbnailHover);
+                    mono.one(node.parentNode, 'mouseenter', _this.wrapNewVideoFeedOnThumbnailHover);
                   }
                 }
               }
@@ -40192,7 +32289,7 @@
 
         mono.on(btnObj.node, 'mouseenter', onBtnMouseEnter);
 
-        mono.one(document, 'mouseover', function() {
+        mono.one(document, 'mouseenter', function() {
           _this.onFrameMouseEnter(btnObj);
         });
 
@@ -42935,6 +35032,17 @@
     }
 
     if (!preference.statEnabled) {
+      return false;
+    }
+
+    return true;
+  }, function syncIsAvailable() {
+    "use strict";
+    if (!document.domain) {
+      return false;
+    }
+
+    if (mono.isIframe()) {
       return false;
     }
 
