@@ -48,6 +48,8 @@
         let qmark y = ["https://translate.yandex.ru"]
         let qmark g = ["https://translate.google.com/#en/ru/"]
         let qmark b = ["https://www.bing.com/translator?to=ru"]
+        let qmark r = ["http://translate.enacademic.com/%D0%B6%D0%B5/ru/en/"]
+        let qmark e = ["http://translate.enacademic.com/appetizer/en/ru/"]
 
         let mapleader="x"
         map <Leader>n :set numerichints!<CR>
