@@ -2,15 +2,17 @@
 // @name          Wikipedia Inline Article Viewer
 // @namespace     http://projects.apathyant.com/wikipediainline/
 // @description   Adds a hover event to internal article links on wikipedia pages which, opens the article inline in a dhtml frame.
-// @version       1.2.10
-// @include       http://wikipedia.tld/*
-// @include       http://*.wikipedia.tld/*
-//// Since TLD doesn't work in Chrome:
+// @version       1.2.14
+//// http:
 // @include       http://wikipedia.org/*
 // @include       http://*.wikipedia.org/*
+// @include       http://wiktionary.org/*
+// @include       http://*.wiktionary.org/*
 //// https:
 // @include       https://wikipedia.org/*
 // @include       https://*.wikipedia.org/*
+// @include       https://wiktionary.org/*
+// @include       https://*.wiktionary.org/*
 // @grant         GM_log
 // @grant         GM_xmlhttpRequest
 // @grant         GM_addStyle
@@ -52,6 +54,8 @@
 
 // FIXED: Now when an inline article is scrolled, and a link in it is hovered, the second new window sometimes appears in the wrong place.
 
+// 1.2.11: Now works better on links on the search results page.  (It would often fail because the user would mouse over the "matching text" <span> instead of the enclosing <a>.)
+
 var allowPreviewsInPreviews = true;   // If false, feature is not available for links inside previewed articles.
 
 var removeTOC = true;
@@ -78,9 +82,9 @@ icon.height = 10;
 function rewriteLinks() {
 	// This function grabs all the links within the page's #content div and 
 	// sends them off to be modified
-
+	
 	var links, currentLink;
-
+	
 	// XPath to select all anchor tags with an href that begins with /wiki/
 	links = document.evaluate(
 		'//div[@id="content"]//a[starts-with(@href,"/wiki/")]',
@@ -88,7 +92,7 @@ function rewriteLinks() {
 		null,
 		XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
 		null);
-
+	
 	for (var i = 0; i < links.snapshotLength; i++) {
 		currentLink = links.snapshotItem(i);
 
@@ -121,12 +125,12 @@ function appendInlineButton(link) {
 	// We want the link to wrap normally though, and only hold the new icon to the last word
 	// so we should explicitly set normal wrap on the link element
 	link.style.whiteSpace = 'normal';
-
+	
 	// Add a new anchor inside the new button
 	// We use innerHTML because it's quicker than writing out the style properties
 	// one by one with javascript
 	container.innerHTML = '<a class="inlinelink" href="' + link.pathname + '" inlineviewlink="true" inlinewindow="' + (inlineWindowCount++) + '" style="text-decoration: none; margin-left: 0.3em;"></a>';
-
+	
 	// Pull out our innerHTML generated anchor element...
 	var newLink = container.firstChild;
 
@@ -137,7 +141,7 @@ function appendInlineButton(link) {
 
 	// Insert the new container before the current link...
 	link.parentNode.insertBefore(container,link);
-
+	
 	// Now move the link inside the container before the new link
 	// (FYI: this dance here is for the whitepace break stuff we implemented earlier)
 	container.insertBefore(link, newLink);
@@ -146,13 +150,13 @@ function appendInlineButton(link) {
 	// to attempt to stop this behavior...
 	link.setAttribute('inlineviewappended','true');
 	return true;
-
+	
 }
 
 function inlineViewClickHandler(event) {
 	// Event handler which takes clicks from our injected inline view icon links...
 	var href, link;
-
+	
 	// Create the new dhtml frame
 	if ( event.target.tagName.toLowerCase() == 'a' ) {
 		// user managed to click the actual anchor and not the icon
@@ -178,7 +182,7 @@ function inlineViewClickHandler(event) {
 	} else {
 		inlineWindow = newInlineWindow(event, href, link, windowID);
 	}
-
+	
 	event.preventDefault();
 	return true;
 }
@@ -187,24 +191,24 @@ function inlineViewClickHandler(event) {
 function newInlineWindow(event, href, link, windowID){
 	// Close all previous inline windows...
 	//closeInlineWindows();
-
+	
 	// Setup some constants for use in creating the inline window...
-	var windowWidth = Math.round(document.body.clientWidth * 0.90);
-	var windowHeight = Math.round(window.innerHeight * 1);
+	var windowWidth = Math.round(document.body.clientWidth * 0.70);
+	var windowHeight = Math.round(window.innerHeight * 0.55);
 	var windowPadding = 13;
 	var windowTextPadding = 10;
-	var windowFontSize = 16;
+	var windowFontSize = 10;
 	var windowBorderSize = 1;
 	var windowButtonHeight = 12;
 	var windowButtonTextSize = 11;
-
+	
 	var windowFullID = 'inlineWindow-' + windowID;
-
+	
 	// stop the window before getting this close to the left/right/top/bottom of the screen
 	var pageBoundPadding = 10;
-
+	
 	var xpos, ypos;
-
+	
 	// get the position of the element that was clicked on...
 	var elementTop = getElementOffset(link,'Top');
 	var elementLeft = getElementOffset(link,'Left');
@@ -220,7 +224,7 @@ function newInlineWindow(event, href, link, windowID){
 
 	GM_addStyle(".inline-window #coordinates { position: initial; }");
 
-
+	
 	// setup the x-position of the inline window...
 	// check to see if the left 1/3 of the window will overlap the left page bound..
 	if ( elementLeft - (windowWidth/3) < pageBoundPadding ) {
@@ -235,7 +239,7 @@ function newInlineWindow(event, href, link, windowID){
 		// by 1/3 to the left of where we clicked (looks better than centering
 		xpos = elementLeft - (windowWidth/3);
 	}
-
+	
 	// setup the y-positioning of the inline window...
 
 	var windowAppearsOnSide;
@@ -252,11 +256,11 @@ function newInlineWindow(event, href, link, windowID){
 	if (ypos < 4) {
 		ypos = 4;
 	}
-
+	
 	var container = document.createElement('div');
 	container.id = windowFullID;
 	container.className = "inline-window";
-
+	
 	var cssBoxWidth = Math.round((windowWidth - (windowPadding+windowBorderSize)*2)/document.body.clientWidth*100);
 	var cssBoxHeight = windowHeight - (windowPadding+windowBorderSize*2);
 
@@ -279,36 +283,36 @@ function newInlineWindow(event, href, link, windowID){
 		//'opacity: 0.95; '+
 		'font-size: ' + windowFontSize + 'pt; '+
 		'">'+
-		'<div style="'+
-		'float: right; '+
-		'background-color: #DDD; '+
-		'margin: 0 3px ' + Math.round((windowPadding-windowButtonHeight)/2) +'px; '+
-		'padding: 0 3px; '+
-		'-moz-border-radius: 2px; '+
-		'height: ' + windowButtonHeight + 'px; '+
-		'font-size: ' + windowButtonTextSize + 'px; '+
-		'line-height: ' + windowButtonTextSize + 'px; '+
-		'font-weight: bold'+
-		'"><a href="#" onClick="innerWindow = this.parentNode.parentNode.parentNode; innerWindow.parentNode.removeChild(innerWindow); return false;" style="text-decoration: none;">close</a></div>'+
-		'<div style="'+
-		'float: right; '+
-		'background-color: #DDD; '+
-		'margin: 0 3px ' + Math.round((windowPadding-windowButtonHeight)/2) +'px; '+
-		'padding: 0 3px; '+
-		'-moz-border-radius: 2px; '+
-		'height: ' + windowButtonHeight + 'px; '+
-		'font-size: ' + windowButtonTextSize + 'px; '+
-		'line-height: ' + windowButtonTextSize + 'px; '+
-		'font-weight: bold'+
-		'"><a href="' + href + '" style="text-decoration: none;">go to full article</a></div>'+
-		'<div id="innerWindowCont-' + windowID + '" style="'+
-		'border: 1px dashed black; '+
-		'background: white; '+
-		'padding: ' + windowTextPadding + 'px; '+
-		'overflow: auto; '+
-		'clear: both; '+
-		'height: ' + (windowHeight - (windowTextPadding+windowPadding+windowBorderSize)*2) + 'px; ' +
-		'">loading<span style="text-decoration: blink">...</span></div>'+	
+			'<div style="'+
+				'float: right; '+
+				'background-color: #DDD; '+
+				'margin: 0 3px ' + Math.round((windowPadding-windowButtonHeight)/2) +'px; '+
+				'padding: 0 3px; '+
+				'-moz-border-radius: 2px; '+
+				'height: ' + windowButtonHeight + 'px; '+
+				'font-size: ' + windowButtonTextSize + 'px; '+
+				'line-height: ' + windowButtonTextSize + 'px; '+
+				'font-weight: bold'+
+			'"><a href="#" onClick="innerWindow = this.parentNode.parentNode.parentNode; innerWindow.parentNode.removeChild(innerWindow); return false;" style="text-decoration: none;">close</a></div>'+
+			'<div style="'+
+				'float: right; '+
+				'background-color: #DDD; '+
+				'margin: 0 3px ' + Math.round((windowPadding-windowButtonHeight)/2) +'px; '+
+				'padding: 0 3px; '+
+				'-moz-border-radius: 2px; '+
+				'height: ' + windowButtonHeight + 'px; '+
+				'font-size: ' + windowButtonTextSize + 'px; '+
+				'line-height: ' + windowButtonTextSize + 'px; '+
+				'font-weight: bold'+
+			'"><a href="' + href + '" style="text-decoration: none;">go to full article</a></div>'+
+			'<div id="innerWindowCont-' + windowID + '" style="'+
+				'border: 1px dashed black; '+
+				'background: white; '+
+				'padding: ' + windowTextPadding + 'px; '+
+				'overflow: auto; '+
+				'clear: both; '+
+				'height: ' + (windowHeight - (windowTextPadding+windowPadding+windowBorderSize)*2) + 'px; ' +
+			'">loading<span style="text-decoration: blink">...</span></div>'+	
 		'</div>';
 	// Always inserting at the top of the tree means that windows opened later would appear below windows opened earlier!
 	//document.body.insertBefore(container, document.body.firstChild);
@@ -346,7 +350,7 @@ function newInlineWindow(event, href, link, windowID){
 }
 
 function populateInnerWindow(href,windowID) {
-
+	
 	printHref = document.location.protocol + '//' + document.location.host + (document.location.port ? ':' + document.location.port : '');
 	printHref += href + (href.indexOf('?') > -1 ? '&' : '?' ) + 'printable=yes';
 
@@ -374,13 +378,13 @@ function populateInnerWindow(href,windowID) {
 			if(!xmlDoc) {
 				if (innerWindowContentBox) innerWindowContentBox.innerHTML = 'Error loading page.';
 			}
-
+			
 			headings = xmlDoc.getElementsByTagName('h1');
 			for(var i=0; i < headings.length; i++) if ( headings[i].className == 'firstHeading' ) {
 				header = headings[i].firstChild.data; 
 				break;
 			}
-
+			
 			content = findElementById(xmlDoc,'mw-content-text'); // Cuts out some of the unwanted stuff
 			content = content || findElementById(xmlDoc,'bodyContent');
 			content = content || findElementById(xmlDoc,'content'); // What we used previously
@@ -395,15 +399,15 @@ function populateInnerWindow(href,windowID) {
 			if (innerWindowContentBox) {
 				if (content && content.hasChildNodes()) {
 					while(innerWindowContentBox.hasChildNodes()) innerWindowContentBox.removeChild(innerWindowContentBox.childNodes[0]);
-
+					
 					var head = document.createElement('h1');
 					head.appendChild(document.createTextNode(header));
 					//innerWindowContentBox.appendChild(head);
 
-					//					for(var childCount = 0; childCount <= content.childNodes.length; childCount++){
-					content.id = '';
-					innerWindowContentBox.appendChild(content);
-					//					}
+//					for(var childCount = 0; childCount <= content.childNodes.length; childCount++){
+						content.id = '';
+						innerWindowContentBox.appendChild(content);
+//					}
 					//innerWindowContentBox.innerHTML = (header?'<h1>' + header + '</h1>' : '') + content.innerHTML;
 				} else {
 					innerWindowContentBox.innerHTML = 'Error loading page.';
@@ -451,9 +455,9 @@ function closeInlineWindows(){
 	//inlineWindowCount = 0;
 }
 
-function closeInlineWindow(id){
+function closeInlineWindow(id){ 
 	var inlineWindow = document.getElementById(id);
-
+	
 	if ( inlineWindow ) {
 		inlineWindow.style.display = 'none';
 		inlineWindow.parentNode.removeChild(inlineWindow);
@@ -467,14 +471,14 @@ function closeInlineWindow(id){
 			link.style.borderBottom = '';
 		}
 	}
-
+	
 }
 
 function getElementOffset(element,whichCoord) {
-	var count = 0;
+	var count = 0
 	while (element!=null) {
 		//GM_log("Getting offset"+whichCoord+" from "+element.tagName+"#"+element.id+": "+element['offset'+whichCoord]);
-		count += element['offset' + whichCoord];
+	 	count += element['offset' + whichCoord];
 		// Iterate upwards until we find element.offsetParent, removing any scrollTop encountered on the way.
 		var scrollParent = element;
 		while (scrollParent !== null) {
@@ -495,17 +499,28 @@ function getElementOffset(element,whichCoord) {
 // Begin the action
 //setTimeout(rewriteLinks,4000);
 
+function findMatchingParent(elem, seekTagName) {
+	if (!elem || typeof elem.tagName !== 'string') return null;
+	if (elem.tagName.toLowerCase() === seekTagName.toLowerCase()) {
+		return elem;
+	} else {
+		return findMatchingParent(elem.parentNode, seekTagName);
+	}
+}
+
 // Joey's hover detection:
-// BUG TODO: Can fire when the user scrolls the page and that causes a link to appear under the mouse.
-//           Could be avoided by only checking for hover after a 'mousemove' event.
+// BUG TODO: Can fire when the user scrolls the page and that causes a link to appear under the mouse.  This is annoying!
+//           Could be avoided by only checking for hover recently after a 'mousemove' event.
+//           Or conversely, by not checking recently after a 'scroll' event.
 var hoverTimer, hoverTarget;
 function isSuitableLink(evt) {
 	var target = evt.target || evt.sourceElement;
-	return (target && target.tagName=="A" && target.getAttribute("href").indexOf("/wiki/")==0);
-	// Check: '//div[@id="content"]//a[starts-with(@href,"/wiki/")]',
+	target = findMatchingParent(target, "A");
+	return (target && target.href && target.href.indexOf("/wiki/") >= 0);
+	// Alternative: '//div[@id="content"]//a[starts-with(@href,"/wiki/")]',
 }
 function onMouseOver(evt) {
-	if (isSuitableLink(evt) && evt.altKey) {
+	if (isSuitableLink(evt)) {
 		hoverTarget = evt.target || evt.sourceElement;
 		hoverTimer = setTimeout(hoverDetected, 2000);
 	}
@@ -524,6 +539,7 @@ function onClick(evt) {
 	onMouseOut(evt);
 }
 function hoverDetected() {
+	hoverTarget = findMatchingParent(hoverTarget, "A");
 	if (!allowPreviewsInPreviews && findParentInlineWindow(hoverTarget)) {
 		return;
 	}
