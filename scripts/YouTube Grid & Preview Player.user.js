@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Grid & Preview Player
 // @namespace    YouTubeGridView
-// @version      1.1.7
+// @version      1.1.8
 // @description  YouTube grid view layout and preview player. Video ratings and definition info on thumbs. Auto load page content and search results.
 // @author       Costas
 // @match        http://www.youtube.com/*
@@ -225,7 +225,7 @@ evTpnfv329aiUQyXC+qceRF2lG3T0tzM8f7+OW3m8eP++NrajXvT061SSqRSZb8Ny6FoCpqGEIIGw8Dl
 /* preview player */\
 #gridtube_player_area {position:fixed; width:100%; height:100%; top:0px; left:0px; background:rgba(0,0,0,0.5); overflow:hidden !important; z-index:2147483646 !important; }\
 #gridtube_player_area2 {position:relative; width:100%; height:100%; visibility:hidden;}\
-#gridtube_player_box {position:absolute; background:linear-gradient(#606060,#505050,#606060) !important; box-shadow:0px 0px 10px 5px #606060; border-radius:10px; max-width:100%; max-height:100%;}\
+#gridtube_player_box {position:absolute; background:linear-gradient(#606060,#505050,#606060); box-shadow:0px 0px 10px 5px #606060; border-radius:10px; max-width:100%; max-height:100%;}\
 #gridtube_player_box[player_pos='00']:not([player_size='fit']) {top:0px; left:0px;}\
 #gridtube_player_box[player_pos='01']:not([player_size='fit']) {top:0px; left:0px; right:0px; margin:auto;}\
 #gridtube_player_box[player_pos='02']:not([player_size='fit']) {top:0px; right:0px;}\
@@ -1723,7 +1723,9 @@ function search_pages(cond) {
         for (var i = 0; i < li.snapshotLength; i++) {
             var clone = li.snapshotItem(i).cloneNode(true);
             clone.setAttribute("gridtube_clone_node", "true");
-            parent.insertBefore(clone, aux.bottom_area);
+            var newnode = parent.insertBefore(clone, aux.bottom_area);
+            //firefox 50 wierdness
+            parent.replaceChild(newnode, newnode);
             //disable ajax
             //clone.onclick = disable_ajax;
         }
