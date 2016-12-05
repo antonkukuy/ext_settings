@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Grid & Preview Player
 // @namespace    YouTubeGridView
-// @version      1.1.8
+// @version      1.1.9
 // @description  YouTube grid view layout and preview player. Video ratings and definition info on thumbs. Auto load page content and search results.
 // @author       Costas
 // @match        http://www.youtube.com/*
@@ -88,13 +88,13 @@ var style_grid_search = "\
 /*Grid for search results*/\
 #content[gridtube_grid_search] {width: 96% !important;}\
 #results .item-section {margin-left:5px !important;}\
-#results ol.item-section > li {width: 196px !important; height: 196px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important;}\
+#results ol.item-section > li {width: 246px !important; height: 226px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important;}\
 #results ol.item-section > li:hover {overflow:visible !important;}\
 #results ol.item-section > li:hover > div {z-index:1 !important; background-color:white !important;}\
 #results ol.item-section > li > div {padding:0px 0px 3px 0px !important;}\
 #results .yt-lockup-channel .video-thumb {float:left !important;}\
 #results .yt-lockup-content {float:left !important; width:100% !important;}\
-#results .yt-lockup-title {font-size: 13px !important; line-height:1.2em !important; max-height:2.4em !important; margin-bottom:1px !important;}\
+#results .yt-lockup-title {font-size: 13px !important; line-height:1.2em !important; max-height:2.4em !important; margin:1px 0px 1px 0px !important;}\
 #results .yt-lockup-title .yt-uix-tile-link {line-height:1.2em !important;}\
 #results .yt-lockup-byline {font-size: 11px !important; line-height:13px !important;}\
 #results .yt-lockup-meta {font-size: 11px !important; line-height:13px !important;}\
