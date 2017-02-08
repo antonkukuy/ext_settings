@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Grid & Preview Player
 // @namespace    YouTubeGridView
-// @version      1.1.9
+// @version      1.2.0
 // @description  YouTube grid view layout and preview player. Video ratings and definition info on thumbs. Auto load page content and search results.
 // @author       Costas
 // @match        http://www.youtube.com/*
@@ -106,7 +106,7 @@ var style_grid_search = "\
 ";
 
 var style_grid_history = "\
-/*Grid for history*/\
+/*Grid for history or recommended*/\
 #content[gridtube_grid_hist] {width: 96% !important;}\
 #content[gridtube_grid_hist] #browse-items-primary {margin-left:10px !important;}\
 #content[gridtube_grid_hist] .item-section-header {margin-left:-5px !important;}\
@@ -123,6 +123,7 @@ var style_grid_history = "\
 #content[gridtube_grid_hist] .yt-lockup-description {font-size: 10px !important; line-height:12px !important;}\
 #content[gridtube_grid_hist] .yt-lockup-badges {margin:0px !important;}\
 #content[gridtube_grid_hist] .yt-uix-menu-top-level-button-container {margin-right:-4px !important;}\
+#content[gridtube_grid_hist] .shelf-title-table {display:none !important;}\
 ";
 
 var style_grid_trending = "\
@@ -185,12 +186,10 @@ var style_basic = "\
 #gridtube_pref_popup {font:11px/11px arial,sans-serif; color:white; background:linear-gradient(#788898,#687888); padding:5px; border-radius:5px; box-shadow:0px 0px 5px 5px slategray; /*z-index:2147483647;*/ z-index:2147483646;}\
 #gridtube_pref_popup[top] {position:fixed; right:0px; top:0px;}\
 #gridtube_pref_popup[bottom] {position:fixed; right:0px; bottom:0px;}\
-#gridtube_pref_popup > div  {padding:2px;}\
 .gridtube_pref_group {margin-left:15px; color:yellow;}\
-.gridtube_pref_group > span {padding:2px;}\
 #gridtube_pref_close {font:14px/14px arial,sans-serif; color:black; position:absolute; top:3px; right:5px; cursor:pointer;}\
 #gridtube_pref_close:hover {color:lightgray;}\
-#gridtube_pref_title {font:bold 14px/14px arial,sans-serif; padding:5px !important; color:aliceblue;}\
+#gridtube_pref_title {font:bold 13px/13px arial,sans-serif; padding:5px !important; color:aliceblue;}\
 #gridtube_pref_button {cursor:pointer; width:20px; height:20px; background-size:contain; background-repeat:no-repeat; opacity:0.7;}\
 #gridtube_pref_button[top] {position:absolute; right:0px; top:0px; visibility:hidden; z-index:10;}\
 #gridtube_pref_button[bottom] {position:fixed; right:0px; bottom:0px; visibility:visible;}\
@@ -198,18 +197,23 @@ var style_basic = "\
 #gridtube_pref_button {background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAeUlEQVR42u2UwQ2AMAwDk52YCWaCmdgp7QshKP6QKn7Yv0pudEqcuBXLBXB/7GaBzFv3Z3k+AdYY/z3cr+IZHgywPCZzxrv4T48AyAFAeKaH0ICmr2GFuDpAkQGOLRBAOQAIjw5Rtrg6QJEBji0QQDkACI8OUbYE0ADbonowcNn6sgAAAABJRU5ErkJggg==');}\
 #yt-masthead-container:hover  #gridtube_pref_button {visibility:visible !important;}\
 /* meta data */\
-.gridtube_meta_def_container {font:bold 10px/13px arial,sans-serif; position:absolute; bottom:0px; left:0px; background:#F0F0F0; padding:0px 3px; border-radius:2px; opacity:0.9; display:none; cursor:default;}\
+.gridtube_meta_def_container {font:bold 10px/13px arial,sans-serif; position:absolute; left:0px; background:#F0F0F0; padding:0px 3px; border-radius:2px; opacity:0.9; display:none; cursor:default;}\
+.gridtube_meta_def_container.top {top:0px;}\
+.gridtube_meta_def_container.bottom {bottom:0px;}\
+.contains-percent-duration-watched .gridtube_meta_def_container.bottom {bottom:4px !important;}\
 .gridtube_meta_def_container[reveal] {display:block;}\
 .gridtube_meta_def_container[space] .gridtube_meta_def_hd {margin-right:3px;}\
 .gridtube_meta_def_format {position:relative; color:black;}\
-.gridtube_meta_def_hd {position:relative; color:magenta;}\
+.gridtube_meta_def_hd {position:relative;}\
+.gridtube_meta_def_hd.HD {color:magenta;}\
+.gridtube_meta_def_hd.UHD {color:red;}\
 .gridtube_meta_rate {font:bold 10px/13px arial,sans-serif; position:absolute; top:0px; right:0px; background:green; color:white; opacity:0.9; padding:0px 3px; border-radius:2px; cursor:default;}\
 .gridtube_meta_rate[bad] {background:red !important;}\
 .gridtube_meta_rate[med] {background:darkorange !important;}\
 #gridtube_meta_box {position:relative; float:left; height:13px; margin-top:3px;}\
 #gridtube_meta_box .gridtube_meta_def_container {font:bold 11px/13px arial,sans-serif; opacity:1; position:relative; clear:none; float:left; background:white;}\
 #gridtube_meta_box .gridtube_meta_rate {opacity:1; position:relative; clear:none; float:right; margin-left:5px;}\
-#gridtube_title_container {position:absolute; top:5px; right:0px;}\
+#gridtube_title_container {position:absolute; top:5px; right:5px;}\
 /* play button*/\
 #gridtube_meta_playing {font:bold 12px/12px arial,sans-serif; position:absolute; top:0px; left:0px; background:red; color:white; opacity:0.9; padding:3px 5px; border-radius:2px; cursor:default; z-index:1;}\
 *[gridtube_meta_thumb_mark]:hover .gridtube_meta_play {visibility:visible !important;}\
@@ -258,8 +262,6 @@ evTpnfv329aiUQyXC+qceRF2lG3T0tzM8f7+OW3m8eP++NrajXvT061SSqRSZb8Ny6FoCpqGEIIGw8Dl
 #gridtube_player_box:hover #gridtube_player_close_mark {visibility:inherit;}\
 /* player options */\
 #gridtube_player_options_popup {position:absolute; left:0px; top:0px; border:black 1px solid; font:11px/11px arial,sans-serif; color:white; background:linear-gradient(#888888,#787878); padding:5px; border-radius:5px; /*z-index:2147483647;*/ z-index:2147483646;}\
-#gridtube_player_options_popup > div  {padding:2px;}\
-.gridtube_player_options_group > span {padding:2px;}\
 .gridtube_player_options_text {font-weight:bold; margin-left:5px; margin-top:7px; color:lemonchiffon;}\
 .gridtube_player_options_close {font:14px/14px arial,sans-serif; color:black; position:absolute; top:3px; right:5px; cursor:pointer;}\
 .gridtube_player_options_close:hover {color:lightgray;}\
@@ -461,12 +463,15 @@ var pref_gridEnable = init_pref("gridEnable", true);
 var pref_gridSearch = init_pref("gridSearch", true);
 var pref_gridTrend = init_pref("gridTrend", true);
 var pref_gridHist = init_pref("gridHist", true);
+var pref_gridRecom = init_pref("gridRecom", true);
 var pref_gridPlist = init_pref("gridPlist", true);
 var pref_gridRel = init_pref("gridRel", true);
 var pref_autoLoadSearch = init_pref("autoLoadSearch", true);
 var pref_autoLoadOther = init_pref("autoLoadOther", true);
-var pref_defEnable = init_pref("defEnable", true);
 var pref_rateEnable = init_pref("rateEnable", true);
+var pref_defEnable = init_pref("defEnable", true);
+var pref_defTop = init_pref("defTop", false);
+var pref_hideRecom = init_pref("hideRecom", false);
 var pref_userLink = init_pref("userLink", false);
 var pref_newTab = init_pref("newTab", false);
 var pref_ytFocus = init_pref("ytFocus", false);
@@ -476,6 +481,7 @@ if (!pref_gridEnable) {
     pref_gridSearch = false;
     pref_gridTrend = false;
     pref_gridHist = false;
+    pref_gridRecom = false;
     pref_gridPlist = false;
     pref_gridRel = false;
 }
@@ -544,11 +550,17 @@ function pref_popup(pos) {
         new_checkbox("gridPlist", "Playlists", "span", group1, null, mark);
         new_checkbox("gridTrend", "Trending", "span", group2, null, mark);
         new_checkbox("gridRel", "Related", "span", group2, null, mark);
+        new_checkbox("gridRecom", "Recomm.", "span", group2, null, mark);
     }
     new_checkbox("autoLoadSearch", "Auto Load for Search Results", "div", popup, null, mark);
     new_checkbox("autoLoadOther", "Auto Load for Other Pages", "div", popup, null, mark);
-    new_checkbox("defEnable", "Show Video Definition", "div", popup, null, mark);
     new_checkbox("rateEnable", "Show Video Rating", "div", popup, null, mark);
+    new_checkbox("defEnable", "Show Video Definition", "div", popup, null, mark);
+    if (pref_defEnable) {
+        var group3 = newNode("div", null, "gridtube_pref_group", popup);
+        new_checkbox("defTop", "Top of Thumb", "span", group3, null, mark);
+    }
+    new_checkbox("hideRecom", "Hide Recommended from Related", "div", popup, null, mark);
     new_checkbox("userLink", "Open User Links in User Videos", "div", popup, null, mark);
     new_checkbox("newTab", "Open Links in New Tab", "div", popup, null, mark);
     new_checkbox("ytFocus", "Pause at out of Focus Tab", "div", popup, null, mark);
@@ -667,6 +679,12 @@ function choice_icons(page_kind) {
             if (refnode)
                 build_icons(pref_gridHist, "gridHist", refnode, 'after');
             break;
+
+        case "recom":
+            refnode = docsearch("//*[contains(@class,'feed-header') and contains(@class, 'clearfix')]").snapshotItem(0);
+            if (refnode)
+                build_icons(pref_gridRecom, "gridRecom", refnode, 'first');
+            break;
     }
 }
 
@@ -676,7 +694,7 @@ function choice_icons(page_kind) {
 
 var basic_str = "(contains(@class,'video-thumb') or contains(@class,'thumb-wrap'))\
                  and (not(descendant::*[contains(@class,'video-thumb') or contains(@class,'thumb-wrap')]))\
-                 and (not(ancestor::*[(@gridtube_ads_mark)\
+                 and (not(ancestor::*[(@gridtube_ads_mark) or (@gridtube_hide_recomm)\
                                       or (@id='player-playlist')\
                                       or (@id='pl-suggestions')"
                                       + (!pref_gridRel ? "" : " or (@id='pyv-watch-related-dest-url')")
@@ -1364,7 +1382,7 @@ function callback2(json_txt, def_node, buildHD, buildRate, parent) {
         if (entry.HD != null) {
             def_node.setAttribute("reveal", "true");
             def_node.title = "high definition";
-            var node_hd = newNode("span", null, "gridtube_meta_def_hd", def_node);
+            var node_hd = newNode("span", null, "gridtube_meta_def_hd HD", def_node);
             node_hd.textContent = "HD";
         }
     }
@@ -1411,7 +1429,7 @@ function callback1(txt, def_node, url2, parent) {
         def_node.setAttribute("reveal", "true");
         def_node.title = res.size + " definition";
         if (res.HD) {
-            var node_hd = newNode("span", null, "gridtube_meta_def_hd", def_node);
+            var node_hd = newNode("span", null, "gridtube_meta_def_hd" + (res.UHD ? " UHD" : " HD"), def_node);
             node_hd.textContent = res.UHD ? res.UHD : "HD";
             def_node.setAttribute("space", "true");
         }
@@ -1436,7 +1454,7 @@ function def_rate(v_id, parent) {
 
     //httpreq
     if (pref_defEnable) {
-        var def_node = newNode("span", null, "gridtube_meta_def_container", parent);
+        var def_node = newNode("span", null, "gridtube_meta_def_container" + (pref_defTop ? " top" : " bottom"), parent);
         httpReq(url1, callback1, def_node, url2, parent);
         def_node.onmouseover = pref_button_show;
         def_node.onmouseout = pref_button_hide;
@@ -1517,21 +1535,20 @@ function meta_data() {
     function check_def_rate_play() {
         if (pref_defEnable || pref_rateEnable || pref_playerEnable) {
 
-            if (pref_defEnable || pref_rateEnable) {
-                if (win.location.href.indexOf("watch?") >= 0) {
-                    var wvid = filter(win.location.href, "v=", "?&#");
-                    if (wvid) {
-                        var par = doc.getElementById("gridtube_meta_box");
-                        if (!par) {
-                            var target = doc.getElementById("gridtube_title_container");
-                            if (!target) {
-                                var pp = doc.getElementById("watch7-user-header");
-                                if (pp) target = newNode("span", "gridtube_title_container", null, pp);
-                            }
-                            if (target) {
-                                par = newNode("span", 'gridtube_meta_box', null, target);
-                                def_rate(wvid, par);
-                            }
+            if ((pref_defEnable || pref_rateEnable) && in_video_page()) {
+                var wvid = filter(win.location.href, "v=", "?&#");
+                if (wvid) {
+                    var par = doc.getElementById("gridtube_meta_box");
+                    if (!par) {
+                        var target = doc.getElementById("gridtube_title_container");
+                        if (!target) {
+                            //var pp = doc.getElementById("watch7-user-header");
+                            var pp = doc.getElementById("watch-header");
+                            if (pp) target = newNode("span", "gridtube_title_container", null, pp);
+                        }
+                        if (target) {
+                            par = newNode("span", 'gridtube_meta_box', null, target);
+                            def_rate(wvid, par);
                         }
                     }
                 }
@@ -1730,6 +1747,7 @@ function search_pages(cond) {
             //clone.onclick = disable_ajax;
         }
 
+        remove_more_ads();
         aux.next_button = xpath(newdoc, newdoc, next_str).snapshotItem(0);
         find_next_search();
         aux.fetch_pending = false;
@@ -1792,8 +1810,21 @@ function plist_adjust() {
 //==================================================================
 // Related
 
+function hide_recommended() {
+    if (!pref_hideRecom || !in_video_page()) return;
+
+    var items = docsearch("//ul[@id='watch-related']//li[not(@gridtube_hide_recomm) and contains(@class,'related-list-item')\
+                                                         and (.//*[contains(@class,'stat') and contains(@class,'view-count')\
+                                                                   and contains(text(),'Recommended')])]");
+    for (var i = 0; i < items.snapshotLength; i++) {
+        items.snapshotItem(i).style.display = "none";
+        items.snapshotItem(i).setAttribute("gridtube_hide_recomm", "true");
+    }
+}
+
+
 function related_adjust(win_resized) {
-    if (!pref_gridRel) return;
+    if (!pref_gridRel || !in_video_page()) return;
 
     var node = doc.getElementById("watch7-sidebar-contents");
     if (!node) return;
@@ -1847,6 +1878,14 @@ function in_hist_page() {
     return (win.location.pathname == "/feed/history");
 }
 
+function in_recom_page() {
+    return (win.location.pathname == "/feed/recommended");
+}
+
+function in_video_page() {
+    return (win.location.href.indexOf("watch?") >= 0);
+}
+
 //insert styles
 insertStyle(style_basic, "gridtube_style_basic");
 insertStyle(style_ads_other, "gridtube_style_ads_other");
@@ -1864,7 +1903,7 @@ if (pref_gridEnable) {
     if (pref_gridTrend)
         insertStyle(style_grid_trending, "gridtube_style_grid_trending");
 
-    if (pref_gridHist)
+    if (pref_gridHist || pref_gridRecom)
         insertStyle(style_grid_history, "gridtube_style_grid_history");
 
     if (pref_gridRel)
@@ -1899,11 +1938,12 @@ function mark_content() {
             content.removeAttribute("gridtube_grid_trend");
 
     var inhist = in_hist_page();
+    var inrecom = in_recom_page();
 
-    if (inhist && pref_gridHist && !content.getAttribute("gridtube_grid_hist"))
+    if (((inhist && pref_gridHist) || (inrecom && pref_gridRecom)) && !content.getAttribute("gridtube_grid_hist"))
         content.setAttribute("gridtube_grid_hist", "true");
     else
-        if (!inhist && content.getAttribute("gridtube_grid_hist"))
+        if (!inhist && !inrecom && content.getAttribute("gridtube_grid_hist"))
             content.removeAttribute("gridtube_grid_hist");
 }
 
@@ -2037,11 +2077,14 @@ function check_changes() {
         mark_content();
         if (in_search_page()) choice_icons("search");
         if (in_hist_page()) choice_icons("hist");
+        if (in_recom_page()) choice_icons("recom");
         if (in_plist_page()) { choice_icons("plist"); plist_adjust(); }
         related_adjust(false);
     }
-    meta_data();
+
+    hide_recommended();
     remove_more_ads();
+    meta_data();
     auto_page_load(false);
 }
 
