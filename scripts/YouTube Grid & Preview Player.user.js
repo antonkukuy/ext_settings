@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Grid & Preview Player
 // @namespace    YouTubeGridView
-// @version      1.2.0
+// @version      1.2.1
 // @description  YouTube grid view layout and preview player. Video ratings and definition info on thumbs. Auto load page content and search results.
 // @author       Costas
 // @match        http://www.youtube.com/*
@@ -68,102 +68,99 @@ var myparser = new DOMParser();
 
 var style_ads_other = "\
 /* remove ads */\
-#content[gridtube_grid_search] #google_flash_inline_div,\
+#content[gridtube_grid='search'] #google_flash_inline_div,\
 #content[gridtube_auto_load_search] #google_flash_inline_div,\
-#content[gridtube_grid_search] .branded-page-v2-secondary-col,\
+#content[gridtube_grid='search'] .branded-page-v2-secondary-col,\
 #content[gridtube_auto_load_search] .branded-page-v2-secondary-col,\
-#content[gridtube_grid_search] .pyv-afc-ads-container,\
+#content[gridtube_grid='search'] .pyv-afc-ads-container,\
 #content[gridtube_auto_load_search] .pyv-afc-ads-container {display:none !important;}\
+#content[gridtube_grid='related'] #watch7-sidebar-ads {display:none !important;}\
 /* hide pager */\
 #content[gridtube_auto_load_search] .search-pager {display:none !important;}\
 /* user links */\
-a[gridtube_meta_user_mark2] {display:inline !important; text-decoration:none !important;}\
+a[gridtube_meta_user_mark2] {display:inline !important; text-decoration:none !important; padding:0px !important;}\
 a[gridtube_meta_user_mark2]:hover {text-decoration:underline !important;}\
 li.video-list-item.related-list-item:hover a[gridtube_meta_user_mark2] {color:#167ac6 !important;}\
 /* watched videos */\
 .watched .video-thumb {opacity:1 !important;}\
 ";
 
-var style_grid_search = "\
+var style_grid_basic = "\
 /*Grid for search results*/\
-#content[gridtube_grid_search] {width: 96% !important;}\
-#results .item-section {margin-left:5px !important;}\
-#results ol.item-section > li {width: 246px !important; height: 226px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important;}\
-#results ol.item-section > li:hover {overflow:visible !important;}\
-#results ol.item-section > li:hover > div {z-index:1 !important; background-color:white !important;}\
-#results ol.item-section > li > div {padding:0px 0px 3px 0px !important;}\
-#results .yt-lockup-channel .video-thumb {float:left !important;}\
-#results .yt-lockup-content {float:left !important; width:100% !important;}\
-#results .yt-lockup-title {font-size: 13px !important; line-height:1.2em !important; max-height:2.4em !important; margin:1px 0px 1px 0px !important;}\
-#results .yt-lockup-title .yt-uix-tile-link {line-height:1.2em !important;}\
-#results .yt-lockup-byline {font-size: 11px !important; line-height:13px !important;}\
-#results .yt-lockup-meta {font-size: 11px !important; line-height:13px !important;}\
-#results .yt-lockup-description {font-size: 10px !important; line-height:12px !important;}\
-#results .yt-lockup-badges {margin:0px !important;}\
-#results .yt-lockup-playlist-items {margin:0px !important;}\
-#content[gridtube_grid_search] #results .yt-lockup-action-menu {margin-right:-8px !important;}\
-#content[gridtube_grid_search]:not([gridtube_auto_load_search]) .search-pager {display:inline-block !important; width:100% !important; margin-top:50px !important;}\
-";
-
-var style_grid_history = "\
+#content[gridtube_grid='search'] {width: 96% !important;}\
+#content[gridtube_grid='search'] .item-section {margin-left:5px !important;}\
+#content[gridtube_grid='search'] ol.item-section > li {width: 246px !important; height: 226px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important;}\
+#content[gridtube_grid='search'] ol.item-section > li:hover {overflow:visible !important;}\
+#content[gridtube_grid='search'] ol.item-section > li:hover > div {z-index:1 !important; background-color:white !important;}\
+#content[gridtube_grid='search'] ol.item-section > li > div {padding:0px 0px 3px 0px !important;}\
+#content[gridtube_grid='search']:not([gridtube_auto_load_search]) .search-pager {display:inline-block !important; width:100% !important; margin-top:50px !important;}\
 /*Grid for history or recommended*/\
-#content[gridtube_grid_hist] {width: 96% !important;}\
-#content[gridtube_grid_hist] #browse-items-primary {margin-left:10px !important;}\
-#content[gridtube_grid_hist] .item-section-header {margin-left:-5px !important;}\
-#content[gridtube_grid_hist] ol.item-section > li:not(.item-section-header) {width: 196px !important; height: 196px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important;}\
-#content[gridtube_grid_hist] ol.item-section > li:not(.item-section-header):hover {overflow:visible !important;}\
-#content[gridtube_grid_hist] ol.item-section > li:not(.item-section-header):hover > div {z-index:1 !important; background-color:white !important;}\
-#content[gridtube_grid_hist] ol.item-section > li:not(.item-section-header) > div {padding:0px 0px 3px 0px !important; border-bottom:0px !important;}\
-#content[gridtube_grid_hist] .yt-lockup-channel .video-thumb {float:left !important;}\
-#content[gridtube_grid_hist] .yt-lockup-content {float:left !important; width:100% !important;}\
-#content[gridtube_grid_hist] .yt-lockup-title {font-size:13px !important; line-height:1.2em !important; max-height:2.4em !important; margin-bottom:1px !important; margin-right:15px !important;}\
-#content[gridtube_grid_hist] .yt-lockup-title .yt-uix-tile-link {line-height:1.2em !important; margin-right:0px !important;}\
-#content[gridtube_grid_hist] .yt-lockup-byline {font-size: 11px !important; line-height:13px !important;}\
-#content[gridtube_grid_hist] .yt-lockup-meta {font-size: 11px !important; line-height:13px !important;}\
-#content[gridtube_grid_hist] .yt-lockup-description {font-size: 10px !important; line-height:12px !important;}\
-#content[gridtube_grid_hist] .yt-lockup-badges {margin:0px !important;}\
-#content[gridtube_grid_hist] .yt-uix-menu-top-level-button-container {margin-right:-4px !important;}\
-#content[gridtube_grid_hist] .shelf-title-table {display:none !important;}\
-";
-
-var style_grid_trending = "\
+#content[gridtube_grid='history'] {width: 96% !important;}\
+#content[gridtube_grid='history'] #browse-items-primary {margin-left:10px !important;}\
+#content[gridtube_grid='history'] .item-section-header {margin-left:-5px !important;}\
+#content[gridtube_grid='history'] ol.item-section > li:not(.item-section-header) {width: 196px !important; height: 196px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important;}\
+#content[gridtube_grid='history'] ol.item-section > li:not(.item-section-header):hover {overflow:visible !important;}\
+#content[gridtube_grid='history'] ol.item-section > li:not(.item-section-header):hover > div {z-index:1 !important; background-color:white !important;}\
+#content[gridtube_grid='history'] ol.item-section > li:not(.item-section-header) > div {padding:0px 0px 3px 0px !important; border-bottom:0px !important;}\
+#content[gridtube_grid='history'] .yt-uix-menu-top-level-button-container {margin-right:-4px !important;}\
+#content[gridtube_grid='history'] .shelf-title-table {display:none !important;}\
 /*Grid for trending*/\
-#content[gridtube_grid_trend] {width: 96% !important;}\
-#content[gridtube_grid_trend] .expanded-shelf-content-item-wrapper {width: 196px !important; height: 196px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important;}\
-#content[gridtube_grid_trend] .yt-lockup-channel .video-thumb {float:left !important;}\
-#content[gridtube_grid_trend] .yt-lockup-content {float:left !important; width:100% !important;}\
-#content[gridtube_grid_trend] .yt-lockup-title {font-size:13px !important; line-height:1.2em !important; max-height:2.4em !important; margin-bottom:1px !important;}\
-#content[gridtube_grid_trend] .yt-lockup-title .yt-uix-tile-link {line-height:1.2em !important; margin-right:0px !important;}\
-#content[gridtube_grid_trend] .yt-lockup-byline {font-size: 11px !important; line-height:13px !important;}\
-#content[gridtube_grid_trend] .yt-lockup-meta {font-size: 11px !important; line-height:13px !important;}\
-#content[gridtube_grid_trend] .yt-lockup-description {font-size: 10px !important; line-height:12px !important;}\
-";
+#content[gridtube_grid='trending'] {width: 96% !important;}\
+#content[gridtube_grid='trending'] .expanded-shelf-content-item-wrapper {width: 196px !important; height: 196px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important; padding:0px !important;}\
+#content[gridtube_grid='trending'] .expanded-shelf-content-item-wrapper:hover {overflow:visible !important;}\
+#content[gridtube_grid='trending'] .expanded-shelf-content-item-wrapper:hover .yt-lockup-video {z-index:1 !important; background-color:white !important;}\
+#content[gridtube_grid='trending'] .expanded-shelf-content-item-wrapper .yt-lockup-video {padding:0px 0px 3px 0px !important;}\
+/*Grid for userquery search*/\
+#content[gridtube_grid='userquery'] #browse-items-primary {margin-top:10px !important;}\
+#content[gridtube_grid='userquery'] .feed-item-container {width: 196px !important; height: 196px !important; float: left !important; margin:5px 10px !important; overflow:hidden !important; border-bottom:0px !important; padding-bottom:0px !important; padding-top:0px !important;}\
+#content[gridtube_grid='userquery'] .feed-item-container:hover {overflow:visible !important;}\
+#content[gridtube_grid='userquery'] .feed-item-container:hover .yt-lockup-video {z-index:1 !important; background-color:white !important;}\
+#content[gridtube_grid='userquery'] .feed-item-container .yt-lockup-video {padding:0px 0px 3px 0px !important;}\
+/*common lockup*/\
+#content[gridtube_grid] .yt-lockup-channel .video-thumb {float:left !important;}\
+#content[gridtube_grid] .yt-lockup-content {float:left !important; width:100% !important;}\
+#content[gridtube_grid] .yt-lockup-title {font-size:13px !important; line-height:1.2em !important; max-height:2.4em !important; margin-bottom:1px !important;}\
+#content[gridtube_grid='search'] .yt-lockup-title {margin-top:1px !important; margin-right:5px !important;}\
+#content[gridtube_grid='history'] .yt-lockup-title {margin-right:15px !important;}\
+#content[gridtube_grid] .yt-lockup-title .yt-uix-tile-link {line-height:1.2em !important; margin-right:0px !important;}\
+#content[gridtube_grid] .yt-lockup-byline {font-size:11px !important; line-height:13px !important;}\
+#content[gridtube_grid] .yt-lockup-meta {font-size:11px !important; line-height:13px !important;}\
+#content[gridtube_grid] .yt-lockup-description {font-size: 10px !important; line-height:12px !important;}\
+#content[gridtube_grid] .yt-lockup-badges {margin:0px !important;}\
+#content[gridtube_grid] .yt-lockup-playlist-items {margin:0px !important;}\
+#content[gridtube_grid='userquery'] .yt-lockup-playlist-item-title {font-size:11px !important; line-height:13px !important;}\
+#content[gridtube_grid='userquery'] .yt-lockup-playlist-item-length {font-size:11px !important; line-height:13px !important;}\
+#content[gridtube_grid='search'] .yt-lockup-action-menu {margin-right:-8px !important;}\
+"
 
 var style_grid_related = "\
 /*Grid for related*/\
-#watch7-sidebar-ads {display:none !important;} /*ads*/\
 /*#watch7-sidebar-contents {min-height:1770px !important;}*/\
 #watch-related {position:absolute !important;}\
-#watch-related li:not(.related-list-item) {display:none !important;} /*ads*/\
+#watch-related > li:not(.related-list-item) {display:none !important;} /*ads*/\
 #watch-related li {width: 195px !important; height:160px !important; margin-bottom:0px !important; float: left !important; overflow:hidden !important;}\
 #watch-related .content-wrapper {width:168px !important; margin-left:5px !important; margin-top:94px !important;}\
 #watch-related .yt-pl-thumb-link .title {width:168px !important; margin-top:95px !important;}\
-#watch-related .title {font-size:12px !important; line-height:1.2em !important; max-height:2.4em !important; margin:1px 0px !important;}\
+#watch-related .title {font-size:12px !important; line-height:1.2em !important; max-height:2.4em !important; margin:1px 4px 1px 0px !important;}\
+#watch-related .yt-uix-menu-container.related-item-action-menu {right:21px !important; top:100px !important;}\
+#watch-related .view-count .yt-badge-list {vertical-align:top !important;}\
 ";
 
 var style_grid_plist = "\
 /*Grid for playlists*/\
 .pl-video {position:relative !important; width:250px !important; height:200px !important; margin-top:5px !important; margin-bottom:5px !important; border-bottom:0px !important; float: left !important; overflow:hidden !important;}\
-.pl-video .pl-video-thumbnail {width: 196px !important; padding-bottom:2px !important;}\
-.pl-video .yt-thumb {width: 196px !important; height: 110px !important;}\
+.pl-video .pl-video-thumbnail {width: 196px !important; padding-bottom:2px !important; /*padding-left:2px !important;*/}\
+.pl-video .pl-video-thumb {width: 196px !important;}\
+.pl-video .yt-thumb {width: 196px !important;}\
 .pl-video .yt-thumb-clip > img {width:196px !important; height:auto !important;}\
 .pl-video .pl-video-title  {display:block !important; min-width:0px !important; width:196px !important; padding:0px 0px 0px 35px !important;}\
 .pl-video .pl-video-title-link {width:100% !important; max-height:3.9em !important; overflow:hidden !important; text-overflow: ellipsis !important;}\
 .pl-video .pl-video-owner {margin-top: 0px !important;}\
 .pl-video .pl-video-badges {padding:5px 0px 0px 35px !important;}\
 .pl-video .pl-video-added-by {display:none !important;}\
-.pl-video .pl-video-time {position:absolute !important; top:-23px !important; left:20px !important; text-align:left !important; color:gray !important;}\
-.pl-video-edit-options {position:absolute !important; top:37px !important; right:-126px !important;}\
+.pl-video .pl-video-time {position:absolute !important; top:-22px !important; left:20px !important; text-align:left !important; color:gray !important;}\
+.pl-video-index::before {/*font-size:12px !important;*/ font-weight:bold !important;}\
+.pl-video-edit-options {position:absolute !important; top:36px !important; right:-126px !important;}\
 ";
 
 var style_basic = "\
@@ -189,7 +186,7 @@ var style_basic = "\
 .gridtube_pref_group {margin-left:15px; color:yellow;}\
 #gridtube_pref_close {font:14px/14px arial,sans-serif; color:black; position:absolute; top:3px; right:5px; cursor:pointer;}\
 #gridtube_pref_close:hover {color:lightgray;}\
-#gridtube_pref_title {font:bold 13px/13px arial,sans-serif; padding:5px !important; color:aliceblue;}\
+#gridtube_pref_title {font:bold 13px/13px arial,sans-serif; padding:5px !important; color:lightyellow;}\
 #gridtube_pref_button {cursor:pointer; width:20px; height:20px; background-size:contain; background-repeat:no-repeat; opacity:0.7;}\
 #gridtube_pref_button[top] {position:absolute; right:0px; top:0px; visibility:hidden; z-index:10;}\
 #gridtube_pref_button[bottom] {position:fixed; right:0px; bottom:0px; visibility:visible;}\
@@ -200,7 +197,7 @@ var style_basic = "\
 .gridtube_meta_def_container {font:bold 10px/13px arial,sans-serif; position:absolute; left:0px; background:#F0F0F0; padding:0px 3px; border-radius:2px; opacity:0.9; display:none; cursor:default;}\
 .gridtube_meta_def_container.top {top:0px;}\
 .gridtube_meta_def_container.bottom {bottom:0px;}\
-.contains-percent-duration-watched .gridtube_meta_def_container.bottom {bottom:4px !important;}\
+.gridtube_meta_def_container[shiftup], .contains-percent-duration-watched .gridtube_meta_def_container.bottom {bottom:4px !important;}\
 .gridtube_meta_def_container[reveal] {display:block;}\
 .gridtube_meta_def_container[space] .gridtube_meta_def_hd {margin-right:3px;}\
 .gridtube_meta_def_format {position:relative; color:black;}\
@@ -229,7 +226,7 @@ evTpnfv329aiUQyXC+qceRF2lG3T0tzM8f7+OW3m8eP++NrajXvT061SSqRSZb8Ny6FoCpqGEIIGw8Dl
 /* preview player */\
 #gridtube_player_area {position:fixed; width:100%; height:100%; top:0px; left:0px; background:rgba(0,0,0,0.5); overflow:hidden !important; z-index:2147483646 !important; }\
 #gridtube_player_area2 {position:relative; width:100%; height:100%; visibility:hidden;}\
-#gridtube_player_box {position:absolute; background:linear-gradient(#606060,#505050,#606060); box-shadow:0px 0px 10px 5px #606060; border-radius:10px; max-width:100%; max-height:100%;}\
+#gridtube_player_box {position:absolute; background:#606060; box-shadow:0px 0px 20px 5px #606060; border-radius:10px; max-width:100%; max-height:100%;}\
 #gridtube_player_box[player_pos='00']:not([player_size='fit']) {top:0px; left:0px;}\
 #gridtube_player_box[player_pos='01']:not([player_size='fit']) {top:0px; left:0px; right:0px; margin:auto;}\
 #gridtube_player_box[player_pos='02']:not([player_size='fit']) {top:0px; right:0px;}\
@@ -240,18 +237,20 @@ evTpnfv329aiUQyXC+qceRF2lG3T0tzM8f7+OW3m8eP++NrajXvT061SSqRSZb8Ny6FoCpqGEIIGw8Dl
 #gridtube_player_box[player_pos='21']:not([player_size='fit']) {bottom:0px; left:0px; right:0px; margin:auto;}\
 #gridtube_player_box[player_pos='22']:not([player_size='fit']) {bottom:0px; right:0px;}\
 #gridtube_player_box[player_pos='right']:not([player_size='fit']) {float:right;}\
-#gridtube_player_box[player_size='tiny'] {/*320x180*/ width:360px; height:220px;}\
-#gridtube_player_box[player_size='small'] {/*512x288*/ width:552px; height:328px;}\
-#gridtube_player_box[player_size='medium'] {/*768x432*/  width:808px; height:472px;}\
-#gridtube_player_box[player_size='large'] {/*1024x576*/ width:1064px; height:616px;}\
-#gridtube_player_box[player_size='huge'] {/*1280x720*/ width:1320px; height:760px;}\
-#gridtube_player_box[player_size='fit'] {width:100%; height:100%;}\
+#gridtube_player_box[player_size='tiny'] {/*320x180*/ width:340px; height:220px;}\
+#gridtube_player_box[player_size='small'] {/*512x288*/ width:532px; height:328px;}\
+#gridtube_player_box[player_size='medium'] {/*768x432*/  width:788px; height:472px;}\
+#gridtube_player_box[player_size='large'] {/*1024x576*/ width:1044px; height:616px;}\
+#gridtube_player_box[player_size='huge'] {/*1280x720*/ width:1300px; height:760px;}\
+#gridtube_player_box[player_size='fit'] {width:100%; height:100%; border-radius:0px !important;}\
 #gridtube_player_holder {position:relative; width:100%; height:100%;}\
-#gridtube_player_holder2 {position:absolute; top:20px; left:20px; right:20px; bottom:20px; margin:auto;}\
+#gridtube_player_holder2 {position:absolute; top:20px; left:10px; right:10px; bottom:20px; margin:auto;}\
+#gridtube_player_box[player_size='fit'] #gridtube_player_holder2 {left:0px !important; right:0px !important;}\
 #gridtube_player_frame {position:relative; width:100%; height:100%; display:block; border:0px;}\
-#gridtube_player_button_area_top {font:bold 12px/20px arial,sans-serif; color:#101010; position:absolute; top:0px; left:15px;}\
-#gridtube_player_button_area_bottom {font:bold 18px/20px arial,sans-serif; color:#101010; position:absolute; bottom:0px; left:20px;}\
+#gridtube_player_button_area_top {font:bold 12px/20px arial,sans-serif; color:#101010; position:absolute; top:0px; left:10px;}\
+#gridtube_player_button_area_bottom {font:bold 18px/20px arial,sans-serif; color:#101010; position:absolute; bottom:0px; left:10px;}\
 .gridtube_player_button {position:relative; cursor:pointer; padding:0px 5px;}\
+.gridtube_player_button[button_kind='plus'], .gridtube_player_button[button_kind='minus'] {font:bold 18px/20px arial,sans-serif !important; top:2px;}\
 .gridtube_player_button[button_kind='left'] {padding:0px 2px 0px 5px;}\
 .gridtube_player_button[button_kind='right'] {padding:0px 2px;}\
 .gridtube_player_button[button_kind='up'] {padding:0px 2px;}\
@@ -261,7 +260,7 @@ evTpnfv329aiUQyXC+qceRF2lG3T0tzM8f7+OW3m8eP++NrajXvT061SSqRSZb8Ny6FoCpqGEIIGw8Dl
 #gridtube_player_close_mark:hover {color:#E0E0E0;}\
 #gridtube_player_box:hover #gridtube_player_close_mark {visibility:inherit;}\
 /* player options */\
-#gridtube_player_options_popup {position:absolute; left:0px; top:0px; border:black 1px solid; font:11px/11px arial,sans-serif; color:white; background:linear-gradient(#888888,#787878); padding:5px; border-radius:5px; /*z-index:2147483647;*/ z-index:2147483646;}\
+#gridtube_player_options_popup {position:absolute; left:0px; top:0px; font:11px/11px arial,sans-serif; color:white; background:linear-gradient(#888888,#787878); padding:5px; border-radius:5px; /*z-index:2147483647;*/ z-index:2147483646;}\
 .gridtube_player_options_text {font-weight:bold; margin-left:5px; margin-top:7px; color:lemonchiffon;}\
 .gridtube_player_options_close {font:14px/14px arial,sans-serif; color:black; position:absolute; top:3px; right:5px; cursor:pointer;}\
 .gridtube_player_options_close:hover {color:lightgray;}\
@@ -533,7 +532,7 @@ function pref_popup(pos) {
     }
 
     var closemark = newNode("span", "gridtube_pref_close", null, popup);
-    closemark.textContent = "\u274C";
+    closemark.textContent = "\u2716";
     closemark.title = "close options";
     closemark.onclick = function () {
         popup.parentNode.removeChild(popup);
@@ -694,7 +693,7 @@ function choice_icons(page_kind) {
 
 var basic_str = "(contains(@class,'video-thumb') or contains(@class,'thumb-wrap'))\
                  and (not(descendant::*[contains(@class,'video-thumb') or contains(@class,'thumb-wrap')]))\
-                 and (not(ancestor::*[(@gridtube_ads_mark) or (@gridtube_hide_recomm)\
+                 and (not(ancestor::*[(@gridtube_ads_mark) or (@gridtube_hide_recomm) or (@gridtube_marked_deleted) or (@ytpc_disable_autoplay)\
                                       or (@id='player-playlist')\
                                       or (@id='pl-suggestions')"
                                       + (!pref_gridRel ? "" : " or (@id='pyv-watch-related-dest-url')")
@@ -791,7 +790,6 @@ if (pref_playerEnable) {
     init_pref("playerPause", true);
     init_pref("playerFocus", false);
     init_pref("playerDim", true);
-    init_pref("playerPosAuto", false);
 
     //fix char preferences
     if (choices_def.indexOf(get_pref("playerDef")) < 0) set_pref("playerDef", 'default');
@@ -810,14 +808,15 @@ function player_options(parent) {
     title_node.textContent = "Preview Player Options";
 
     var closemark = newNode("span", null, "gridtube_player_options_close", popup);
-    closemark.textContent = "\u274C";
+    closemark.textContent = "\u2716";
     closemark.title = "close options";
     closemark.onclick = close_player_options;
 
 
-    new_checkbox("playerNext", "Continuous Play", "div", popup);
-    new_checkbox("playerDim", "Dim Background", "div", popup);
-    new_checkbox("playerPosAuto", "Auto Adjust Position", "div", popup);
+    new_checkbox("playerNext", "Auto Play Next", "div", popup);
+    new_checkbox("playerDim", "Dim Background", "div", popup, null, function () {
+        doc.getElementById("gridtube_player_area").style.visibility = (get_pref("playerDim") ? "visible" : "hidden");
+    });
     new_checkbox("playerClose", "Close on Clicking Outside Player", "div", popup);
     new_checkbox("playerPause", "Pause YouTube Player at Launch", "div", popup);
     new_checkbox("playerFocus", "Pause at out of Focus Tab", "div", popup);
@@ -898,7 +897,6 @@ function build_player() {
             new_fit = get_pref("playerFit");
         }
         playerAdjust((new_fit ? 'fit' : new_size), new_pos, "visible", vid, pid);
-        if (!new_fit && get_pref("playerPosAuto")) adjust_auto_pos(node);
         adjust_playing(node);
     }
 
@@ -944,76 +942,6 @@ function build_player() {
     }
 
 
-    function adjust_auto_pos(node) {
-
-        var node_rect = node.getBoundingClientRect();
-        var box_rect = box.getBoundingClientRect();
-
-        //if ((node_rect.top > doc.body.clientHeight) ||
-        //    (node_rect.left > doc.body.clientWidth)) return;
-
-        if (box_rect.right < node_rect.left ||
-            box_rect.left > node_rect.right ||
-            box_rect.top > node_rect.bottom ||
-            box_rect.bottom < node_rect.top) return;
-
-        var node_X_center = (node_rect.left + node_rect.width / 2);
-        var node_Y_center = (node_rect.top + node_rect.height / 2);
-
-        var X_fit = (box_rect.width / 2) + (node_rect.width / 2);
-        var Y_fit = (box_rect.height / 2) + (node_rect.height / 2);
-
-        var X = [];
-        var Y = [];
-        X[0] = Math.abs((box_rect.width / 2) - node_X_center);
-        X[1] = Math.abs((doc.body.clientWidth / 2) - node_X_center);
-        X[2] = Math.abs(doc.body.clientWidth - (box_rect.width / 2) - node_X_center);
-
-        Y[0] = Math.abs((box_rect.height / 2) - node_Y_center);
-        Y[1] = Math.abs((doc.body.clientHeight / 2) - node_Y_center);
-        Y[2] = Math.abs(doc.body.clientHeight - (box_rect.height / 2) - node_Y_center);
-
-        var minX = 0;
-        if (X[1] < X[minX]) minX = 1;
-        if (X[2] < X[minX]) minX = 2;
-
-        var minY = 0;
-        if (Y[1] < Y[minY]) minY = 1;
-        if (Y[2] < Y[minY]) minY = 2;
-
-        var minX_fit = -1;
-        var minY_fit = -1;
-        var Xval = -1;
-        var Yval = -1;
-        for (var i = 0; i < 3; i++) {
-            if (X[i] >= X_fit && (X[i] < Xval || Xval == -1)) {
-                minX_fit = i;
-                Xval = X[i];
-            }
-            if (Y[i] >= Y_fit && (Y[i] < Yval || Yval == -1)) {
-                minY_fit = i;
-                Yval = Y[i];
-            }
-        }
-
-        if (minX_fit == -1 && minY_fit == -1) return;
-
-        if (Xval <= Yval)
-            if (minX_fit != -1)
-                minY_fit = minY;
-            else
-                minX_fit = minX;
-        else
-            if (minY_fit != -1)
-                minX_fit = minX;
-            else
-                minY_fit = minY;
-
-        new_pos = minY_fit.toString() + minX_fit.toString();
-        playerAdjust(null, new_pos);
-    }
-
-
     function play_next(findprevious) {
 
         var playing = doc.getElementById("gridtube_meta_playing");
@@ -1025,7 +953,7 @@ function build_player() {
         var myimg = innersearch(playing.parentNode, ".//img[@src or @data-thumb]").snapshotItem(0);
         if (myimg) {
             //l = docsearch("//*[(" + basic_str + ") and (not(ancestor::*[contains(@class,'vve-check')]))]//img[contains(@src,'vi/') or contains(@src,'vi_webp/')]");
-            l = docsearch("//*[(" + basic_str + ")]//img[contains(@src,'vi/') or contains(@src,'vi_webp/') or contains(@src,'/p/')]");
+            l = docsearch("//*[(" + basic_str + ")]//img[contains(@src,'vi/') or contains(@src,'vi_webp/') or contains(@src,'/p/') or contains(@src,'/s_p/')]");
 
             myimg.setAttribute("matchfind", "true");
 
@@ -1191,8 +1119,8 @@ function build_player() {
     };
 
     var buttonArea = newNode("span", "gridtube_player_button_area_top", null, box);
-    new_button("plus", "\u2795", "increase player size", buttonArea);
-    new_button("minus", "\u2796", "decrease player size", buttonArea);
+    new_button("plus", "\u002B", "increase player size", buttonArea);
+    new_button("minus", "\u2212", "decrease player size", buttonArea);
     new_button("fit", "\u2610", "fit player to window", buttonArea);
     new_button('left', '\u25C4', 'move player left', buttonArea);
     new_button('right', '\u25BA', 'move player right', buttonArea);
@@ -1206,7 +1134,7 @@ function build_player() {
     //new_button("loop", "\u21BB", "repeat video", bottomArea);
 
     var mark = newNode("span", "gridtube_player_close_mark", null, box);
-    mark.textContent = "\u274C";
+    mark.textContent = "\u2716";
     mark.title = "close player";
     mark.onclick = this.playerClose;
 }
@@ -1458,6 +1386,12 @@ function def_rate(v_id, parent) {
         httpReq(url1, callback1, def_node, url2, parent);
         def_node.onmouseover = pref_button_show;
         def_node.onmouseout = pref_button_hide;
+
+        if (!pref_defTop && (in_plist_page() || in_userq_page())) {
+            if (innersearch(parent.parentNode.parentNode, ".//*[contains(@class,'resume-playback-progress-bar')]").snapshotLength > 0) {
+                def_node.setAttribute("shiftup", "true");
+            }
+        }
     }
     else
         if (pref_rateEnable)
@@ -1530,7 +1464,7 @@ function meta_data() {
                              //a[(contains(@href,'/user/') or contains(@href,'/channel/')) and (not(@gridtube_meta_user_mark))]";
 
     var user_str2 = "//li[contains(@class,'related-list-item')]\
-                     //span[contains(@class,'g-hovercard') and (@data-ytid) and (@data-name) and (not(@gridtube_meta_user_mark2))]";
+                     //span[contains(@class,'g-hovercard') and (@data-ytid) and (not(@gridtube_meta_user_mark2))]";
 
     function check_def_rate_play() {
         if (pref_defEnable || pref_rateEnable || pref_playerEnable) {
@@ -1560,7 +1494,7 @@ function meta_data() {
             for (var i = 0; i < p.snapshotLength; i++) {
                 var parent = p.snapshotItem(i);
                 parent.setAttribute('gridtube_meta_thumb_mark', 'true');
-                var img = innersearch(parent, ".//img[contains(@src,'vi/') or contains(@src,'vi_webp/') or contains(@src,'/p/')]").snapshotItem(0);
+                var img = innersearch(parent, ".//img[contains(@src,'vi/') or contains(@src,'vi_webp/') or contains(@src,'/p/') or contains(@src,'/s_p/')]").snapshotItem(0);
                 if (!img) continue;
 
                 var vid = filter(img.src, "vi/", "/&?#");
@@ -1798,7 +1732,7 @@ function plist_adjust() {
     //remove deleted vids
     var ditems = docsearch("//*[(@id='pl-video-list') and (not(contains(@class,'pl-video-list-editable')))]\
                             //tr[contains(@class,'pl-video') and (not(@gridtube_marked_deleted))\
-                            and ((@data-title='[Deleted Video]') or (@data-title='[Private Video]'))]");
+                            and ((@data-title='[Deleted video]') or (@data-title='[Private video]'))]");
 
     for (var i = 0; i < ditems.snapshotLength; i++) {
         var item = ditems.snapshotItem(i);
@@ -1828,6 +1762,12 @@ function related_adjust(win_resized) {
 
     var node = doc.getElementById("watch7-sidebar-contents");
     if (!node) return;
+
+    if (node.offsetWidth < 416)
+        insertStyle("", "gridtube_style_grid_related");
+    else
+        insertStyle(style_grid_related, "gridtube_style_grid_related");
+
 
     var strnum = node.getAttribute("gridtube_stored_num");
     var stored_num = strnum ? parseInt(strnum) : 0;
@@ -1886,6 +1826,11 @@ function in_video_page() {
     return (win.location.href.indexOf("watch?") >= 0);
 }
 
+function in_userq_page() {
+    return (((win.location.pathname.indexOf("/user") == 0) || (win.location.pathname.indexOf("/channel") == 0))
+            && (win.location.href.indexOf("search?query=") >= 0));
+}
+
 //insert styles
 insertStyle(style_basic, "gridtube_style_basic");
 insertStyle(style_ads_other, "gridtube_style_ads_other");
@@ -1894,17 +1839,11 @@ if (pref_playerEnable) //hide overlay of playlist
     insertStyle(".yt-pl-thumb-overlay {display:none !important;}", "gridtube_style_list_overlay");
 
 if (pref_gridEnable) {
-    if (pref_gridSearch)
-        insertStyle(style_grid_search, "gridtube_style_grid_search");
+    if (pref_gridSearch || pref_gridTrend || pref_gridHist || pref_gridRecom)
+        insertStyle(style_grid_basic, "gridtube_style_grid_basic");
 
     if (pref_gridPlist)
         insertStyle(style_grid_plist, "gridtube_style_grid_plist");
-
-    if (pref_gridTrend)
-        insertStyle(style_grid_trending, "gridtube_style_grid_trending");
-
-    if (pref_gridHist || pref_gridRecom)
-        insertStyle(style_grid_history, "gridtube_style_grid_history");
 
     if (pref_gridRel)
         insertStyle(style_grid_related, "gridtube_style_grid_related");
@@ -1917,11 +1856,11 @@ function mark_content() {
 
     var insearch = in_search_page();
 
-    if (insearch && pref_gridSearch && !content.getAttribute("gridtube_grid_search"))
-        content.setAttribute("gridtube_grid_search", "true");
+    if (insearch && pref_gridSearch && !(content.getAttribute("gridtube_grid") == "search"))
+        content.setAttribute("gridtube_grid", "search");
     else
-        if (!insearch && content.getAttribute("gridtube_grid_search"))
-            content.removeAttribute("gridtube_grid_search");
+        if (!insearch && (content.getAttribute("gridtube_grid") == "search"))
+            content.removeAttribute("gridtube_grid");
 
     if (insearch && pref_autoLoadSearch && !content.getAttribute("gridtube_auto_load_search"))
         content.setAttribute("gridtube_auto_load_search", "true");
@@ -1931,20 +1870,45 @@ function mark_content() {
 
     var intrend = in_trend_page();
 
-    if (intrend && pref_gridTrend && !content.getAttribute("gridtube_grid_trend"))
-        content.setAttribute("gridtube_grid_trend", "true");
+    if (intrend && pref_gridTrend && !(content.getAttribute("gridtube_grid") == "trending"))
+        content.setAttribute("gridtube_grid", "trending");
     else
-        if (!intrend && content.getAttribute("gridtube_grid_trend"))
-            content.removeAttribute("gridtube_grid_trend");
+        if (!intrend && (content.getAttribute("gridtube_grid") == "trending"))
+            content.removeAttribute("gridtube_grid");
 
     var inhist = in_hist_page();
     var inrecom = in_recom_page();
 
-    if (((inhist && pref_gridHist) || (inrecom && pref_gridRecom)) && !content.getAttribute("gridtube_grid_hist"))
-        content.setAttribute("gridtube_grid_hist", "true");
+    if (((inhist && pref_gridHist) || (inrecom && pref_gridRecom)) && !(content.getAttribute("gridtube_grid") == "history"))
+        content.setAttribute("gridtube_grid", "history");
     else
-        if (!inhist && !inrecom && content.getAttribute("gridtube_grid_hist"))
-            content.removeAttribute("gridtube_grid_hist");
+        if (!inhist && !inrecom && (content.getAttribute("gridtube_grid") == "history"))
+            content.removeAttribute("gridtube_grid");
+
+    var inuserq = in_userq_page();
+
+    if (inuserq && pref_gridSearch && !(content.getAttribute("gridtube_grid") == "userquery"))
+        content.setAttribute("gridtube_grid", "userquery");
+    else
+        if (!inuserq && (content.getAttribute("gridtube_grid") == "userquery"))
+            content.removeAttribute("gridtube_grid");
+
+    var invid = in_video_page();
+
+    if (invid && pref_gridRel && !(content.getAttribute("gridtube_grid") == "related"))
+        content.setAttribute("gridtube_grid", "related");
+    else
+        if (!invid && (content.getAttribute("gridtube_grid") == "related"))
+            content.removeAttribute("gridtube_grid");
+
+    var inplist = in_plist_page();
+
+    if (inplist && pref_gridPlist && !(content.getAttribute("gridtube_grid") == "playlist"))
+        content.setAttribute("gridtube_grid", "playlist");
+    else
+        if (!inplist && (content.getAttribute("gridtube_grid") == "playlist"))
+            content.removeAttribute("gridtube_grid");
+
 }
 
 
@@ -2060,7 +2024,7 @@ win.addEventListener("click", function (e) { nochanges_count = -1; player_close(
 //main routine
 function check_changes() {
     if (old_addr == win.location.href) {
-        nochanges_count++;
+        if (nochanges_count < 20) nochanges_count++;
     }
     else {
         nochanges_count = 0;
