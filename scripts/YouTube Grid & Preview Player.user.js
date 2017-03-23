@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Grid & Preview Player
 // @namespace    YouTubeGridView
-// @version      1.2.1
+// @version      1.2.2
 // @description  YouTube grid view layout and preview player. Video ratings and definition info on thumbs. Auto load page content and search results.
 // @author       Costas
 // @match        http://www.youtube.com/*
@@ -197,7 +197,7 @@ var style_basic = "\
 .gridtube_meta_def_container {font:bold 10px/13px arial,sans-serif; position:absolute; left:0px; background:#F0F0F0; padding:0px 3px; border-radius:2px; opacity:0.9; display:none; cursor:default;}\
 .gridtube_meta_def_container.top {top:0px;}\
 .gridtube_meta_def_container.bottom {bottom:0px;}\
-.gridtube_meta_def_container[shiftup], .contains-percent-duration-watched .gridtube_meta_def_container.bottom {bottom:4px !important;}\
+*[gridtube_progress_bar] .gridtube_meta_def_container.bottom, .contains-percent-duration-watched .gridtube_meta_def_container.bottom {bottom:4px !important;}\
 .gridtube_meta_def_container[reveal] {display:block;}\
 .gridtube_meta_def_container[space] .gridtube_meta_def_hd {margin-right:3px;}\
 .gridtube_meta_def_format {position:relative; color:black;}\
@@ -1386,12 +1386,6 @@ function def_rate(v_id, parent) {
         httpReq(url1, callback1, def_node, url2, parent);
         def_node.onmouseover = pref_button_show;
         def_node.onmouseout = pref_button_hide;
-
-        if (!pref_defTop && (in_plist_page() || in_userq_page())) {
-            if (innersearch(parent.parentNode.parentNode, ".//*[contains(@class,'resume-playback-progress-bar')]").snapshotLength > 0) {
-                def_node.setAttribute("shiftup", "true");
-            }
-        }
     }
     else
         if (pref_rateEnable)
@@ -1435,7 +1429,6 @@ function find_plist(img) {
     return plist;
 }
 
-
 function meta_data() {
 
     var vid_str = "//*[" + basic_str + " and (not(.//img[@data-thumb])) and (not(@gridtube_meta_thumb_mark))]";
@@ -1465,6 +1458,7 @@ function meta_data() {
 
     var user_str2 = "//li[contains(@class,'related-list-item')]\
                      //span[contains(@class,'g-hovercard') and (@data-ytid) and (not(@gridtube_meta_user_mark2))]";
+
 
     function check_def_rate_play() {
         if (pref_defEnable || pref_rateEnable || pref_playerEnable) {
@@ -1499,6 +1493,13 @@ function meta_data() {
 
                 var vid = filter(img.src, "vi/", "/&?#");
                 if (!vid) vid = filter(img.src, "vi_webp/", "/&?#");
+
+                //detect progress bar
+                if ((pref_defEnable && !pref_defTop) && (in_plist_page() || in_user_page())) {
+                    if (innersearch(parent.parentNode.parentNode, ".//*[contains(@class,'resume-playback-progress-bar')]").snapshotLength > 0) {
+                        parent.parentNode.parentNode.setAttribute("gridtube_progress_bar", "true");
+                    }
+                }
 
                 if (vid) {//video or playlist
                     if (pref_defEnable || pref_rateEnable)
@@ -1569,7 +1570,6 @@ function meta_data() {
             node.parentNode.replaceChild(a, node);
         }
     }
-
 
     check_def_rate_play();
     check_tab();
@@ -1831,6 +1831,11 @@ function in_userq_page() {
             && (win.location.href.indexOf("search?query=") >= 0));
 }
 
+//not for grid use
+function in_user_page() {
+    return ((win.location.pathname.indexOf("/user") == 0) || (win.location.pathname.indexOf("/channel") == 0));
+}
+
 //insert styles
 insertStyle(style_basic, "gridtube_style_basic");
 insertStyle(style_ads_other, "gridtube_style_ads_other");
@@ -1908,7 +1913,6 @@ function mark_content() {
     else
         if (!inplist && (content.getAttribute("gridtube_grid") == "playlist"))
             content.removeAttribute("gridtube_grid");
-
 }
 
 
@@ -1930,25 +1934,24 @@ function remove_more_ads() {
 }
 
 
-//auto_page load everything
+//auto load
 function auto_page_load(win_resize_scroll) {
     if (!pref_autoLoadSearch && !pref_autoLoadOther) return;
 
     var scrollMaxY = (win.scrollMaxY | (doc.documentElement.scrollHeight - doc.documentElement.clientHeight));
 
+    //search pages
     if (in_search_page() && pref_autoLoadSearch) {
         //message(win.pageYOffset + "    " + win.scrollMaxY + "    " + win.innerHeight);
         search_pages(win.pageYOffset >= scrollMaxY - win.innerHeight);
         //search_pages(true);
     }
 
-    //auto page for other pages
-
+    //other pages
     if (pref_autoLoadOther) {
         var button_list = docsearch("//button[((@id='watch-more-related-button')\
                                 or (contains(@class,'load-more-button')))\
-                                and (not(contains(@class, 'error') or contains(@class, 'loading')))]");
-
+                                and (not(contains(@class, 'error') or contains(@class, 'loading') or contains(@class, 'comment')))]");
 
         for (var i = 0; i < button_list.snapshotLength; i++) {
             var button = button_list.snapshotItem(i);
@@ -2014,6 +2017,7 @@ function check_focus() {
 
 var old_addr = win.location.href;
 var nochanges_count = -1;
+var start_count = -1; //not used now
 
 win.addEventListener("focus", function () { nochanges_count = -1; check_focus(); }, false);
 win.addEventListener("blur", function () { nochanges_count = -1; check_focus(); }, false);
@@ -2025,9 +2029,11 @@ win.addEventListener("click", function (e) { nochanges_count = -1; player_close(
 function check_changes() {
     if (old_addr == win.location.href) {
         if (nochanges_count < 20) nochanges_count++;
+        if (start_count < 20) start_count++;
     }
     else {
         nochanges_count = 0;
+        start_count = 0;
         old_addr = win.location.href;
         player_close();
         //message("new addr");
