@@ -315,6 +315,38 @@ var previewBox = document.querySelector('.sp-preview').style.display;
         document.querySelector('.sp-preview').style.display = "";
     }
 }
+// safaribookonline.com
+var verify_safaribook = document.querySelector('div.sbo-reading-menu.sbo-menu-top');
+if(verify_safaribook){
+var previewBox = document.querySelector('a.next.nav-link').style.display;
+    if (previewBox != "none") {
+        // navbar upper side
+        document.querySelector('a.prev.nav-link').style.display = "none";
+        document.querySelector('a.next.nav-link').style.display = "none";
+        document.querySelector('a.sbo-toc-thumb').style.display = "none";
+        document.querySelector('div.sbo-reading-menu.sbo-menu-top').style.display = "none";
+        // navbar right side
+        document.querySelector('#font-controls').style.display = "none";
+        document.querySelector('.interface-controls .sharing-controls .trigger').style.display = "none";
+        document.querySelector('button.rec-fav.ss-queue.js-queue.js-current-chapter-queue').style.display = "none";
+        document.querySelector('a.js-search-controls.search-controls').style.display = "none";
+        // navbar left side
+        document.querySelector('header.topbar.t-topbar').style.display = "none";
+    } else {
+        // navbar upper side
+        document.querySelector('a.prev.nav-link').style.display = "";
+        document.querySelector('a.next.nav-link').style.display = "";
+        document.querySelector('a.sbo-toc-thumb').style.display = "";
+        document.querySelector('div.sbo-reading-menu.sbo-menu-top').style.display = "";
+        // navbar right side
+        document.querySelector('#font-controls').style.display = "";
+        document.querySelector('.interface-controls .sharing-controls .trigger').style.display = "";
+        document.querySelector('button.rec-fav.ss-queue.js-queue.js-current-chapter-queue').style.display = "";
+        document.querySelector('a.js-search-controls.search-controls').style.display = "";
+        // navbar left side
+        document.querySelector('header.topbar.t-topbar').style.display = "";
+    }
+}
 //http://www.w3schools.com/
 var verify_wwwSchools = document.querySelector('#topnav');
 if(verify_wwwSchools){
