@@ -175,6 +175,9 @@
               unmap m
               unmap n
               unmap p
+              unmap cr
+              unmap cR
+              unmap cm
               unmap >
               unmap <
               map <Leader>a createActiveTabbedHint
@@ -313,6 +316,25 @@ var previewBox = document.querySelector('.sp-preview').style.display;
         document.querySelector('.sp-preview').style.display = "none";
     } else {
         document.querySelector('.sp-preview').style.display = "";
+    }
+}
+// www.duolingo.com
+var verify_duolingo = document.querySelector('div._6t5Uh._3llTd');
+if(verify_duolingo){
+var previewBox = document.querySelector('div._6t5Uh._3llTd').style.display;
+    if (previewBox != "none") {
+        document.querySelector('div._6t5Uh._3llTd').style.display = "none";
+    } else {
+        document.querySelector('div._6t5Uh._3llTd').style.display = "";
+    }
+}
+var verify_duolingo_dic = document.querySelector('header.topbar.topbar-blue');
+if(verify_duolingo_dic){
+var previewBox = document.querySelector('header.topbar.topbar-blue').style.display;
+    if (previewBox != "none") {
+        document.querySelector('header.topbar.topbar-blue').style.display = "none";
+    } else {
+        document.querySelector('header.topbar.topbar-blue').style.display = "";
     }
 }
 // safaribookonline.com
