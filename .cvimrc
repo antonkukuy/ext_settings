@@ -35,8 +35,8 @@
     " }}}
 
     " NORMAL MODE {{{
-        unmap >
-        unmap <
+        " unmap >
+        " unmap <
         map gE :tabnew chrome://extensions<CR>
         map gB :tabnew chrome://bookmarks<CR>
         map gG :open google<Space>
@@ -247,6 +247,13 @@
 " SITE-SPECIFIC CONFIGURATION
 "{{{
 " this will enable the config block below on the domain 'any.com'
+
+    " oose.ru
+    "{{{
+  site '*://oose.ru/*' {
+  call scrollFullPageDown
+  }
+    "}}}
 
     " wikipedia
     "{{{
