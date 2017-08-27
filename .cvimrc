@@ -141,22 +141,17 @@
 " SEARCH ENGINES 
 " {{{
     let completionengines = ['google', 'google-image', 'youtube', 'amazon', 'ebay', 'bing', 'yahoo', 'wikipedia'] " Show only these engines in the command bar
-    let searchengine goog = "https://www.google.ru/search?newwindow=1&noj=1&site=webhp&q=%s"
-    let searchengine mdn = "https://developer.mozilla.org/ru/search?q=%s"
-    let searchengine mozilla = "https://developer.mozilla.org/ru/search?q=%s"
-    "let searchengine mdn = "https://developer.mozilla.org/ru/search?q=%s"
+    let searchengine moz_ru = "https://developer.mozilla.org/ru/search?q=%s"
+    let searchengine moz = "https://developer.mozilla.org/en-US/search?q=%s"
     let searchengine ya = "https://yandex.ru/search/?text=%s"
     " youtube2mp3
     let searchengine ymp3 = "http://youtubeinmp3.com/download/?video=%s"
-    let searchengine gi = "https://github.com/search?q=%s"
-    let searchengine gsm = "http://www.gsmarena.com/results.php3?sQuickSearch=yes&sName=%s"
-    " MVN Central Repository 
-    let searchengine mvn = "http://mvnrepository.com/search.html?query=%s"
-    let searchengine sc = "http://scholar.google.com.br/scholar?hl=pt-BR&q=%s"
-    let searchengine dblp = "http://dblp.uni-trier.de/search?q=%s"
-    let searchengine dic = "http://www.thefreedictionary.com/%s"
-    let searchengine btr = "http://www.bing.com/translator/?text=%s"
+    let searchengine git = "https://github.com/search?q=%s"
     let searchengine arch = "https://wiki.archlinux.org/index.php?search=%s"
+    let searchengine ap = "https://apteka.ru/search/?q=%s"
+    let searchengine woo = "http://wooordhunt.ru/word/%s"
+    let searchengine gis = "http://2gis.ru/search/%s"
+    let searchengine duck = "http://duckduckgo.com/?q=%s"
     " let locale = "uk" " Current choices are 'jp' and 'uk'. This allows cVim to use sites like google.co.uk
 "}}}
 
