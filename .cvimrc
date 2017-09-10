@@ -152,6 +152,9 @@
     let searchengine woo = "http://wooordhunt.ru/word/%s"
     let searchengine gis = "http://2gis.ru/search/%s"
     let searchengine duck = "http://duckduckgo.com/?q=%s"
+    let searchengine duolingo = "https://www.google.ru/search?q=%s+site%3Aru.duolingo.com"
+    let searchengine context_E2R = "http://context.reverso.net/перевод/английский-русский/%s"
+    let searchengine context_R2E = "http://context.reverso.net/перевод/русский-английский/%s"
     " let locale = "uk" " Current choices are 'jp' and 'uk'. This allows cVim to use sites like google.co.uk
 "}}}
 
@@ -161,6 +164,8 @@
     " YOUTUBE  {{{
         site '*://*.youtube.com/*' {
               unmap .
+              unmap .l
+              unmap .o
               unmap r
               unmap f
               unmap j
@@ -183,6 +188,8 @@
     " VIMCASTS  {{{
         site '*://vimcasts.org/*' {
               unmap .
+              unmap .l
+              unmap .o
               unmap r
               unmap f
               unmap j
@@ -200,6 +207,8 @@
     " VIMEO  {{{
         site '*://vimeo.com/*' {
               unmap .
+              unmap .l
+              unmap .o
               unmap r
               unmap f
               unmap j
@@ -265,6 +274,7 @@
 " Variable is used by the code block
 set hintset_a
 map <leader>w :call reading<CR>
+map .o :call reading<CR>
 "{{{
 reading -> {{
 var verify = document.querySelector('.mw-body');
@@ -416,6 +426,7 @@ clickOn -> {{
     "}}}
 
 map <leader>s :call switchBoxTranslate<CR>
+map .l :call switchBoxTranslate<CR>
 "{{{
 switchBoxTranslate -> {{
 
