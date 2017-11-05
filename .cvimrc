@@ -69,7 +69,10 @@
         map A createUnhoverHint
         map H :help<CR>
         map S :settings<CR>
-        "map <Space> :
+        map <Space> scrollPageDown
+        map d scrollFullPageDown
+        map u scrollFullPageUp
+        map e scrollFullPageUp
         map cR reloadAllTabs
         map gar reloadAllTabs
         "map gy :duplicate<CR>
@@ -155,6 +158,8 @@
     let searchengine duolingo = "https://www.google.ru/search?q=%s+site%3Aru.duolingo.com"
     let searchengine context_E2R = "http://context.reverso.net/перевод/английский-русский/%s"
     let searchengine context_R2E = "http://context.reverso.net/перевод/русский-английский/%s"
+    let searchengine trg = "https://translate.google.com/?source=osdd#auto/ru/%s"
+    let searchengine try = "https://translate.yandex.ru/?lang=en-ru&text=%s"
     " let locale = "uk" " Current choices are 'jp' and 'uk'. This allows cVim to use sites like google.co.uk
 "}}}
 
@@ -183,6 +188,7 @@
               map <Leader>a createActiveTabbedHint
               map a createHint
               map A createTabbedHint
+              unmap <Space>
         }
     "}}}
     " VIMCASTS  {{{
@@ -256,6 +262,13 @@
     "{{{
   site '*://oose.ru/*' {
   call scrollFullPageDown
+  }
+    "}}}
+
+    " correctenglish.ru
+    "{{{
+  site '*://www.correctenglish.ru/*' {
+  " call scrollRight
   }
     "}}}
 
