@@ -7,6 +7,8 @@
 // @include       http://wikipedia.tld/*
 // @include       http://*.wikipedia.tld/*
 //// Since TLD doesn't work in Chrome:
+// @include       https://www.textsale.ru/*
+// @include       http://www.textsale.ru/*
 // @include       http://wikipedia.org/*
 // @include       http://*.wikipedia.org/*
 // @include       https://developer.chrome.com/*
@@ -22,6 +24,22 @@
 // @include       https://*.wikipedia.org/*
 // @grant        none
 // ==/UserScript==
+
+// textsale.ru
+var verify_textsale = document.querySelector('table.tablemain');
+if(verify_textsale){
+    var t = document.getElementsByTagName('td');
+    t[2].style.display = 'none';
+    t[4].style.display = 'none';
+    t[12].style.display = 'none';
+    //alert(t);
+} else {
+    var t = document.getElementsByTagName('td');
+    t[2].style.display = '';
+    t[4].style.display = '';
+    t[12].style.display = '';
+}
+
 
 
 // safaribookonline.com
