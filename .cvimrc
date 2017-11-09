@@ -425,6 +425,24 @@ var contentDeveloper = document.querySelector('.ytp-chrome-bottom').style.displa
     }
 }
 
+// textsale.ru
+var verify_textsale = document.querySelector('table.tablemain');
+if(verify_textsale){
+    var t = document.getElementsByTagName('td');
+var textsale_td = t[2].style.display;
+    if (textsale_td != "none") {
+    t[2].style.display = 'none';
+    t[4].style.display = 'none';
+    t[12].style.display = 'none';
+    //alert(t);
+} else {
+    var t = document.getElementsByTagName('td');
+    t[2].style.display = '';
+    t[4].style.display = '';
+    t[12].style.display = '';
+}
+}
+
 //console.log('that work');
     }}
     "}}}
