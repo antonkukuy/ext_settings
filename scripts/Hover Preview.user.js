@@ -111,7 +111,7 @@ function createPopup() {
     myPopup.innerHTML =
         "<STYLE type='text/css'> iframe.preview { color: #ff8822; background-color: #fff; margin: 0px; padding: 2px; border: 2px solid red; text-align: center; } </STYLE>"
         +
-        "<IFRAME class='preview' width='"+(window.innerWidth*0.8)+"' height='"+(window.innerHeight*0.9)+"' src='about:blank'></IFRAME>";
+        "<IFRAME class='preview' width='"+(window.innerWidth*0.9)+"' height='"+(window.innerHeight*0.9)+"' src='about:blank'></IFRAME>";
     myPopup.addEventListener("mouseover", function(evt) { isOverPopup=true; }, false);
     myPopup.addEventListener("mouseout", function(evt) { isOverPopup=false; setTimeout(clearPopup,unfocusReactionTime); }, false);
     window.addEventListener("keyup", function(evt) { if(evt.keyCode == 27){ isOverPopup=false; setTimeout(clearPopup,unfocusReactionTime); } }, false);
@@ -142,20 +142,39 @@ function showPreviewWindow(link,evt) {
 }
 
 function init() {
-    for (var i=0;i<document.links.length;i++) {
-        var link = document.links[i];
-        /** Apparently deprecated. **/
-        // link.onmouseover = eekAMouse;
-        // link.onmouseout = phewMouseGone;
-        /** The new way: **/
-        link.addEventListener("mouseover", eekAMouse, false);
-        link.addEventListener("mouseout", phewMouseGone, false);
-        link.addEventListener("click", aClick, false);
-        // link.addEventListener("mousemove", function(evt) { locate(evt); }, true);
-    }
+
+	// Don't work following pages that will be openning by autopatchwork
+    // for (var i=0;i<document.links.length;i++) {
+    //     var link = document.links[i];
+    //     #<{(|* Apparently deprecated. *|)}>#
+    //     // link.onmouseover = eekAMouse;
+    //     // link.onmouseout = phewMouseGone;
+    //     #<{(|* The new way: *|)}>#
+    //     link.addEventListener("mouseover", eekAMouse, false);
+    //     link.addEventListener("mouseout", phewMouseGone, false);
+    //     link.addEventListener("click", aClick, false);
+    //     // link.addEventListener("mousemove", function(evt) { locate(evt); }, true);
+    // }
+
+	document.body.addEventListener("mouseover", function(e) {
+		// e.target was the mousevered element
+		if(e.target && e.target.nodeName == "A") {
+			// alert(e.target.innerText);
+			e.target.addEventListener("mouseover", eekAMouse, false);
+			e.target.addEventListener("mouseout", phewMouseGone, false);
+			e.target.addEventListener("click", aClick, false);
+		}
+	});
+
 }
 
 init();
 
 // window.document.checkFocus = checkFocus;
 
+
+// document.addEventListener("contextmenu", function(e){
+// 		alert();
+// 	e.preventDefault();
+//      document.getElementById('lleo_dialog').style.cssText += "z-index: 999 !important";
+// });
